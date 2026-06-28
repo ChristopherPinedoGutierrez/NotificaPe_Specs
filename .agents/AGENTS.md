@@ -49,7 +49,7 @@ El flujo de trabajo se activa únicamente cuando el usuario escribe el comando `
 * **Propósito:** Desarrollo incremental del backlog diario en una app específica.
 * **Recomendación de IA:** Indicar al usuario que abra el chat **dentro de la carpeta de la aplicación específica** en el IDE, y que use **Gemini 3.5 Flash (Medium)**.
 * **Procedimiento del Agente Desarrollador:**
-  1. Al iniciar el chat en la app, lee el puntero local `.agents/AGENTS.md` y carga tu especificación de rol central en `3_development/apps/[nombre_app]/app_instructions.md`.
+  1. Al iniciar el chat en la app, lee el puntero local `.agents/AGENTS.md` y carga tu especificación de rol central en `development/apps/[nombre_app]/app_instructions.md`.
   2. Carga la especificación y prioridades de `1_introduction/knowledge/knowledge_base.md`.
   3. Lee el archivo unificado **`management/BacklogGlobal.md`**. **Filtra las tareas** que correspondan a tu aplicación (`App: [nombre_app]`) y al entregable activo (ej: `[E1]`). Pregunta al usuario: *"¿En qué tarea del backlog vamos a trabajar hoy?"*.
   4. Desarrolla la tarea aplicando la jerarquía de prioridad técnica: primero los estándares obligatorios de `standard_skills/` (ej. `standard_database.md`), y secundariamente las referencias externas de `skills/` y soluciones previas de `solutions/`.
@@ -118,18 +118,18 @@ El flujo de trabajo se activa únicamente cuando el usuario escribe el comando `
 
 Cuando se activa este flujo (tras aprobar la base de datos en Acción 1 o la Regularización en Acción 3), el agente inicializa la estructura operativa de forma automatizada:
 
-1. **Estructura Operativa:** Utiliza las carpetas pre-creadas `3_development/` y `3_development/apps/`.
-2. **Mapeo de Proyectos:** Crea el archivo `3_development/Mapeo_Proyectos.md` (mapeo de apps y épicas del proyecto).
+1. **Estructura Operativa:** Utiliza las carpetas pre-creadas `development/` y `development/apps/`.
+2. **Mapeo de Proyectos:** Crea el archivo `development/Mapeo_Proyectos.md` (mapeo de apps y épicas del proyecto).
 3. **Backlog Centralizado:** Crea el archivo unificado **`management/BacklogGlobal.md`** conteniendo las Historias de Usuario organizadas por Entregable Global (ej: `[E1]`) y por Épica, con asignación explícita de `App: [nombre_app]`.
 4. **Inicialización de Changelogs:** En `management/changelogs/`, crea el archivo índice **`orquestador.md`** y los archivos de changelog vacíos para cada una de las Épicas del proyecto (ej: `changelog_auth.md`, `changelog_database.md`).
-5. **Mapeo de Aplicaciones y Roles:** Para cada app mapeada, crea la subcarpeta `3_development/apps/[nombre_app]/` y genera dentro:
+5. **Mapeo de Aplicaciones y Roles:** Para cada app mapeada, crea la subcarpeta `development/apps/[nombre_app]/` y genera dentro:
    * El archivo **`app_instructions.md`** (las instrucciones de comportamiento y stack para el programador de IA de esa app, heredando los estándares de `1_introduction/knowledge/` y estableciendo en la sección de referencias la jerarquía de prioridad: obligatoriedad absoluta de `standard_skills/` y uso referencial y acotado de `skills/` y `solutions/` según la tecnología).
 6. **Sincronización MCP Inicial (Opcional):** Si el usuario confirmó que tiene un servidor MCP para Jira o Notion, llama al MCP para crear el tablero, las épicas y las tareas de forma idéntica al `BacklogGlobal.md` Markdown.
 7. **Despliegue de Punteros:** Muestra en el chat el código de puntero de 3 líneas para pegar en el `.agents/AGENTS.md` local del repositorio real de cada app:
    ```markdown
    # AGENT POINTER
    Lee y obedece estrictamente las instrucciones centrales en:
-   [Instrucciones de Rol](file:///../[proyecto]_specs/3_development/apps/[nombre_app]/app_instructions.md)
+   [Instrucciones de Rol](file:///../[proyecto]_specs/development/apps/[nombre_app]/app_instructions.md)
    ```
 
 ---
