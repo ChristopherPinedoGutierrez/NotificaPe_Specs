@@ -5,7 +5,7 @@
 ## [E1] Entregable 1: Core de Notificaciones y Sincronización
 
 ### Épica: Base de Datos y APIs
-- [ ] App: web | Tarea: Conectar MCP de Supabase y validar estructura final de disputas (Triggers/Vistas) vs la nube.
+- [x] App: web | Tarea: Conectar MCP de Supabase y validar estructura final de disputas (Triggers/Vistas) vs la nube.
 - [ ] App: web | Tarea: Implementar endpoints CRUD y Edge Functions para el manejo de sesiones y empresas.
 
 ### Épica: Emisor
