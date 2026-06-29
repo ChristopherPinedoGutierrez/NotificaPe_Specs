@@ -62,7 +62,7 @@
 
 * **Descripción:** Corrección de actualización en tiempo real del Dashboard: eliminación de listener muerto (ConflictosXNotificacion) y sustitución del Server Action por cliente Supabase directo en el handler Realtime para garantizar datos frescos sin caching de Next.js.
 * **Detalles Técnicos:**
-  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx), [actions.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/actions.ts)
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx), [actions.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/actions.ts)
   - **Base de Datos:** Ninguno. Verificado vía MCP: NotificacionesXDispositivo tiene REPLICA IDENTITY FULL y está en la publicación supabase_realtime. ConflictosXNotificacion confirmada como tabla heredada fuera de la publicación.
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: Escucha D (ConflictosXNotificacion) eliminada del canal Realtime — tabla heredada no publicada que nunca disparaba eventos.
@@ -71,4 +71,126 @@
   - [x] AC 4: Handler de Realtime (Escucha A) actualizado para llamar refreshDailyData en lugar de fetchDashboardMetrics, eliminando el caching de Next.js como causa de datos desactualizados.
   - [x] AC 5: Dependencias del useEffect del canal actualizadas para incluir refreshDailyData.
 ---
+### 2026-06-29 14:05 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
 
+* **Descripción:** Migración de la Bitácora de Notificaciones Históricas a un Client Component interactivo unificando el flujo de carga, skeletons y realtime con el panel de control.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/page.tsx), [NotificationFilters.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/NotificationFilters.tsx), [ClientLimitSelector.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/ClientLimitSelector.tsx), [NotificacionesHistoricasClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/NotificacionesHistoricasClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Creado componente cliente integrador `NotificacionesHistoricasClient.tsx` que maneja estados locales de filtros, paginación, suma financiera y carga en el cliente.
+  - [x] AC 2: Modificado `NotificationFilters.tsx` para admitir props controladas de forma opcional y callbacks de cambio directa para evitar redirección y congelamiento de UI en navegaciones suaves de Next.js.
+  - [x] AC 3: Modificado `ClientLimitSelector.tsx` agregando la prop callback `onLimitChange` para control en cliente.
+  - [x] AC 4: Adaptado el Server Component `page.tsx` para servir como inyector de datos estáticos iniciales de catálogos y renderizar el componente cliente.
+  - [x] AC 5: Implementada actualización en tiempo real nativa en el cliente sobre el canal `notif_historial_tabla_client` llamando de forma silenciosa a `fetchData`, y mostrando skeleton visual reactivo de inmediato ante cambios manuales de filtros.
+---
+### 2026-06-29 14:10 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Optimización del espacio vertical del Dashboard: integración de cabecera general con controles de fecha y exportación en una sola fila a la derecha.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PageContainer.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/PageContainer.tsx), [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/page.tsx), [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Modificado `PageContainer` para hacer opcional la cabecera cuando no se provee la prop `title`, permitiendo a vistas específicas controlar su estructura de cabecera de forma nativa.
+  - [x] AC 2: Extraído el encabezado ("Resumen General" y descripción de bienvenida) del Server Component de dashboard y trasladado al cliente `DashboardClient.tsx` para integrarlo con el estado del selector de fecha y los botones de exportación.
+  - [x] AC 3: Reubicados el selector de fecha y el menú de exportación Excel/CSV a la esquina superior derecha alineados horizontalmente en la misma fila que el título y subtítulo, eliminando la fila secundaria y reduciendo la altura vertical para mitigar scroll en pantallas medianas.
+---
+### 2026-06-29 14:25 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de la lógica de conteo "Sin Reclamar" en Dashboard y soporte para inicialización y persistencia de filtros mediante Query Params en la bitácora histórica.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [NotificacionesHistoricasClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/NotificacionesHistoricasClient.tsx), [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Corregida la lógica en `DashboardClient.tsx` para calcular `sinRecHoy` requiriendo estrictamente que `EstadoProgreso === 'PENDIENTE'`, evitando la doble suma de notificaciones Observadas.
+  - [x] AC 2: Redirigido el card "Sin Reclamar" a la bitácora de históricas con query string de filtrado: `/dashboard/notificaciones/historicas?estado=PENDIENTE`.
+  - [x] AC 3: Implementada la lectura e inicialización de estados locales en `NotificacionesHistoricasClient.tsx` a través del hook `useSearchParams`, asumiendo parámetros de URL de filtros de estado, dispositivos, billeteras, fecha y paginación en el primer renderizado.
+  - [x] AC 4: Añadido efecto secundario reactivo en `NotificacionesHistoricasClient.tsx` que sincroniza los estados del cliente de vuelta con los Query Params de la URL usando `window.history.replaceState` de manera transparente y no bloqueante.
+---
+### 2026-06-29 14:35 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajustes de UI del Dashboard: renombrado de "Vendedores" a "Usuarios" (ranking y modal), inclusión de todos los dispositivos del contratante en el desglose del modal (incluso con S/ 0.00 hoy) y adición de filas de sumatorias totales.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/page.tsx), [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Consultados todos los dispositivos activos e inactivos del contratante en `page.tsx` y pasados al cliente mediante la prop `dispositivos`.
+  - [x] AC 2: Modificada la inicialización de `byDevice` en `useMemo` de `DashboardClient.tsx` para pre-poblar el listado con todos los dispositivos del contratante con total `S/ 0.00`, asegurando que aparezcan en el modal de rendimiento.
+  - [x] AC 3: Renombradas las referencias de "Vendedores" a "Usuarios" en el título de la tarjeta del dashboard y en el encabezado del modal.
+  - [x] AC 4: Añadida fila estacional y fija de **TOTAL GENERAL** al final de la pestaña **Resumen General** (acumulando el monto y cantidad de cobros de todos los usuarios).
+  - [x] AC 5: Añadida fila de **TOTAL GENERAL** al final de la pestaña **Ventas por Dispositivo** (acumulando los ingresos por dispositivo de todos los terminales).
+---
+### 2026-06-29 14:40 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajustes adicionales de UI en el modal de rendimiento: renombrado de pestaña a "Ventas por Usuario" e inclusión del desglose de cobros "Sin Reclamar" dentro de la pestaña "Ventas por Dispositivo" para cada caja vinculada.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Renombrada la primera pestaña del modal de desempeño de *"Resumen General"* a *"Ventas por Usuario"*.
+  - [x] AC 2: Incorporada la acumulación de montos y operaciones de notificaciones en estado `'PENDIENTE'` (`unclaimedTotal` y `unclaimedCount`) por cada dispositivo hoy en `useMemo`.
+  - [x] AC 3: Añadido desglose de cobros **"Sin Reclamar"** (en formato itálica y color suave) al final del dropdown/acordeón de cada dispositivo en la pestaña **Ventas por Dispositivo**, siempre que tenga cobros huérfanos hoy.
+---
+### 2026-06-29 14:42 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajuste de UI en Dashboard principal: renombrado de la tarjeta de ranking a "Ingresos por usuario".
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Renombrado el título de la tarjeta de ranking en el Dashboard a **"Ingresos por usuario"** para unificar la nomenclatura con las secciones del modal.
+---
+### 2026-06-29 14:52 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Refactorización de Dashboard y rediseño de Ingresos por Dispositivo: extracción a componente independiente y maquetación en grid responsivo de 1 a 3 columnas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx), [DeviceIncomeList.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DeviceIncomeList.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Extraído el marcado y la lógica de "Ingresos por Dispositivo" a un componente reactivo independiente [DeviceIncomeList.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DeviceIncomeList.tsx).
+  - [x] AC 2: Rediseñado el listado vertical a un grid responsivo adaptable basado en la cantidad de dispositivos (`grid-cols-1`, `sm:grid-cols-2`, `xl:grid-cols-3` como límite).
+  - [x] AC 3: Asegurado que los dispositivos sobrantes (4 en adelante) se posicionen en la fila siguiente alineados a la izquierda sin deformarse.
+---
+### 2026-06-29 14:55 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Componentización y refactorización masiva de DashboardClient.tsx: extracción de modales, cabeceras, tarjetas métricas y skeletons a componentes independientes, reduciendo el tamaño del archivo de 1050+ a ~450 líneas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx), [DashboardHeader.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardHeader.tsx), [DashboardStatsCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardStatsCards.tsx), [DeviceDetailsModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DeviceDetailsModal.tsx), [UserPerformanceModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/UserPerformanceModal.tsx), [DashboardSkeleton.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardSkeleton.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Extraído el encabezado dinámico y controles de rango y exportación a [DashboardHeader.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardHeader.tsx).
+  - [x] AC 2: Extraído el layout de las tarjetas métricas (Plan, Dispositivos y Accesos de Usuarios) a [DashboardStatsCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardStatsCards.tsx).
+  - [x] AC 3: Encapsulado el modal detallado de billeteras y total por caja a [DeviceDetailsModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DeviceDetailsModal.tsx).
+  - [x] AC 4: Encapsulado el modal de desempeño de usuarios (con pestañas "Ventas por Usuario" y "Usuarios por Dispositivo") a [UserPerformanceModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/UserPerformanceModal.tsx).
+  - [x] AC 5: Externalizado el maquetado del skeleton animado de carga y la tarjeta auxiliar `StatCard` a [DashboardSkeleton.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardSkeleton.tsx).
+  - [x] AC 6: Validada la compilación exitosa de Next.js, logrando separar la lógica de suscripciones realtime y exportación XLS del maquetado estático de modales.
+---
+### 2026-06-29 14:58 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de la maquetación en DashboardStatsCards: remoción del grid de 4 columnas duplicado que provocaba que la tarjeta de licencias colapsara a 1 sola columna.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardStatsCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardStatsCards.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Removido el wrapper `<div className="grid grid-cols-1 lg:grid-cols-4 ...">` en `DashboardStatsCards.tsx`.
+  - [x] AC 2: Asegurado que el componente devuelva directamente `<div className="lg:col-span-3 flex flex-col">` para que se monte fluidamente sobre el grid principal de `DashboardClient.tsx`.
+---
+### 2026-06-29 15:00 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajuste de UI en el botón de exportación: reemplazo del fondo traslúcido (`glass-panel`) del menú desplegable de formatos por un fondo sólido (`bg-white` y `dark:bg-gray-900`) para evitar superposiciones y opacidades conflictivas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardHeader.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardHeader.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reemplazada la clase `glass-panel` por `bg-white dark:bg-gray-900` y agregadas las directivas de bordes sólidos en el dropdown del botón de exportar.
+---
+### 2026-06-29 15:05 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de estilos de tema oscuro en modales: reemplazo de la clase inexistente `gray-955` por `gray-950` y ajuste de colores de texto a variables estándar de Tailwind.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DeviceDetailsModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DeviceDetailsModal.tsx), [UserPerformanceModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/UserPerformanceModal.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reemplazada la clase de fondo `dark:bg-gray-955` por la clase estándar `dark:bg-gray-950` en el contenedor de los modales de dispositivo y desempeño.
+  - [x] AC 2: Reemplazada la clase de texto `text-gray-955` por `text-gray-900` para garantizar un contraste correcto en modo claro e invocar `dark:text-white` fluidamente en modo oscuro.
+---
