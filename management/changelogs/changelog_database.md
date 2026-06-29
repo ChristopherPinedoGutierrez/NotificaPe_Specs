@@ -20,4 +20,15 @@
   - [x] AC 2: Aprobación y asignación del cobro al vendedor ganador mediante llamada segura al RPC.
   - [x] AC 3: Descarte exitoso para retornar cobro a estado PENDIENTE.
 ---
+### 2026-06-28 21:30 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
 
+* **Descripción:** Implementación de borrado de dispositivos, límites de licencias en UI (dispositivos y usuarios), y optimización de resiliencia realtime.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0017_licencias_por_contratante.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0017_licencias_por_contratante.sql), [actions.ts (dispositivos/[id])](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/actions.ts), [page.tsx (dispositivos/[id])](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx), [DeviceCardGrid.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DeviceCardGrid.tsx), [page.tsx (accesos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/page.tsx), [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx)
+  - **Base de Datos:** Actualizadas funciones `check_device_limit()` y `check_user_limit()` para evaluar únicamente elementos activos/aprobados. Creado trigger y función `enforce_downgrade_limits()` para desactivar/bloquear excedentes ante downgrades de plan en vivo.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Borrado físico seguro de dispositivos con eliminación de dependencias en cascada y advertencia detallada en la UI.
+  - [x] AC 2: Control de límites activos en switches de cajas y aprobaciones de vendedores en UI con modal de reasignación rápida de cupos.
+  - [x] AC 3: Indicador de uso `( X / Y )` y alerta persistente en el dashboard de Accesos ante downgrades.
+  - [x] AC 4: Resiliencia de WebSockets al reanudar pestaña (Visibility API) con refresco automático de token JWT para prevenir caídas silenciosas.
+---
