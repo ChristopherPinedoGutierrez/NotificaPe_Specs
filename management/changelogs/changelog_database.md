@@ -32,3 +32,17 @@
   - [x] AC 3: Indicador de uso `( X / Y )` y alerta persistente en el dashboard de Accesos ante downgrades.
   - [x] AC 4: Resiliencia de WebSockets al reanudar pestaña (Visibility API) con refresco automático de token JWT para prevenir caídas silenciosas.
 ---
+### 2026-06-29 12:10 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Refinamiento de visualización del Ranking de Vendedores, acordeones de Dispositivos en el Modal y fix de scroll horizontal en hover.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Corrección de scrollbar horizontal mediante overflow-hidden en el card-botón de ingresos por dispositivo.
+  - [x] AC 2: Contenedor estático del Ranking con un card clicable que posee filas fijas simétricas para el Top 1, Top 2 y Top 3 (rellenando vacíos con guiones y S/ 0.00).
+  - [x] AC 3: Renombre de la pestaña del modal a "Ventas por Dispositivo" mostrando un listado de acordeones de Cajas (el primero abierto de forma reactiva al iniciar).
+  - [x] AC 4: Listado unificado en "Resumen General" mostrando a todos los vendedores aprobados por orden de mayor a menor monto cobrado hoy.
+  - [x] AC 5: Verificación sintáctica y tipado de TypeScript confirmada como 100% exitosa con next build.
+---
+
