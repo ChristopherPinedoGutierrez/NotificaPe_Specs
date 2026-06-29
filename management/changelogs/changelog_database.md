@@ -194,3 +194,43 @@
   - [x] AC 1: Reemplazada la clase de fondo `dark:bg-gray-955` por la clase estándar `dark:bg-gray-950` en el contenedor de los modales de dispositivo y desempeño.
   - [x] AC 2: Reemplazada la clase de texto `text-gray-955` por `text-gray-900` para garantizar un contraste correcto en modo claro e invocar `dark:text-white` fluidamente en modo oscuro.
 ---
+### 2026-06-29 15:12 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajustes de UI en la vista de detalle de dispositivo: renombrado de botón de eliminación y diferenciación cromática (anaranjado) para la desvinculación física.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx), [UnlinkDeviceButton.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/UnlinkDeviceButton.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Cambiado el texto del botón en la tarjeta de datos a **"Eliminar Dispositivo"** (reemplazando "Eliminar Caja / Dispositivo").
+  - [x] AC 2: Cambiado el esquema de color del botón **"Desvincular"** y de su modal de confirmación a un tono anaranjado (`bg-amber-50`, `text-amber-600` e icono `AlertTriangle` en ámbar) para diferenciarlo de las acciones destructivas rojas.
+---
+### 2026-06-29 15:28 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Parche de seguridad y optimización de cuota de red en Supabase Realtime: restricción y filtrado en origen de eventos en la tabla `DispositivosXContratante` por `IdContratante`.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/layout.tsx), [DispositivosViewProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosViewProvider.tsx)
+  - **Base de Datos:** Ninguno (se utiliza el filtrado nativo de canal de Supabase en cliente).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Inyectado el parámetro `userId` desde el Layout Server Component al `DispositivosViewProvider` Client Component.
+  - [x] AC 2: Agregado el parámetro `filter: "IdContratante=eq." + userId` a la suscripción Realtime del proveedor. Esto evita que Supabase envíe eventos ajenos por WebSocket, previniendo la visualización de dispositivos de terceros y ahorrando consumo en la cuota de mensajes.
+---
+### 2026-06-29 15:32 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Ajuste en SidebarNav para preservar la selección visual del módulo activo al navegar en subrutas de detalle (ej: dispositivos/[id]).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Modificada la variable `isExactActive` en `SidebarNav.tsx` para que valide coincidencia exacta (`pathname === link.href`) o coincidencia de prefijo con barra (`pathname.startsWith(link.href + "/")`).
+  - [x] AC 2: Garantizado que al acceder a las configuraciones individuales de una caja en `/dashboard/dispositivos/[id]`, el botón principal *"Dispositivos y Seguridad"* se mantenga resaltado en azul de forma persistente.
+---
+### 2026-06-29 15:33 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de solapamiento en SidebarNav: exclusión de la regla de prefijos para la ruta raíz `/dashboard` para evitar la iluminación permanente de *"Resumen General"*.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Añadida la restricción `link.href !== "/dashboard"` en la validación por prefijo de `isExactActive`.
+  - [x] AC 2: Confirmado que al ingresar a otros módulos independientes (ej: `/dashboard/dispositivos`), el ítem *"Resumen General"* se apague correctamente.
+---
