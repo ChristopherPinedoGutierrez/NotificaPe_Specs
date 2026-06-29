@@ -212,9 +212,10 @@ $$ LANGUAGE plpgsql STABLE SECURITY DEFINER;
 
 -- ==============================================================================
 -- 6. TRIGGER: check_device_limit
---    BEFORE INSERT en DispositivosXContratante.
---    Bloquea la creación si el contratante ya alcanzó el LimiteDispositivos
---    de su licencia activa.
+--    BEFORE INSERT OR UPDATE en DispositivosXContratante.
+--    Bloquea la creación o activación si el contratante ya alcanzó el LimiteDispositivos
+--    de dispositivos activos en su licencia activa.
+--    Modificado: 2026-06-28 | Autor: AGENT_ROLE | Justificación: Validar límites en base a dispositivos activos.
 -- ==============================================================================
 
 CREATE OR REPLACE FUNCTION public.check_device_limit()
@@ -235,18 +236,23 @@ BEGIN
    LIMIT 1;
 
   IF v_limite_disp IS NULL THEN
-    RAISE EXCEPTION 'Sin licencia activa: el contratante no tiene un plan vigente para crear dispositivos.';
+    RAISE EXCEPTION 'Sin licencia activa: el contratante no tiene un plan vigente para crear o activar dispositivos.';
   END IF;
 
-  -- 2. Contar dispositivos actuales del contratante
-  SELECT COUNT(*) INTO v_total_disp
-    FROM public."DispositivosXContratante"
-   WHERE "IdContratante" = NEW."IdContratante";
+  -- 2. Validar solo si se está insertando un dispositivo activo o si se está activando uno inactivo
+  IF (TG_OP = 'INSERT' AND NEW."Activo" = TRUE) OR 
+     (TG_OP = 'UPDATE' AND OLD."Activo" = FALSE AND NEW."Activo" = TRUE) THEN
+     
+     SELECT COUNT(*) INTO v_total_disp
+       FROM public."DispositivosXContratante"
+      WHERE "IdContratante" = NEW."IdContratante"
+        AND "Activo" = TRUE;
 
-  -- 3. Bloquear si se supera el límite
-  IF v_total_disp >= v_limite_disp THEN
-    RAISE EXCEPTION 'LímiteDispositivos: el plan "%" permite hasta % dispositivos. Ya tienes % registrados.',
-      v_nombre_plan, v_limite_disp, v_total_disp;
+     -- 3. Bloquear si se supera el límite de activos
+     IF v_total_disp >= v_limite_disp THEN
+       RAISE EXCEPTION 'LímiteDispositivos: el plan "%" permite hasta % dispositivos activos. Ya tienes % activos.',
+         v_nombre_plan, v_limite_disp, v_total_disp;
+     END IF;
   END IF;
 
   RETURN NEW;
@@ -255,18 +261,16 @@ $$ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS enforce_device_limit ON public."DispositivosXContratante";
 CREATE TRIGGER enforce_device_limit
-  BEFORE INSERT ON public."DispositivosXContratante"
+  BEFORE INSERT OR UPDATE ON public."DispositivosXContratante"
   FOR EACH ROW
   EXECUTE FUNCTION public.check_device_limit();
 
 -- ==============================================================================
--- 7. TRIGGER: check_user_limit (REESCRITO — ahora es a nivel de cuenta)
---    BEFORE INSERT en AutorizacionesXUsuario.
---    Valida que el total de usuarios ÚNICOS autorizados en TODOS los
---    dispositivos del contratante no supere el LimiteUsuarios de su plan.
---
---    Nota: "únicos" = mismo IdUsuario no cuenta doble si tiene acceso a varios
---    dispositivos del mismo contratante. La bolsa es de personas, no de vínculos.
+-- 7. TRIGGER: check_user_limit
+--    BEFORE INSERT OR UPDATE en AutorizacionesXUsuario.
+--    Valida que el total de usuarios ÚNICOS autorizados en estado Aprobado (2)
+--    en cualquier dispositivo del contratante no supere el LimiteUsuarios de su plan.
+--    Modificado: 2026-06-28 | Autor: AGENT_ROLE | Justificación: Validar límites en base a usuarios aprobados.
 -- ==============================================================================
 
 CREATE OR REPLACE FUNCTION public.check_user_limit()
@@ -300,30 +304,36 @@ BEGIN
     RAISE EXCEPTION 'Sin licencia activa: el contratante no tiene un plan vigente.';
   END IF;
 
-  -- 3. Contar usuarios ÚNICOS ya autorizados en cualquier dispositivo del contratante
-  --    (un usuario con acceso a 2 cajas cuenta como 1 en la bolsa del plan)
-  SELECT COUNT(DISTINCT a."IdUsuario") INTO v_total_users
-    FROM public."AutorizacionesXUsuario" a
-    JOIN public."DispositivosXContratante" d ON d."IdDispositivo" = a."IdDispositivo"
-   WHERE d."IdContratante" = v_id_contratante;
+  -- 3. Validar solo si se está insertando en estado Aprobado (2) o si se está cambiando de otro estado a Aprobado (2)
+  IF (TG_OP = 'INSERT' AND NEW."IdEstadoAuth" = 2) OR 
+     (TG_OP = 'UPDATE' AND OLD."IdEstadoAuth" != 2 AND NEW."IdEstadoAuth" = 2) THEN
 
-  -- 4. Verificar que el usuario nuevo no sea ya uno de los autorizados existentes
-  --    (si solo añade acceso a otro dispositivo no consume cupo adicional)
-  IF EXISTS (
-    SELECT 1
-      FROM public."AutorizacionesXUsuario" a
-      JOIN public."DispositivosXContratante" d ON d."IdDispositivo" = a."IdDispositivo"
-     WHERE d."IdContratante" = v_id_contratante
-       AND a."IdUsuario" = NEW."IdUsuario"
-  ) THEN
-    -- El usuario ya estaba contado: autorizar en otro dispositivo no consume cupo
-    RETURN NEW;
-  END IF;
+     -- Contar usuarios ÚNICOS ya autorizados (Aprobados) en cualquier caja de este contratante
+     SELECT COUNT(DISTINCT a."IdUsuario") INTO v_total_users
+       FROM public."AutorizacionesXUsuario" a
+       JOIN public."DispositivosXContratante" d ON d."IdDispositivo" = a."IdDispositivo"
+      WHERE d."IdContratante" = v_id_contratante
+        AND a."IdEstadoAuth" = 2;
 
-  -- 5. El usuario es nuevo en la cuenta: verificar que haya cupo disponible
-  IF v_total_users >= v_limite_users THEN
-    RAISE EXCEPTION 'LímiteUsuarios: el plan "%" permite hasta % usuarios únicos. Ya tienes % registrados.',
-      v_nombre_plan, v_limite_users, v_total_users;
+     -- 4. Verificar que el usuario no sea ya uno de los autorizados previamente en estado Aprobado
+     -- (si ya tiene acceso aprobado a otra caja del contratante, no consume cupo nuevo)
+     IF EXISTS (
+       SELECT 1
+         FROM public."AutorizacionesXUsuario" a
+         JOIN public."DispositivosXContratante" d ON d."IdDispositivo" = a."IdDispositivo"
+        WHERE d."IdContratante" = v_id_contratante
+          AND a."IdUsuario" = NEW."IdUsuario"
+          AND a."IdEstadoAuth" = 2
+          AND a."IdAutorizacion" != NEW."IdAutorizacion" -- evitar contarse a sí mismo en un UPDATE
+     ) THEN
+       RETURN NEW;
+     END IF;
+
+     -- 5. Si es un usuario nuevo en estado aprobado, verificar que haya cupo disponible
+     IF v_total_users >= v_limite_users THEN
+       RAISE EXCEPTION 'LímiteUsuarios: el plan "%" permite hasta % usuarios únicos aprobados. Ya tienes % aprobados.',
+         v_nombre_plan, v_limite_users, v_total_users;
+     END IF;
   END IF;
 
   RETURN NEW;
@@ -332,7 +342,7 @@ $$ LANGUAGE plpgsql;
 
 DROP TRIGGER IF EXISTS enforce_user_limit ON public."AutorizacionesXUsuario";
 CREATE TRIGGER enforce_user_limit
-  BEFORE INSERT ON public."AutorizacionesXUsuario"
+  BEFORE INSERT OR UPDATE ON public."AutorizacionesXUsuario"
   FOR EACH ROW
   EXECUTE FUNCTION public.check_user_limit();
 
@@ -482,4 +492,62 @@ EXCEPTION
         RETURN jsonb_build_object('success', false, 'error', SQLERRM);
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+
+-- ==============================================================================
+-- 8. TRIGGER: enforce_downgrade_limits
+--    AFTER INSERT OR UPDATE en LicenciasXContratante.
+--    Desactiva dispositivos excedentes (Activo = FALSE) y bloquea usuarios excedentes
+--    (IdEstadoAuth = 3) al cambiar a un plan inferior (downgrade).
+--    Creado: 2026-06-28 | Autor: AGENT_ROLE | Justificación: Automatización de límites ante downgrade.
+-- ==============================================================================
+
+CREATE OR REPLACE FUNCTION public.enforce_downgrade_limits()
+RETURNS TRIGGER AS $$
+DECLARE
+  v_limite_disp  INT;
+  v_limite_users INT;
+BEGIN
+  -- 1. Si la licencia pasa a estar activa, recuperar sus límites
+  IF NEW."Activo" = TRUE THEN
+    SELECT l."LimiteDispositivos", l."LimiteUsuarios"
+      INTO v_limite_disp, v_limite_users
+      FROM public."Licencias" l
+     WHERE l."IdLicencia" = NEW."IdLicencia";
+
+    -- 2. Desactivar automáticamente dispositivos excedentes (los más nuevos)
+    UPDATE public."DispositivosXContratante"
+       SET "Activo" = FALSE
+     WHERE "IdDispositivo" IN (
+         SELECT "IdDispositivo"
+           FROM public."DispositivosXContratante"
+          WHERE "IdContratante" = NEW."IdContratante"
+            AND "Activo" = TRUE
+          ORDER BY "FechaReg" DESC
+         OFFSET v_limite_disp
+     );
+
+    -- 3. Bloquear automáticamente usuarios/vendedores excedentes (las autorizaciones más nuevas)
+    UPDATE public."AutorizacionesXUsuario"
+       SET "IdEstadoAuth" = 3 -- Bloqueado
+     WHERE "IdAutorizacion" IN (
+         SELECT a."IdAutorizacion"
+           FROM public."AutorizacionesXUsuario" a
+           JOIN public."DispositivosXContratante" d ON d."IdDispositivo" = a."IdDispositivo"
+          WHERE d."IdContratante" = NEW."IdContratante"
+            AND a."IdEstadoAuth" = 2
+          ORDER BY a."FechRegist" DESC
+         OFFSET v_limite_users
+     );
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS enforce_downgrade_limits_trigger ON public."LicenciasXContratante";
+CREATE TRIGGER enforce_downgrade_limits_trigger
+  AFTER INSERT OR UPDATE ON public."LicenciasXContratante"
+  FOR EACH ROW
+  EXECUTE FUNCTION public.enforce_downgrade_limits();
 
