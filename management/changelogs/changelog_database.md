@@ -234,3 +234,13 @@
   - [x] AC 1: Añadida la restricción `link.href !== "/dashboard"` en la validación por prefijo de `isExactActive`.
   - [x] AC 2: Confirmado que al ingresar a otros módulos independientes (ej: `/dashboard/dispositivos`), el ítem *"Resumen General"* se apague correctamente.
 ---
+### 2026-06-29 18:45 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de redirección en la tarjeta *"Sin Reclamar"* de DashboardClient para conservar el día consultado en el filtro de la bitácora de históricas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Modificado el enlace del card de cobros huérfanos para inyectar de forma dinámica las propiedades `fechaInicio` y `fechaFin` igual al estado reactivo `${date}` del selector de fechas del Dashboard.
+  - [x] AC 2: Asegurado que al redireccionar al usuario a `/dashboard/notificaciones/historicas`, el filtro de rango de fechas se cargue exactamente con el día seleccionado previamente en lugar de resetearse a "Hoy".
+---
