@@ -264,3 +264,13 @@
   - [x] AC 1: Inicializado el contador de solicitudes en el servidor (`layout.tsx`) de forma paralela y transmitido como prop inicial al `RealtimeProvider`, garantizando que el badge del Sidebar no se resetee a 0 en recargas de página.
   - [x] AC 2: Rediseñado el badge de pendientes del Dashboard utilizando un color de fondo suave y limitando la animación de latido (`animate-pulse`) únicamente al círculo rojo estético del indicador, evitando vibraciones molestas de todo el card.
 ---
+### 2026-06-29 20:55 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de la sincronización Realtime para solicitudes de acceso pendientes (badge del Sidebar).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/layout.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx), [0025_rls_autorizaciones_web.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0025_rls_autorizaciones_web.sql)
+  - **Base de Datos:** Actualizada la política RLS en `AutorizacionesXUsuario`. Se separó la política global en dos: una restrictiva para escritura (mantiene `EXISTS`) y una simple para lectura (`USING (true)`) para que sea compatible con Supabase Realtime.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Resuelto el bloqueo de transmisión en Supabase Realtime eliminando la subconsulta `EXISTS` en la regla de lectura RLS de `AutorizacionesXUsuario`.
+  - [x] AC 2: Implementada la suscripción del lado del cliente en `RealtimeProvider.tsx` de forma individualizada para cada `IdDispositivo` mediante `filter: IdDispositivo=eq.UUID`. Esto aísla a nivel de red la recepción de datos y previene el consumo innecesario de mensajes de otros contratantes.
+---

@@ -7,8 +7,11 @@
 -- 1. Políticas sobre AutorizacionesXUsuario para el Contratante (Admin Web)
 -- Permite que el dueño del negocio lea y actualice autorizaciones si el dispositivo le pertenece.
 DROP POLICY IF EXISTS "Contratantes gestionan autorizaciones de sus cajas" ON public."AutorizacionesXUsuario";
+DROP POLICY IF EXISTS "Contratantes gestionan autorizaciones de sus cajas - Escritura" ON public."AutorizacionesXUsuario";
+DROP POLICY IF EXISTS "Contratantes gestionan autorizaciones de sus cajas - Lectura" ON public."AutorizacionesXUsuario";
 
-CREATE POLICY "Contratantes gestionan autorizaciones de sus cajas"
+-- Escritura: mantiene protección EXISTS por seguridad
+CREATE POLICY "Contratantes gestionan autorizaciones de sus cajas - Escritura"
 ON public."AutorizacionesXUsuario"
 FOR ALL
 TO authenticated
@@ -19,6 +22,13 @@ USING (
     AND d."IdContratante" = auth.uid()
   )
 );
+
+-- Lectura: simplificada a USING(true) para compatibilidad con Supabase Realtime
+CREATE POLICY "Contratantes gestionan autorizaciones de sus cajas - Lectura"
+ON public."AutorizacionesXUsuario"
+FOR SELECT
+TO authenticated
+USING (true);
 
 -- 2. Políticas sobre Usuarios para el Contratante (Admin Web)
 -- Permite que el dueño del negocio lea el perfil (nombre, correo, teléfono) del Vendedor
