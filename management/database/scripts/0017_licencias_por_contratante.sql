@@ -257,7 +257,7 @@ BEGIN
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 DROP TRIGGER IF EXISTS enforce_device_limit ON public."DispositivosXContratante";
 CREATE TRIGGER enforce_device_limit
@@ -338,7 +338,7 @@ BEGIN
 
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 DROP TRIGGER IF EXISTS enforce_user_limit ON public."AutorizacionesXUsuario";
 CREATE TRIGGER enforce_user_limit

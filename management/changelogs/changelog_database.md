@@ -244,3 +244,23 @@
   - [x] AC 1: Modificado el enlace del card de cobros huérfanos para inyectar de forma dinámica las propiedades `fechaInicio` y `fechaFin` igual al estado reactivo `${date}` del selector de fechas del Dashboard.
   - [x] AC 2: Asegurado que al redireccionar al usuario a `/dashboard/notificaciones/historicas`, el filtro de rango de fechas se cargue exactamente con el día seleccionado previamente en lugar de resetearse a "Hoy".
 ---
+### 2026-06-29 20:05 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de regresión de permisos en base de datos: restitución de la cláusula `SECURITY DEFINER` en triggers de control de límites de licencias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0017_licencias_por_contratante.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0017_licencias_por_contratante.sql)
+  - **Base de Datos:** Ejecutadas directivas `ALTER FUNCTION public.check_device_limit() SECURITY DEFINER` y `ALTER FUNCTION public.check_user_limit() SECURITY DEFINER` en caliente en Supabase.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Asegurado que el trigger `check_device_limit` se ejecute con privilegios de superusuario (`SECURITY DEFINER`) para bypassear las restricciones RLS al ser invocado por el cliente móvil anónimo (`anon`).
+  - [x] AC 2: Asegurado que el trigger `check_user_limit` cuente con la misma directiva de seguridad para prevenir fallos al aprobar o desaprobar accesos de vendedores desde el móvil.
+---
+### 2026-06-29 20:20 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Implementación de persistencia para el badge de solicitudes pendientes en el Sidebar y rediseño premium del indicador en el Dashboard.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/layout.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx), [DashboardStatsCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardStatsCards.tsx)
+  - **Base de Datos:** Ninguno (se aprovechan las políticas RLS y consultas optimizadas existentes).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Inicializado el contador de solicitudes en el servidor (`layout.tsx`) de forma paralela y transmitido como prop inicial al `RealtimeProvider`, garantizando que el badge del Sidebar no se resetee a 0 en recargas de página.
+  - [x] AC 2: Rediseñado el badge de pendientes del Dashboard utilizando un color de fondo suave y limitando la animación de latido (`animate-pulse`) únicamente al círculo rojo estético del indicador, evitando vibraciones molestas de todo el card.
+---
