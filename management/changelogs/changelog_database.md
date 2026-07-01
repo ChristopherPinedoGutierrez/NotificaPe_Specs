@@ -274,3 +274,16 @@
   - [x] AC 1: Resuelto el bloqueo de transmisión en Supabase Realtime eliminando la subconsulta `EXISTS` en la regla de lectura RLS de `AutorizacionesXUsuario`.
   - [x] AC 2: Implementada la suscripción del lado del cliente en `RealtimeProvider.tsx` de forma individualizada para cada `IdDispositivo` mediante `filter: IdDispositivo=eq.UUID`. Esto aísla a nivel de red la recepción de datos y previene el consumo innecesario de mensajes de otros contratantes.
 ---
+### 2026-06-30 20:57 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Rediseño, extensión e interactividad de la Landing Page principal de la web, aislando precios, añadiendo descargas directas de APKs con temporizadores de protección y aplicando transiciones de entrada animadas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/page.tsx), [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [PricingCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/PricingCards.tsx), [globals.css](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/globals.css)
+  - **Base de Datos:** Ninguno (la distribución de APKs y el reajuste del grid de precios son exclusivamente visuales y estructurales).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Aislados los precios en la pestaña secundaria **Licencias** y renombrado los encabezados para omitir mención obligatoria de compra durante las pruebas de la Google Play Store.
+  - [x] AC 2: Reestructurada la cuadrícula de planes a un grid de 3 columnas centrado y balanceado para adaptarla a los 3 planes vigentes en lugar de 4.
+  - [x] AC 3: Implementados botones de descarga directa apuntando al bucket público `app_releases` de Supabase Storage, integrando una protección por código de 5 segundos contra descargas repetidas (clics sucesivos).
+  - [x] AC 4: Añadido el paso 3 (desactivación temporal de Play Protect) en la guía rápida de instalación de APKs.
+  - [x] AC 5: Programadas animaciones dinámicas nativas en CSS (fadeInUp, slideInLeft, slideInRight) para evitar un diseño estático al navegar y cargar pestañas.
+---
