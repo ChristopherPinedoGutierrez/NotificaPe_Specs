@@ -287,3 +287,15 @@
   - [x] AC 4: Añadido el paso 3 (desactivación temporal de Play Protect) en la guía rápida de instalación de APKs.
   - [x] AC 5: Programadas animaciones dinámicas nativas en CSS (fadeInUp, slideInLeft, slideInRight) para evitar un diseño estático al navegar y cargar pestañas.
 ---
+### 2026-07-02 20:20 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Integración frontend del flujo de pago Checkout Pro de Mercado Pago en la tarjeta de precios para habilitar compras automatizadas de licencias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PricingCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/PricingCards.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Base de Datos:** Ninguno (la lógica transaccional de créditos ya está escrita en el backend y es gatillada por el webhook).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Añadido chequeo de autenticación. Los usuarios no logueados son redirigidos de forma automática a la pantalla de `/login` al hacer clic en "Elegir Plan".
+  - [x] AC 2: Implementado consumo a la Edge Function `mercadopago_preferencia` en Supabase enviando los metadatos requeridos (monto, moneda, licencia, idempotencia, contratante y email).
+  - [x] AC 3: Configurada la redirección dinámica hacia las URLs de Checkout Pro (Sandbox o Producción) según la variable global `NEXT_PUBLIC_MERCADOPAGO_ENV`.
+  - [x] AC 4: Creado el estado de carga `buyingPlanId` para desactivar el formulario e ilustrar el spinner "Procesando..." durante la llamada a la API.
+---
