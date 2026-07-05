@@ -299,3 +299,22 @@
   - [x] AC 3: Configurada la redirección dinámica hacia las URLs de Checkout Pro (Sandbox o Producción) según la variable global `NEXT_PUBLIC_MERCADOPAGO_ENV`.
   - [x] AC 4: Creado el estado de carga `buyingPlanId` para desactivar el formulario e ilustrar el spinner "Procesando..." durante la llamada a la API.
 ---
+### 2026-07-04 22:20 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Integración y validación del flujo de compras en Sandbox de Mercado Pago y mejoras de UX en el gestor de licencias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [actions.ts (licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts), [page.tsx (licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/page.tsx), [BotonCancelarCola.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/BotonCancelarCola.tsx), [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx), [mercadopago_preferencia/index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_preferencia/index.ts), [mercadopago_webhook/index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_webhook/index.ts)
+  - **Base de Datos / Edge Functions:**
+    * Modificada la Edge Function `mercadopago_preferencia` para incluir la cantidad seleccionada en la metadata, inyectar el token en la query URL de notificación y forzar HTTPS en los retornos.
+    * Modificada la Edge Function `mercadopago_webhook` para invocar a la función SQL de compra de licencias múltiples y soportar el token de seguridad. Se desactivó la verificación JWT heredada de Supabase para admitir webhooks externos.
+  - **Frontend UI:**
+    * Creado el componente cliente `BotonCancelarCola` con modal interactivo de confirmación y efecto blur.
+    * Simplificado el resumen de compra en el Wizard (Opción A) mostrando Subtotal, Descuento y Total de forma directa, y un desglose de saldo bajo un acordeón interactivo.
+    * Corregido bug de reactividad al multiplicar meses/años mapeando a ambos campos del crédito (`credito_aplicable_en_unidad_minima` y `credito_aplicado_en_unidad_minima`).
+    * Corregido el botón del header "Atrás" para que retroceda al paso 1 en lugar de salir del Wizard al estar en el paso 2.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Flujo completo de cobro y registro de licencias simples y múltiples validado en Sandbox.
+  - [x] AC 2: Prevención de clicks accidentales en cancelación mediante modal de confirmación en cliente.
+  - [x] AC 3: Visualización financiera de Checkout limpia y resumida para evitar confusión de números.
+  - [x] AC 4: Navegación de regreso no disruptiva en el Wizard de licencias.
+---
