@@ -318,3 +318,39 @@
   - [x] AC 3: Visualización financiera de Checkout limpia y resumida para evitar confusión de números.
   - [x] AC 4: Navegación de regreso no disruptiva en el Wizard de licencias.
 ---
+### 2026-07-07 14:15 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Implementación de resiliencia y monitoreo pasivo en tiempo real (Hito 1) y separación del estado de bloqueo ("Inactivo") frente a desvinculación física.
+* **Detalles Técnicos:**
+  - **Archivos Creados:** [RealtimeHealthMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/realtime/RealtimeHealthMonitor.kt), [RealtimeIntegrityManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/realtime/RealtimeIntegrityManager.kt), [BlockedScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/auth/BlockedScreen.kt)
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [SyncRealtimeHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/SyncRealtimeHandler.kt), [AppNavigation.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/navigation/AppNavigation.kt), [MainActivityContent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt)
+  - **Lógica de Conectividad (Hito 1):**
+    * Portada la monitorización de salud pasiva en segundo plano con intervalos rápidos de 10s (timeout 15s / zombie 5m).
+    * Implementada la curva de reintentos mediante backoff exponencial (1s a 60s) en lugar de loops repetitivos.
+    * Ampliado el scavenger de recuperación delta a 5 minutos (300 segundos).
+  - **Lógica de Bloqueo (Estado Inactivo):**
+    * Creado el estado `DeviceStatus.Blocked` en el repositorio para evitar eliminar datos locales (notificaciones/Room) cuando la caja solo es marcada como inactiva administrativamente.
+    * Al detectar `Activo = false`, se cierra la conexión realtime del terminal para no retener canales socket abiertos inútilmente.
+    * Redireccionado automático del usuario a la vista `BlockedScreen`, la cual muestra un diseño elegante y desactiva las conexiones.
+    * Añadido botón "Verificar Estado" en la pantalla de bloqueo para consultar si el administrador reactivó la caja, implementando un cooldown timer de 10 segundos para prevenir abuso de peticiones (spam clicks).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Watchdogs rápidos y Backoff Exponencial integrados quirúrgicamente.
+  - [x] AC 2: Evitada la pérdida de base de datos local Room en deactivación (mantenimiento de vinculación lógica).
+  - [x] AC 3: Desconexión total del socket en estado bloqueado.
+  - [x] AC 4: Navegación controlada bidireccionalmente e interfaz de bloqueo con cooldown en botón de refresco.
+---
+### 2026-07-07 21:46 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de la resolución de la pasarela de Mercado Pago en producción (EasyPanel y Supabase) haciendo dinámico el enrutamiento de la URL de checkout.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PricingCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/PricingCards.tsx), [actions.ts (licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts), [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx), [mercadopago_preferencia/index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_preferencia/index.ts), [Dockerfile](file:///c:/Trabajo/Proyectos/NotificaPe/web/Dockerfile)
+  - **Base de Datos / Edge Functions:**
+    * Actualizada la Edge Function `mercadopago_preferencia` para retornar un campo dinámico `checkout_url` calculando a nivel de servidor (según `MERCADOPAGO_ENV`) si se debe usar la URL de producción (`init_point`) o sandbox (`sandbox_init_point`).
+  - **Frontend UI:**
+    * Modificada la redirección en `WizardGestionarLicencias` y `PricingCards` para preferir el campo dinámico `checkout_url` devuelto por el servidor, independientemente de la variable de entorno `NEXT_PUBLIC_MERCADOPAGO_ENV` compilada estáticamente en el frontend.
+    * Agregados los argumentos de compilación `NEXT_PUBLIC_MERCADOPAGO_ENV` y `NEXT_PUBLIC_APP_URL` en el `Dockerfile` para soportar variables de entorno en compilaciones de producción de EasyPanel si fueran necesarias.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Resuelto el problema de redirección a Sandbox al delegar la decisión de enrutamiento al backend.
+  - [x] AC 2: Reducción de discrepancias entre entornos al centralizar la configuración de variables en Supabase Secrets.
+  - [x] AC 3: Dockerfile actualizado con compatibilidad para build args de entorno.
+---

@@ -11,9 +11,10 @@
 - [x] App: web | Tarea (CR): Modificar Landing Page para actualizar la sección de precios (nuevos planes), detallar el flujo de las 3 aplicaciones y añadir botones de descarga directa para los APKs.
 
 ### Épica: Emisor
-- [ ] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.
-- [ ] App: admin | Tarea: Implementar CentinelaService (Foreground Service persistente con auto-recuperación).
+- [x] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.
+- [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rápidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
+- [ ] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
 
 ### Épica: Receptor
-- [ ] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
-- [ ] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
+- [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
+- [x] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
