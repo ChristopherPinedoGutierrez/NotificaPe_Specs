@@ -354,3 +354,18 @@
   - [x] AC 2: Reducción de discrepancias entre entornos al centralizar la configuración de variables en Supabase Secrets.
   - [x] AC 3: Dockerfile actualizado con compatibilidad para build args de entorno.
 ---
+### 2026-07-07 22:30 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Sincronización del Foreground Service de escucha de notificaciones con el estado de activación en tiempo real de la caja (Hito 2).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Lógica de Sincronización del Servicio (Hito 2):**
+    * Modificado el método `onNotificationPosted` del servicio para validar que el estado del dispositivo sea estrictamente `Linked`. Si el terminal está bloqueado/inactivo, se aborta la captura y sincronización de forma inmediata en segundo plano.
+    * Agregada la recolección activa del flujo `deviceStatus` dentro de `onStartCommand` en el servicio para mutar la notificación persistente: cambia a "Monitoreo Pausado | Caja desactivada por el administrador" en estado bloqueado, y a "Monitoreo Activo" al restablecerse.
+    * Protegido el método `runScavenger` del servicio de escucha de notificaciones para abortar la barredora de transacciones si la caja se encuentra inhabilitada.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Visualización e indicación reactiva del estado del servicio en la barra de notificaciones del sistema de Android.
+  - [x] AC 2: Prevención de capturas y subidas accidentales de notificaciones privadas estando la caja inactiva.
+  - [x] AC 3: Barredora (Scavenger) de transacciones pausada en estado inactivo.
+---
+

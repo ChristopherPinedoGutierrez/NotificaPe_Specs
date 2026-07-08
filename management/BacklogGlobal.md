@@ -13,7 +13,9 @@
 ### Épica: Emisor
 - [x] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.
 - [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rápidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
-- [ ] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
+- [x] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
+- [ ] App: admin | Tarea: Segurizar autenticación de terminales mediante JWT único por dispositivo y eliminación de privilegios al rol anon en RLS [Hito 3].
+
 
 ### Épica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
