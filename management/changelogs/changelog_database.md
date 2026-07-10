@@ -503,6 +503,20 @@
   - [x] AC 2: Las desconexiones reales y permanentes (ej: Modo Avión) se reportan a la UI de forma precisa tras el umbral de 4 segundos.
   - [x] AC 3: La reconexión exitosa del socket se muestra en verde de forma inmediata en la UI.
 ---
+### 2026-07-10 13:25 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Solución al desfase de reloj (clock-drift) en sincronización diferencial y prevención de marcas temporales futuras en el laboratorio de pruebas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SyncRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/SyncRepository.kt), [TestLabHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt)
+  - **Solución a Reloj Futuro e Integridad de Sync:**
+    * Modificada la consulta de sincronización en `performFullSync()` para fijar el límite superior `endTimeIso` al final del día actual (23:59:59.999 UTC) en lugar del dinámico `Instant.now()`. Esto elimina el bug de producción donde dispositivos con relojes retrasados ignoran notificaciones recién insertadas en la nube.
+    * Corregido el laboratorio de pruebas en `TestLabHandler.kt` para restar el `uniqueOffset` en lugar de sumarlo. Esto asegura que la dispersión aleatoria de marcas temporales (necesaria para la unicidad determinista del MD5 de la notificación) se realice siempre hacia el pasado, eliminando la creación accidental de registros con fechas futuras en la base de datos de Supabase.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Dispositivos con relojes ligeramente retrasados descargan la totalidad de notificaciones del día durante el delta sync inicial.
+  - [x] AC 2: La generación de ráfagas en el laboratorio crea notificaciones en el pasado del día seleccionado, sin generar fechas futuras.
+  - [x] AC 3: Sincronización íntegra tras la re-vinculación de un dispositivo a su caja original.
+---
+
 
 
 
