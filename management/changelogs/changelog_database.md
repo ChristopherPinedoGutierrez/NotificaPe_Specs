@@ -462,6 +462,19 @@
   - [x] AC 1: Estabilidad continua del socket y los canales en reposo (sin micro-resets).
   - [x] AC 2: Conectividad física reportada a la UI estable y libre de ruidos por fluctuación de señal.
 ---
+### 2026-07-10 12:45 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Paralelización de tareas de foreground en `onStart` para eliminar latencia y asegurar conectividad inmediata al regresar de background.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Paralelización de Ciclo de Vida Foreground:**
+    * Modificada la callback `onStart` del `DefaultLifecycleObserver` para lanzar de manera paralela y no bloqueante las tres tareas de retorno: `connectRealtime()` + `observeLinkingStatus()`, `refreshDeviceStatus()` (consulta REST) y el `Delta Sync` de base de datos.
+    * Esto elimina el retardo de 2-3 segundos (latencia de red) que causaba que la UI quedara en un estado intermedio inactivo o desincronizado al regresar de aplicaciones externas (ej: WhatsApp).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reconexión del socket y canales instantánea (milisegundos) al volver a foreground.
+  - [x] AC 2: Validación de bloqueo REST y sincronización delta ejecutadas concurrentemente en segundo plano sin bloquear la UI.
+---
+
 
 
 
