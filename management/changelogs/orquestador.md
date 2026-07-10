@@ -36,4 +36,6 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-08 12:50]** | App: NotificaPe_Viewer | Tipo: UI | Remoción de la verificación y solicitud obligatoria de optimización de batería. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-08 13:00]** | App: NotificaPe_Viewer | Tipo: UI | Corrección de firmado digital Gradle para resolver BadPaddingException en el empaquetado. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-10 10:04]** | App: NotificaPe_Admin | Tipo: API | Estabilización de Realtime con pingInterval, connecting watchdog y NetworkMonitor local. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-10 10:30]** | App: NotificaPe_Admin | Tipo: API | Corrección de cascada de estados inactivos, debounce de red y remoción de pingInterval. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+
 

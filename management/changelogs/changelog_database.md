@@ -382,5 +382,20 @@
   - [x] AC 2: Prevención de limbos infinitos en estado CONNECTING mediante watchdog de 30s.
   - [x] AC 3: Mantenimiento del canal activo a nivel de operadoras usando pingInterval de 45s.
 ---
+### 2026-07-10 10:30 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Corrección de la cascada de estados en RealtimeMonitorManager y estabilización del disparador de red con debounce. Remoción de pingInterval para evitar timeouts de CDNs.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [RealtimeMonitorManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/manager/RealtimeMonitorManager.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [SupabaseModule.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/di/SupabaseModule.kt)
+  - **Corrección de Bugs de Conectividad:**
+    * Modificada la lógica de cascada en `RealtimeMonitorManager` para evaluar `status !is TableStatus.Subscribed` en el socket, asegurando que todos los canales se visualicen como desconectados si el socket no está activo.
+    * Añadido `.debounce(1500)` al flujo de conectividad física en `AuthRepository` para evitar que rebotes de señal (antena celular / Wi-Fi) disparen múltiples resets de socket concurrentes o sucesivos.
+    * Revertido `pingInterval` en `SupabaseModule` a la configuración por defecto para depender exclusivamente del heartbeat a nivel de aplicación (Phoenix text protocol), resolviendo desconexiones artificiales causadas por CDNs (como Cloudflare) que bloquean pings de control de bajo nivel.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Coherencia visual total entre el banner de conexión base y los canales individuales.
+  - [x] AC 2: Evitada la reconexión múltiple iterativa (botes de red) al salir del modo avión.
+  - [x] AC 3: Conexión WebSocket estable sin desconexiones artificiales tras un minuto.
+---
+
 
 
