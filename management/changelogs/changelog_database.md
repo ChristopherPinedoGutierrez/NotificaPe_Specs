@@ -528,6 +528,18 @@
   - [x] AC 1: El diálogo de confirmación se oculta instantáneamente al presionar "Confirmar".
   - [x] AC 2: Se visualiza únicamente el overlay global `UnlinkingOverlay` durante la desvinculación asíncrona, eliminando ruidos y redundancia de interfaces.
 ---
+### 2026-07-10 13:50 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Implementación de sincronización inicial y visualización de skeletons al abrir el Dashboard por primera vez o tras vincularse.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt)
+  - **Sincronización de Carga Inicial con Skeletons:**
+    * Modificado el bloque `init` del `DashboardViewModel.kt` para lanzar una corrutina paralela que configure `walletActionHandler.setSyncing(-1)` (activando `isSyncing = true`) y ejecute la sincronización REST HTTP inicial mediante `syncPendingNotifications()` y `syncFromCloud()`.
+    * Esto soluciona la ausencia de skeletons visuales (y la consiguiente aparición abrupta de registros) durante la primera carga tras la vinculación, ya que anteriormente la sincronización delta inicial corría silenciosamente en segundo plano a nivel de repositorio sin notificar al ViewModel.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Visualización de skeletons animados al iniciar la app o tras vincularse mientras se descargan las notificaciones de hoy.
+  - [x] AC 2: La carga finaliza y reemplaza ordenadamente los skeletons por la lista de movimientos o el mensaje de historial vacío sin saltos bruscos.
+---
 
 
 
