@@ -540,6 +540,20 @@
   - [x] AC 1: Visualización de skeletons animados al iniciar la app o tras vincularse mientras se descargan las notificaciones de hoy.
   - [x] AC 2: La carga finaliza y reemplaza ordenadamente los skeletons por la lista de movimientos o el mensaje de historial vacío sin saltos bruscos.
 ---
+### 2026-07-10 15:00 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Solución al bucle de reconexión infinita mediante el desacoplamiento de observadores y robustecimiento de guardas en las suscripciones a canales.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Resolución de Conflictos en la Máquina de Estados de Conexión:**
+    * Rediseñada la función `setupDeviceIdObserver()` para observar únicamente los cambios en `deviceId`. Se eliminó la observación a `realtime.status` en este colector, delegando la reconexión exclusivamente a `setupStatusMonitoring()` para erradicar las llamadas concurrentes a `realtime.connect()`.
+    * Modificada la callback de socket `CONNECTED` en `setupStatusMonitoring()` para cancelar cualquier corrutina de reconexión en espera (`reconnectJob?.cancel()`) e iniciar de forma inmediata la suscripción a canales (`observeLinkingStatus()`).
+    * Robustecidas las guardas en `ensureDeviceSubscription()`, `ensureNotificationsSubscription()`, `ensureRulesSubscription()` y `ensureWalletsSubscription()`. Ahora las tareas de suscripción retornan de inmediato sin modificar ni reiniciar los flujos Ktor si la corrutina recolectora está activa, a menos que el socket esté conectado y el canal específico se encuentre en estado `Zombie` o `Disconnected` (evitando colisionar con el mecanismo interno de auto-reconexión de la librería Supabase-kt).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La reconexión ante caídas de señal es gestionada en un único hilo con backoff incremental, sin generar bucles de conexión infinitos.
+  - [x] AC 2: La librería Supabase-kt recupera automáticamente los canales al reanudarse el socket gracias al cese de reinicios asíncronos concurrentes.
+---
+
 
 
 
