@@ -474,6 +474,21 @@
   - [x] AC 1: Reconexión del socket y canales instantánea (milisegundos) al volver a foreground.
   - [x] AC 2: Validación de bloqueo REST y sincronización delta ejecutadas concurrentemente en segundo plano sin bloquear la UI.
 ---
+### 2026-07-10 13:00 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Corrección en el enrutamiento de desvinculación (BlockedScreen), alineación estética al MaterialTheme de fondos oscuros y diagnóstico de red dinámico en el estado del dispositivo.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [BlockedScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/auth/BlockedScreen.kt)
+  - **Corrección de Enrutamiento y Diagnóstico:**
+    * Actualizado `unbindDevice()` y `deleteDevicePermanently()` en `AuthRepository.kt` para forzar la mutación de `_deviceStatus.value` a `DeviceStatus.Unlinked`, lo que activa la guardia de navegación de `MainActivityContent` para redirigir a `intro` tras desvincular.
+    * Cambiado el retorno de `refreshDeviceStatus()` a `Result<Boolean>` para propagar excepciones de conectividad en lugar de silenciarlas con un retorno `false` genérico.
+    * Rediseñada la vista `BlockedScreen.kt` sustituyendo los gradientes y contenedores morados codificados por los colores nativos de `MaterialTheme.colorScheme` (grises y negros modernos de la app).
+    * Actualizado el botón "Verificar Estado" para mostrar Toasts dinámicos que diferencien entre inactividad física en el Panel Web (`Result.success(false)`) y fallas de red/conexión con Supabase (`Result.failure`).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Redirección inmediata a Onboarding al presionar "Desvincular Equipo" en BlockedScreen.
+  - [x] AC 2: Aspecto visual de la pantalla de bloqueo armónico con los colores oscuros de la app.
+  - [x] AC 3: El botón "Verificar Estado" discrimina fallas de red de la inactividad real para una mejor UX.
+---
 
 
 
