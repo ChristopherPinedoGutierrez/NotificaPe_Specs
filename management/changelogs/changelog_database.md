@@ -396,6 +396,21 @@
   - [x] AC 2: Evitada la reconexión múltiple iterativa (botes de red) al salir del modo avión.
   - [x] AC 3: Conexión WebSocket estable sin desconexiones artificiales tras un minuto.
 ---
+### 2026-07-10 10:50 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Solución al limbo de vinculación sin red, feedback dinámico en la notificación del Foreground Service y fin al bucle de Joining timeout (parpadeo en diagnóstico).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [RealtimeMonitorManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/manager/RealtimeMonitorManager.kt), [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Estabilización de Segundo Plano y UI:**
+    * Modificado `initializeDevice` para no expulsar al usuario si la petición falla por falta de internet; se restaura de forma local y offline el estado `DeviceStatus.Linked(localDevice)` basándose en las credenciales persistidas en `UserPreferences`.
+    * Ajustada la inicialización de `lastActivity` en `RealtimeMonitorManager` para actualizarse ante estados `Joining` y `Subscribed`. Esto previene que el monitor de salud (`RealtimeHealthMonitor`) calcule timeouts obsoletos al reintentar la suscripción, rompiendo el bucle infinito de resets de canal (parpadeo).
+    * Inyectado `RealtimeMonitorManager` en `NotificationReceiverService` para recolectar el flujo de estados del socket y reflejar en la barra de notificaciones del celular el estado dinámico actual ("En Línea", "Conectando...", "Sin conexión / Reconectando...").
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Navegación preservada (modo offline) al iniciar la app sin conexión de internet.
+  - [x] AC 2: Notificación persistente del sistema con feedback dinámico del estado de conexión realtime.
+  - [x] AC 3: Canales estables al reconectarse sin bucles iterativos de resincronización.
+---
+
 
 
 
