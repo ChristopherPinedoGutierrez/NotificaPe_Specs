@@ -410,6 +410,21 @@
   - [x] AC 2: Notificación persistente del sistema con feedback dinámico del estado de conexión realtime.
   - [x] AC 3: Canales estables al reconectarse sin bucles iterativos de resincronización.
 ---
+### 2026-07-10 11:15 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Solución a desincronización de estado de socket en UI, estabilización de NetworkMonitor (eliminación de race conditions en capabilities) e implementación de timestamp de actividad en notificación.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [NetworkMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/NetworkMonitor.kt), [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Sincronización de UI y Diagnóstico:**
+    * Modificado `NetworkMonitor` para remover la escucha en `onCapabilitiesChanged`, previniendo que los retrasos en la validación de red del sistema de Android emitan falsos negativos y dejen el banner "Sin conexión a Internet" congelado en la UI.
+    * Corregida desincronización en `AuthRepository`: al recuperar internet físico, si el socket de la SDK ya se encuentra conectado (`CONNECTED`), se fuerza de inmediato la actualización de la UI a `TableStatus.Subscribed` y se enciende el `healthMonitor`.
+    * Modificado `NotificationReceiverService` para observar `lastGlobalActivity` y añadir el timestamp formateado (HH:mm:ss) de la última acción recibida en la notificación persistente del Foreground Service (ej: `"Estado: En Línea | Actividad: 11:15:23"`).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Banner "Sin conexión a Internet" desaparece de forma consistente al recuperar internet.
+  - [x] AC 2: Telemetría de socket en la UI alineada 100% con la conectividad real del canal de datos.
+  - [x] AC 3: Notificación de segundo plano con timestamp dinámico de última actividad en tiempo real.
+---
+
 
 
 
