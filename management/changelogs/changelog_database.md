@@ -450,6 +450,19 @@
   - [x] AC 2: Cero reconexiones o fugas de datos de billeteras/reglas cuando el estado es Blocked.
   - [x] AC 3: Botón de desvinculación completamente funcional (online y offline) en BlockedScreen.
 ---
+### 2026-07-10 12:35 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Migración a `registerDefaultNetworkCallback` nativo para resolver reinicios de socket espurios causados por handovers e interfaces secundarias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [NetworkMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/NetworkMonitor.kt)
+  - **Detección de Red por DefaultCallback:**
+    * Modificado `NetworkMonitor` para registrar la callback de red mediante `registerDefaultNetworkCallback` (API 24+). Esto restringe las notificaciones de red exclusivamente a la interfaz default por la que el sistema operativo Android enruta el tráfico principal.
+    * Eliminada la escucha de fluctuaciones de señal (`onCapabilitiesChanged`) y caídas de interfaces secundarias (ej: corte de Mobile Data en segundo plano al entrar a Wi-Fi), erradicando micro-caídas y reconexiones iterativas innecesarias del socket.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Estabilidad continua del socket y los canales en reposo (sin micro-resets).
+  - [x] AC 2: Conectividad física reportada a la UI estable y libre de ruidos por fluctuación de señal.
+---
+
 
 
 
