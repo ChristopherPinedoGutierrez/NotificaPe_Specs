@@ -489,6 +489,21 @@
   - [x] AC 2: Aspecto visual de la pantalla de bloqueo armónico con los colores oscuros de la app.
   - [x] AC 3: El botón "Verificar Estado" discrimina fallas de red de la inactividad real para una mejor UX.
 ---
+### 2026-07-10 13:10 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Implementación de amortiguación de estado de conexión (dampenStatus) en la UI y notificaciones para filtrar oscilaciones visuales transitorias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [RealtimeMonitorManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/manager/RealtimeMonitorManager.kt), [DashboardViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt), [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Amortiguación de Estados de Red (Dampening):**
+    * Creado el operador personalizado `Flow<TableStatus>.dampenStatus(delayMs = 4000L)`. Este operador implementa un retardo asimétrico de 4 segundos antes de propagar estados caídos (`Disconnected`/`Zombie`/`Connecting`) si veníamos de estar conectados (`Subscribed`), cancelando y silenciando el cambio visual si el socket se recupera dentro de ese umbral. Las transiciones exitosas a `Subscribed` se emiten de forma instantánea.
+    * Aplicado el operador `dampenStatus()` al flujo `globalRealtimeStatus` en `DashboardViewModel.kt`, eliminando el parpadeo del banner del Dashboard durante hangups de red o transiciones móviles normales.
+    * Aplicado el operador `dampenStatus()` al flujo del estado de la notificación persistente en `NotificationReceiverService.kt`, estabilizando el feedback del Foreground Service en background.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La UI y las notificaciones no parpadean ni muestran alertas rojas durante micro-cortes menores a 4 segundos.
+  - [x] AC 2: Las desconexiones reales y permanentes (ej: Modo Avión) se reportan a la UI de forma precisa tras el umbral de 4 segundos.
+  - [x] AC 3: La reconexión exitosa del socket se muestra en verde de forma inmediata en la UI.
+---
+
 
 
 
