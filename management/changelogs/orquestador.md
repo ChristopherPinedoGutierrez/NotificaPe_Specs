@@ -45,6 +45,7 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-10 13:00]** | App: NotificaPe_Admin | Tipo: UI/API | Corrección en enrutamiento de desvinculación, estética MaterialTheme y diagnóstico de red dinámico en BlockedScreen. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-10 13:10]** | App: NotificaPe_Admin | Tipo: API | Amortiguación de estado de conexión (dampenStatus) en la UI y notificaciones para filtrar micro-cortes. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-10 13:25]** | App: NotificaPe_Admin | Tipo: API | Solución al clock-drift en delta sync e inversión del offset aleatorio en el laboratorio de pruebas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-10 13:40]** | App: NotificaPe_Admin | Tipo: UI/API | Optimización de UX al desvincular: ocultar AlertDialog inmediatamente para evitar duplicidad de spinners. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 
 
 

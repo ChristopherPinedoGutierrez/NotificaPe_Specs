@@ -516,6 +516,18 @@
   - [x] AC 2: La generación de ráfagas en el laboratorio crea notificaciones en el pasado del día seleccionado, sin generar fechas futuras.
   - [x] AC 3: Sincronización íntegra tras la re-vinculación de un dispositivo a su caja original.
 ---
+### 2026-07-10 13:40 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Optimización de la experiencia de usuario (UX) al desvincular el dispositivo desde la vista BlockedScreen.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [BlockedScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/auth/BlockedScreen.kt)
+  - **Optimización de UX en Diálogo de Desvinculación:**
+    * Eliminada la variable de estado local redundante `isUnlinking` y sustituida por el colector del flujo global `authRepository.isUnlinking` (`isUnlinkingGlobal`).
+    * Configurado el cierre inmediato del `AlertDialog` de confirmación (`showUnlinkDialog = false`) al hacer clic en "Confirmar". Esto erradica la duplicidad visual de spinners al evitar que se dibuje el loader del botón sobre el `UnlinkingOverlay` global de `MainActivityContent`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El diálogo de confirmación se oculta instantáneamente al presionar "Confirmar".
+  - [x] AC 2: Se visualiza únicamente el overlay global `UnlinkingOverlay` durante la desvinculación asíncrona, eliminando ruidos y redundancia de interfaces.
+---
 
 
 
