@@ -435,6 +435,22 @@
   - [x] AC 1: Estabilidad total en transiciones rápidas de red Wi-Fi y Datos Móviles.
   - [x] AC 2: Banner de sin conexión y telemetría de socket coherentes y sincronizados.
 ---
+### 2026-07-10 12:20 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Aislamiento absoluto del estado Bloqueado (prevención de fugas de datos), persistencia local de estado de activación y botón de desvinculación en BlockedScreen.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [UserPreferences.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/preference/UserPreferences.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [BlockedScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/auth/BlockedScreen.kt)
+  - **Aislamiento y UX de Bloqueo:**
+    * Añadido `IS_DEVICE_ACTIVE` en `UserPreferences` para guardar localmente si la caja está activa o bloqueada. En inicio offline (`initializeDevice`), si el último estado conocido fue bloqueado, se mantiene el bloqueo local previniendo el bypass del dashboard offline.
+    * Incorporadas guardas estrictas en `connectRealtime()`, `hardResetSocket()`, `triggerSmartReconnect()` y en el receptor de estado `DISCONNECTED`. Si la caja está bloqueada, cualquier intento de levantar/conectar el socket o reintentar es abortado inmediatamente, deteniendo cualquier flujo de billeteras o reglas.
+    * Modificada la función `unbindDevice()` para tolerar caídas de red físicas y forzar siempre `localCleanup()`, permitiendo que el usuario libere la app a nivel local si está offline.
+    * Implementado el botón "DESVINCULAR EQUIPO" con diálogo de confirmación en la vista de bloqueo `BlockedScreen.kt` para facilitar la desvinculación directa.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Dispositivo bloqueado mantiene el bloqueo offline al iniciar la app sin conexión.
+  - [x] AC 2: Cero reconexiones o fugas de datos de billeteras/reglas cuando el estado es Blocked.
+  - [x] AC 3: Botón de desvinculación completamente funcional (online y offline) en BlockedScreen.
+---
+
 
 
 
