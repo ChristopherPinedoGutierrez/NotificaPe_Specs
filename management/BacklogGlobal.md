@@ -9,6 +9,8 @@
 - [ ] App: web | Tarea: Implementar endpoints CRUD y Edge Functions para el manejo de sesiones y empresas.
 - [x] App: web | Tarea (CR): Crear bucket público en Supabase Storage (o configurar URL en GitHub Releases) y subir las compilaciones APK iniciales.
 - [x] App: web | Tarea (CR): Modificar Landing Page para actualizar la sección de precios (nuevos planes), detallar el flujo de las 3 aplicaciones y añadir botones de descarga directa para los APKs.
+- [ ] App: web | Tarea (Deploy): Publicar la Pantalla de Consentimiento de OAuth en Google Cloud Console a estado 'En producción' para remover el límite de 100 usuarios de prueba antes del lanzamiento oficial.
+
 
 ### Épica: Emisor
 - [x] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.

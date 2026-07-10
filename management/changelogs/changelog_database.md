@@ -368,4 +368,19 @@
   - [x] AC 2: Prevención de capturas y subidas accidentales de notificaciones privadas estando la caja inactiva.
   - [x] AC 3: Barredora (Scavenger) de transacciones pausada en estado inactivo.
 ---
+### 2026-07-10 10:04 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Estabilización y resiliencia de la conexión Realtime en segundo plano mediante OkHttp pingInterval, Connecting Timeout Watchdog y Android NetworkMonitor.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SupabaseModule.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/di/SupabaseModule.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Mecanismos de Resiliencia:**
+    * Configurado `pingInterval` de 45 segundos en OkHttp para evitar que operadoras móviles corten el canal WebSocket de manera silenciosa.
+    * Implementado `connectingTimeoutJob` de 30 segundos en `AuthRepository` para realizar un hard reset automático si el socket queda atrapado en el estado de transición `CONNECTING`.
+    * Integrada la escucha pasiva del `NetworkMonitor` nativo de Android en `AuthRepository` para reaccionar al instante cuando la conectividad física de datos o Wi-Fi se recupera.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Detección y reconexión inmediata del socket al recuperar señal.
+  - [x] AC 2: Prevención de limbos infinitos en estado CONNECTING mediante watchdog de 30s.
+  - [x] AC 3: Mantenimiento del canal activo a nivel de operadoras usando pingInterval de 45s.
+---
+
 
