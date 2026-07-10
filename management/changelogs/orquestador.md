@@ -38,6 +38,8 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-10 10:04]** | App: NotificaPe_Admin | Tipo: API | Estabilización de Realtime con pingInterval, connecting watchdog y NetworkMonitor local. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-10 10:30]** | App: NotificaPe_Admin | Tipo: API | Corrección de cascada de estados inactivos, debounce de red y remoción de pingInterval. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-10 10:50]** | App: NotificaPe_Admin | Tipo: API | Corrección de expulsión sin internet, actualización de lastActivity (Joining) y feedback dinámico de Foreground Service. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-10 11:55]** | App: NotificaPe_Admin | Tipo: API | Corrección en NetworkMonitor global para evitar falsos negativos en transición multirred. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+
 
 
 

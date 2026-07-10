@@ -424,6 +424,18 @@
   - [x] AC 2: Telemetría de socket en la UI alineada 100% con la conectividad real del canal de datos.
   - [x] AC 3: Notificación de segundo plano con timestamp dinámico de última actividad en tiempo real.
 ---
+### 2026-07-10 11:55 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Corrección en el NetworkMonitor global para evitar falsos negativos en la transición multirred (Wi-Fi <-> Datos Móviles).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [NetworkMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/NetworkMonitor.kt)
+  - **Detección de Red Física Global:**
+    * Modificada la callback `ConnectivityManager.NetworkCallback` para evaluar siempre `connectivityManager.activeNetwork` de manera global en los eventos `onAvailable`, `onLost` y `onCapabilitiesChanged`. Esto previene falsos negativos de internet que congelan el banner de "Sin conexión" cuando un adaptador de red secundario se apaga (ej: datos móviles desactivándose al entrar Wi-Fi).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Estabilidad total en transiciones rápidas de red Wi-Fi y Datos Móviles.
+  - [x] AC 2: Banner de sin conexión y telemetría de socket coherentes y sincronizados.
+---
+
 
 
 
