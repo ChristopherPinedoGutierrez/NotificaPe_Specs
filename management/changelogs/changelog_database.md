@@ -553,6 +553,22 @@
   - [x] AC 1: La reconexión ante caídas de señal es gestionada en un único hilo con backoff incremental, sin generar bucles de conexión infinitos.
   - [x] AC 2: La librería Supabase-kt recupera automáticamente los canales al reanudarse el socket gracias al cese de reinicios asíncronos concurrentes.
 ---
+### 2026-07-11 00:20 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Solución de robustecimiento contra congelamientos de red de fondo y loops infinitos en modo Release.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [NetworkMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/NetworkMonitor.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [DashboardViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt), [DashboardScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt)
+  - **Robustecimiento del Monitor de Red y Autocuración:**
+    * Implementado un *ticker* de re-verificación activa cada 60s en `NetworkMonitor` y la función rápida `isInternetOk()` para evitar el congelamiento de callbacks de conectividad en segundo plano (Doze Mode).
+    * Removido el `throw e` en `connectRealtime()` de `AuthRepository.kt` y agregados bloques `try-catch` defensivos en `setupStatusMonitoring()` and `setupDeviceIdObserver()` para evitar la muerte permanente de las corrutinas colectoras de red.
+    * Implementado el watchdog local `setupProcessWatchdog()` para forzar un reinicio del proceso si el socket está desconectado con internet real activo por más de 5 minutos, reparando deadlocks en el pool de OkHttp/Ktor.
+    * Desacoplado el indicador visual de conexión y el banner de offline de la UI de forma que no marquen "Sin conexión" si el socket está verificado en `Subscribed`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La reconexión se recupera de manera automática tras periodos prolongados en Doze Mode (reposo profundo).
+  - [x] AC 2: Las corrutinas colectoras sobreviven a excepciones transitorias del WebSocket sin morir en memoria.
+  - [x] AC 3: El watchdog autolimpia el proceso de fondo si el socket queda atascado con internet presente, reiniciando la app limpiamente.
+---
+
 
 
 
