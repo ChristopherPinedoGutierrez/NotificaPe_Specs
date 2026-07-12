@@ -568,6 +568,22 @@
   - [x] AC 2: Las corrutinas colectoras sobreviven a excepciones transitorias del WebSocket sin morir en memoria.
   - [x] AC 3: El watchdog autolimpia el proceso de fondo si el socket queda atascado con internet presente, reiniciando la app limpiamente.
 ---
+### 2026-07-12 14:02 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Arquitecto)
+
+* **Descripción:** Estabilización definitiva de reconexión, remoción de watchdog destructivo y delta sync REST en reconexión.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRealtimeHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/auth/AuthRealtimeHandler.kt), [SyncRealtimeHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/SyncRealtimeHandler.kt), [RuleRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/RuleRepository.kt), [WalletRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt), [RealtimeHealthMonitor.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/realtime/RealtimeHealthMonitor.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/build.gradle.kts)
+  - **Base de Datos:** Ninguno.
+  - **Detalles de Resiliencia:**
+    * Removida la lógica destructiva de `killProcess` y el temporizador `continuousDisconnectStart` en `AuthRepository.kt`, garantizando reintentos infinitos con backoff exponencial.
+    * Incorporado Delta Sync REST diferencial automático (`syncRules()`, `syncWalletsFromCloud()`, `syncPendingNotifications()`) al conectarse el socket para evitar desincronizaciones del negocio.
+    * Eliminados watchdogs por silencio de transacciones y silencio global de `RealtimeHealthMonitor.kt`, previniendo reconexiones artificiales cíclicas cada 5 minutos.
+    * Corregidas fugas de memoria (leaks) de suscripciones duplicadas lanzando `realtime.removeChannel(channel)` de forma asíncrona suspendida en el `awaitClose` de cada flow de Realtime.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La inactividad o silencio comercial prolongado no degrada la conexión ni fuerza reconexiones artificiales.
+  - [x] AC 2: Se limpia el canal de Phoenix al cerrarse/recrearse las suscripciones para evitar fugas de memoria.
+  - [x] AC 3: Se sincronizan los datos de billeteras y reglas diferencialmente de manera automática mediante REST tras recuperar conectividad.
+---
 
 
 
