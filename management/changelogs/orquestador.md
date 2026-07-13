@@ -50,7 +50,7 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-10 15:00]** | App: NotificaPe_Admin | Tipo: API | Solución al bucle de reconexión infinita mediante desacoplamiento de observadores y robustecimiento de guardas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-11 00:20]** | App: NotificaPe_Admin | Tipo: API | Resiliencia de red de fondo (ticker de red, watchdog y protección de corrutinas) para evitar loops en Release. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-12 14:02]** | App: NotificaPe_Admin | Tipo: API | Estabilización definitiva de reconexión, remoción de watchdog destructivo y delta sync REST en reconexión. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
-
+* **[2026-07-12 15:40]** | App: NotificaPe_Admin/Viewer | Tipo: DevOps | Integración de pipeline CI/CD con GitHub Actions y autoincremento de versionCode mediante API de Google Play. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 
 
