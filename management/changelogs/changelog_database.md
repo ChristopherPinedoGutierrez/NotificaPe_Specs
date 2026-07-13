@@ -583,17 +583,18 @@
   - [x] AC 1: La inactividad o silencio comercial prolongado no degrada la conexión ni fuerza reconexiones artificiales.
   - [x] AC 2: Se limpia el canal de Phoenix al cerrarse/recrearse las suscripciones para evitar fugas de memoria.
   - [x] AC 3: Se sincronizan los datos de billeteras y reglas diferencialmente de manera automática mediante REST tras recuperar conectividad.
+------
+### 2026-07-13 16:45 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Programador Especializado)
+
+* **Descripción:** Implementación de variables de entorno para las URLs de Google Play Store en el Landing Page y adición de menú desplegable unificado para descarga de APK directo.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Cambios Realizados:**
+    * Vinculados los botones de redirección a Google Play Store a las variables de entorno `NEXT_PUBLIC_PLAY_STORE_ADMIN_URL` y `NEXT_PUBLIC_PLAY_STORE_VIEWER_URL` para permitir cambios dinámicos sin modificar código.
+    * Habilitados los enlaces con la leyenda "Play Store (Pruebas Internas)".
+    * Ocultados los botones de descarga de APK directo tras un botón interactivo de texto secundario ("Ver más formas de descargar") mediante el estado reactivo unificado `showApkDownloads`, permitiendo que la interacción en cualquiera de las tarjetas despliegue o colapse las descargas directas en ambas aplicaciones de forma simultánea.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El botón principal de Play Store abre en una pestaña nueva la URL de pruebas internas especificada en las variables de entorno.
+  - [x] AC 2: La descarga directa de APK se encuentra oculta inicialmente. Al hacer clic en "Ver más formas de descargar" en cualquier tarjeta se revela el botón secundario en ambas de forma sincronizada.
+  - [x] AC 3: Compilación y validación de tipado TypeScript exitosas en local (`npx tsc --noEmit`).
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-

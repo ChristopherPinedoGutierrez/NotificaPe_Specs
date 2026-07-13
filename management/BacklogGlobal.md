@@ -17,6 +17,7 @@
 - [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rápidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
 - [x] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
 - [ ] App: admin | Tarea: Segurizar autenticación de terminales mediante JWT único por dispositivo y eliminación de privilegios al rol anon en RLS [Hito 3].
+- [ ] App: admin | Tarea (CR): Implementar receptor de boot (BootReceiver) y permiso de reinicio para autoarrancar el Foreground Service de forma resiliente tras encender el celular [CR-002].
 - [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integración (androidTest) para simular caídas físicas de red (handover) y persistencia transaccional en Room.
 
 
