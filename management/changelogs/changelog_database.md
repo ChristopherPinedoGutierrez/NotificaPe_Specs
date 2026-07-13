@@ -616,3 +616,19 @@
   - [x] AC 3: Compilación Gradle exitosa sin errores de dependencias o tipado Kotlin (`BUILD SUCCESSFUL`).
 ---
 
+---
+### 2026-07-13 17:10 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Programador Especializado)
+
+* **Descripción:** Optimización de UX para la solicitud de permisos de optimización de batería redirigiendo a App Info.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [MainActivityContent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt)
+  - **Base de Datos:** Ninguno.
+  - **Detalles de Implementación:**
+    * Modificada la callback `onGrantBattery` del overlay de permisos para utilizar la intención `Settings.ACTION_APPLICATION_DETAILS_SETTINGS` en lugar de `Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS`.
+    * Esto envía al usuario directamente a la pantalla de Ajustes de NotificaPe Admin, permitiéndole ir a "Batería" y activar "Sin restricciones", además de habilitar "Inicio automático" si está en un equipo con capas de fabricante restrictivas.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La redirección abre los detalles de la aplicación NotificaPe Admin de forma directa.
+  - [x] AC 2: Compilación Gradle exitosa sin errores de importación o tipado Kotlin (`BUILD SUCCESSFUL`).
+---
+
+

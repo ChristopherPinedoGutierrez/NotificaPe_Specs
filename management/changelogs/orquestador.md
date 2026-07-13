@@ -53,5 +53,7 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-12 15:40]** | App: NotificaPe_Admin/Viewer | Tipo: DevOps | Integración de pipeline CI/CD con GitHub Actions y autoincremento de versionCode mediante API de Google Play. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-13 16:45]** | App: NotificaPe_Web | Tipo: UI | Variables de entorno para Play Store en Landing y menú desplegable unificado para APK directo. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-13 17:00]** | App: NotificaPe_Admin | Tipo: API | Implementación de autoarranque resiliente en reinicios (Boot Receiver) para el Foreground Service. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-13 17:10]** | App: NotificaPe_Admin | Tipo: UI | Optimización de UX para la solicitud de permisos de batería redirigiendo a App Info. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+
 
 
