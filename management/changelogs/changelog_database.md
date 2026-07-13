@@ -588,15 +588,17 @@
 
 * **Descripción:** Implementación de variables de entorno para las URLs de Google Play Store en el Landing Page y adición de menú desplegable unificado para descarga de APK directo.
 * **Detalles Técnicos:**
-  - **Archivos Modificados:** [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Archivos Modificados:** [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local), [Dockerfile](file:///c:/Trabajo/Proyectos/NotificaPe/web/Dockerfile)
   - **Cambios Realizados:**
     * Vinculados los botones de redirección a Google Play Store a las variables de entorno `NEXT_PUBLIC_PLAY_STORE_ADMIN_URL` y `NEXT_PUBLIC_PLAY_STORE_VIEWER_URL` para permitir cambios dinámicos sin modificar código.
     * Habilitados los enlaces con la leyenda "Play Store (Pruebas Internas)".
     * Ocultados los botones de descarga de APK directo tras un botón interactivo de texto secundario ("Ver más formas de descargar") mediante el estado reactivo unificado `showApkDownloads`, permitiendo que la interacción en cualquiera de las tarjetas despliegue o colapse las descargas directas en ambas aplicaciones de forma simultánea.
+    * Corregido el `Dockerfile` declarando `ARG` y `ENV` para `NEXT_PUBLIC_PLAY_STORE_ADMIN_URL` y `NEXT_PUBLIC_PLAY_STORE_VIEWER_URL` para asegurar que Next.js las inyecte de manera estática en el cliente durante el build-time de Docker en producción (EasyPanel).
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: El botón principal de Play Store abre en una pestaña nueva la URL de pruebas internas especificada en las variables de entorno.
   - [x] AC 2: La descarga directa de APK se encuentra oculta inicialmente. Al hacer clic en "Ver más formas de descargar" en cualquier tarjeta se revela el botón secundario en ambas de forma sincronizada.
   - [x] AC 3: Compilación y validación de tipado TypeScript exitosas en local (`npx tsc --noEmit`).
+  - [x] AC 4: Modificado el Dockerfile para exponer los argumentos de compilación y permitir la inyección de las variables en producción (EasyPanel).
 ---
 
 ---
