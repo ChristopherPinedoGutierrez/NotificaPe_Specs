@@ -598,3 +598,21 @@
   - [x] AC 2: La descarga directa de APK se encuentra oculta inicialmente. Al hacer clic en "Ver más formas de descargar" en cualquier tarjeta se revela el botón secundario en ambas de forma sincronizada.
   - [x] AC 3: Compilación y validación de tipado TypeScript exitosas en local (`npx tsc --noEmit`).
 ---
+
+---
+### 2026-07-13 17:00 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Programador Especializado)
+
+* **Descripción:** Implementación de autoarranque resiliente en reinicios (Boot Receiver) para el Foreground Service.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AndroidManifest.xml](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/AndroidManifest.xml), [BootReceiver.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/BootReceiver.kt)
+  - **Base de Datos:** Ninguno.
+  - **Detalles de Implementación:**
+    * Declarado el permiso `RECEIVE_BOOT_COMPLETED` y registrado `.service.BootReceiver` en el manifiesto.
+    * Implementado `BootReceiver` para capturar `BOOT_COMPLETED` y `QUICKBOOT_POWERON`.
+    * La clase consulta de forma bloqueante rápida el `deviceId` persistente en las preferencias. Si está vinculado, levanta `NotificationReceiverService` usando `startForegroundService()` de Android. Si no está vinculado, no inicia el servicio para evitar procesos innecesarios.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El permiso de arranque y el receptor están debidamente configurados en el manifest de la aplicación.
+  - [x] AC 2: La clase `BootReceiver` ejecuta la consulta de vinculación de forma síncrona en el boot del teléfono antes de arrancar.
+  - [x] AC 3: Compilación Gradle exitosa sin errores de dependencias o tipado Kotlin (`BUILD SUCCESSFUL`).
+---
+
