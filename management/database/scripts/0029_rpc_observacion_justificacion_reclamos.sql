@@ -114,7 +114,7 @@ BEGIN
     WHERE "IdSync" = p_id_sync AND "IdUsuario" = p_id_usuario;
 
     -- 3. Contar cuántos usuarios quedan reclamando este pago
-    SELECT COUNT(*), MIN("IdUsuario") INTO v_restantes, v_unico_usuario
+    SELECT COUNT(*) INTO v_restantes
     FROM public."NotificacionesAUsuarios"
     WHERE "IdSync" = p_id_sync;
 
@@ -126,7 +126,12 @@ BEGIN
             "ContadorReclamaciones" = 0
         WHERE "IdSync" = p_id_sync;
     ELSIF v_restantes = 1 THEN
-        -- CASO B: Queda exactamente un usuario. Se vuelve el ganador oficial.
+        -- CASO B: Queda exactamente un usuario. Se obtiene su ID de forma segura.
+        SELECT "IdUsuario" INTO v_unico_usuario
+        FROM public."NotificacionesAUsuarios"
+        WHERE "IdSync" = p_id_sync
+        LIMIT 1;
+
         -- Su reclamación se aprueba.
         UPDATE public."NotificacionesAUsuarios"
         SET "EstadoReclamacion" = 'APROBADO'
