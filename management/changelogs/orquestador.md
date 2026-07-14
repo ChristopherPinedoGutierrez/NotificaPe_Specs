@@ -61,7 +61,7 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-14 14:00]** | App: NotificaPe_Viewer | Tipo: API | Solución definitiva a bucles de reconexión y estabilización de perfiles Realtime al regresar de background. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-14 15:05]** | App: NotificaPe_Viewer | Tipo: UI/API | Integración de observaciones y justificaciones (defensas) en el flujo de reclamos y disputas de notificaciones. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-14 15:15]** | App: NotificaPe_Viewer | Tipo: UI/API | Persistencia real y visualización de observaciones en el detalle de ventas cobradas (Mi Registro). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
-* **[2026-07-14 15:50]** | App: NotificaPe_Viewer | Tipo: UI/API | Solución a defensas de dueños en disputas y visibilidad de ventas resueltas en el dashboard. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 15:50]** | App: NotificaPe_Viewer | Tipo: UI/API | Solución a defensas en disputas, visibilidad de ventas resueltas y resolución del limbo transaccional. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 
 

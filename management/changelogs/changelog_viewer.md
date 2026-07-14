@@ -147,15 +147,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lógica y configura
 ---
 ### 2026-07-14 15:50 | App/Componente: NotificaPe_Viewer | Autor: AGENT_ROLE (Programador Especializado)
 
-* **Descripción:** Solución a defensas de dueños en disputas y visibilidad de ventas resueltas [CR-004 v2.4].
+* **Descripción:** Solución a defensas de dueños en disputas, visibilidad de ventas resueltas y resolución del limbo transaccional en anulación de reclamos [CR-004 v2.4].
 * **Detalles Técnicos:**
   - **Archivos Modificados:** [PagosRemoteDataSource.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/PagosRemoteDataSource.kt), [HomeStateProvider.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/ui/home/HomeStateProvider.kt)
-  - **Base de Datos:** Creación de la RPC `actualizar_justificacion_reclamo`.
+  - **Base de Datos:** Creación de la RPC `actualizar_justificacion_reclamo` e implementación de la RPC `retirar_reclamo_v4` en el script `0029_rpc_observacion_justificacion_reclamos.sql` en specs.
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: Se implementó la RPC `actualizar_justificacion_reclamo` con `SECURITY DEFINER` para permitir el guardado de defensas (justificaciones de conflicto) en la columna `JustificacionConflicto` evitando bloqueos por RLS de `UPDATE`.
   - [x] AC 2: Se modificó la query en `actualizarJustificacion` para utilizar la nueva RPC en lugar de la consulta REST directa.
   - [x] AC 3: Se corrigió el filtro de `misVentas` en `HomeStateProvider.kt` sustituyendo `!it.enDisputa` por `it.EstadoProgreso != "REVISION"`. Esto permite volver a listar en la pestaña "Ventas" aquellos pagos cuyas disputas fueron resueltas a favor del usuario (`COMPLETADO`).
-  - [x] AC 4: Compilación Gradle debug exitosa en 3m 8s.
+  - [x] AC 4: Se diseñó e implementó la RPC `retirar_reclamo_v4` para solventar el limbo transaccional: si el dueño original o el impugnante anula su participación, el pago se reasigna automáticamente al participante restante (completando la venta a su favor) o se libera completamente a `PENDIENTE` si no queda nadie.
+  - [x] AC 5: Compilación Gradle debug exitosa en 1m 39s.
 ---
 
 
