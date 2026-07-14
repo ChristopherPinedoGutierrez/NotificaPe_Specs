@@ -54,6 +54,20 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-13 16:45]** | App: NotificaPe_Web | Tipo: UI | Variables de entorno para Play Store en Landing y menú desplegable unificado para APK directo. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-13 17:00]** | App: NotificaPe_Admin | Tipo: API | Implementación de autoarranque resiliente en reinicios (Boot Receiver) para el Foreground Service. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-13 17:10]** | App: NotificaPe_Admin | Tipo: UI | Optimización de UX para la solicitud de permisos de batería redirigiendo a App Info. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-14 12:10]** | App: NotificaPe_Viewer | Tipo: UI | Mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico remoto. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 12:35]** | App: NotificaPe_Viewer | Tipo: UI/API | Implementación de resiliencia de Realtime, reconexión física de red y sincronización delta dinámica. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 13:10]** | App: NotificaPe_Viewer | Tipo: UI/API | Robustecimiento de reconexión Realtime mediante exclusión mutua (Mutex), auto-suscripción activa y desconexión preventiva. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 13:30]** | App: NotificaPe_Viewer | Tipo: UI | Integración de Offline Banner animado superior para visibilidad de conectividad de red. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 14:00]** | App: NotificaPe_Viewer | Tipo: API | Solución definitiva a bucles de reconexión y estabilización de perfiles Realtime al regresar de background. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 15:05]** | App: NotificaPe_Viewer | Tipo: UI/API | Integración de observaciones y justificaciones (defensas) en el flujo de reclamos y disputas de notificaciones. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 15:15]** | App: NotificaPe_Viewer | Tipo: UI/API | Persistencia real y visualización de observaciones en el detalle de ventas cobradas (Mi Registro). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-14 15:50]** | App: NotificaPe_Viewer | Tipo: UI/API | Solución a defensas de dueños en disputas y visibilidad de ventas resueltas en el dashboard. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+
+
+
+
+
 
 
 
