@@ -62,6 +62,8 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-14 15:05]** | App: NotificaPe_Viewer | Tipo: UI/API | Integración de observaciones y justificaciones (defensas) en el flujo de reclamos y disputas de notificaciones. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-14 15:15]** | App: NotificaPe_Viewer | Tipo: UI/API | Persistencia real y visualización de observaciones en el detalle de ventas cobradas (Mi Registro). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-14 15:50]** | App: NotificaPe_Viewer | Tipo: UI/API | Solución a defensas en disputas, visibilidad de ventas resueltas y resolución del limbo transaccional. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-16 07:45]** | App: NotificaPe_Viewer | Tipo: DOCS | Registro de Change Request [CR-005] para flujo de registro e ingreso manual alternativo sin servicios de Google en el backlog. Ver [1.3_blueprint.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/1.3_blueprint.md)
+
 
 
 

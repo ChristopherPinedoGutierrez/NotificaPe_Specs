@@ -26,5 +26,7 @@
 - [x] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
 - [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico no presencial de fallos de firma o servicios [CR-003].
 - [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
+- [ ] App: viewer | Tarea (CR): Diseñar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseña y verificación de billeteras asociadas [CR-005].
+
 
 
