@@ -169,3 +169,31 @@ CREATE TABLE public."NotificacionesAUsuarios" (
 
 CREATE INDEX "idx_notif_caja_diaria" ON public."NotificacionesXDispositivo" ("IdDispositivo", "FechaOpera" DESC);
 CREATE INDEX "idx_notif_reporte_gerencial" ON public."NotificacionesXDispositivo" ("IdContratante", "FechaOpera" DESC);
+
+-- ==========================================
+-- 8. CUMPLIMIENTO LEGAL Y SEGURIDAD
+-- ==========================================
+
+CREATE TABLE public."Superadministradores" (
+    "IdSuperadmin" UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    "Correo" VARCHAR(100) UNIQUE NOT NULL,
+    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW() NOT NULL
+);
+
+CREATE TABLE public."Reclamaciones" (
+    "IdReclamacion" UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    "CodigoReclamacion" VARCHAR(50) UNIQUE,
+    "IdContratante" UUID REFERENCES public."Contratantes"("IdContratante") ON DELETE SET NULL,
+    "NombreCompleto" VARCHAR(150) NOT NULL,
+    "TipoDocumento" VARCHAR(20) NOT NULL,
+    "NumeroDocumento" VARCHAR(20) NOT NULL,
+    "Correo" VARCHAR(100) NOT NULL,
+    "Telefono" VARCHAR(20) NOT NULL,
+    "TipoReclamacion" VARCHAR(20) NOT NULL,
+    "DetalleReclamacion" TEXT NOT NULL,
+    "PedidoCliente" TEXT NOT NULL,
+    "Estado" VARCHAR(20) DEFAULT 'PENDIENTE' NOT NULL,
+    "Respuesta" TEXT,
+    "FechaRegistro" TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+    "FechaRespuesta" TIMESTAMPTZ
+);

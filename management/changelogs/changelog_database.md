@@ -632,5 +632,42 @@
   - [x] AC 1: La redirección abre los detalles de la aplicación NotificaPe Admin de forma directa.
   - [x] AC 2: Compilación Gradle exitosa sin errores de importación o tipado Kotlin (`BUILD SUCCESSFUL`).
 ---
+### 2026-07-17 15:05 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
 
+* **Descripción:** Implementación de la Épica de Cumplimiento Legal Perú y Consola de Superadministrador en el portal web.
+* **Detalles Técnicos:**
+  - **Archivos Modificados/Creados:** [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx), [terminos-condiciones/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/terminos-condiciones/page.tsx), [politica-privacidad/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/politica-privacidad/page.tsx), [libro-reclamaciones/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/libro-reclamaciones/page.tsx), [enviar_correo_reclamacion/index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts), [superadmin/layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/layout.tsx), [superadmin/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/page.tsx), [superadmin/contratantes/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/contratantes/page.tsx), [superadmin/disputas/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/disputas/page.tsx), [superadmin/reclamaciones/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/reclamaciones/page.tsx), [superadmin/regex/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/page.tsx)
+  - **Base de Datos:** Se consume e interactúa de forma segura con las tablas `Superadministradores` y `Reclamaciones` por políticas RLS y la función RPC `registrar_tx_credito` y `resolver_disputa`. Adicionalmente, se inyecta dinámicamente el botón de 'Consola Superadmin' en el SidebarNav clásico si el usuario posee privilegios administrativos de base de datos.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Footer y páginas estáticas legales totalmente operativas con modo oscuro.
+  - [x] AC 2: Formulario de Libro de Reclamaciones inserta registros en caliente y autogenera códigos en formato legal peruano.
+  - [x] AC 3: Edge Function despacha confirmaciones por correo (o simula en local) sin interrumpir la interfaz.
+  - [x] AC 4: Acceso a `/superadmin/*` securizado en el servidor mediante Layout de Next.js.
+  - [x] AC 5: Funcionalidad del panel general, gestión de licencias/dispositivos, abonos de créditos y simulación regex validada localmente.
+  - [x] AC 6: Integración del botón de superadministrador en el menú superior de la Landing Page condicionado a privilegios, con color degradado rojo-ámbar resplandeciente.
+  - [x] AC 7: Marcado visual de color rojo distintivo para el botón 'Consola Superadmin' en el menú de navegación del Dashboard clásico.
+---
+### 2026-07-17 17:15 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Refinamiento visual de la barra lateral de Superadmin, redirección automatizada 403 con temporizador de 5 segundos y utilitarios SQL.
+* **Detalles Técnicos:**
+  - **Archivos Modificados/Creados:** [SuperadminSidebar.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SuperadminSidebar.tsx), [AccessDenied.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/AccessDenied.tsx), [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/layout.tsx), [utilidades_superadmin.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/utilidades_superadmin.sql)
+  - **Base de Datos:** Se crea un script de utilidades SQL para asociar/remover administradores buscando dinámicamente por correo electrónico.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Acceso no autenticado redirige instantáneamente al login en el servidor.
+  - [x] AC 2: Acceso de usuario autenticado sin permisos renderiza componente `AccessDenied`, muestra temporizador interactivo de 5s decreciente y realiza `router.push("/dashboard")` al expirar.
+  - [x] AC 3: El menú lateral del Superadmin (`SuperadminSidebar`) ahora destaca el enlace de la vista activa en color rojo y añade botones explícitos de "Volver al Dashboard" y "Cerrar Sesión" en la parte inferior.
+---
+### 2026-07-17 18:30 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Implementación de Split Button en la cabecera y reestructuración del footer en dos secciones (superior e inferior).
+* **Detalles Técnicos:**
+  - **Archivos Modificados/Creados:** [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Base de Datos:** Se inyecta la variable de entorno de Next.js `NEXT_PUBLIC_DEVELOPER_URL` para parametrizar el link hacia RYCTECH CORP.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Botón de usuario transformado en un Split Button (botón Dashboard izquierdo directo, flecha desplegable derecha para Superadmin y Cerrar Sesión).
+  - [x] AC 2: Opción de Cerrar Sesión en la Landing Page levanta un modal de confirmación antes de desloguear.
+  - [x] AC 3: Footer de dos secciones implementado de forma responsiva (horizontal en desktop, vertical en mobile, colores adaptables en la sección superior y negro absoluto inalterable en la sección inferior de copyright).
+  - [x] AC 4: Link de desarrollador parametrizado a `https://www.ryctech.dev` con el nombre de RYCTECH CORP.
+---
 
