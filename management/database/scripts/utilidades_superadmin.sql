@@ -12,8 +12,8 @@
 -- 1. AGREGAR UN SUPERADMINISTRADOR
 --    Reemplace 'correo@ejemplo.com' con el email de Google del usuario.
 -- ---------------------------------------------------------------------
--- INSERT INTO public."Superadministradores" ("IdSuperadmin")
--- SELECT id FROM auth.users WHERE email = 'correo@ejemplo.com'
+-- INSERT INTO public."Superadministradores" ("IdSuperadmin", "Correo")
+-- SELECT id, email FROM auth.users WHERE email = 'correo@ejemplo.com'
 -- ON CONFLICT ("IdSuperadmin") DO NOTHING;
 
 
