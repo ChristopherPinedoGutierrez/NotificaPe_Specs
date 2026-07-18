@@ -41,7 +41,7 @@
 
 ### Épica: Dashboard de Superadministrador
 - [x] App: web | Tarea (Admin): Diseñar panel general protegido en `/superadmin` verificando privilegios en la tabla `Superadministradores`.
-- [x] App: web | Tarea (Admin): Desarrollar Consola de Contratantes en `/superadmin/contratantes` para visualizar clientes, suspender cuentas, otorgar créditos compensatorios y extender vigencia de dispositivos.
+- [/] App: web | Tarea (Admin): Desarrollar Consola de Contratantes en `/superadmin/contratantes` (Falta validar a fondo la nueva Consola 360°, la pestaña de licencias en cola/usuarios vinculados, y la visualización de notificaciones por dispositivo).
 - [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la función RPC `resolver_disputa` de Supabase para mediaciones.
 - [x] App: web | Tarea (Admin): Implementar vista de gestión `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 días hábiles).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.

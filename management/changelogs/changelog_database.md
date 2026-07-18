@@ -668,6 +668,28 @@
   - [x] AC 1: Botón de usuario transformado en un Split Button (botón Dashboard izquierdo directo, flecha desplegable derecha para Superadmin y Cerrar Sesión).
   - [x] AC 2: Opción de Cerrar Sesión en la Landing Page levanta un modal de confirmación antes de desloguear.
   - [x] AC 3: Footer de dos secciones implementado de forma responsiva (horizontal en desktop, vertical en mobile, colores adaptables en la sección superior y negro absoluto inalterable en la sección inferior de copyright).
-  - [x] AC 4: Link de desarrollador parametrizado a `https://www.ryctech.dev` con el nombre de RYCTECH CORP.
 ---
+### 2026-07-17 20:05 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Corrección de enlaces y textos de términos y condiciones y políticas de privacidad en la página de login.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/login/page.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Enlace de "Términos de servicio" corregido a "Términos y condiciones" y modificado para utilizar el componente Link de Next.js apuntando a `/terminos-condiciones`.
+  - [x] AC 2: Enlace de "Políticas de privacidad" modificado para utilizar el componente Link apuntando a `/politica-privacidad`.
+  - [x] AC 3: Remoción de las etiquetas de hipervínculo plano <a> por componentes Link para optimizar navegación nativa.
+---
+### 2026-07-17 20:15 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Remoción de marcas de billeteras y parametrización del correo de soporte en páginas legales y variables de entorno.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/terminos-condiciones/page.tsx), [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/politica-privacidad/page.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Removidas referencias literales a Yape y Plin en los Términos y Condiciones, cambiándolas por "billeteras digitales".
+  - [x] AC 2: Removidas referencias a Yape y Plin en la Política de Privacidad, cambiándolas por "billeteras digitales".
+  - [x] AC 3: Variable `NEXT_PUBLIC_SUPPORT_EMAIL` agregada al archivo `.env.local` y consumida dinámicamente en el frontend.
+---
+
 

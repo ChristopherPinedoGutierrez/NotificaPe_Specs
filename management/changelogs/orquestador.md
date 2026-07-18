@@ -67,6 +67,10 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-17 15:05]** | App: NotificaPe_Web | Tipo: UI/API | Desarrollo de páginas estáticas legales, Libro de Reclamaciones y vistas del panel /superadmin. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-17 17:15]** | App: NotificaPe_Web | Tipo: UI | Refinamientos visuales del Sidebar de Superadmin, timer 403 de redirección automática y scripts SQL de utilidades. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-17 18:30]** | App: NotificaPe_Web | Tipo: UI | Implementación de Split Button de usuario con modal de confirmación y reestructuración de footer de 2 secciones con enlace a RYCTECH CORP. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-17 20:05]** | App: NotificaPe_Web | Tipo: UI | Corrección de enlaces y textos legales en la vista de login. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-17 20:15]** | App: NotificaPe_Web | Tipo: UI | Remoción de marcas de billeteras y parametrización del correo de soporte en páginas legales. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+
+
 
 
 
