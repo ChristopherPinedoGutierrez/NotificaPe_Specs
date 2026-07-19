@@ -702,5 +702,15 @@
   - [x] AC 2: Retorno seguro del código correlativo de reclamación generado por el trigger a la interfaz de Next.js.
   - [x] AC 3: Validación tipográfica exitosa mediante compilador de Next.js (`npx tsc --noEmit`).
 ---
+### 2026-07-19 11:55 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Despliegue de la Edge Function enviar_correo_reclamacion y parametrización de remitente dinámico.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts)
+  - **Base de Datos/Edge Functions:** Despliegue formal de la Edge Function a producción y actualización de la propiedad `from` de la API de Resend para consumir la variable `SUPPORT_EMAIL` (`servicios@send.ryctech.dev`) en lugar de estar hardcodeada a `@notificape.pe`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Despliegue de la Edge Function en producción confirmado mediante listado de Supabase.
+  - [x] AC 2: Corrección del remitente de envío de Resend para autorizar de forma legítima el despacho de correos en base al dominio verificado (`send.ryctech.dev`).
+---
 
 
