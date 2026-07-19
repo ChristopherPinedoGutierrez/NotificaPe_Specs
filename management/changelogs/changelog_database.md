@@ -691,5 +691,16 @@
   - [x] AC 2: Removidas referencias a Yape y Plin en la Política de Privacidad, cambiándolas por "billeteras digitales".
   - [x] AC 3: Variable `NEXT_PUBLIC_SUPPORT_EMAIL` agregada al archivo `.env.local` y consumida dinámicamente en el frontend.
 ---
+### 2026-07-19 11:45 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Hotfix RLS para el registro de quejas públicas anónimas en el Libro de Reclamaciones.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/libro-reclamaciones/page.tsx)
+  - **Base de Datos:** Creación de la función SQL `registrar_reclamacion_publica` con privilegios `SECURITY DEFINER` (Script [0031_registrar_reclamacion_publica_rpc.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0031_registrar_reclamacion_publica_rpc.sql)).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Evasión de la restricción de RLS de SELECT para el público anónimo sin vulnerar la privacidad de los datos.
+  - [x] AC 2: Retorno seguro del código correlativo de reclamación generado por el trigger a la interfaz de Next.js.
+  - [x] AC 3: Validación tipográfica exitosa mediante compilador de Next.js (`npx tsc --noEmit`).
+---
 
 

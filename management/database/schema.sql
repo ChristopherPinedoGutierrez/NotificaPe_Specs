@@ -344,4 +344,52 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 -- Permisos al RPC
 GRANT EXECUTE ON FUNCTION public.ajustar_credito_superadmin(UUID, BIGINT, CHAR) TO authenticated;
 
+-- RPC para ingreso público de reclamaciones
+CREATE OR REPLACE FUNCTION public.registrar_reclamacion_publica(
+  p_nombre_completo text,
+  p_tipo_documento text,
+  p_numero_documento text,
+  p_correo text,
+  p_telefono text,
+  p_tipo_reclamacion text,
+  p_detalle_reclamacion text,
+  p_pedido_cliente text
+)
+RETURNS text
+LANGUAGE plpgsql
+SECURITY DEFINER -- Ejecuta con permisos de superusuario
+AS $$
+DECLARE
+  v_codigo text;
+BEGIN
+  INSERT INTO "public"."Reclamaciones" (
+    "NombreCompleto",
+    "TipoDocumento",
+    "NumeroDocumento",
+    "Correo",
+    "Telefono",
+    "TipoReclamacion",
+    "DetalleReclamacion",
+    "PedidoCliente",
+    "Estado"
+  )
+  VALUES (
+    p_nombre_completo,
+    p_tipo_documento,
+    p_numero_documento,
+    p_correo,
+    p_telefono,
+    p_tipo_reclamacion,
+    p_detalle_reclamacion,
+    p_pedido_cliente,
+    'PENDIENTE'
+  )
+  RETURNING "CodigoReclamacion" INTO v_codigo;
+
+  RETURN v_codigo;
+END;
+$$;
+
+GRANT EXECUTE ON FUNCTION public.registrar_reclamacion_publica(text, text, text, text, text, text, text, text) TO anon, authenticated;
+
 COMMIT;
