@@ -772,3 +772,15 @@
   - [x] AC 1: Eliminación de la política recursiva redundante confirmada.
   - [x] AC 2: Corrección de la política `AdminApp_Update_Restricted` aplicada en caliente y verificada.
 ---
+### 2026-07-20 18:05 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Implementación de banner amarillo y diálogo modal con checklist de configuración para dispositivos OEM restrictivos.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [UserPreferences.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/preference/UserPreferences.kt), [DashboardViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt), [DashboardScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt), [OemConfigDialog.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/components/OemConfigDialog.kt)
+  - **Base de Datos/Preferencias:** Adición de la llave de preferencia `isOemBannerDismissed` en DataStore. Detección de fabricante y simulación activa para testing. Intents nativos para configurar Inicio Automático y desactivar ahorro de batería propietario.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Banner amarillo integrado y desplegado correctamente mediante flag de simulación en Motorola.
+  - [x] AC 2: Diálogo modal con checklist y botones de redirección a ajustes funcionales.
+  - [x] AC 3: Persistencia del descarte mediante botón "Ocultar siempre" verificado en DataStore.
+---
+
