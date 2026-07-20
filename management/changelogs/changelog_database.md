@@ -742,5 +742,15 @@
   - [x] AC 1: Redespliegue a la versión 12 en producción.
   - [x] AC 2: Corrección definitiva de la visualización de los datos dinámicos en el cuerpo del correo de confirmación.
 ---
+### 2026-07-19 21:04 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Hotfix del Authorization Header en Edge Function para evitar validación fallida en API de Resend.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts)
+  - **Base de Datos/Edge Functions:** Corrección de un escape accidental generado en el string interpolado del Bearer Token en Deno, reemplazándolo por una concatenación clásica estricta (`"Bearer " + token`) para erradicar cualquier fallo sintáctico por los motores de Deno/Supabase al leer template literals con el signo `$`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Redespliegue a la versión 13 en producción.
+  - [x] AC 2: Corrección del header HTTP corrupto que provocaba un "API Key Invalid" falso positivo en Resend.
+---
 
 
