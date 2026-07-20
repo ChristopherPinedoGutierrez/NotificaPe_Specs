@@ -732,5 +732,15 @@
   - [x] AC 1: Redespliegue a la versión 10 en producción.
   - [x] AC 2: Evasión de bloqueos sintácticos por falta de User-Agent en peticiones HTTP nativas en Resend.
 ---
+### 2026-07-19 20:56 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Redespliegue de la Edge Function enviar_correo_reclamacion con marcadores de reemplazo de HTML.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts)
+  - **Base de Datos/Edge Functions:** Sustitución de los template literals de ES6 en el HTML por marcadores planos `{{}}` y la aplicación del encadenamiento de funciones `.replace()` para inyectar dinámicamente las propiedades del cliente sin el uso del caracter `$` en el string del HTML, erradicando cualquier problema de escape sintáctico en la compilación de Deno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Redespliegue a la versión 12 en producción.
+  - [x] AC 2: Corrección definitiva de la visualización de los datos dinámicos en el cuerpo del correo de confirmación.
+---
 
 
