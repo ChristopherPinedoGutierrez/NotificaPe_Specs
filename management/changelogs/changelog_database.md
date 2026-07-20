@@ -712,5 +712,15 @@
   - [x] AC 1: Despliegue de la Edge Function en producción confirmado mediante listado de Supabase.
   - [x] AC 2: Corrección del remitente de envío de Resend para autorizar de forma legítima el despacho de correos en base al dominio verificado (`send.ryctech.dev`).
 ---
+### 2026-07-19 20:40 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Redespliegue de la Edge Function enviar_correo_reclamacion con logs de depuración detallada HTTP.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts)
+  - **Base de Datos/Edge Functions:** Inyección de logs detallados en la consola de Supabase para visualizar el formato exacto de la cabecera Authorization y el JSON payload que se despacha a la API de Resend. Incorporación del método `.trim()` al secreto para prevenir espacios en blanco residuales.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Redespliegue a la versión 8 en el servidor de producción.
+  - [x] AC 2: Formateo correcto y transparente de las llamadas API a Resend para depuración de fallos de autorización por el cliente.
+---
 
 

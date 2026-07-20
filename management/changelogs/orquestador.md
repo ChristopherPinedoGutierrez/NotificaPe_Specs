@@ -71,6 +71,7 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-17 20:15]** | App: NotificaPe_Web | Tipo: UI | Remoción de marcas de billeteras y parametrización del correo de soporte en páginas legales. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-19 11:45]** | App: NotificaPe_Web | Tipo: DB/API | Hotfix RLS: Implementación de función RPC registrar_reclamacion_publica para el ingreso anónimo de quejas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-19 11:55]** | App: NotificaPe_Web | Tipo: DB/API | Despliegue de Edge Function enviar_correo_reclamacion en produccion y hotfix de remitente dinamico para Resend. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-19 20:40]** | App: NotificaPe_Web | Tipo: DB/API | Redespliegue de Edge Function enviar_correo_reclamacion en produccion con logs detallados de la peticion HTTP a Resend. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 
 
 
