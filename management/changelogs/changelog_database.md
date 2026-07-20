@@ -722,5 +722,15 @@
   - [x] AC 1: Redespliegue a la versión 8 en el servidor de producción.
   - [x] AC 2: Formateo correcto y transparente de las llamadas API a Resend para depuración de fallos de autorización por el cliente.
 ---
+### 2026-07-19 20:46 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Desarrollador Web)
+
+* **Descripción:** Redespliegue de la Edge Function enviar_correo_reclamacion con inyección de User-Agent.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/enviar_correo_reclamacion/index.ts)
+  - **Base de Datos/Edge Functions:** Incorporación de la cabecera `User-Agent: supabase-edge-runtime/1.0` en la petición fetch de Deno hacia la API de Resend para descartar bloqueos de seguridad por WAF y bots.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Redespliegue a la versión 10 en producción.
+  - [x] AC 2: Evasión de bloqueos sintácticos por falta de User-Agent en peticiones HTTP nativas en Resend.
+---
 
 
