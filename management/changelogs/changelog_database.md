@@ -751,6 +751,24 @@
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: Redespliegue a la versión 13 en producción.
   - [x] AC 2: Corrección del header HTTP corrupto que provocaba un "API Key Invalid" falso positivo en Resend.
+------
+### 2026-07-20 15:00 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Implementación de resiliencia proactiva en primer plano y reducción de timeout de reconexión.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Base de Datos/Realtime:** Se añade un heurístico de inactividad de background (`lastBackgroundTime`) de 30s. Si el tiempo en background supera este umbral, al volver a foreground y tener internet se fuerza un `hardResetSocket()` del WebSocket para descartar sockets zombies. Se reduce el timeout del estado CONNECTING de 30s a 10s en `startConnectingTimeout()`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Heurístico de tiempo en background implementado en el ciclo de vida del componente `lifecycleObserver`.
+  - [x] AC 2: Reducción del timeout de conexión a 10 segundos para mejorar la experiencia de usuario y resiliencia local.
 ---
+### 2026-07-20 15:10 | App/Componente: NotificaPe_Specs / db | Autor: AGENT_ROLE (Orquestador SDD)
 
-
+* **Descripción:** Hotfix de base de datos para eliminar recursión infinita en políticas RLS de DispositivosXContratante.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** Ninguno (Corrección directa en la base de datos en vivo de Supabase).
+  - **Base de Datos:** Eliminación de la política RLS obsoleta/redundante `App_Vincular_Y_Actualizar` y actualización de la política `AdminApp_Update_Restricted` en la tabla `DispositivosXContratante` para usar `WITH CHECK (true)`, eliminando subconsultas recursivas sobre la misma tabla durante la vinculación de dispositivos en rol `anon`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Eliminación de la política recursiva redundante confirmada.
+  - [x] AC 2: Corrección de la política `AdminApp_Update_Restricted` aplicada en caliente y verificada.
+---

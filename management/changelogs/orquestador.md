@@ -74,8 +74,5 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-19 20:40]** | App: NotificaPe_Web | Tipo: DB/API | Redespliegue de Edge Function enviar_correo_reclamacion en produccion con logs detallados de la peticion HTTP a Resend. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-19 20:46]** | App: NotificaPe_Web | Tipo: DB/API | Redespliegue de Edge Function enviar_correo_reclamacion con cabecera User-Agent y saneamiento de Authorization header. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-19 20:56]** | App: NotificaPe_Web | Tipo: DB/API | Redespliegue de Edge Function enviar_correo_reclamacion con formateo de marcadores planos en el HTML para evitar escapes de Deno. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
-
-
-
-
-
+* **[2026-07-20 15:00]** | App: NotificaPe_Admin | Tipo: API | Resiliencia de WebSocket en primer plano y heurístico de suspensión de red. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-07-20 15:10]** | App: NotificaPe_Specs | Tipo: DB | Hotfix RLS: Eliminación de recursión infinita en políticas de DispositivosXContratante. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
