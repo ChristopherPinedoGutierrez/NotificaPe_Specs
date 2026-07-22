@@ -804,4 +804,15 @@
   - [x] AC 1: Ocultamiento del campo "Estado de Conexión" en el modal/sección de Dispositivo Físico en la vista de detalle.
   - [x] AC 2: Registro del Change Request [CR-009] en el backlog global para implementar el mecanismo definitivo (Heartbeat/Presencia híbrida).
 ---
+### 2026-07-22 11:52 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Implementación del Estado de Conexión en tiempo real en el detalle del dispositivo físico usando Supabase Realtime Presence [CR-009].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DeviceConnectionStatus.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/%5Bid%5D/DeviceConnectionStatus.tsx), [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/%5Bid%5D/page.tsx)
+  - **Base de Datos:** Ninguno. Se utiliza la capa en memoria de Supabase Realtime Presence aprovechando la conexión WebSocket 24/7 que mantiene la app Admin mediante `AuthRealtimeHandler.kt` en su canal `device_auth_$deviceId`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Creación del componente reactivo `DeviceConnectionStatus` que se suscribe al canal broadcast de la app Admin.
+  - [x] AC 2: Detección instantánea (< 1s) de conexión cuando la app Admin está activa.
+  - [x] AC 3: Detección automática (5-30s) de desconexión al cerrar app, apagar el celular o desinstalar la app sin necesidad de escribir en la Base de Datos Postgres.
+---
 

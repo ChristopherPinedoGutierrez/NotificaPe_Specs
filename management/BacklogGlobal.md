@@ -19,6 +19,7 @@
 - [x] App: admin | Tarea (CR): Implementar receptor de boot (BootReceiver) y permiso de reinicio para autoarrancar el Foreground Service de forma resiliente tras encender el celular [CR-002].
 - [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integración (androidTest) para simular caídas físicas de red (handover) y persistencia transaccional en Room.
 - [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicación errónea de transferencias idénticas repetidas en el tiempo [CR-007].
+- [x] App: admin | Tarea (CR): Habilitar configuración de Presence en la creación del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
 
 ### Épica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
@@ -61,4 +62,4 @@
 ### Tareas Generales (Por Priorizar)
 - [x] **[TSK-001]** | App: Viewer | UI: Remoción de la verificación y solicitud obligatoria de optimización de batería (Google Play Policies).
 - [ ] **[CR-007]** | App: Admin | Lógica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinámico en la generación del `IdSync`, a fin de evitar la deduplicación incorrecta en el receptor (Viewer).
-- [ ] **[CR-009]** | App: Web | UI/API: Remoción temporal y rediseño del Estado de Conexión en detalle de dispositivo físico (Heartbeat / Presencia híbrida).
+- [x] **[CR-009]** | App: Web | UI/API: Rediseño del Estado de Conexión en detalle de dispositivo físico vía Supabase Realtime Presence (escuchando el canal broadcast del app Admin).
