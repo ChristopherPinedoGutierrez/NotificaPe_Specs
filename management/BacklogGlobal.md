@@ -57,3 +57,7 @@
 - [ ] App: viewer | Tarea (Store): Generar activos visuales, redactar Ficha de Play Store y completar Data Safety Form sobre inicio de sesión.
 - [ ] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisión automatizada del equipo de Google Play.
 - [ ] App: viewer | Tarea (Store): Solicitar promoción manual de fase Alpha/Beta en Google Play Console para el receptor.
+
+### Tareas Generales (Por Priorizar)
+- [x] **[TSK-001]** | App: Viewer | UI: Remoción de la verificación y solicitud obligatoria de optimización de batería (Google Play Policies).
+- [ ] **[CR-007]** | App: Admin | Lógica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinámico en la generación del `IdSync`, a fin de evitar la deduplicación incorrecta en el receptor (Viewer).

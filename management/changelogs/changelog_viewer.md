@@ -3,6 +3,16 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃ³gica y configuraciÃ³n de la aplicaciÃ³n mÃ³vil **NotificaPe Viewer**.
 
 ---
+### 2026-07-21 22:24 | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de tema oscuro en barra de navegación del sistema (flecha, círculo, cuadrado) y habilitación de edge-to-edge.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [themes.xml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/res/values/themes.xml), [MainActivity.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/MainActivity.kt), [Theme.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/theme/Theme.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La app hereda de `Theme.AppCompat.DayNight.NoActionBar` permitiendo la adaptación al tema oscuro/claro del sistema Android.
+  - [x] AC 2: Se invoca `enableEdgeToEdge()` en `MainActivity` y se configura `SideEffect` en `NotificaPeTheme` para controlar dinámicamente el color de fondo y de íconos de la barra de navegación del sistema.
+---
 ### 2026-07-08 12:50 | App/Componente: NotificaPe_Viewer | Autor: AGENT_ROLE (Programador Especializado)
 
 * **DescripciÃ³n:** RemociÃ³n de la verificaciÃ³n y solicitud obligatoria de optimizaciÃ³n de baterÃ­a para cumplir con las polÃ­ticas de Google Play Store.
