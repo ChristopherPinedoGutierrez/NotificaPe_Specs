@@ -783,4 +783,15 @@
   - [x] AC 2: Diálogo modal con checklist y botones de redirección a ajustes funcionales.
   - [x] AC 3: Persistencia del descarte mediante botón "Ocultar siempre" verificado en DataStore.
 ---
+### 2026-07-21 20:08 | App/Componente: NotificaPe_Admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Inclusión de timestamp en el hashing MD5 de IdSync para evitar deduplicación errónea de notificaciones.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [ExtractPaymentUseCase.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/domain/usecase/ExtractPaymentUseCase.kt)
+  - **Base de Datos:** Ninguno. Se usa la estructura existente (Room local y Supabase) que maneja el ID como cadena de texto, sin requerir cambios de esquema.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Parámetro `timestamp` incorporado en la firma y cuerpo de `generateDeterministicId`.
+  - [x] AC 2: Llamadas actualizadas en coincidencia de expresiones regulares y fallback en `ExtractPaymentUseCase`.
+  - [x] AC 3: Compilación exitosa del módulo admin verificada con Gradle.
+---
 

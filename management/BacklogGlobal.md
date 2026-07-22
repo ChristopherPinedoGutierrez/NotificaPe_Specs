@@ -18,12 +18,14 @@
 - [ ] App: admin | Tarea: Segurizar autenticación de terminales mediante JWT único por dispositivo y eliminación de privilegios al rol anon en RLS [Hito 3].
 - [x] App: admin | Tarea (CR): Implementar receptor de boot (BootReceiver) y permiso de reinicio para autoarrancar el Foreground Service de forma resiliente tras encender el celular [CR-002].
 - [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integración (androidTest) para simular caídas físicas de red (handover) y persistencia transaccional en Room.
+- [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicación errónea de transferencias idénticas repetidas en el tiempo [CR-007].
 
 ### Épica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
 - [x] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
 - [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico no presencial de fallos de firma o servicios [CR-003].
 - [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
+- [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelación de listener al minimizar. Implementar caché local de sesión en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
 - [ ] App: viewer | Tarea (CR): Diseñar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseña y verificación de billeteras asociadas [CR-005].
 
 ## [E2] Entregable 2: Cumplimiento Legal y Operaciones SaaS
