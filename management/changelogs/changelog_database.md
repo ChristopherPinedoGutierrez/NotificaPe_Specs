@@ -794,4 +794,14 @@
   - [x] AC 2: Llamadas actualizadas en coincidencia de expresiones regulares y fallback en `ExtractPaymentUseCase`.
   - [x] AC 3: Compilación exitosa del módulo admin verificada con Gradle.
 ---
+### 2026-07-21 21:38 | App/Componente: NotificaPe_Web | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Remoción temporal de la fila de Estado de Conexión en el detalle de dispositivo físico y registro de CR-009 para rediseño con Heartbeat / Presencia híbrida.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/%5Bid%5D/page.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Ocultamiento del campo "Estado de Conexión" en el modal/sección de Dispositivo Físico en la vista de detalle.
+  - [x] AC 2: Registro del Change Request [CR-009] en el backlog global para implementar el mecanismo definitivo (Heartbeat/Presencia híbrida).
+---
 

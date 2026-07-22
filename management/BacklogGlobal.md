@@ -61,3 +61,4 @@
 ### Tareas Generales (Por Priorizar)
 - [x] **[TSK-001]** | App: Viewer | UI: Remoción de la verificación y solicitud obligatoria de optimización de batería (Google Play Policies).
 - [ ] **[CR-007]** | App: Admin | Lógica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinámico en la generación del `IdSync`, a fin de evitar la deduplicación incorrecta en el receptor (Viewer).
+- [ ] **[CR-009]** | App: Web | UI/API: Remoción temporal y rediseño del Estado de Conexión en detalle de dispositivo físico (Heartbeat / Presencia híbrida).
