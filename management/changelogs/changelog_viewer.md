@@ -173,16 +173,19 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃ³gica y configu
   - [x] AC 3: TtsManager y Vibrator implementados para notificar en vivo pagos recibidos.
   - [x] AC 4: BootReceiver implementado para auto-reconexiÃ³n tras reinicio.
   - [x] AC 5: Controles de UI para TTS y VibraciÃ³n en SistemaTab, y peticiÃ³n nativa de Bypass de baterÃ­a.
+------
+### 2026-07-21 22:30 | App/Componente: NotificaPe_Viewer | Autor: AGENT_ROLE (Programador Especializado)
+
+* **Descripción:** Restauración del flujo de eventos Insert en RealtimeCoordinator (cumpleFiltro) para reparar las alertas en segundo plano (TTS y Vibración) de nuevas notificaciones [CR-008].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [RealtimeCoordinator.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/realtime/RealtimeCoordinator.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: `cumpleFiltro` en `RealtimeCoordinator.kt` restituye la validación de igualdad (`value == targetValue`), permitiendo el flujo de eventos `PostgresAction.Insert`.
+  - [x] AC 2: Se verificó que las inserciones ahora pasan la validación, desencadenando notificaciones, TTS y Vibración mediante `CentinelaRealtimeManager` incluso con la aplicación en segundo plano.
+  - [x] AC 3: Compilación Gradle debug exitosa confirmada.
 ---
 
-
-
-
-
-
-
-
----
 ### [2026-07-21 13:00] | App/Componente: NotificaPe_Viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Fijado de notificación persistente, solución a colapso de canal y fixes de ráfagas TTS.
@@ -280,3 +283,5 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃ³gica y configu
 
 
 
+ 
+ 

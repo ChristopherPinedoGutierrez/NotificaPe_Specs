@@ -26,6 +26,7 @@
 - [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico no presencial de fallos de firma o servicios [CR-003].
 - [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
 - [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelación de listener al minimizar. Implementar caché local de sesión en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
+- [x] App: viewer | Tarea (CR): Restaurar flujo de eventos Insert en RealtimeCoordinator (cumpleFiltro) para que las notificaciones en segundo plano disparen alertas TTS y Vibración correctamente [CR-008].
 - [ ] App: viewer | Tarea (CR): Diseñar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseña y verificación de billeteras asociadas [CR-005].
 
 ## [E2] Entregable 2: Cumplimiento Legal y Operaciones SaaS
