@@ -295,3 +295,28 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
 
  
  
+---
+### [2026-07-24 20:25] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Optimización y Estabilización del Orquestador Realtime para evitar bucles infinitos de reconexión y cierres silenciosos (OOM/ANR).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [RealtimeCoordinator.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/realtime/RealtimeCoordinator.kt), [CentinelaRealtimeManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaRealtimeManager.kt), [CentinelaService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaService.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La reconexión delega en el backoff exponencial de Supabase evitando bucles de hardReset automáticos en background.
+  - [x] AC 2: Se despiertan los canales ZOMBIE correctamente al pasar a Foreground.
+  - [x] AC 3: El canal de vibración y voz no acumula elementos infinitos ni produce ANR.
+---
+
+---
+### [2026-07-24 21:30] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de opción configurable para Notificaciones Emergentes Pop-Up (Heads-Up) sobre otras aplicaciones.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [UserPreferencesRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/UserPreferencesRepository.kt), [CentinelaNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaNotificationManager.kt), [CentinelaRealtimeManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaRealtimeManager.kt), [HomeViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [HomeScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeScreen.kt), [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Adición del Switch  Alertas Emergentes Pop-Up en la pestaña de Configuración.
+  - [x] AC 2: Creación del canal de alta importancia (ALERTS_HEADS_UP_CHANNEL_ID) para proyectar tarjetas flotantes sobre otras apps.
+  - [x] AC 3: Preservación de la preferencia persistente en DataStore (isHeadsUpEnabled).
+---

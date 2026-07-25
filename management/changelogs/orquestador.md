@@ -92,3 +92,7 @@ Este archivo mantiene el 铆ndice cronol贸gico estricto de todas las modificacion
 * **[2026-07-21 22:30]** | App: NotificaPe_Viewer | Tipo: API | Restauraci贸n del flujo de eventos Insert en RealtimeCoordinator (cumpleFiltro) para reparar las alertas en segundo plano (TTS y Vibraci贸n) de nuevas notificaciones [CR-008]. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-22 11:52]** | App: NotificaPe_Web | Tipo: UI/API | Redise帽o e integraci贸n del Estado de Conexi贸n en tiempo real con Supabase Realtime Presence [CR-009]. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-07-22 12:25]** | App: NotificaPe_Admin | Tipo: API | Habilitar configuraci贸n de Presence en canal Realtime para permitir el track de estado online en el dashboard [CR-010]. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-07-24 20:25]** | App: Viewer | Tipo: API | Optimizaci髇 de orquestador Realtime para evitar bucles OOM y ANR. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-24 21:30]** | App: Viewer | Tipo: UI / Notificaciones | Implementaci髇 de Switch para Alertas Emergentes Pop-Up (Heads-Up). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
