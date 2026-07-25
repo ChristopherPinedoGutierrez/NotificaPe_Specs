@@ -397,3 +397,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Notificaciones muestra 1/2 y 2/2.
   - [x] AC 3: Mi Registro Nivel 1 muestra 1/2 y 2/2; Nivel 2 muestra 1/3, 2/3 y 3/3.
 ---
+
+---
+### [2026-07-25 08:03] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Reemplazo de indicadores numericos (1/2, 1/3) por iconos tematicos al inicio del titulo en los carruseles.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reemplazo del parámetro pageIndicator por leadingIcon: ImageVector en CarouselHeader.
+  - [x] AC 2: Notificaciones asigna Notifications y Person.
+  - [x] AC 3: Mi Registro asigna ShoppingCart, Warning en Nivel 1 y Refresh, CheckCircle, Close en Nivel 2.
+---

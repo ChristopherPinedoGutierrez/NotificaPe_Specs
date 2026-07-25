@@ -108,3 +108,5 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-24 23:26]** | App: Viewer | Tipo: UI / UX | Reordenamiento de pesta�as (Notificaciones por defecto) e info de hardware del dispositivo en uso. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-07-24 23:36]** | App: Viewer | Tipo: UI / UX | Indicador de pagina pill (1/2, 2/2, 1/3, etc) en carruseles de Notificaciones y Mi Registro. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-25 08:03]** | App: Viewer | Tipo: UI / UX | Reemplazo de numeros de pagina por iconos representativos en carruseles. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
