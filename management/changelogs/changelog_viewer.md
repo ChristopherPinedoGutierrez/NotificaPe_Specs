@@ -320,3 +320,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Creación del canal de alta importancia (ALERTS_HEADS_UP_CHANNEL_ID) para proyectar tarjetas flotantes sobre otras apps.
   - [x] AC 3: Preservación de la preferencia persistente en DataStore (isHeadsUpEnabled).
 ---
+
+---
+### [2026-07-24 22:10] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Rediseño UI/UX con Carrusel de Encabezado con flechas e íconos de información contextual (i) con diálogos modales.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Creación de CarouselHeader e InfoExplanationDialog en CommonHomeComponents.kt.
+  - [x] AC 2: Reemplazo de sub-pestañas en Notificaciones por carrusel navegable con títulos explicativos ( Disponibles para Reclamar y Tomadas por Otros Vendedores).
+  - [x] AC 3: Renombrado de pestañas principales en Mi Registro (Mis Ventas y Pagos en Conflicto) y carrusel de sub-estados (En Revisión por Admin, Resueltos a Mi Favor, Asignados a Otro Vendedor).
+---

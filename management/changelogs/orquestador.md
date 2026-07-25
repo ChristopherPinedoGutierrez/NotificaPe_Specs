@@ -96,3 +96,5 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 * **[2026-07-24 20:25]** | App: Viewer | Tipo: API | Optimización de orquestador Realtime para evitar bucles OOM y ANR. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-07-24 21:30]** | App: Viewer | Tipo: UI / Notificaciones | Implementación de Switch para Alertas Emergentes Pop-Up (Heads-Up). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-24 22:10]** | App: Viewer | Tipo: UI / UX | Rediseño de navegación con Carrusel de Encabezado y Diálogos Explicativos (i). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
