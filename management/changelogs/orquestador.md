@@ -104,3 +104,5 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 * **[2026-07-24 22:33]** | App: Viewer | Tipo: UI / Bugfix | Remoción de botón (i), color morado en nivel 1 y corrección de filtrado isNullOrBlank en pagos. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-07-24 23:12]** | App: Viewer | Tipo: UI / UX | Color azul en Pagos en Conflicto y ampliacion de ancho en modales HomeDetailModal. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-24 23:26]** | App: Viewer | Tipo: UI / UX | Reordenamiento de pestañas (Notificaciones por defecto) e info de hardware del dispositivo en uso. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)

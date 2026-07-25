@@ -371,3 +371,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 1: Aplicación del color azul (0xFF2196F3) a Pagos en Conflicto en el nivel 1 de Mi Registro.
   - [x] AC 2: Configuración de DialogProperties(usePlatformDefaultWidth = false) en HomeDetailModal expandiendo el ancho con márgenes de 20dp.
 ---
+
+---
+### [2026-07-24 23:26] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Reordenamiento de navegacion principal (Notificaciones primero por defecto, Mi Registro segundo) y hardware de dispositivo actual en Configuración.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [HomeNavigationComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/HomeNavigationComponents.kt), [HomeScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeScreen.kt), [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reordenamiento de barra de navegación: Notificaciones (0), Mi Registro (1), Configuración (2).
+  - [x] AC 2: Notificaciones se establece como la vista inicial por defecto al ingresar a la pantalla principal.
+  - [x] AC 3: Hardware en Información del Sistema muestra la marca y modelo en vivo del dispositivo en uso (Build.MANUFACTURER y Build.MODEL).
+---
