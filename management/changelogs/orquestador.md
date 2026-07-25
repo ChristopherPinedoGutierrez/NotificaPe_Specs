@@ -100,3 +100,5 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 * **[2026-07-24 22:10]** | App: Viewer | Tipo: UI / UX | Rediseño de navegación con Carrusel de Encabezado y Diálogos Explicativos (i). Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-07-24 22:21]** | App: Viewer | Tipo: UI / UX | Refinamiento de Carrusel Full-Width Edge-to-Edge y unificación total de navegación en Mi Registro. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-24 22:33]** | App: Viewer | Tipo: UI / Bugfix | Remoción de botón (i), color morado en nivel 1 y corrección de filtrado isNullOrBlank en pagos. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)

@@ -346,3 +346,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Eliminación de TabRow tradicional en Mi Registro e integración de carrusel Nivel 1 ( Mis Ventas del Día vs Pagos en Conflicto).
   - [x] AC 3: Mantenimiento de carrusel Nivel 2 en Pagos en Conflicto con diálogos informativos contextuales.
 ---
+
+---
+### [2026-07-24 22:33] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Eliminación de ícono (i), aplicación de color morado temático en Nivel 1 de Mi Registro y solución a bug de visibilidad de notificaciones por isNullOrBlank.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt), [HomeStateProvider.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeStateProvider.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Eliminación del botón (i) y ventana modal InfoExplanationDialog en CarouselHeader.
+  - [x] AC 2: Aplicación del color morado (primary) en el carrusel de nivel 1 de Mi Registro.
+  - [x] AC 3: Corrección de la validación IdUsuarioGanador.isNullOrBlank() en HomeStateProvider.kt haciendo visibles los pagos disponibles.
+---
