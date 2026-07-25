@@ -333,3 +333,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Reemplazo de sub-pestañas en Notificaciones por carrusel navegable con títulos explicativos ( Disponibles para Reclamar y Tomadas por Otros Vendedores).
   - [x] AC 3: Renombrado de pestañas principales en Mi Registro (Mis Ventas y Pagos en Conflicto) y carrusel de sub-estados (En Revisión por Admin, Resueltos a Mi Favor, Asignados a Otro Vendedor).
 ---
+
+---
+### [2026-07-24 22:21] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Refinamiento de diseño UI/UX: Carrusel Full-Width de borde a borde (sin márgenes ni aspecto de botón) y unificación total en Mi Registro.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Rediseño de CarouselHeader para extenderse de borde a borde de la pantalla (full-width).
+  - [x] AC 2: Eliminación de TabRow tradicional en Mi Registro e integración de carrusel Nivel 1 ( Mis Ventas del Día vs Pagos en Conflicto).
+  - [x] AC 3: Mantenimiento de carrusel Nivel 2 en Pagos en Conflicto con diálogos informativos contextuales.
+---
