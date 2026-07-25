@@ -384,3 +384,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Notificaciones se establece como la vista inicial por defecto al ingresar a la pantalla principal.
   - [x] AC 3: Hardware en Información del Sistema muestra la marca y modelo en vivo del dispositivo en uso (Build.MANUFACTURER y Build.MODEL).
 ---
+
+---
+### [2026-07-24 23:36] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Adición de indicador de vista/página tipo pill (1/2, 2/2 en Nivel 1 y 1/3, 2/3, 3/3 en Nivel 2) en todos los carruseles.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Implementación del parámetro pageIndicator en CarouselHeader renderizando una pill discreta.
+  - [x] AC 2: Notificaciones muestra 1/2 y 2/2.
+  - [x] AC 3: Mi Registro Nivel 1 muestra 1/2 y 2/2; Nivel 2 muestra 1/3, 2/3 y 3/3.
+---
