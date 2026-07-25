@@ -359,3 +359,15 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 2: Aplicación del color morado (primary) en el carrusel de nivel 1 de Mi Registro.
   - [x] AC 3: Corrección de la validación IdUsuarioGanador.isNullOrBlank() en HomeStateProvider.kt haciendo visibles los pagos disponibles.
 ---
+
+---
+### [2026-07-24 23:12] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Ajustes de UI: Color azul en Pagos en Conflicto y expansión de ancho de modales HomeDetailModal a casi todo el ancho de pantalla.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt), [CommonHomeComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Aplicación del color azul (0xFF2196F3) a Pagos en Conflicto en el nivel 1 de Mi Registro.
+  - [x] AC 2: Configuración de DialogProperties(usePlatformDefaultWidth = false) en HomeDetailModal expandiendo el ancho con márgenes de 20dp.
+---
