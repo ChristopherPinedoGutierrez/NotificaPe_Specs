@@ -46,3 +46,14 @@
   - [x] AC 1: La navegación inferior y el título principal reflejan 'Notificaciones' y 'Registro de Notificaciones'.
   - [x] AC 2: El modal 'Recaudación por Billetera' coincide en ancho con el listado principal y actualiza los subtextos a 'notificaciones recibidas'.
 ---
+---
+### [2026-07-26 18:20] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripcion:** Parche a la vulnerabilidad de notificaciones zombies (spinner infinito) y starvation (estancadas en nube amarilla sin reintento).
+* **Detalles Tecnicos:**
+  - **Archivos Modificados:** [SyncRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/SyncRepository.kt), [SyncWorker.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/worker/SyncWorker.kt), [TestLabHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt), [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Base de Datos:** Se usa la funcion local resetProcessingStatus.
+* **Criterios de Aceptacion (AC) Validados:**
+  - [x] AC 1: Las notificaciones atascadas se curan automaticamente al abrir la app.
+  - [x] AC 2: Si falla el envio en vivo, se delega un reintento a WorkManager (OneTimeWorkRequest).
+---

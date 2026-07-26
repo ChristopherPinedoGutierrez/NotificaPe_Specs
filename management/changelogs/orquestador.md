@@ -116,3 +116,5 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 
 * **[2026-07-26 09:30]** | App: admin | Tipo: UI/DB | Soporte de colores dinámicos de billeteras. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
 * **[2026-07-26 14:45]** | App: Viewer | Tipo: SERVICE / UI | Cola unificada de notificaciones, ritmo dinmico, catch-up silencioso, escrituras DataStore batch, notificaciones tradicionales en cortina Android y reset automtico de badge al abrir. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-07-26 18:20]** | App: admin | Tipo: UI/SERVICE | Parche de vulnerabilidad Zombie y Starvation en Sincronizacion. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
