@@ -410,3 +410,18 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃ³gica y configu
   - [x] AC 2: Notificaciones asigna Notifications y Person.
   - [x] AC 3: Mi Registro asigna ShoppingCart, Warning en Nivel 1 y Refresh, CheckCircle, Close en Nivel 2.
 ---
+
+---
+### [2026-07-26 14:45] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripcin:** Implementacin de cola unificada de notificaciones, ritmo dinmico, catch-up silencioso, escrituras en batch DataStore, modo tradicional de notificaciones en cortina Android y auto-limpieza/reset del badge al abrir el app.
+* **Detalles Tcnicos:**
+  - **Archivos Modificados:** [NotificationQueueManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt), [CentinelaNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaNotificationManager.kt), [CentinelaRealtimeManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaRealtimeManager.kt), [CentinelaService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaService.kt), [UserPreferencesRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/UserPreferencesRepository.kt), [HomeViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt)
+  - **Base de Datos:** Ninguno (Optimizacin DataStore local batch).
+* **Criterios de Aceptacin (AC) Validados:**
+  - [x] AC 1: Catch-Up silencioso de pagos del da al reconectar sin sonar ni generar pop-ups.
+  - [x] AC 2: Ritmo dinmico TTS y Pop-Up autocancelable que degrada a cortina de notificaciones.
+  - [x] AC 3: Modo tradicional instantneo para Voz OFF y Pop-Up OFF con vibracin controlada con debounce.
+  - [x] AC 4: Guardado masivo batch en DataStore y ejecuciones en Dispatchers.IO evitando congelamientos UI y deadlocks.
+  - [x] AC 5: Auto-limpieza de notificaciones de alerta y reset a 0 del globo contador (badge) al abrir o ingresar a la app.
+---
