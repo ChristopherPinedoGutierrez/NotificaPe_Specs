@@ -36,3 +36,13 @@
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: La compilación Kotlin/KSP fue exitosa sin fallos de parseo de JSON.
 ---
+### [2026-07-26 15:00] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Actualizaciones visuales en la app Admin: renombrado a 'Notificaciones' / 'Registro de Notificaciones', ensanchamiento y actualización del modal de Recaudación por Billetera.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt), [BreakdownDialog.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/components/BreakdownDialog.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La navegación inferior y el título principal reflejan 'Notificaciones' y 'Registro de Notificaciones'.
+  - [x] AC 2: El modal 'Recaudación por Billetera' coincide en ancho con el listado principal y actualiza los subtextos a 'notificaciones recibidas'.
+---
