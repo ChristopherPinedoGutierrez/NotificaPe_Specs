@@ -25,3 +25,14 @@
   - [x] AC 3: Las notificaciones provenientes de billeteras activas se remueven automáticamente del status bar sin romper la captura ni el guardado de notificaciones en estado PENDIENTE o REVISION.
 ---
 
+
+---
+### [2026-07-26 09:30] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de soporte para colores dinámicos desde Base de Datos (RuleDto y DeviceWalletEntity).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DeviceWalletEntity.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/model/DeviceWalletEntity.kt), [RuleDto.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/remote/dto/RuleDto.kt), [WalletRepository.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt), [RuleRepository.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/repository/RuleRepository.kt), [AppDatabase.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/local/AppDatabase.kt)
+  - Se añadió \ColorHex\ a DTOs de sincronización y a Room, mapeando en RuleRepository. Las Vistas (NotificationItem y WalletsComponents) ya leían de WalletEntity.colorHex, por lo que heredan el cambio al vuelo. Se elevó AppDatabase a la versión 10.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La compilación Kotlin/KSP fue exitosa sin fallos de parseo de JSON.
+---

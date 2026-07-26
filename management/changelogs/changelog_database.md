@@ -816,3 +816,14 @@
   - [x] AC 3: Detección automática (5-30s) de desconexión al cerrar app, apagar el celular o desinstalar la app sin necesidad de escribir en la Base de Datos Postgres.
 ---
 
+
+---
+### [2026-07-26 09:20] | App/Componente: db | Autor: AGENT_ROLE
+
+* **Descripción:** Adición de campo ColorHex a Billeteras y registro de Lemon Cash.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0018_billeteras_color_lemon.sql](file:///../NotificaPe_Specs/management/database/scripts/0018_billeteras_color_lemon.sql), [schema.sql](file:///../NotificaPe_Specs/management/database/schema.sql)
+  - **Base de Datos:** Añadida columna ColorHex en Billeteras. Insertado Lemon (me.lemon.ar).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La migración fue exitosa y la columna existe.
+---

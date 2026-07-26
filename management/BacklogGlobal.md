@@ -5,6 +5,7 @@
 ## [E1] Entregable 1: Core de Notificaciones y Sincronización
 
 ### Épica: Base de Datos y APIs
+- [x] App: db | Tarea (CR): Extensión de Billeteras: Agregar campo ColorHex y soporte para Lemon Cash (me.lemon.ar) mediante el script 0018_billeteras_color_lemon.sql.
 - [x] App: web | Tarea: Conectar MCP de Supabase y validar estructura final de disputas (Triggers/Vistas) vs la nube.
 - [ ] App: web | Tarea: Implementar endpoints CRUD y Edge Functions para el manejo de sesiones y empresas.
 - [x] App: web | Tarea (CR): Crear bucket público en Supabase Storage (o configurar URL en GitHub Releases) y subir las compilaciones APK iniciales.
