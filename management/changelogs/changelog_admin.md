@@ -57,3 +57,15 @@
   - [x] AC 1: Las notificaciones atascadas se curan automaticamente al abrir la app.
   - [x] AC 2: Si falla el envio en vivo, se delega un reintento a WorkManager (OneTimeWorkRequest).
 ---
+
+---
+### [2026-07-28 18:09] | App/Componente: Admin (UCrop) | Autor: AGENT_ROLE
+
+* **Descripción:** Se corrige el desbordamiento de contenido debajo de las barras de sistema (Edge-to-Edge) en la vista de recorte de imagen (uCrop) en Android 15.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [themes.xml (values-v35)](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/res/values-v35/themes.xml)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La actividad de recorte ya no se dibuja detrás de las barras del sistema (status y navigation bars) al aplicar windowOptOutEdgeToEdgeEnforcement.
+  - [x] AC 2: La aplicación compila correctamente (assembleDebug).
+---
