@@ -8,4 +8,4 @@
 -- =============================================================================
 
 INSERT INTO "FiltrosXBilletera" ("IdBilletera", "NombreRegla", "RegexContenido", "MensajeMock")
-VALUES (5, 'Lemon Estándar (Generico)', '(?i)(?<remitente>.*?) te envió S/\s*(?<monto>[0-9.,]+)', 'Usuario Lemon te envió S/ 10.00.');
+VALUES (5, 'Lemon Estándar (Generico)', '(?i)Recibiste S/\s*(?<monto>[0-9.,]+).*?(?<remitente>.*?)\s+te envió dinero.*', 'Recibiste S/ 10.00 🙌 - Usuario Lemon te envió dinero. Ya lo puedes encontrar en tu cuenta.');

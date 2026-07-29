@@ -16,7 +16,7 @@ UPDATE public."Billeteras" SET "ColorHex" = '#00B44C' WHERE "Nombre" LIKE 'Plin%
 
 -- 3. Insertar la billetera Lemon Cash
 INSERT INTO public."Billeteras" ("IdBilletera", "PackageName", "Nombre", "ColorHex") 
-VALUES (5, 'me.lemon.ar', 'Lemon', '#10C267')
+VALUES (5, 'com.applemoncash', 'Lemon', '#10C267')
 ON CONFLICT ("IdBilletera") DO UPDATE SET "PackageName" = EXCLUDED."PackageName", "Nombre" = EXCLUDED."Nombre", "ColorHex" = EXCLUDED."ColorHex";
 
 -- (Reajustar secuencia)
