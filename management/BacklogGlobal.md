@@ -21,6 +21,7 @@
 - [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integraciÃ³n (androidTest) para simular caÃ­das fÃ­sicas de red (handover) y persistencia transaccional en Room.
 - [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicaciÃ³n errÃ³nea de transferencias idÃ©nticas repetidas en el tiempo [CR-007].
 - [x] App: admin | Tarea (CR): Habilitar configuraciÃ³n de Presence en la creaciÃ³n del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
+- [ ] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
 
 ### Ã‰pica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseÃ±ar UI de resoluciÃ³n de conflictos.
