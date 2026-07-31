@@ -425,3 +425,14 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂ³gica y configu
   - [x] AC 4: Guardado masivo batch en DataStore y ejecuciones en Dispatchers.IO evitando congelamientos UI y deadlocks.
   - [x] AC 5: Auto-limpieza de notificaciones de alerta y reset a 0 del globo contador (badge) al abrir o ingresar a la app.
 ---
+---
+### 2026-07-31 12:45 | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Migración del Foreground Service de dataSync a specialUse para evadir restricciones de 6 horas en Android 14.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AndroidManifest.xml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/AndroidManifest.xml), [CentinelaService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaService.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Compilación exitosa del build de Debug.
+  - [x] AC 2: Prevención del crash ForegroundServiceDidNotStopException.
+---
