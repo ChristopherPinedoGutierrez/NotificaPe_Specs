@@ -14,30 +14,29 @@
 
 ### Ã‰pica: Emisor
 - [x] App: admin | Tarea: Implementar lÃ³gica Room-First y Worker Offline para resiliencia total.
-- [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rÃ¡pidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
-- [x] App: admin | Tarea: Vincular Foreground Service con el estado de activaciÃ³n y billeteras dinÃ¡micas [Hito 2].
-- [ ] App: admin | Tarea: Segurizar autenticaciÃ³n de terminales mediante JWT Ãºnico por dispositivo y eliminaciÃ³n de privilegios al rol anon en RLS [Hito 3].
+- [x] App: web | Tarea (CR): Crear bucket público en Supabase Storage (o configurar URL en GitHub Releases) y subir las compilaciones APK iniciales.
+- [x] App: web | Tarea (CR): Modificar Landing Page para actualizar la sección de precios (nuevos planes), detallar el flujo de las 3 aplicaciones y añadir botones de descarga directa para los APKs.
+- [ ] App: web | Tarea (Deploy): Publicar la Pantalla de Consentimiento de OAuth en Google Cloud Console a estado 'En producción' para remover el límite de 100 usuarios de prueba antes del lanzamiento oficial.
+
+### Épica: Emisor
+- [x] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.
+- [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rápidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
+- [x] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
+- [ ] App: admin | Tarea: Segurizar autenticación de terminales mediante JWT único por dispositivo y eliminación de privilegios al rol anon en RLS [Hito 3].
 - [x] App: admin | Tarea (CR): Implementar receptor de boot (BootReceiver) y permiso de reinicio para autoarrancar el Foreground Service de forma resiliente tras encender el celular [CR-002].
-- [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integraciÃ³n (androidTest) para simular caÃ­das fÃ­sicas de red (handover) y persistencia transaccional en Room.
-- [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicaciÃ³n errÃ³nea de transferencias idÃ©nticas repetidas en el tiempo [CR-007].
-- [x] App: admin | Tarea (CR): Habilitar configuraciÃ³n de Presence en la creaciÃ³n del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
-- [ ] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
+- [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integración (androidTest) para simular caídas físicas de red (handover) y persistencia transaccional en Room.
+- [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicación errónea de transferencias idénticas repetidas en el tiempo [CR-007].
+- [x] App: admin | Tarea (CR): Habilitar configuración de Presence en la creación del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
+- [x] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
+- [ ] App: admin | Tarea (Mejora UX/Íconos): Diseñar e integrar silueta transparente (SmallIcon) y logo a color (LargeIcon) para notificaciones en la barra de estado y panel Android [CR-013].
 
-### Ã‰pica: Receptor
-- [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseÃ±ar UI de resoluciÃ³n de conflictos.
-- [x] App: viewer | Tarea: Integrar invocaciÃ³n de RPC `rpc_resolver_disputas` para mediaciÃ³n final.
-- [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnÃ³stico no presencial de fallos de firma o servicios [CR-003].
-- [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexiÃ³n Realtime y Delta Sync al retornar de background y ante transiciones de red fÃ­sica [CR-004].
-- [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelaciÃ³n de listener al minimizar. Implementar cachÃ© local de sesiÃ³n en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
+### Épica: Receptor
+- [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
+- [x] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
+- [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico no presencial de fallos de firma o servicios [CR-003].
+- [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
+- [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelación de listener al minimizar. Implementar caché local de sesión en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
 - [x] App: viewer | Tarea (CR): Restaurar flujo de events Insert en RealtimeCoordinator
-- [x] App: viewer | Tarea (CR): Rediseño de cola unificada de notificaciones (TTS/Push/Vibración), ritmo dinámico, catch-up silencioso, escrituras DataStore batch, modo tradicional en cortina Android y auto-limpieza de alertas al abrir el app [CR-010]. (cumpleFiltro) para que las notificaciones en segundo plano disparen alertas TTS y VibraciÃ³n correctamente [CR-008].
-- [ ] App: viewer | Tarea (CR): DiseÃ±ar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseÃ±a y verificaciÃ³n de billeteras asociadas [CR-005].
-
-## [E2] Entregable 2: Cumplimiento Legal y Operaciones SaaS
-
-### Ã‰pica: Base de Datos y Mantenimiento
-- [x] App: db | Tarea (Legal): Crear la tabla `Superadministradores` en Supabase con polÃ­ticas RLS para control restrictivo de acceso al dashboard.
-- [x] App: db | Tarea (Legal): Crear la tabla `Reclamaciones` en Supabase con RLS habilitado (inserciÃ³n pÃºblica para anÃ³nimos, lectura exclusiva para superadmins).
 - [x] App: db | Tarea (Deuda TÃ©cnica): Elaborar y ejecutar un script de migraciÃ³n SQL Ãºnico (`0030_legal_and_superadmin.sql`) para eliminar definitivamente las tablas huÃ©rfanas `ConflictosXNotificacion` y `DisputasNotificaciones` en desarrollo y producciÃ³n.
 
 ### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
