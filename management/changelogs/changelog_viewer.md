@@ -436,3 +436,15 @@ Este archivo contiene el historial de cambios a nivel de UI, l脙鲁gica y configu
   - [x] AC 1: Compilaci髇 exitosa del build de Debug.
   - [x] AC 2: Prevenci髇 del crash ForegroundServiceDidNotStopException.
 ---
+
+---
+### [2026-07-31 23:45] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripci贸n:** Implementaci贸n de resiliencia en reconexi贸n de Realtime (Doze Mode) y cambio de t铆tulo de notificaci贸n persistente.
+* **Detalles T茅cnicos:**
+  - **Archivos Modificados:** [RealtimeIntegrityManager.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/data/realtime/RealtimeIntegrityManager.kt), [CentinelaService.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/service/CentinelaService.kt), [RealtimeCoordinator.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/data/realtime/RealtimeCoordinator.kt), [CentinelaNotificationManager.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/service/CentinelaNotificationManager.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptaci贸n (AC) Validados:**
+  - [x] AC 1: La app reconecta exitosamente el socket tras la expiraci贸n del JWT en Doze mode.
+  - [x] AC 2: La notificaci贸n persistente muestra ""NotificaPe Viewer: [Caja]"".
+---

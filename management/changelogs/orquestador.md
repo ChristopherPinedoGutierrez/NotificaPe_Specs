@@ -121,3 +121,4 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-07-28 18:09]** | App: Admin | Tipo: UI | Corrección de solapamiento Edge-to-Edge de UCropActivity en Android 15. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
 
 * **2026-07-31 12:45** | App: Viewer | Tipo: APP | Migraci�n del Foreground Service a specialUse. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-07-31 23:45]** | App: Viewer | Tipo: API / UI | Resiliencia Realtime Doze Mode y Titulo de Notificación. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
