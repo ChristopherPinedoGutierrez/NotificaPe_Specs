@@ -22,7 +22,11 @@ CREATE TABLE public."Licencias" (
     "Moneda" VARCHAR(3) DEFAULT 'PEN',
     "DuracionDias" INT NOT NULL DEFAULT 30,
     "SkuExterno" VARCHAR(50) UNIQUE NOT NULL,
-    "Activo" BOOLEAN DEFAULT TRUE
+    "Activo" BOOLEAN DEFAULT TRUE,
+    "IdContratanteExclusivo" UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+    "PermiteAddons" BOOLEAN DEFAULT TRUE,
+    "PrecioExtraUsuarioCentimos" INT DEFAULT 0,
+    "PrecioExtraDispositivoCentimos" INT DEFAULT 0
 );
 
 CREATE TABLE public."Billeteras" (
@@ -92,7 +96,9 @@ CREATE TABLE public."LicenciasXContratante" (
     "IdLicencia" SMALLINT REFERENCES public."Licencias"("IdLicencia"),
     "NumeroOrden" VARCHAR(50) REFERENCES public."OrdenesCompra"("NumeroOrden"),
     "DispositivoAsignado" UUID, -- NULL = Disponible en inventario
-    "FechaAsignacion" TIMESTAMPTZ
+    "FechaAsignacion" TIMESTAMPTZ,
+    "ExtraUsuarios" INT DEFAULT 0,
+    "ExtraDispositivos" INT DEFAULT 0
 );
 
 -- ==========================================
