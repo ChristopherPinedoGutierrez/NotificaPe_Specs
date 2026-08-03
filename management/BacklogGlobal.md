@@ -186,10 +186,10 @@
 
 ## [E3] Entregable 3: Expansión de Negocio B2B (CR-014)
 
-### Épica: Base de Datos y Facturación Modular
-- [ ] App: db | Tarea (CR-014): Crear script `0035_addons_y_custom_plans.sql` añadiendo columnas `IdContratanteExclusivo`, `PermiteAddons`, `PrecioExtraUsuarioCentimos`, `PrecioExtraDispositivoCentimos` en `Licencias` y `ExtraUsuarios`, `ExtraDispositivos` en `LicenciasXContratante`.
-- [ ] App: db | Tarea (CR-014): Actualizar trigger `check_user_limit` y afines para que resuelvan la suma dinámica de límites base + extras leyendo de la instancia de `LicenciasXContratante` activa.
-- [ ] App: db | Tarea (CR-014): Crear función RPC `comprar_addon_prepago` que asigne el saldo en crédito y actualice los campos Extra de la licencia.
+### Épica: Base de Datos y Facturación Modular (App: db)
+- [x] Crear script `0035_addons_y_custom_plans.sql` añadiendo `IdContratanteExclusivo`, `PermiteAddons`, y precios extra a `Licencias`. Y columnas `ExtraUsuarios`, `ExtraDispositivos` a `LicenciasXContratante`.
+- [x] Actualizar trigger `check_user_limit` y afines para que sumen `Limite + Extra` leyendo de la instancia de `LicenciasXContratante` activa.
+- [x] Crear función RPC `procesar_compra_addon` que asigne el saldo en crédito y actualice los campos Extra de la licencia (con lógica de ticket mínimo).
 
 ### Épica: Panel de Usuario y Superadmin (Frontend)
 - [ ] App: web | Tarea (CR-014): Actualizar DTOs en `actions_control.ts` y `dispositivos/actions.ts` para leer y sumar los campos `ExtraUsuarios` y `ExtraDispositivos` de la base de datos al validar límites.

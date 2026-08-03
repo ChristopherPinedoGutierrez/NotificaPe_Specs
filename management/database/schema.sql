@@ -400,3 +400,123 @@ $$;
 GRANT EXECUTE ON FUNCTION public.registrar_reclamacion_publica(text, text, text, text, text, text, text, text) TO anon, authenticated;
 
 COMMIT;
+
+-- 7. Función Transaccional de Compra de Add-ons (Ticket Mínimo y Vuelto en Crédito)
+CREATE OR REPLACE FUNCTION public.procesar_compra_addon(
+  p_id_contratante UUID,
+  p_extra_usuarios INT,
+  p_extra_dispositivos INT,
+  p_monto_pagado_pasarela BIGINT,
+  p_clave_idempotencia VARCHAR(120),
+  p_id_operacion_pago VARCHAR(120) DEFAULT NULL
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+  v_lic_activa RECORD;
+  v_dias_restantes NUMERIC;
+  v_dias_plan NUMERIC;
+  v_costo_unitario_usr BIGINT;
+  v_costo_unitario_disp BIGINT;
+  v_costo_total_prorrateado BIGINT;
+  v_saldo_actual BIGINT;
+  v_nuevo_saldo BIGINT;
+BEGIN
+  IF p_extra_usuarios < 0 OR p_extra_dispositivos < 0 THEN
+    RAISE EXCEPTION 'Las cantidades extra no pueden ser negativas.';
+  END IF;
+
+  IF p_extra_usuarios = 0 AND p_extra_dispositivos = 0 THEN
+    RAISE EXCEPTION 'Debe solicitar al menos un addon.';
+  END IF;
+
+  -- 1. Identificar Licencia Activa
+  SELECT lxc."IdLicenciaContratante", lxc."FechaExpiracion", l."DuracionDias", l."PrecioExtraUsuarioCentimos", l."PrecioExtraDispositivoCentimos"
+    INTO v_lic_activa
+    FROM public."LicenciasXContratante" lxc
+    JOIN public."Licencias" l ON l."IdLicencia" = lxc."IdLicencia"
+   WHERE lxc."IdContratante" = p_id_contratante
+     AND lxc."Activo" = TRUE
+     AND lxc."FechaExpiracion" > NOW()
+   LIMIT 1;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'No se encontro una licencia activa para agregar addons.';
+  END IF;
+
+  v_costo_unitario_usr := COALESCE(v_lic_activa."PrecioExtraUsuarioCentimos", 0);
+  v_costo_unitario_disp := COALESCE(v_lic_activa."PrecioExtraDispositivoCentimos", 0);
+
+  IF (p_extra_usuarios > 0 AND v_costo_unitario_usr = 0) OR (p_extra_dispositivos > 0 AND v_costo_unitario_disp = 0) THEN
+    RAISE EXCEPTION 'El plan actual no admite o no tiene precio configurado para el addon solicitado.';
+  END IF;
+
+  -- 2. Prorrateo
+  v_dias_plan := NULLIF(v_lic_activa."DuracionDias", 0);
+  IF v_dias_plan IS NULL OR v_dias_plan = 0 THEN v_dias_plan := 30; END IF;
+
+  v_dias_restantes := GREATEST(0, EXTRACT(EPOCH FROM (v_lic_activa."FechaExpiracion" - NOW())) / 86400.0);
+  
+  -- Fórmula de costo total
+  v_costo_total_prorrateado := CEIL(
+    ( (p_extra_usuarios * v_costo_unitario_usr) + (p_extra_dispositivos * v_costo_unitario_disp) ) 
+    * (v_dias_restantes / v_dias_plan)
+  )::BIGINT;
+
+  -- 3. Validación Financiera
+  PERFORM public.ensure_credito_contratante(p_id_contratante, 'PEN');
+  
+  SELECT "CreditoDisponibleEnUnidadMinima" INTO v_saldo_actual
+    FROM public."CreditoXContratante"
+   WHERE "IdContratante" = p_id_contratante
+   FOR UPDATE; -- Lock pesimista
+
+  v_nuevo_saldo := v_saldo_actual + COALESCE(p_monto_pagado_pasarela, 0) - v_costo_total_prorrateado;
+
+  IF v_nuevo_saldo < 0 THEN
+    RAISE EXCEPTION 'Fondos insuficientes. Costo prorrateado: %, Pagado en pasarela: %, Saldo actual: %', 
+      v_costo_total_prorrateado, COALESCE(p_monto_pagado_pasarela, 0), v_saldo_actual;
+  END IF;
+
+  -- 4. Registro de Movimientos y Actualización de Saldos
+  IF p_monto_pagado_pasarela > 0 THEN
+    PERFORM public.registrar_tx_credito(
+      p_id_contratante,
+      'ABONO',
+      'PAGO_ADDON_PASARELA',
+      p_monto_pagado_pasarela,
+      'PEN',
+      NULL,
+      p_id_operacion_pago,
+      p_clave_idempotencia || '-PASARELA'
+    );
+  END IF;
+
+  IF v_costo_total_prorrateado > 0 THEN
+    PERFORM public.registrar_tx_credito(
+      p_id_contratante,
+      'CARGO',
+      'COMPRA_ADDON',
+      v_costo_total_prorrateado,
+      'PEN',
+      NULL,
+      p_id_operacion_pago,
+      p_clave_idempotencia || '-CARGO'
+    );
+  END IF;
+
+  UPDATE public."CreditoXContratante"
+     SET "CreditoDisponibleEnUnidadMinima" = v_nuevo_saldo,
+         "UpdatedAt" = NOW()
+   WHERE "IdContratante" = p_id_contratante;
+
+  -- 5. Aplicación del Módulo a la Licencia Activa
+  UPDATE public."LicenciasXContratante"
+     SET "ExtraUsuarios" = COALESCE("ExtraUsuarios", 0) + p_extra_usuarios,
+         "ExtraDispositivos" = COALESCE("ExtraDispositivos", 0) + p_extra_dispositivos
+   WHERE "IdLicenciaContratante" = v_lic_activa."IdLicenciaContratante";
+
+  RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+COMMIT;
