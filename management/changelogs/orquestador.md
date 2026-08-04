@@ -125,3 +125,5 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 * **[2026-08-04 14:15]** | App: db | Tipo: DB | Modificaci�n de prorrateo para add-ons, compras mixtas y motor de colas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-08-04 16:58]** | App: admin | Tipo: UI | Restriccion de bateria opcional en modal de permisos inicial. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
 
+* **[2026-08-04 17:16]** | App: viewer | Tipo: UI | Restriccion de bateria opcional en pantalla de permisos. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+

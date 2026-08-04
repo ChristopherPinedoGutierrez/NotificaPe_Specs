@@ -448,3 +448,16 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃ³gica y configu
   - [x] AC 1: La app reconecta exitosamente el socket tras la expiración del JWT en Doze mode.
   - [x] AC 2: La notificación persistente muestra ""NotificaPe Viewer: [Caja]"".
 ---
+
+---
+### [2026-08-04 17:16] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Se hizo opcional la restricción obligatoria de optimización de batería en la pantalla de Permisos Críticos (PermissionGuard), añadiendo un botón "Omitir" con confirmación y persistencia local, homólogo al desarrollo en la app Admin.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PermissionGuard.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/common/PermissionGuard.kt)
+  - **Base de Datos:** Ninguno (Uso de SharedPreferences "viewer_prefs")
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La pantalla de permisos permite acceder al flujo principal si se omite la restricción de batería.
+  - [x] AC 2: Se lanza un AlertDialog solicitando confirmación explícita para omitir.
+  - [x] AC 3: El botón "Omitir" respeta la guía visual oscura y las dimensiones del botón primario "Activar".
+---
