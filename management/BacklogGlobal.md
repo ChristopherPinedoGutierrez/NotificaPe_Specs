@@ -190,6 +190,7 @@
 - [x] Crear script `0035_addons_y_custom_plans.sql` añadiendo `IdContratanteExclusivo`, `PermiteAddons`, y precios extra a `Licencias`. Y columnas `ExtraUsuarios`, `ExtraDispositivos` a `LicenciasXContratante`.
 - [x] Actualizar trigger `check_user_limit` y afines para que sumen `Limite + Extra` leyendo de la instancia de `LicenciasXContratante` activa.
 - [x] Crear función RPC `procesar_compra_addon` que asigne el saldo en crédito y actualice los campos Extra de la licencia (con lógica de ticket mínimo).
+- [x] Tarea (CR-014): Modificar motor de compras (previsualizar y ejecutar) para considerar add-ons e implementar motor automático de colas con pg_cron.
 
 ### Épica: Panel de Usuario y Superadmin (Frontend)
 - [ ] App: web | Tarea (CR-014): Actualizar DTOs en `actions_control.ts` y `dispositivos/actions.ts` para leer y sumar los campos `ExtraUsuarios` y `ExtraDispositivos` de la base de datos al validar límites.
