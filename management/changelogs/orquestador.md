@@ -127,3 +127,5 @@ Este archivo mantiene el índice cronológico estricto de todas las modificacion
 
 * **[2026-08-04 17:16]** | App: viewer | Tipo: UI | Restriccion de bateria opcional en pantalla de permisos. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
+* **[2026-08-04 17:36]** | App: admin | Tipo: UI | Ajuste de compacidad en botones de permisos y fix de compilacion. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+

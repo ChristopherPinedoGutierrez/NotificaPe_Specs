@@ -81,3 +81,15 @@
   - [x] AC 1: El botón "Omitir" permite saltar el requerimiento de batería pero requiere confirmación (AlertDialog).
   - [x] AC 2: La decisión de omitir se guarda en SharedPreferences, persistiendo al reiniciar la app.
 ---
+
+---
+### [2026-08-04 17:36] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Reducción de dimensiones y espaciado de los botones "Activar" y "Omitir" en la vista de permisos (ajuste visual a 32dp/24dp de altura respectivamente y fix de importación sp faltante).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PermissionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/components/PermissionComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La compilación del aplicativo es exitosa tras reparar la dependencia faltante (androidx.compose.ui.unit.sp).
+  - [x] AC 2: La interfaz gráfica presenta botones estéticamente compactos y balanceados.
+---
