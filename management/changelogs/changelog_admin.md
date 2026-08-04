@@ -69,3 +69,15 @@
   - [x] AC 1: La actividad de recorte ya no se dibuja detrás de las barras del sistema (status y navigation bars) al aplicar windowOptOutEdgeToEdgeEnforcement.
   - [x] AC 2: La aplicación compila correctamente (assembleDebug).
 ---
+
+---
+### [2026-08-04 16:58] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Se hizo opcional la restricción obligatoria de optimización de batería en el modal de permisos inicial, permitiendo omitirla mediante un modal de confirmación y guardando la decisión localmente, para evitar el bloqueo en capas de Android estrictas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PermissionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/components/PermissionComponents.kt), [MainActivityContent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt)
+  - **Base de Datos:** Ninguno (Uso de SharedPreferences locales)
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El botón "Omitir" permite saltar el requerimiento de batería pero requiere confirmación (AlertDialog).
+  - [x] AC 2: La decisión de omitir se guarda en SharedPreferences, persistiendo al reiniciar la app.
+---

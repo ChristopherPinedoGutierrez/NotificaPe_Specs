@@ -123,3 +123,5 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 * **2026-07-31 12:45** | App: Viewer | Tipo: APP | Migración del Foreground Service a specialUse. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-07-31 23:45]** | App: Viewer | Tipo: API / UI | Resiliencia Realtime Doze Mode y Titulo de NotificaciÃ³n. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-08-04 14:15]** | App: db | Tipo: DB | Modificación de prorrateo para add-ons, compras mixtas y motor de colas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-08-04 16:58]** | App: admin | Tipo: UI | Restriccion de bateria opcional en modal de permisos inicial. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
