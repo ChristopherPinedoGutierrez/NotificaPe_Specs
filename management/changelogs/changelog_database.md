@@ -827,3 +827,14 @@
 * **Criterios de AceptaciÃ³n (AC) Validados:**
   - [x] AC 1: La migraciÃ³n fue exitosa y la columna existe.
 ---
+---
+### [2026-08-04 14:15] | App/Componente: db | Autor: AGENT_ROLE
+
+* **Descripción:** Modificación de prorrateo para add-ons en licencias, compras mixtas y motor de colas pg_cron.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0036_fix_compras_y_motor_colas.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0036_fix_compras_y_motor_colas.sql), [schema.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/schema.sql)
+  - **Base de Datos:** Añadidas columnas ExtraUsuarios y ExtraDispositivos a LicenciasCola. Actualizadas RPC previsualizar_compra_licencia y ejecutar_compra_licencia_multiple. Creada RPC procesar_licencias_cola programada diariamente a las 00:01 con pg_cron.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La actualización del código de prorrateo no borra los valores de extras previos y retrocompatibilidad con apps Android verificada.
+  - [x] AC 2: El motor de colas con pg_cron quedó instalado y programado correctamente a las 00:01 en Supabase.
+---
