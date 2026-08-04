@@ -193,7 +193,8 @@
 - [x] Tarea (CR-014): Modificar motor de compras (previsualizar y ejecutar) para considerar add-ons e implementar motor automático de colas con pg_cron.
 
 ### Épica: Panel de Usuario y Superadmin (Frontend)
-- [ ] App: web | Tarea (CR-014): Actualizar DTOs en `actions_control.ts` y `dispositivos/actions.ts` para leer y sumar los campos `ExtraUsuarios` y `ExtraDispositivos` de la base de datos al validar límites.
-- [ ] App: web | Tarea (CR-014): Implementar UI en el Dashboard de cliente para "Adquirir Usuarios/Dispositivos Extra", conectando a la función RPC de compra.
+- [x] App: web | Tarea (CR-014): Actualizar DTOs en `actions_control.ts` y `dispositivos/actions.ts` para leer y sumar los campos `ExtraUsuarios` y `ExtraDispositivos` de la base de datos al validar límites.
+- [x] App: web | Tarea (CR-014): Implementar UI en el Dashboard de cliente para "Adquirir Usuarios/Dispositivos Extra", conectando a la función RPC de compra.
 - [ ] App: web | Tarea (CR-014): Construir vista en `/superadmin/licencias` para que el Superadmin pueda crear "Planes Custom" aislando a un `IdContratanteExclusivo` y fijar precios manuales.
 - [ ] App: web | Tarea (CR-014): Modificar `PricingCards.tsx` para ocultar planes corporativos al público general y renderizarlos solo si el UUID coincide.
+- [ ] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyección automática del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket Mínimo de 5 soles en el checkout de MercadoPago.
