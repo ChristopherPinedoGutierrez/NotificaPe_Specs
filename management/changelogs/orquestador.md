@@ -129,3 +129,4 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 
 * **[2026-08-04 17:36]** | App: admin | Tipo: UI | Ajuste de compacidad en botones de permisos y fix de compilacion. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
 
+* **[2026-08-06 13:14]** | App: NotificaPe_Admin | Tipo: API | Implementación del Motor V2, desestructuración de mocks y payload bruto para notificaciones en revisión. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)

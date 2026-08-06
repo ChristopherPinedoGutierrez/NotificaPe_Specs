@@ -198,3 +198,22 @@
 - [ ] App: web | Tarea (CR-014): Construir vista en `/superadmin/licencias` para que el Superadmin pueda crear "Planes Custom" aislando a un `IdContratanteExclusivo` y fijar precios manuales.
 - [ ] App: web | Tarea (CR-014): Modificar `PricingCards.tsx` para ocultar planes corporativos al público general y renderizarlos solo si el UUID coincide.
 - [ ] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyección automática del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket Mínimo de 5 soles en el checkout de MercadoPago.
+
+## [E4] Entregable 4: Motor Dinámico de Regex y Estandarización (Zero-Downtime)
+
+### Épica: Aplicación Web (Superadmin)
+- [ ] App: web | Tarea: Crear UI 'Simulador Regex' en el Superadmin que tome el `PayloadBruto` (JSON) de notificaciones en estado 'REVISION', reconstruya el string concatenado en pantalla y evalúe la Regex en vivo.
+- [ ] App: web | Tarea: Implementar UI 'Previsualizador de Mensaje' que aplique el `FormatoMensaje` sobre las variables extraídas (Grupos Nombrados) en el simulador.
+- [ ] App: web | Tarea: Agregar botón y conexión al RPC `reprocesar_notificaciones()` para re-evaluar registros 'REVISION' tras guardar una regla.
+
+### Épica: Emisor Android (Admin)
+- [x] App: admin | Tarea: Eliminar código duro de Lemon Pay en el servicio de evaluación.
+- [x] App: admin | Tarea: Implementar generación del String de Evaluación concatenado (`[TITLE]...[TEXT]...`) en memoria RAM y ejecución de Regex con Grupos de Captura Nombrados.
+- [x] App: admin | Tarea: Mapear variables extraídas e interpolarlas con el `FormatoMensaje` antes de guardar `ContenidoMsg`.
+- [x] App: admin | Tarea: Actualizar consulta DAO/Repository para descargar únicamente las reglas con `VersionMotor = 2`.
+- [x] App: admin | Tarea: Modificar herramienta local 'Mensaje Mock' y capturar el PayloadBruto.
+
+### Épica: Base de Datos y Backend
+- [ ] App: db | Tarea: Crear script de migración añadiendo `TipoFiltro`, `FormatoMensaje`, `VersionMotor` a `FiltrosXBilletera` y `PayloadBruto` a `NotificacionesXDispositivo`.
+- [ ] App: db | Tarea: Crear script inicial para duplicar las reglas vigentes de Yape y Lemon al formato concatenado bajo `VersionMotor = 2`.
+- [ ] App: db | Tarea: Implementar función RPC `reprocesar_notificaciones` para recorrer y procesar notificaciones en estado 'REVISION' y promoverlas a 'PENDIENTE'.

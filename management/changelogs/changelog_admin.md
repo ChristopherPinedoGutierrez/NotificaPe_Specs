@@ -93,3 +93,15 @@
   - [x] AC 1: La compilaciÃ³n del aplicativo es exitosa tras reparar la dependencia faltante (androidx.compose.ui.unit.sp).
   - [x] AC 2: La interfaz grÃ¡fica presenta botones estÃ©ticamente compactos y balanceados.
 ---
+
+---
+### [2026-08-06 13:14] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación del Motor V2 (desestructuración de mocks en TestLabHandler, guardado de PayloadBruto en JSON para depuración de fallos de regex en estado REVISION, interpolación de variables en FormatoMensaje y actualización de Room Database a V12).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AppDatabase.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/local/AppDatabase.kt), [ExtractPaymentUseCase.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/domain/usecase/ExtractPaymentUseCase.kt), [TestLabHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt)
+  - **Base de Datos:** Migración destructiva de Room a V12 para añadir payloadBruto a NotificationEntity.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Los mensajes mock con etiquetas [TITLE]/[TEXT] son extraídos limpiamente por la UI.
+  - [x] AC 2: Fallos de regex (REVISION) generan un payload JSON de diagnóstico y lo sincronizan a Supabase.
+---
