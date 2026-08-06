@@ -201,10 +201,11 @@
 
 ## [E4] Entregable 4: Motor Dinámico de Regex y Estandarización (Zero-Downtime)
 
-### Épica: Aplicación Web (Superadmin)
+### Épica: Aplicación Web (Superadmin y Cliente)
 - [ ] App: web | Tarea: Crear UI 'Simulador Regex' en el Superadmin que tome el `PayloadBruto` (JSON) de notificaciones en estado 'REVISION', reconstruya el string concatenado en pantalla y evalúe la Regex en vivo.
 - [ ] App: web | Tarea: Implementar UI 'Previsualizador de Mensaje' que aplique el `FormatoMensaje` sobre las variables extraídas (Grupos Nombrados) en el simulador.
-- [ ] App: web | Tarea: Agregar botón y conexión al RPC `reprocesar_notificaciones()` para re-evaluar registros 'REVISION' tras guardar una regla.
+- [ ] App: web | Tarea: Agregar botón y conexión a la Edge Function `reprocesar-notificaciones` para re-evaluar registros 'REVISION' tras guardar una regla.
+- [ ] App: web | Tarea: Modificar la UI de "Mis Billeteras" (Cliente) para que en el selector de asignación **solo** se listen billeteras que tengan al menos una regla activa con `VersionMotor = 2`.
 
 ### Épica: Emisor Android (Admin)
 - [x] App: admin | Tarea: Eliminar código duro de Lemon Pay en el servicio de evaluación.
@@ -216,4 +217,4 @@
 ### Épica: Base de Datos y Backend
 - [ ] App: db | Tarea: Crear script de migración añadiendo `TipoFiltro`, `FormatoMensaje`, `VersionMotor` a `FiltrosXBilletera` y `PayloadBruto` a `NotificacionesXDispositivo`.
 - [ ] App: db | Tarea: Crear script inicial para duplicar las reglas vigentes de Yape y Lemon al formato concatenado bajo `VersionMotor = 2`.
-- [ ] App: db | Tarea: Implementar función RPC `reprocesar_notificaciones` para recorrer y procesar notificaciones en estado 'REVISION' y promoverlas a 'PENDIENTE'.
+- [ ] App: db | Tarea: Implementar Edge Function (Deno/TypeScript) `reprocesar-notificaciones` para recorrer y procesar con Regex (JS) las notificaciones en estado 'REVISION' y promoverlas a 'PENDIENTE'.
