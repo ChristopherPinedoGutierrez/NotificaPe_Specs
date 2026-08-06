@@ -54,4 +54,15 @@
   - [x] AC 1: Eliminación total de desbordes/solapamientos en tablets (640px-1023px).
   - [x] AC 2: Botones pegados a los bordes laterales en monitores desktop panorámicos.
 ---
+### [2026-08-06 15:55] | App/Componente: web | Autor: Antigravity
+
+* **Descripción:** Unificación de la rejilla visual y alineación de bordes (max-w-7xl + px-6 md:px-8) en todo el layout de la Landing Page (Nav Header, Cuerpo Central, Footer Legal y Subfooter).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** 
+    - [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx): Homogeneización de contenedores a `max-w-7xl mx-auto px-6 md:px-8` en Nav, Footer principal y Subfooter de copyright para lograr una simetría vertical absoluta.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Alineación vertical limpia y exacta entre los logos (izquierda) y botones de acción (derecha) en todo el sitio web.
+  - [x] AC 2: Eliminación del desfase de anchos máximos entre el cuerpo y el pie de página.
+---
 
