@@ -76,4 +76,15 @@
   - [x] AC 1: Eliminación del corte rectangular brusco a los lados en paneles de alto contraste.
   - [x] AC 2: Preservación de las líneas divisorias superior e inferior con desvanecimiento horizontal orgánico.
 ---
+### [2026-08-06 16:11] | App/Componente: web | Autor: Antigravity
+
+* **Descripción:** Refinamiento de micro-interacciones (hover scale) e igualación de márgenes verticales superiores e inferiores en el carrusel de billeteras.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** 
+    - [SupportedWallets.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SupportedWallets.tsx): Reemplazo de `-translate-y-1` por `scale-[1.04]` con sombra realzada (`shadow-lg`), adición de padding vertical interno (`py-2`) y unificación de espaciados a `mb-10` y `mt-10`.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Eliminación total del corte del borde superior al pasar el cursor sobre las tarjetas de billeteras.
+  - [x] AC 2: Simetría exacta en los márgenes verticales superiores e inferiores dentro del bloque de cobertura.
+---
 
