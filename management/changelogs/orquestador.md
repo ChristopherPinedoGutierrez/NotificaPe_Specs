@@ -130,3 +130,5 @@ Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificacion
 * **[2026-08-04 17:36]** | App: admin | Tipo: UI | Ajuste de compacidad en botones de permisos y fix de compilacion. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
 
 * **[2026-08-06 13:14]** | App: NotificaPe_Admin | Tipo: API | Implementación del Motor V2, desestructuración de mocks y payload bruto para notificaciones en revisión. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+* **[2026-08-06 14:15]** | App: web | Tipo: UI | Filtro visual y backend de Billeteras V2 en Dashboard Cliente con soporte legacy. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md) 
+* **[2026-08-06 14:38]** | App: web | Tipo: UI | Bugfix Legacy UX: Desaparicion al toggle y Banner de advertencia. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md) 
