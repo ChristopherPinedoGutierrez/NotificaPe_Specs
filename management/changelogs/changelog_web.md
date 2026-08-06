@@ -43,4 +43,15 @@
   - [x] AC 1: Carrusel dinámico de billeteras animado en bucle con datos servidos desde Supabase.
   - [x] AC 2: Sanitización de textos para cumplir con requerimientos de marca y disclaimer legal visible.
 ---
+### [2026-08-06 15:45] | App/Componente: web | Autor: Antigravity
+
+* **Descripción:** Corrección de la maquetación responsive del footer legal y expansión de ancho máximo en pantallas widescreen.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** 
+    - [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx): Reemplazo de `grid-cols-2` por Flexbox adaptativo (`flex-col lg:flex-row`), ampliación del contenedor a `max-w-[1440px]` y alineación `lg:flex-1 lg:justify-end` para pegar los botones a los bordes.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Eliminación total de desbordes/solapamientos en tablets (640px-1023px).
+  - [x] AC 2: Botones pegados a los bordes laterales en monitores desktop panorámicos.
+---
 
