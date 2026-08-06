@@ -27,4 +27,20 @@
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: Billeteras V1 desaparecen instantáneamente de la vista al ser apagadas.
   - [x] AC 2: Banner de advertencia (ámbar) solo aparece si existe al menos una billetera legacy encendida.
+
 ---
+### [2026-08-06 15:30] | App/Componente: web | Autor: Antigravity
+
+* **Descripción:** Refactorización White-Label de la Landing Page e integración del componente dinámico de Carrusel Infinito (Marquee) para Billeteras Soportadas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** 
+    - [globals.css](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/globals.css): Definición de animación CSS `@keyframes marquee` y clase `.animate-marquee`.
+    - [SupportedWallets.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SupportedWallets.tsx): Componente de carrusel continuo con marquesina sin fin, desvanecidos laterales y disclaimer legal.
+    - [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/page.tsx): Consulta a tabla `Billeteras` en Server Component e inyección de lista a la Landing Page.
+    - [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx): Sanitización de marcas de bancos a términos genéricos ("billeteras digitales", "pagos móviles"), ajuste de gradientes universales y posicionamiento del carrusel.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Carrusel dinámico de billeteras animado en bucle con datos servidos desde Supabase.
+  - [x] AC 2: Sanitización de textos para cumplir con requerimientos de marca y disclaimer legal visible.
+---
+
