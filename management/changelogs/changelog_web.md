@@ -65,4 +65,15 @@
   - [x] AC 1: Alineación vertical limpia y exacta entre los logos (izquierda) y botones de acción (derecha) en todo el sitio web.
   - [x] AC 2: Eliminación del desfase de anchos máximos entre el cuerpo y el pie de página.
 ---
+### [2026-08-06 16:05] | App/Componente: web | Autor: Antigravity
+
+* **Descripción:** Optimización estética del contenedor de Billeteras Soportadas mediante gradiente horizontal de transparencia y máscara CSS de desvanecimiento lateral.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** 
+    - [SupportedWallets.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SupportedWallets.tsx): Aplicación de `bg-gradient-to-r` de transparencia en los bordes horizontales del contenedor manteniendo las líneas divisorias (`border-y`), y adición de `mask-image: linear-gradient` para difuminar suavemente los extremos del carrusel en paneles de alto contraste (VA/OLED).
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Eliminación del corte rectangular brusco a los lados en paneles de alto contraste.
+  - [x] AC 2: Preservación de las líneas divisorias superior e inferior con desvanecimiento horizontal orgánico.
+---
 
