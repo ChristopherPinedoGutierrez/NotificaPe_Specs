@@ -838,3 +838,16 @@
   - [x] AC 1: La actualizaciÛn del cÛdigo de prorrateo no borra los valores de extras previos y retrocompatibilidad con apps Android verificada.
   - [x] AC 2: El motor de colas con pg_cron quedÛ instalado y programado correctamente a las 00:01 en Supabase.
 ---
+
+---
+### [2026-08-09 14:00] | App/Componente: db | Autor: Antigravity
+
+* **Descripci√≥n:** Hard delete de Agora e inyecci√≥n de reglas de inclusi√≥n V2 y exclusiones categorizadas (6 registros) para Yape.
+* **Detalles T√©cnicos:**
+  - **Archivos Modificados:** [0037_filtros_v2_exclusiones_agora.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0037_filtros_v2_exclusiones_agora.sql)
+  - **Base de Datos:** Eliminados registros de Agora (IdBilletera=7) en BilleterasXDispositivo, FiltrosXBilletera y Billeteras. Insertados 14 registros en FiltrosXBilletera (8 INCLUSION V2, 6 EXCLUSION V2).
+* **Criterios de Aceptaci√≥n (AC) Validados:**
+  - [x] AC 1: La base de datos no contiene referencias a la billetera inactiva Agora.
+  - [x] AC 2: Se registraron exclusiones categorizadas para evitar ruido de Yape.
+---
+
