@@ -1,3 +1,14 @@
+---
+### [2026-08-10 16:05] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección del mapeo del parámetro tipoFiltro en el simulador TestLabHandler para asegurar la correcta inyección y funcionamiento de las reglas de EXCLUSIÓN en los tests locales, y explicación arquitectural del filtro visual de privacidad para notificaciones en estado REVISION.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [TestLabHandler.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Las notificaciones mock que coinciden con una regla de EXCLUSION son truncadas correctamente y retornan emptyList en el simulador.
+  - [x] AC 2: La compilación Kotlin/KSP fue exitosa.
+---
 # Changelog AtÃ³mico - App: Admin
 
 ---
@@ -105,3 +116,4 @@
   - [x] AC 1: Los mensajes mock con etiquetas [TITLE]/[TEXT] son extraídos limpiamente por la UI.
   - [x] AC 2: Fallos de regex (REVISION) generan un payload JSON de diagnóstico y lo sincronizan a Supabase.
 ---
+
