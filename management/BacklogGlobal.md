@@ -202,11 +202,12 @@
 ## [E4] Entregable 4: Motor Dinámico de Regex y Estandarización (Zero-Downtime)
 
 ### Épica: Aplicación Web (Superadmin y Cliente)
-- [ ] App: web | Tarea: Crear UI 'Simulador Regex' en el Superadmin que tome el `PayloadBruto` (JSON) de notificaciones en estado 'REVISION', reconstruya el string concatenado en pantalla y evalúe la Regex en vivo.
+- [x] App: web | Tarea: Crear UI 'Simulador Regex' en el Superadmin que tome el `PayloadBruto` (JSON) de notificaciones en estado 'REVISION', reconstruya el string concatenado en pantalla y evalúe la Regex en vivo.
 - [ ] App: web | Tarea: Implementar UI 'Previsualizador de Mensaje' que aplique el `FormatoMensaje` sobre las variables extraídas (Grupos Nombrados) en el simulador.
 - [ ] App: web | Tarea: Agregar botón y conexión a la Edge Function `reprocesar-notificaciones` para re-evaluar registros 'REVISION' tras guardar una regla.
 - [x] App: web | Tarea: Modificar la UI de "Mis Billeteras" (Cliente) para que en el selector de asignación **solo** se listen billeteras que tengan al menos una regla activa con `VersionMotor = 2`.
 - [ ] App: web | Tarea (Admin): Crear herramienta de limpieza masiva (Hard Delete) en el Superadmin para remover de DB y Storage las billeteras legacy inactivas.
+- [ ] App: web | Tarea (Futuro): Desarrollar CRUD completo para la gestión de Billeteras en el Superadmin. Considera alta complejidad técnica (validaciones de integridad referencial, eliminación en cascada segura considerando asignaciones previas a usuarios y filtros) para no romper registros históricos.
 
 ### Épica: Emisor Android (Admin)
 - [x] App: admin | Tarea: Eliminar código duro de Lemon Pay en el servicio de evaluación.

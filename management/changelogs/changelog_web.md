@@ -88,3 +88,14 @@
   - [x] AC 2: Simetría exacta en los márgenes verticales superiores e inferiores dentro del bloque de cobertura.
 ---
 
+---
+### 2026-08-09 20:11 | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Reestructuración de la UI Regex en un Flujo Guiado (Wizard) sin modales, con previsualización en RAM y prueba masiva retroactiva.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/page.tsx), subcomponentes en [components/](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/components).
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La UI permite reconstruir el string concatenado desde el Payload JSON de una notificación estancada.
+  - [x] AC 2: La UI simula la regex en vivo y prueba la regla retroactivamente.
+---
