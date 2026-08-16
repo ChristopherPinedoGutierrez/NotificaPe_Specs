@@ -94,13 +94,24 @@ Ve al menú lateral izquierdo, desliza casi hasta el final y haz clic en **Conte
 3.  **Permisos confidenciales:**
     *   Si te sale una tarea pidiendo justificar el permiso de SMS/Notificaciones, ahí es donde debes pegar el link de YouTube de tu Video Demostrativo (Oculto).
 
-**B. Avanzar de fase (Subir a Producción o Pruebas Abiertas)**
-Dado que usas GitHub Actions para el despliegue automático, el flujo correcto para esta versión definitiva `v1.0.0` es el siguiente:
+**B. Avanzar de fase (La Regla de los 20 Testers para Cuentas Nuevas)**
 
-1.  **Haz Commit y Push:** Guarda todos los cambios (el bypass, la limpieza del link, etc.) y haz un `git push` a tu rama `main`.
-2.  **Acepta el Release-Please:** Ve a la pestaña **Pull Requests** en GitHub de tu repositorio `admin`. Verás que el bot *release-please* ha creado un PR automático (ej. `chore: release v1.0.0`).
-3.  **Merge (Combinar):** Revisa y acepta (Merge) ese Pull Request.
-4.  **Despliegue Automático:** Al hacer merge, GitHub automáticamente etiquetará tu código como `v1.0.0`. Esto va a **disparar automáticamente tu Action `deploy.yml`** (deploy to google play) que está configurado para ejecutarse con los tags `v*`. ¡No tienes que darle clic manual esta vez!
-5.  **Consola de Play:** Una vez que la Action termine con éxito, ve a la Consola de Google Play (Pruebas Cerradas o Internas). Verás tu nuevo archivo AAB subido. Desde ahí, arriba a la derecha, dale a **Promocionar versión -> Producción** e inicia el lanzamiento.
+Dado que esta es tu primera aplicación y tu cuenta de desarrollador es nueva, **Google Play NO te permite enviar la aplicación directamente a Producción.** Tienes que cumplir un requisito estricto dictado por sus nuevas políticas.
 
-¡Listo! A partir de ese momento la aplicación pasará a estado de "En revisión". Mientras esperas (puede tardar de 1 a 7 días), ya puedes crear tu rama `feat/fcm-migration` para continuar desarrollando.
+El flujo obligatorio a seguir es este:
+
+1.  **Despliegue a Pruebas Internas (Vía GitHub):** 
+    *   En GitHub (proyecto `admin`), haz merge del Pull Request creado por *release-please*.
+    *   Tu Action `deploy.yml` subirá el código automáticamente a la pista de **Pruebas Internas** (Internal Testing).
+2.  **Promoción a Pruebas Cerradas (Closed Testing):**
+    *   Una vez que el archivo AAB esté en la consola y tengas los checks verdes de la Sección 5.A (Video, Formularios listos), ve a tu versión en Pruebas Internas y haz clic en **Promocionar versión -> Pruebas Cerradas** (NO a Producción).
+3.  **El Reto de los 20 Testers por 14 Días:**
+    *   Para desbloquear Producción, Google te exige reclutar a **20 personas** (con cuentas de Google/Gmail).
+    *   Debes agregar sus correos a la lista de verificadores de tu pista de Pruebas Cerradas.
+    *   Ellos deben aceptar la invitación, descargar tu aplicación y **mantenerla instalada durante 14 días continuos**.
+4.  **Solicitar Acceso a Producción:**
+    *   Al pasar los 14 días ininterrumpidos con 20 testers activos, la Consola de Google Play te habilitará un formulario para "Solicitar acceso a Producción". 
+    *   Te preguntarán cómo organizaste el testeo y qué feedback recibiste. Al enviar eso, Google hará la revisión manual final.
+    *   Solo cuando te aprueben, tu app será pública.
+
+Mientras corre ese "reloj" de 14 días de espera con tus testers, ¡es el momento ideal para empezar a trabajar en la migración a FCM (Firebase)!
