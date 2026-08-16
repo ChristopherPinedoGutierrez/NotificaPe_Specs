@@ -70,48 +70,39 @@ Para publicar, Google exige dos imágenes obligatorias. Ambas van en la sección
     *   **¿Qué es?** Es la imagen promocional horizontal (tipo portada de Facebook) que aparece arriba del todo cuando alguien entra a tu app en la tienda.
     *   **Criterio:** No debe ser un fondo blanco vacío. Debe ser atractivo. Puedes poner un fondo con el color principal de NotificaPe, tu logo en grande en el centro, o una imagen abstracta de tecnología/notificaciones. Trata de mantener los elementos importantes al centro, ya que los bordes a veces se recortan un poco según la pantalla.
 
-## 5. Paso a Paso en la Consola de Google Play (Dónde hacer clic)
+## 5. Paso a Paso en la Consola (Completar la Configuración)
 
-Entra a la [Consola de Google Play](https://play.google.com/console) y selecciona tu app `NotificaPe Admin`. Aquí tienes la ruta exacta de lo que debes llenar:
+Según tu consola, debes completar exactamente esta lista de tareas en orden para desbloquear la fase de Pruebas Cerradas. Ve haciendo clic en cada una:
 
-**A. Sección "Contenido de la aplicación" (App Content)**
-Ve al menú lateral izquierdo, desliza casi hasta el final y haz clic en **Contenido de la aplicación**. Aquí te saldrá una lista de tareas por hacer:
-
-1.  **Acceso a la aplicación:** 
-    *   Haz clic en *Iniciar*.
-    *   Selecciona: "Todas las funciones o algunas de ellas están restringidas".
-    *   Haz clic en "Agregar instrucciones nuevas".
-    *   **Nombre de la instrucción:** "Acceso de prueba QR"
-    *   **Usuario/Contraseña:** Déjalo en blanco.
-    *   **Cualquier otra instrucción:** Pega el texto que armamos: *"Esta app es un nodo de lectura para nuestro SaaS B2B. Para iniciar sesión, escanee el Código QR en esta URL: [tu-enlace-de-imgur] o ingrese manualmente el código de 6 dígitos: GPLAY1."*
-2.  **Seguridad de los datos (Data Safety):**
-    *   Haz clic en *Iniciar*. Responde el cuestionario.
-    *   ¿Su app recopila o comparte datos? **Sí**.
+### A. "Cuéntanos de qué se trata el contenido de la app"
+1.  **Configura la política de privacidad:** Te pedirá una URL. Debes tener una página web básica con tu política de privacidad. Si no tienes, puedes generar una gratis en sitios como *privacypolicygenerator.info* y alojarla en tu web o en un Google Sites/Notion público.
+2.  **Detalles de acceso:** Selecciona "Todas las funciones están restringidas". En instrucciones pon: *"Para iniciar sesión, escanee el Código QR en esta URL: [tu-link-imgur] o ingrese manualmente el código de 6 dígitos: GPLAY1."* (No pongas usuario/contraseña).
+3.  **Anuncios:** Marca **"No, mi app no contiene anuncios"**.
+4.  **Clasificación de contenido:** Inicia el cuestionario. Tu categoría es "Utilidades, Productividad o Comunicación". Responde "No" a todo (violencia, drogas, lenguaje ofensivo). Te dará una clasificación de "Apto para todo público" (PEGI 3).
+5.  **Público objetivo:** Marca **18 años o más**. (Es un SaaS B2B, no es para niños). En la siguiente pregunta marca que la app *no* atrae involuntariamente a los niños.
+6.  **Seguridad de los datos (Data Safety):**
+    *   ¿Recopila o comparte datos? **Sí**.
     *   ¿Están cifrados en tránsito? **Sí** (van por HTTPS a Supabase).
-    *   ¿Permites que los usuarios borren datos? **Sí** (desde la web, pero marca sí).
-    *   En la lista de datos a marcar, ve a **Información financiera** y selecciona algo como "Historial de compras" u "Otra información financiera" (ya que lees recibos de Yape). 
-    *   Luego, la consola te preguntará por qué los recopilas: marca **"Funcionalidad de la aplicación"** y que la recopilación es **"Obligatoria"**.
-3.  **Permisos confidenciales:**
-    *   Si te sale una tarea pidiendo justificar el permiso de SMS/Notificaciones, ahí es donde debes pegar el link de YouTube de tu Video Demostrativo (Oculto).
+    *   ¿Permites que los usuarios borren datos? **Sí** (desde el panel web).
+    *   En la lista de datos, marca **Información financiera** -> "Historial de compras / Otra info financiera". Luego indica que se recopila para la "Funcionalidad de la aplicación" y que es "Obligatorio".
+7.  **Apps gubernamentales:** Marca **"No"**.
+8.  **Funciones financieras:** Marca **"Mi app no proporciona ninguna función financiera"** (No eres un banco, ni das préstamos ni criptomonedas, solo lees notificaciones de un dispositivo).
+9.  **Salud:** Marca **"Mi app no es de salud"**.
 
-**B. Avanzar de fase (La Regla de los 20 Testers para Cuentas Nuevas)**
+### B. "Administra cómo se organiza y presenta la app"
+10. **Selecciona la categoría:** Selecciona "App" (no juego) y Categoría: **Productividad o Empresa**. Ingresa tu correo de soporte y guarda.
+11. **Configura la ficha de Play Store:**
+    *   **Nombre de la app:** NotificaPe Admin.
+    *   **Descripciones:** Llena una breve ("Nodo de captura de notificaciones para comercios") y una larga explicando tu SaaS.
+    *   **Ícono (512x512):** Sube el ícono morado `icon_admin.jpg`.
+    *   **Gráfico de funciones (1024x500):** Sube el banner morado `banner_admin.jpg`.
+    *   **Capturas de pantalla del teléfono:** Tómale 2 o 3 capturas de pantalla a la app funcionando en tu celular (ej. la pantalla de escáner y la pantalla principal) y súbelas aquí.
 
-Dado que esta es tu primera aplicación y tu cuenta de desarrollador es nueva, **Google Play NO te permite enviar la aplicación directamente a Producción.** Tienes que cumplir un requisito estricto dictado por sus nuevas políticas.
+### C. Desbloqueo de "Prueba Cerrada"
+Una vez completados los 11 pasos anteriores, la sección de Prueba Cerrada se desbloqueará.
+1.  **Seleccionar países y regiones:** Haz clic y selecciona tu país objetivo (ej. Perú) o todos los países.
+2.  **Seleccionar verificadores:** Crea una lista de correos (tienen que ser correos de Google/Gmail) y pon ahí a tus **20 personas** de confianza.
+3.  **Crea y lanza una versión:** *¡Atención aquí!* Como tu código ya fue subido vía GitHub Actions a Pruebas Internas, **NO necesitas subir un archivo nuevo**. Solo dale al botón "Promocionar desde versión de Pruebas Internas" o selecciona el archivo AAB que ya existe en tu biblioteca (la versión `v1.0.0`).
+4.  **Enviar a Google para revisión:** Completa el flujo y dale enviar. 
 
-El flujo obligatorio a seguir es este:
-
-1.  **Despliegue a Pruebas Internas (Vía GitHub):** 
-    *   En GitHub (proyecto `admin`), haz merge del Pull Request creado por *release-please*.
-    *   Tu Action `deploy.yml` subirá el código automáticamente a la pista de **Pruebas Internas** (Internal Testing).
-2.  **Promoción a Pruebas Cerradas (Closed Testing):**
-    *   Una vez que el archivo AAB esté en la consola y tengas los checks verdes de la Sección 5.A (Video, Formularios listos), ve a tu versión en Pruebas Internas y haz clic en **Promocionar versión -> Pruebas Cerradas** (NO a Producción).
-3.  **El Reto de los 20 Testers por 14 Días:**
-    *   Para desbloquear Producción, Google te exige reclutar a **20 personas** (con cuentas de Google/Gmail).
-    *   Debes agregar sus correos a la lista de verificadores de tu pista de Pruebas Cerradas.
-    *   Ellos deben aceptar la invitación, descargar tu aplicación y **mantenerla instalada durante 14 días continuos**.
-4.  **Solicitar Acceso a Producción:**
-    *   Al pasar los 14 días ininterrumpidos con 20 testers activos, la Consola de Google Play te habilitará un formulario para "Solicitar acceso a Producción". 
-    *   Te preguntarán cómo organizaste el testeo y qué feedback recibiste. Al enviar eso, Google hará la revisión manual final.
-    *   Solo cuando te aprueben, tu app será pública.
-
-Mientras corre ese "reloj" de 14 días de espera con tus testers, ¡es el momento ideal para empezar a trabajar en la migración a FCM (Firebase)!
+Aquí es donde los humanos de Google revisarán tu aplicación (verán tu video de YouTube, probarán tu código `GPLAY1`). Si te aprueban, tus 20 verificadores recibirán un link para descargar la app y **empezará a correr el reloj de 14 días.**
