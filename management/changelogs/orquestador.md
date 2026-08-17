@@ -140,3 +140,7 @@ Este archivo mantiene el 铆ndice cronol贸gico estricto de todas las modificacion
 * **[2026-08-09 14:00]** | App: db | Tipo: DB | Limpieza de Agora e inyecci贸n de reglas de inclusi贸n V2 y exclusiones categorizadas para Yape. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **2026-08-09 20:11** | App: web | Tipo: UI | Reestructuraci贸n de UI Regex en Wizard V2. Ver [changelog_web.md](file:///../NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-08-10 16:05]** | App: NotificaPe_Admin | Tipo: UI/SERVICE | Correcci髇 de mapeo tipoFiltro en TestLabHandler y explicaci髇 de ocultamiento visual de REVISION. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+* **[2026-08-17 15:00]** | App: viewer | Tipo: UI / Auth | Implementaci贸n de flujo de Login Manual para Google Play Console y Script de cuenta Bypass. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-08-17 16:40]** | App: Viewer | Tipo: UI | Refinamiento de acentos y opacidades visuales (Verde Esmeralda) en dashboard y componentes comunes. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+

@@ -461,3 +461,26 @@ Este archivo contiene el historial de cambios a nivel de UI, l脙鲁gica y configu
   - [x] AC 2: Se lanza un AlertDialog solicitando confirmaci贸n expl铆cita para omitir.
   - [x] AC 3: El bot贸n "Omitir" respeta la gu铆a visual oscura y las dimensiones del bot贸n primario "Activar".
 ---
+---
+### [2026-08-17 15:00] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripci贸n:** Implementaci贸n de flujo alternativo de Login Manual para revisi贸n en Google Play Console.
+* **Detalles T茅cnicos:**
+  - **Archivos Modificados:** [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/domain/repository/AuthRepository.kt), [AuthRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthRepositoryImpl.kt), [LoginViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/login/LoginViewModel.kt), [LoginScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/login/LoginScreen.kt)
+  - **Base de Datos:** Se gener贸 el script 0040_viewer_bypass_account.sql para inyectar la cuenta google-review@notificape.pe en auth.users, public.Usuarios y AutorizacionesXUsuario.
+* **Criterios de Aceptaci贸n (AC) Validados:**
+  - [x] AC 1: La UI de Login puede intercambiarse condicionalmente a una vista manual.
+  - [x] AC 2: Se implement贸 autenticaci贸n por email con Supabase Auth respetando el enrutamiento reactivo de la app.
+---
+
+---
+### [2026-08-17 16:40] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripci髇:** Refinamiento de acentos visuales y opacidades (Verde Esmeralda) en dashboard y componentes comunes para diferenciar identidad de Viewer.
+* **Detalles T閏nicos:**
+  - **Archivos Modificados:** [LoginScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/login/LoginScreen.kt), [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt), [BreakdownComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/BreakdownComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt), [VinculacionHeader.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/common/VinculacionHeader.kt), [CajasSelectorScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/vinculacion/CajasSelectorScreen.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptaci髇 (AC) Validados:**
+  - [x] AC 1: Componentes seleccionados aplican color secundario (Verde) con contraste sem醤tico.
+  - [x] AC 2: Se mantiene el color primario morado en la estructura general y switches por defecto.
+---

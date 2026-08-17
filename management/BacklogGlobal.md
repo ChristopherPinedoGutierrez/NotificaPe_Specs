@@ -142,13 +142,13 @@
 - [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃ¡biles).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
 
-### Ã‰pica: PolÃ­ticas de Google Play Console (Apps)
-- [ ] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en EspaÃ±ol.
-- [ ] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
-- [ ] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
-- [ ] App: admin | Tarea (Store): Solicitar promociÃ³n manual de Alpha/Beta en la consola de Google Play, adjuntando la documentaciÃ³n justificativa.
+### Épica: Políticas de Google Play Console (Apps)
+- [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
+- [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
+- [x] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
+- [x] App: admin | Tarea (Store): Solicitar promoción manual de Alpha/Beta en la consola de Google Play, adjuntando la documentación justificativa.
 - [x] App: viewer | Tarea (CR): Rediseño de cola unificada de notificaciones (TTS/Push/Vibración), ritmo dinámico, catch-up silencioso, escrituras DataStore batch, modo tradicional en cortina Android y auto-limpieza de alertas al abrir el app [CR-010]. (cumpleFiltro) para que las notificaciones en segundo plano disparen alertas TTS y VibraciÃ³n correctamente [CR-008].
-- [ ] App: viewer | Tarea (CR): DiseÃ±ar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseÃ±a y verificaciÃ³n de billeteras asociadas [CR-005].
+- [x] App: viewer | Tarea (CR): DiseÃ±ar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseÃ±a y verificaciÃ³n de billeteras asociadas [CR-005].
 
 ## [E2] Entregable 2: Cumplimiento Legal y Operaciones SaaS
 
@@ -170,14 +170,15 @@
 - [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃable).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
 
-### Ã‰pica: PolÃ­ticas de Google Play Console (Apps)
-- [ ] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en EspaÃ±ol.
-- [ ] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
-- [ ] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
-- [ ] App: admin | Tarea (Store): Solicitar promociÃ³n manual de Alpha/Beta en la consola de Google Play, adjuntando la documentaciÃ³n justificativa.
-- [ ] App: viewer | Tarea (Store): Generar activos visuales, redactar Ficha de Play Store y completar Data Safety Form sobre inicio de sesiÃ³n.
-- [ ] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisiÃ³n automatizada del equipo de Google Play.
-- [ ] App: viewer | Tarea (Store): Solicitar promociÃ³n manual de fase Alpha/Beta en Google Play Console para el receptor.
+### Épica: Políticas de Google Play Console (Apps)
+- [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
+- [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
+- [x] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
+- [x] App: admin | Tarea (Store): Solicitar promoción manual de Alpha/Beta en la consola de Google Play, adjuntando la documentación justificativa.
+- [ ] App: viewer | Tarea (Store): Generar activos visuales, redactar Ficha de Play Store y completar Data Safety Form sobre inicio de sesión.
+- [ ] App: viewer | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permiso `FOREGROUND_SERVICE_SPECIAL_USE` del CentinelaService.
+- [x] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisión automatizada del equipo de Google Play.
+- [ ] App: viewer | Tarea (Store): Solicitar promoción manual de fase Alpha/Beta en Google Play Console para el receptor.
 
 ### Tareas Generales (Por Priorizar)
 - [x] **[TSK-001]** | App: Viewer | UI: RemociÃ³n de la verificaciÃ³n y solicitud obligatoria de optimizaciÃ³n de baterÃ­a (Google Play Policies).
