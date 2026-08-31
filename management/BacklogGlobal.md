@@ -240,7 +240,19 @@
 - [x] App: web | **[TSK-024]** UI/Motor: Implementar el motor de tour interactivo `SpotlightTour.tsx` (overlay con backdrop y tooltips inteligentes bitemáticos) para el recorrido general del Dashboard y mini-tours contextuales.
 - [x] App: web | **[TSK-025]** Navegación/Estado: Montar el sistema de ayuda en `dashboard/layout.tsx` con trigger flotante e implementar la lógica de persistencia (`COMPLETED`, `IN_PROGRESS`, `DISMISSED`) y reanudación ante interrupciones.
 
-### Hito 4: Inducción y Onboarding en Aplicaciones Móviles
-- [ ] App: admin | **[TSK-026]** Mobile UX: Diseñar e integrar flujo de inducción inicial (Welcome Carousel) explicando de forma didáctica la necesidad del permiso `NotificationListenerService` y optimización de batería antes de solicitarlos.
-- [ ] App: viewer | **[TSK-027]** Mobile UX: Diseñar pantalla de bienvenida con botón principal "Escanear QR de Caja", visualizador de estado de solicitud pendiente y confirmación sonora de prueba al ser autorizado.
+### Hito 4: Inducción, Onboarding y Tours en Aplicaciones Móviles
+
+#### Sub-Hito 4.1: App Admin (Emisor - Android / Jetpack Compose)
+- [ ] App: admin | **[TSK-026A]** Onboarding Carousel: Diseñar e integrar carrusel de bienvenida interactivo de 4 pasos explicando el rol del emisor, solicitud justificada del permiso `NotificationListenerService` y configuración de optimización de batería sin restricciones.
+- [ ] App: admin | **[TSK-026B]** Vinculación QR: Integrar pantalla asistida de escaneo de QR de caja con confirmación de enlace exitoso y registro del `HardwareId` en Supabase.
+- [ ] App: admin | **[TSK-026C]** Spotlight Tour Principal: Implementar recorrido guiado paso a paso en la pantalla principal resaltando el interruptor del Foreground Service, el monitor de billeteras activas y el laboratorio de notificaciones mock.
+- [ ] App: admin | **[TSK-026D]** Persistencia y Ayuda: Guardar el estado de finalización del onboarding en DataStore y habilitar el botón "Repetir Recorrido / Guía" en la pantalla de Ajustes.
+
+#### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
+- [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: Diseñar carrusel de inducción para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
+- [ ] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
+- [ ] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+- [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
+- [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
+
 
