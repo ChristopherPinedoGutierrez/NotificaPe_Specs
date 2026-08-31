@@ -221,3 +221,26 @@
 - [ ] App: db | Tarea: Crear script de migración añadiendo `TipoFiltro`, `FormatoMensaje`, `VersionMotor` a `FiltrosXBilletera` y `PayloadBruto` a `NotificacionesXDispositivo`.
 - [ ] App: db | Tarea: Crear script inicial para duplicar las reglas vigentes de Yape y Lemon al formato concatenado bajo `VersionMotor = 2`.
 - [ ] App: db | Tarea: Implementar Edge Function (Deno/TypeScript) `reprocesar-notificaciones` para recorrer y procesar con Regex (JS) las notificaciones en estado 'REVISION' y promoverlas a 'PENDIENTE'.
+
+## [E5] Entregable 5: Sistema Integral de Onboarding y Usabilidad
+
+### Hito 1: Hub de Descargas y Resiliencia de Accesos
+- [x] App: web | **[TSK-016]** UI: Desarrollar `DownloadHubModal.tsx` con selector bitemático (Dark/Light) para App Emisor y App Receptor, códigos QR dinámicos para descarga directa desde celular, temporizador de descarga de APK, link a tiendas oficiales y botón para compartir enlace de instalación a cajeros vía mensajería (sin marcas comerciales en código duro).
+- [x] App: web | **[TSK-017]** Navegación: Integrar disparadores del Hub de Descargas en `SidebarNav.tsx` (versión desktop y sheet mobile) y en el encabezado `DashboardHeader.tsx`.
+- [x] App: web | **[TSK-018]** Seguridad/UX: Refactorizar `AccessGuard.tsx` y `licencias/page.tsx` para incorporar banner superior informativo contextual ante redirección por plan expirado o cuenta sin licencia activa.
+- [x] App: web | **[TSK-019]** UI: Rediseñar Empty States en `/dashboard/dispositivos` y `/dashboard/accesos` con micro-guías visuales y botones CTA directos para crear cajas y gestionar autorizaciones.
+
+### Hito 2: Widget Setup Checklist en Dashboard
+- [x] App: web | **[TSK-020]** Backend/DTO: Extender `fetchControlCenterStats` en `actions_control.ts` para calcular reactivamente los 4 estados de configuración inicial (perfil completado, licencia activa, cajas creadas, terminales/vendedores vinculados).
+- [x] App: web | **[TSK-021]** UI: Construir el componente `SetupChecklist.tsx` en `/dashboard` con barra de progreso porcentual, estados interactivos (Checks/Botones), persistencia de colapso y dismiss en `localStorage`, y soporte Dark/Light.
+- [x] App: web | **[TSK-022]** Integración: Integrar `SetupChecklist.tsx` en `DashboardClient.tsx` arriba de las tarjetas de métricas.
+
+### Hito 3: Panel Lateral de Ayuda (Help Drawer) y Tour Interactivo Spotlight
+- [x] App: web | **[TSK-023]** UI: Construir `HelpDrawer.tsx` (Panel lateral tipo `Sheet`) con detección de ruta activa (`pathname`), acordeones bitemáticos de FAQs contextuales por sección (Dashboard, Dispositivos, Accesos, Notificaciones) y accesos directos al Hub de Descargas y Tour.
+- [x] App: web | **[TSK-024]** UI/Motor: Implementar el motor de tour interactivo `SpotlightTour.tsx` (overlay con backdrop y tooltips inteligentes bitemáticos) para el recorrido general del Dashboard y mini-tours contextuales.
+- [x] App: web | **[TSK-025]** Navegación/Estado: Montar el sistema de ayuda en `dashboard/layout.tsx` con trigger flotante e implementar la lógica de persistencia (`COMPLETED`, `IN_PROGRESS`, `DISMISSED`) y reanudación ante interrupciones.
+
+### Hito 4: Inducción y Onboarding en Aplicaciones Móviles
+- [ ] App: admin | **[TSK-026]** Mobile UX: Diseñar e integrar flujo de inducción inicial (Welcome Carousel) explicando de forma didáctica la necesidad del permiso `NotificationListenerService` y optimización de batería antes de solicitarlos.
+- [ ] App: viewer | **[TSK-027]** Mobile UX: Diseñar pantalla de bienvenida con botón principal "Escanear QR de Caja", visualizador de estado de solicitud pendiente y confirmación sonora de prueba al ser autorizado.
+

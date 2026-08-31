@@ -89,13 +89,61 @@
 ---
 
 ---
-### 2026-08-09 20:11 | App/Componente: web | Autor: AGENT_ROLE
+### 2026-08-30 14:05 | App/Componente: web | Autor: AGENT_ROLE
 
-* **Descripción:** Reestructuración de la UI Regex en un Flujo Guiado (Wizard) sin modales, con previsualización en RAM y prueba masiva retroactiva.
+* **Descripción:** Implementación del Sistema Integral de Onboarding y Usabilidad (E5: Hitos 1, 2 y 3): Hub Global de Descargas QR, Widget Setup Checklist, Empty States asistidos, Banner Contextual de Licencia Expirada, Panel Lateral de Ayuda (Help Drawer) y Motor de Tour Interactivo (SpotlightTour).
 * **Detalles Técnicos:**
-  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/page.tsx), subcomponentes en [components/](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/components).
-  - **Base de Datos:** Ninguno
+  - **Archivos Modificados / Creados:**
+    - [DownloadHubModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/DownloadHubModal.tsx): Modal bitemático con generación dinámica de QR para instalación en Android (App Emisor y App Receptor) y botón para compartir vía WhatsApp.
+    - [SetupChecklist.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/SetupChecklist.tsx): Widget reactivo con barra de progreso porcentual, detección de 4 hitos clave, colapso y descarte persistente en localStorage.
+    - [HelpDrawer.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/HelpDrawer.tsx): Sheet lateral con detección de pathname y FAQs contextuales por sección.
+    - [SpotlightTour.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SpotlightTour.tsx): Motor de tour overlay spotlight en SVG/Tailwind con persistencia de ciclo de vida.
+    - [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx): Integración de botones de Guía & Ayuda, Descargas Móviles y data-tour attributes.
+    - [DashboardHeader.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardHeader.tsx): Integración de botón de instalación y data-tour.
+    - [DashboardStatsCards.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardStatsCards.tsx): Marcado data-tour para recorrido guiado.
+    - [actions_control.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/actions_control.ts): Cálculo en servidor de `checklistStatus`.
+    - [page.tsx (dispositivos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/page.tsx): Rediseño didáctico del empty state en 3 pasos.
+    - [page.tsx (accesos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/page.tsx): Rediseño de empty state con CTA directo a creación de cajas.
+    - [page.tsx (licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/page.tsx): Banner contextual de alerta cuando la cuenta carece de plan activo.
+    - [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx): Inyección y montaje de SetupChecklist y DownloadHubModal.
+  - **Base de Datos:** Ninguno.
 * **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: La UI permite reconstruir el string concatenado desde el Payload JSON de una notificación estancada.
-  - [x] AC 2: La UI simula la regex en vivo y prueba la regla retroactivamente.
+  - [x] AC 1 (TSK-016 a TSK-019): Hub de descargas con selector de apps y códigos QR; banner de plan expirado y empty states con micro-guías.
+  - [x] AC 2 (TSK-020 a TSK-022): Setup Checklist reactivo en Dashboard con 4 pasos interactivos y persistencia de estado.
+  - [x] AC 3 (TSK-023 a TSK-025): Help Drawer lateral con FAQs según la ruta actual y motor de tour Spotlight guiado.
+---
+
+### 2026-08-30 14:50 | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Perfeccionamiento del Sistema de Onboarding y Usabilidad: Soporte oficial por correo (`servicios@ryctech.dev`), FAQs agrupadas por vista con apertura reactiva, máscara SVG con transparencia real en Spotlight, reorganización del menú inferior en la barra lateral, Welcome Modal inicial y banners contextuales de inicio/reanudación/descarte por pantalla.
+* **Detalles Técnicos:**
+  - **Archivos Modificados / Creados:**
+    - [middleware.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/middleware.ts) / [middleware.ts (lib)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/lib/supabase/middleware.ts): Middleware SSR para sincronización y purga de cookies expiradas, eliminando warnings en consola de desarrollo.
+    - [HelpDrawer.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/HelpDrawer.tsx): Tarjeta de soporte con correo oficial `servicios@ryctech.dev` (copiar/enviar mailto), FAQs completas categorizadas en acordeones reactivos y botón directo Instalar Apps.
+    - [SpotlightTour.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SpotlightTour.tsx): Máscara SVG con regla `mask/rect` 100% transparente sobre el elemento enfocado, anillo luminoso animado y definiciones de tours multi-vista.
+    - [TourContextBanner.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/TourContextBanner.tsx): Banner no invasivo superior para iniciar, reanudar o descartar (Dismiss) tours locales.
+    - [WelcomeOnboardingModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/WelcomeOnboardingModal.tsx): Modal de inducción para la primera visita al Dashboard con botón de lanzamiento del tour.
+    - [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx): Reorganización de navegación con botón simplificado "Instalar Apps" y menú inferior consolidado (Configuración, Guía y Ayuda, Cerrar Sesión).
+    - [DashboardHeader.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardHeader.tsx): Remoción de botón redundante de descargas.
+    - [SetupChecklist.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/SetupChecklist.tsx): Animación y anillo de atención cuando la configuración está por debajo del 100%.
+    - [DispositivosTourManager.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosTourManager.tsx) / [AccesosTourManager.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/AccesosTourManager.tsx) / [LicenciasTourManager.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/LicenciasTourManager.tsx): Inyección de banners y marcadores `data-tour` en todas las subvistas.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Errores de refresh token suprimidos en consola de desarrollo vía middleware SSR.
+  - [x] AC 2: Spotlight Tour con iluminación y transparencia real sobre el selector enfocado sin oscurecimiento interno.
+  - [x] AC 3: FAQs completas disponibles en acordeones categorizados con apertura por defecto según la ruta activa.
+  - [x] AC 4: Soporte directo a `servicios@ryctech.dev` con copia al portapapeles y enlace mailto.
+  - [x] AC 5: Menú de opciones unificado al pie de la barra lateral y botón directo simplificado a "Instalar Apps".
+---
+
+### 2026-08-30 20:45 | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Actualización del formato del chip de paso en la barra lateral a indicador fraccionario (`1/4`, `2/4`, `3/4`, `4/4` o `4/4 ✓`) estilizado con el color secundario de marca `plin` (`#00d0a1`), y documentación detallada de la lógica de validación técnica del Paso 4 (vinculación Admin App / Viewer App).
+* **Detalles Técnicos:**
+  - **Archivos Modificados / Creados:**
+    - [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx): Chip del botón "Puesta en Marcha" actualizado a formato `n/4` con estilos `bg-plin/15 text-plin border-plin/30 font-mono`, manteniendo la coherencia cromática con el resto del módulo.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El chip del indicador en la barra lateral muestra el progreso como fracción respecto al total (ej. 4/4).
+  - [x] AC 2: El color del chip utiliza el tono secundario verde plin.
 ---
