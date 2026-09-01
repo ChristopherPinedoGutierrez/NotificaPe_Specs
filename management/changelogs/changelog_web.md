@@ -136,19 +136,18 @@
   - [x] AC 5: Menú de opciones unificado al pie de la barra lateral y botón directo simplificado a "Instalar Apps".
 ---
 
-### 2026-08-31 21:48 | App/Componente: web | Autor: AGENT_ROLE
+### 2026-08-31 21:54 | App/Componente: web | Autor: AGENT_ROLE
 
-* **Descripción:** Consolidación final del bloque de Dispositivos y cierre de sesión de desarrollo:
-  1. Sustitución del "Código de Acceso" redundante en el pie de la tarjeta `2. Datos del Dispositivo` por el `ID del Dispositivo` en formato monoespaciado, manteniendo simetría arquitectónica directa con el `Hardware ID` de `3. Equipo Físico`.
-  2. Actualización definitiva del logotipo oficial con cache-busting en el badge central del código QR (`DeviceQR.tsx`).
-  3. Verificación de compilación TypeScript (`tsc --noEmit`) sin errores y preparación de commits en repositorios.
+* **Descripción:** Implementación del formateo estricto de fecha en la ficha de Datos del Dispositivo:
+  1. Integración de la función `formatFechaPeru(fechaIso)` con `Intl.DateTimeFormat` configurada con zona horaria de Perú (`America/Lima`, UTC-5) y formato estricto `DD/MM/YYYY`.
+  2. Eliminación de cualquier texto fallback tipo "Reciente", garantizando la presentación consistente de la fecha exacta de registro del dispositivo en base de datos.
 * **Detalles Técnicos:**
   - **Archivos Modificados:**
-    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Pie de tarjeta 2 actualizado a `ID del Dispositivo`.
-    - [DeviceQR.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/DeviceQR.tsx): Inclusión de cache-buster `v=3` en isotipo QR.
+    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Función `formatFechaPeru` aplicada al campo `disp.FechaReg`.
+    - [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/layout.tsx): Consulta Supabase con `FechaReg`.
+    - [DispositivosViewProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosViewProvider.tsx): Tipado `FechaReg` en interfaz `Dispositivo`.
   - **Base de Datos:** Ninguno.
 * **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: El pie de la tarjeta 2 muestra el ID del dispositivo con simetría al Hardware ID.
+  - [x] AC 1: La fecha se muestra en formato numérico estricto DD/MM/YYYY en hora local de Perú (UTC-5).
   - [x] AC 2: La compilación del frontend es 100% limpia.
-  - [x] AC 3: Trazabilidad y repositorios sincronizados.
 ---

@@ -1,7 +1,7 @@
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificaciones en el ecosistema NotificaPe.
 
-* **[2026-08-31 21:48]** | App: web | Tipo: UI/UX | ID de Dispositivo en pie de tarjeta y consolidación final de la Master Card de Dispositivos. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
+* **[2026-08-31 21:54]** | App: web | Tipo: UI/UX | Formato estricto DD/MM/YYYY con zona horaria America/Lima en Fecha de Creación de Dispositivos. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-08-30 14:50]** | App: web | Tipo: UI/UX | Perfeccionamiento de Onboarding: Soporte oficial (servicios@ryctech.dev), FAQs categorizadas por vista, máscara SVG transparente en Spotlight, menú inferior unificado y ciclo de Dismiss/Reanudación. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-08-30 14:05]** | App: web | Tipo: UI/UX | Sistema Integral de Onboarding y Usabilidad (E5: Hub Descargas QR, Checklist, Empty States, Help Drawer y Tour Spotlight). Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-06-28 14:45]** | App: NotificaPe_Specs | Tipo: DB | ConsolidaciÃ³n Preliminar de Fase 3 y script de disputas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
