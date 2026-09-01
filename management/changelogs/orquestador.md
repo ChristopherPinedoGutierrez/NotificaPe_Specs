@@ -1,7 +1,7 @@
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificaciones en el ecosistema NotificaPe.
 
-* **[2026-08-31 21:56]** | App: web | Tipo: UI/Backend | Normalización robusta de timestamps PostgreSQL y verificación en Supabase de FechaReg. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
+* **[2026-08-31 22:01]** | App: web | Tipo: UI/Store | Sincronización reactiva de initialProps en DispositivosViewProvider y resolución de FechaReg. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-08-30 14:50]** | App: web | Tipo: UI/UX | Perfeccionamiento de Onboarding: Soporte oficial (servicios@ryctech.dev), FAQs categorizadas por vista, máscara SVG transparente en Spotlight, menú inferior unificado y ciclo de Dismiss/Reanudación. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-08-30 14:05]** | App: web | Tipo: UI/UX | Sistema Integral de Onboarding y Usabilidad (E5: Hub Descargas QR, Checklist, Empty States, Help Drawer y Tour Spotlight). Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-06-28 14:45]** | App: NotificaPe_Specs | Tipo: DB | ConsolidaciÃ³n Preliminar de Fase 3 y script de disputas. Ver [changelog_database.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)

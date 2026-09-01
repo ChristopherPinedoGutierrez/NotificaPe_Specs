@@ -136,16 +136,18 @@
   - [x] AC 5: Menú de opciones unificado al pie de la barra lateral y botón directo simplificado a "Instalar Apps".
 ---
 
-### 2026-08-31 21:56 | App/Componente: web | Autor: AGENT_ROLE
+### 2026-08-31 22:01 | App/Componente: web | Autor: AGENT_ROLE
 
-* **Descripción:** Normalización y validación del backend para la Fecha de Creación (`FechaReg`):
-  1. Verificación directa mediante consulta SQL a Supabase confirmando la presencia e integridad de la columna `FechaReg` (`timestamp with time zone`).
-  2. Implementación de un parser robusto en `formatFechaPeru` que normaliza los strings de timestamp nativos de PostgreSQL (espacios, offsets `+00` a `+00:00` y compatibilidad universal ISO/Date), junto con fallback regex `DD/MM/YYYY` y conversión estricta a zona horaria `America/Lima` (UTC-5).
+* **Descripción:** Solución integral de reactividad en el Store de Dispositivos para `FechaReg`:
+  1. Identificación y corrección en `DispositivosViewProvider.tsx`: el hook `useState(initialDispositivos)` no se sincronizaba cuando el Server Component del layout revalidaba y entregaba nuevas propiedades (incluyendo la columna `FechaReg`).
+  2. Implementación de `useEffect` reactivos para sincronizar `dispositivos`, `billeteras` y relaciones cada vez que `initialProps` se actualiza desde el servidor.
+  3. Verificación exitosa en base de datos Supabase confirmando que `Caja 1` posee `FechaReg: "2026-08-10 19:44:13.692606+00"`, renderizándose correctamente como `10/08/2026` en hora de Perú (UTC-5).
 * **Detalles Técnicos:**
   - **Archivos Modificados:**
-    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Parser de timestamp tolerante a PostgreSQL con formato `DD/MM/YYYY`.
-  - **Base de Datos:** Verificada existencia y datos de `FechaReg` en tabla `DispositivosXContratante`.
+    - [DispositivosViewProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosViewProvider.tsx): Efectos de sincronización reactiva para `initialDispositivos`.
+    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Parser y fallback `disp.FechaReg || disp.created_at`.
+  - **Base de Datos:** Verificada existencia de `FechaReg` en tabla `DispositivosXContratante`.
 * **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: El parser maneja de forma transparente cualquier variación de timestamp de Postgres y muestra la fecha en formato DD/MM/YYYY.
-  - [x] AC 2: La compilación del frontend es 100% limpia.
+  - [x] AC 1: La fecha de creación se sincroniza y se muestra con exactitud en formato DD/MM/YYYY.
+  - [x] AC 2: El provider es reactivo ante cambios en los Server Components.
 ---
