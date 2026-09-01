@@ -136,14 +136,19 @@
   - [x] AC 5: Menú de opciones unificado al pie de la barra lateral y botón directo simplificado a "Instalar Apps".
 ---
 
-### 2026-08-30 20:45 | App/Componente: web | Autor: AGENT_ROLE
+### 2026-08-31 21:48 | App/Componente: web | Autor: AGENT_ROLE
 
-* **Descripción:** Actualización del formato del chip de paso en la barra lateral a indicador fraccionario (`1/4`, `2/4`, `3/4`, `4/4` o `4/4 ✓`) estilizado con el color secundario de marca `plin` (`#00d0a1`), y documentación detallada de la lógica de validación técnica del Paso 4 (vinculación Admin App / Viewer App).
+* **Descripción:** Consolidación final del bloque de Dispositivos y cierre de sesión de desarrollo:
+  1. Sustitución del "Código de Acceso" redundante en el pie de la tarjeta `2. Datos del Dispositivo` por el `ID del Dispositivo` en formato monoespaciado, manteniendo simetría arquitectónica directa con el `Hardware ID` de `3. Equipo Físico`.
+  2. Actualización definitiva del logotipo oficial con cache-busting en el badge central del código QR (`DeviceQR.tsx`).
+  3. Verificación de compilación TypeScript (`tsc --noEmit`) sin errores y preparación de commits en repositorios.
 * **Detalles Técnicos:**
-  - **Archivos Modificados / Creados:**
-    - [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx): Chip del botón "Puesta en Marcha" actualizado a formato `n/4` con estilos `bg-plin/15 text-plin border-plin/30 font-mono`, manteniendo la coherencia cromática con el resto del módulo.
+  - **Archivos Modificados:**
+    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Pie de tarjeta 2 actualizado a `ID del Dispositivo`.
+    - [DeviceQR.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/DeviceQR.tsx): Inclusión de cache-buster `v=3` en isotipo QR.
   - **Base de Datos:** Ninguno.
 * **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: El chip del indicador en la barra lateral muestra el progreso como fracción respecto al total (ej. 4/4).
-  - [x] AC 2: El color del chip utiliza el tono secundario verde plin.
+  - [x] AC 1: El pie de la tarjeta 2 muestra el ID del dispositivo con simetría al Hardware ID.
+  - [x] AC 2: La compilación del frontend es 100% limpia.
+  - [x] AC 3: Trazabilidad y repositorios sincronizados.
 ---
