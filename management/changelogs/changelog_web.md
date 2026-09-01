@@ -136,18 +136,16 @@
   - [x] AC 5: Menú de opciones unificado al pie de la barra lateral y botón directo simplificado a "Instalar Apps".
 ---
 
-### 2026-08-31 21:54 | App/Componente: web | Autor: AGENT_ROLE
+### 2026-08-31 21:56 | App/Componente: web | Autor: AGENT_ROLE
 
-* **Descripción:** Implementación del formateo estricto de fecha en la ficha de Datos del Dispositivo:
-  1. Integración de la función `formatFechaPeru(fechaIso)` con `Intl.DateTimeFormat` configurada con zona horaria de Perú (`America/Lima`, UTC-5) y formato estricto `DD/MM/YYYY`.
-  2. Eliminación de cualquier texto fallback tipo "Reciente", garantizando la presentación consistente de la fecha exacta de registro del dispositivo en base de datos.
+* **Descripción:** Normalización y validación del backend para la Fecha de Creación (`FechaReg`):
+  1. Verificación directa mediante consulta SQL a Supabase confirmando la presencia e integridad de la columna `FechaReg` (`timestamp with time zone`).
+  2. Implementación de un parser robusto en `formatFechaPeru` que normaliza los strings de timestamp nativos de PostgreSQL (espacios, offsets `+00` a `+00:00` y compatibilidad universal ISO/Date), junto con fallback regex `DD/MM/YYYY` y conversión estricta a zona horaria `America/Lima` (UTC-5).
 * **Detalles Técnicos:**
   - **Archivos Modificados:**
-    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Función `formatFechaPeru` aplicada al campo `disp.FechaReg`.
-    - [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/layout.tsx): Consulta Supabase con `FechaReg`.
-    - [DispositivosViewProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosViewProvider.tsx): Tipado `FechaReg` en interfaz `Dispositivo`.
-  - **Base de Datos:** Ninguno.
+    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Parser de timestamp tolerante a PostgreSQL con formato `DD/MM/YYYY`.
+  - **Base de Datos:** Verificada existencia y datos de `FechaReg` en tabla `DispositivosXContratante`.
 * **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: La fecha se muestra en formato numérico estricto DD/MM/YYYY en hora local de Perú (UTC-5).
+  - [x] AC 1: El parser maneja de forma transparente cualquier variación de timestamp de Postgres y muestra la fecha en formato DD/MM/YYYY.
   - [x] AC 2: La compilación del frontend es 100% limpia.
 ---
