@@ -239,6 +239,7 @@
 - [x] App: web | **[TSK-023]** UI: Construir `HelpDrawer.tsx` (Panel lateral tipo `Sheet`) con detección de ruta activa (`pathname`), acordeones bitemáticos de FAQs contextuales por sección (Dashboard, Dispositivos, Accesos, Notificaciones) y accesos directos al Hub de Descargas y Tour.
 - [x] App: web | **[TSK-024]** UI/Motor: Implementar el motor de tour interactivo `SpotlightTour.tsx` (overlay con backdrop y tooltips inteligentes bitemáticos) para el recorrido general del Dashboard y mini-tours contextuales.
 - [x] App: web | **[TSK-025]** Navegación/Estado: Montar el sistema de ayuda en `dashboard/layout.tsx` con trigger flotante e implementar la lógica de persistencia (`COMPLETED`, `IN_PROGRESS`, `DISMISSED`) y reanudación ante interrupciones.
+- [x] App: web | **[TSK-025B]** UI/UX: Refactorizar SpotlightTour a tarjeta compacta flotante y arrastrable (Draggable) en desktop con modo dock inferior en móvil, tours condicionales multi-vista (actividad en dashboard, anatomía directa en detalle de dispositivo, personalización en gestión de licencias) y desacoplamiento de acordeones en /dashboard/licencias.
 
 ### Hito 4: Inducción, Onboarding y Tours en Aplicaciones Móviles
 

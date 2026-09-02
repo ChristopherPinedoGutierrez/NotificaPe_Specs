@@ -151,3 +151,36 @@
   - [x] AC 1: La fecha de creación se sincroniza y se muestra con exactitud en formato DD/MM/YYYY.
   - [x] AC 2: El provider es reactivo ante cambios en los Server Components.
 ---
+
+### 2026-09-01 21:35 | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Optimización integral de Onboarding, Tours Guiados y UI de Licencias:
+  1. **SpotlightTour Compacto y Arrastrable:** Rediseño a tarjeta compacta (`w-[340px]`, `p-4.5`) con arrastre libre (Draggable) en escritorio con límites de pantalla, y modo anclado inferior fijo (`bottom-3 left-3 right-3`) en dispositivos móviles.
+  2. **Tours Condicionales Multi-Vista:**
+     - Dashboard General: pasos condicionales para actividad diaria de cobros (estado vacío vs ingresos por terminal y auditoría de alertas).
+     - Dispositivos: eliminación de paso exterior redundante al ingresar a la vista detallada de una caja (`/dispositivos/[id]`).
+     - Gestionar Licencias: incorporación del paso explicativo de Personalizar / Renovar Plan y respiro perimetral con margen en el foco de Plan Actual y Saldo Disponible.
+  3. **Módulo de Licencias (`/dashboard/licencias`):**
+     - Desacoplamiento de columnas con `items-start` para alturas naturales sin deformaciones.
+     - Extracción de acordeones de cola e historial en `LicenciasAccordionGroup.tsx` con límite de altura `max-h-[calc(100vh-280px)]` y scroll interno.
+     - Limpieza de banners redundantes y alineación a la izquierda del estado sin plan activo con CTA "Adquirir Licencia".
+  4. **Modal Informativo y Subtour en Gestionar Licencias (`/dashboard/licencias/gestionar`):**
+     - Creación de `GestionarLicenciasTourManager.tsx` con modal automático informativo de renovación para cuentas sin plan o vencidas.
+     - Hero card adaptativo (2 columnas simétricas con divisor central vs 3 columnas con botón a la derecha).
+* **Detalles Técnicos:**
+  - **Archivos Modificados / Creados:**
+    - [SpotlightTour.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SpotlightTour.tsx): Tarjeta arrastrable con listeners de ratón, limitadores perimetrales, docking responsive móvil y definición de tours.
+    - [page.tsx (licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/page.tsx): Limpieza de banner y alineación a la izquierda.
+    - [LicenciasAccordionGroup.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/LicenciasAccordionGroup.tsx): Acordeones con scroll interno independiente.
+    - [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx): Hero card adaptativo, respiro visual de spotlight y marcado data-tour.
+    - [GestionarLicenciasTourManager.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/GestionarLicenciasTourManager.tsx): Modal informativo de suscripción y gestor de tour.
+    - [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx): Marcado data-tour condicional en actividad, terminales y alertas.
+    - [dispositivos/[id]/page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx): Remoción de data-tour redundante en contenedor exterior.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Tarjeta de tour compacta, arrastrable en escritorio y no invasiva en móvil.
+  - [x] AC 2: Tours adaptativos que omiten pasos innecesarios y explican secciones condicionales.
+  - [x] AC 3: Vista de licencias y acordeones con scroll contenido y alineación simétrica.
+  - [x] AC 4: Subtour de gestionar licencias detectable desde el FAB de ayuda y banner superior.
+---
+
