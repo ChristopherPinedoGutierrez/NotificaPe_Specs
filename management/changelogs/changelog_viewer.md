@@ -3,6 +3,21 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-09-04 15:05] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Solución integral a fuga de datos entre sesiones y estabilización de conteo tras swipe (1 -> 3 -> 2).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AuthIdentityManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthIdentityManager.kt), [AuthRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthRepositoryImpl.kt), [PagosRemoteDataSource.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/PagosRemoteDataSource.kt), [PagosRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/domain/repository/PagosRepository.kt), [PagosRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/PagosRepositoryImpl.kt), [HomeViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [HomeScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeScreen.kt), [MainActivity.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/MainActivity.kt), [HomePaymentsManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomePaymentsManager.kt), [HomeStateProvider.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeStateProvider.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Purga total de memoria en AuthIdentityManager y desconexión activa de Realtime al desautenticar o cambiar de caja.
+  - [x] AC 2: Aislamiento estricto de participaciones (mochila) por IdDispositivo mediante relación interna con NotificacionesXDispositivo.
+  - [x] AC 3: Recreación limpia de HomeScreen en MainActivity mediante key(state.idAutorizacion, state.idDispositivo) y reset en onDispose.
+  - [x] AC 4: Homologación de filtros REST y memoria en HomePaymentsManager evitando retención de pagos privados o cerrados.
+  - [x] AC 5: Alineación de resumenVentas con misVentas y visualización de banner/badge interactivo en ControlTab cuando existen pagos en revisión activa.
+  - [x] AC 6: Compilación exitosa bajo Android SDK Platform 36 (Android 16).
+---
+---
 ### [2026-09-04 14:05] | App/Componente: viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Actualización obligatoria de compileSdk y targetSdk a API 36 (Android 16) para cumplimiento de normativas de Google Play Store.

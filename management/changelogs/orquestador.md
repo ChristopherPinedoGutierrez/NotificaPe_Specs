@@ -1,6 +1,7 @@
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el ÃÂ­ndice cronolÃÂ³gico estricto de todas las modificaciones en el ecosistema NotificaPe.
 
+* **[2026-09-04 15:05]** | App: viewer | Tipo: UI / API | Aislamiento estricto de sesión por caja, purga en caliente de memoria y resolución a inconsistencia de conteo tras swipe. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-04 14:05]** | App: admin / viewer | Tipo: Infra / Build | Cumplimiento normativo Google Play: migración de compileSdk y targetSdk a 36 (Android 16) y actualización de workflows CI/CD. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md) y [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-04 12:05]** | App: web / edge-functions | Tipo: API / Infra | Desacoplamiento dinÃ¡mico TEST/PROD para Mercado Pago, webhook dual y validaciÃ³n en vivo de ticket mÃ­nimo y vuelto. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-09-03 20:20]** | App: web / db | Tipo: DB / API | ImplementaciÃ³n de Ticket MÃ­nimo (S/ 5.00) en Mercado Pago y acreditaciÃ³n exacta del vuelto como saldo a favor en PostgreSQL. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
