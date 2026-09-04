@@ -1,6 +1,7 @@
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el Ã­ndice cronolÃ³gico estricto de todas las modificaciones en el ecosistema NotificaPe.
 
+* **[2026-09-04 12:05]** | App: web / edge-functions | Tipo: API / Infra | Desacoplamiento dinámico TEST/PROD para Mercado Pago, webhook dual y validación en vivo de ticket mínimo y vuelto. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-09-03 20:20]** | App: web / db | Tipo: DB / API | Implementación de Ticket Mínimo (S/ 5.00) en Mercado Pago y acreditación exacta del vuelto como saldo a favor en PostgreSQL. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-09-03 20:05]** | App: web / db | Tipo: DB / UI / API | Actualización de tarifas de add-ons (S/ 30 por dispositivo y S/ 20 por usuario), ampliación de límites a 20/50 y corrección de metadata en Edge Functions de Mercado Pago. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-09-01 21:35]** | App: web | Tipo: UI/UX | Optimización de SpotlightTour (tarjeta compacta arrastrable y mobile dock), tours condicionales multi-vista, desacoplamiento y scroll en Licencias. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)

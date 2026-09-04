@@ -1,7 +1,20 @@
 # Historial de Cambios - NotificaPe Web
 
 ---
-### [2026-09-03 20:20] | App/Componente: web / db | Autor: Antigravity
+### [2026-09-04 12:05] | App/Componente: web / edge-functions | Autor: Antigravity
+
+* **Descripción:** Implementación de desacoplamiento dinámico multi-entorno (TEST/PROD) en pasarela Mercado Pago y estrategia de resolución dual de tokens en Webhook, con validación exitosa en producción en vivo.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:**
+    - [actions.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts): Envío explícito del entorno `env: NEXT_PUBLIC_MERCADOPAGO_ENV || "PROD"` en la invocación a la Edge Function `mercadopago_preferencia`.
+    - [index.ts (mercadopago_preferencia)](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_preferencia/index.ts): Lectura dinámica de `env` desde el body con fallback seguro a la variable `MERCADOPAGO_ENV` o `"PROD"`. Desplegada versión 24 en Supabase.
+    - [index.ts (mercadopago_webhook)](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_webhook/index.ts): Consulta con estrategia de token primario (PROD) y reintento con token secundario (TEST), permitiendo que pagos de Sandbox y Producción coexistan sin colisiones. Desplegada versión 19 en Supabase.
+  - **Base de Datos:** Verificada transacción en vivo #198 con proveedor Mercado Pago (`177253140618`), cargo de S/ 48.00 por créditos previos, cobro pasarela de S/ 5.00 (ticket mínimo para cubrir los S/ 2.00 restantes) y acreditación inmediata del vuelto de S/ 3.00 en `CreditoXContratante` (asiento #240).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La Edge Function `mercadopago_preferencia` acepta el entorno sin alterar la configuración global de producción.
+  - [x] AC 2: El Webhook procesa pagos de ambos entornos de forma transparente y resiliente.
+  - [x] AC 3: Validación integral en vivo con dinero real y comprobación de asiento de vuelto en base de datos.
+---
 
 * **Descripción:** Implementación en servidor y base de datos del forzado de Ticket Mínimo (S/ 5.00) en pasarela Mercado Pago y acreditación matemática exacta del diferencial (Vuelto) como saldo a favor en la cuenta del cliente.
 * **Detalles Técnicos:**
