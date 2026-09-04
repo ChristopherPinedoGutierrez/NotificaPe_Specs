@@ -1,6 +1,36 @@
 # Historial de Cambios - NotificaPe Web
 
 ---
+### [2026-09-03 20:20] | App/Componente: web / db | Autor: Antigravity
+
+* **Descripción:** Implementación en servidor y base de datos del forzado de Ticket Mínimo (S/ 5.00) en pasarela Mercado Pago y acreditación matemática exacta del diferencial (Vuelto) como saldo a favor en la cuenta del cliente.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:**
+    - [actions.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts): Forzado de `montoCobro = 500` céntimos en la creación de preferencia de pago cuando el monto final adeudado es mayor a 0 y menor a 500 céntimos.
+    - [0042_ticket_minimo_vuelto.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0042_ticket_minimo_vuelto.sql): Actualización de la función RPC `ejecutar_compra_licencia_multiple` con cálculo de `v_diferencial_vuelto := p_monto_cobrado - v_monto_final`, abono a `CreditoXContratante` y registro auditable en `TransaccionesXCredito`.
+  - **Base de Datos:** Actualizada la función `ejecutar_compra_licencia_multiple` en Supabase en vivo y otorgados permisos a roles `authenticated` y `service_role`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Transacciones con remanente inferior a S/ 5.00 se cobran como S/ 5.00 en Mercado Pago sin ser rechazadas por la pasarela.
+  - [x] AC 2: La base de datos abona la diferencia al céntimo (ej. si debía S/ 1.20, se acreditan S/ 3.80 de saldo) en la tabla `CreditoXContratante`.
+  - [x] AC 3: Queda registrado el asiento de auditoría bajo el concepto `TICKET_MINIMO_VUELTO` en `TransaccionesXCredito`.
+
+---
+### [2026-09-03 20:05] | App/Componente: web / db | Autor: Antigravity
+
+* **Descripción:** Actualización de tarifas para add-ons de licencias (S/ 30 por dispositivo y S/ 20 por usuario), ampliación de límites cuantitativos de selección en frontend (hasta 20 dispositivos y 50 usuarios) y corrección de persistencia de metadata en Edge Functions de Mercado Pago.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:**
+    - [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx): Actualización de `MAX_EXTRA_DISPOSITIVOS = 20` y `MAX_EXTRA_USUARIOS = 50`.
+    - [index.ts (mercadopago_preferencia)](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_preferencia/index.ts): Extracción de `extra_usuarios` y `extra_dispositivos` e inyección en `metadata` de Mercado Pago.
+    - [index.ts (mercadopago_webhook)](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_webhook/index.ts): Lectura de `extra_usuarios` y `extra_dispositivos` de `metadata` y entrega a `ejecutar_compra_licencia_multiple`.
+    - [0041_actualizar_precios_addons.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0041_actualizar_precios_addons.sql): Script SQL para actualizar tarifas en catálogo `Licencias`.
+  - **Base de Datos:** Actualizadas columnas `PrecioExtraDispositivoCentimos = 3000` y `PrecioExtraUsuarioCentimos = 2000` en tabla `Licencias` para todos los planes con `PermiteAddons = TRUE`. Desplegadas versiones 23 de `mercadopago_preferencia` y 18 de `mercadopago_webhook`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La base de datos calcula add-ons con los nuevos valores: S/ 30.00 por dispositivo y S/ 20.00 por usuario.
+  - [x] AC 2: La interfaz web permite incrementar hasta 20 dispositivos y 50 usuarios adicionales.
+  - [x] AC 3: Las compras procesadas por pasarela Mercado Pago preservan y persisten los extras seleccionados en la licencia activa o en cola.
+
+---
 ### [2026-08-06 14:15] | App/Componente: web | Autor: Antigravity
 
 * **Descripción:** Implementación del filtro visual y de servidor para restringir la asignación de billeteras a VersionMotor = 2 en el Dashboard de Clientes, preservando la visibilidad de billeteras legacy (V1) previamente asignadas para permitir su desactivación.

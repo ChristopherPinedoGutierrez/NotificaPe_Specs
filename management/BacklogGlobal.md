@@ -198,7 +198,7 @@
 - [x] App: web | Tarea (CR-014): Implementar UI en el Dashboard de cliente para "Adquirir Usuarios/Dispositivos Extra", conectando a la función RPC de compra.
 - [ ] App: web | Tarea (CR-014): Construir vista en `/superadmin/licencias` para que el Superadmin pueda crear "Planes Custom" aislando a un `IdContratanteExclusivo` y fijar precios manuales.
 - [ ] App: web | Tarea (CR-014): Modificar `PricingCards.tsx` para ocultar planes corporativos al público general y renderizarlos solo si el UUID coincide.
-- [ ] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyección automática del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket Mínimo de 5 soles en el checkout de MercadoPago.
+- [x] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyección automática del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket Mínimo de 5 soles en el checkout de MercadoPago.
 
 ## [E4] Entregable 4: Motor Dinámico de Regex y Estandarización (Zero-Downtime)
 
