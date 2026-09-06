@@ -227,3 +227,22 @@
   - [x] AC 4: Subtour de gestionar licencias detectable desde el FAB de ayuda y banner superior.
 ---
 
+### 2026-09-06 12:10 | App/Componente: web | Autor: AGENT_ROLE / HUMAN
+
+* **Descripción:** Migración de infraestructura de despliegue web (EasyPanel / VPS) y actualización de enrutamiento DNS:
+  1. **Motivación y Costos:** Reubicación de la instancia de EasyPanel debido a la expiración inminente del VPS original de Hostinger, migrando hacia un nuevo VPS con vigencia extendida hasta enero del próximo año para optimización presupuestaria.
+  2. **Configuración EasyPanel:** Despliegue de servicio `App` enlazado al repositorio `ChristopherPinedoGutierrez/NotificaPe_Web` mediante compilación por `Dockerfile`, inyección de variables de entorno de producción y exposición en puerto `3000`.
+  3. **DNS y SSL:** Actualización en Namecheap del `A Record` para el subdominio `notificape` (Host: `notificape`, Dominio: `ryctech.dev`) apuntando a la nueva IP pública `31.220.50.238`. Verificación de resolución HTTP 200 y enrutamiento con Traefik/Let's Encrypt.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** Ninguno a nivel de código fuente (despliegue continuo 100% stateless vía Git).
+  - **Infraestructura:**
+    - Host anterior: `2.24.79.225` (Desmantelado / Próximo a vencer).
+    - Host nuevo: `31.220.50.238` (Vigencia Enero 2027 / Hostinger VPS).
+    - Proxy / SSL: Traefik integrado en EasyPanel con Let's Encrypt para `notificape.ryctech.dev`.
+  - **Base de Datos:** Sin impacto (persistencia centralizada en Supabase).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Dockerfile compila correctamente en el nuevo EasyPanel y responde con HTTP 200 OK en puerto 3000.
+  - [x] AC 2: Registro A en Namecheap (`notificape` -> `31.220.50.238`) actualizado y propagado a nivel global.
+  - [x] AC 3: Sin interrupción en servicios de base de datos ni variables de entorno productivas.
+---
+

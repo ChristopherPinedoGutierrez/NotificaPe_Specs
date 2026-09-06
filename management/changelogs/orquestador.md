@@ -152,4 +152,6 @@ Este archivo mantiene el ÃÂ­ndice cronolÃÂ³gico estricto de todas las 
 * **[2026-08-17 15:00]** | App: viewer | Tipo: UI / Auth | ImplementaciÃÂ³n de flujo de Login Manual para Google Play Console y Script de cuenta Bypass. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-08-17 16:40]** | App: Viewer | Tipo: UI | Refinamiento de acentos y opacidades visuales (Verde Esmeralda) en dashboard y componentes comunes. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-06 12:10]** | App: web | Tipo: INFRA | Migración de VPS y EasyPanel (Host: 31.220.50.238) para notificape.ryctech.dev por vencimiento de hosting. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
+
 

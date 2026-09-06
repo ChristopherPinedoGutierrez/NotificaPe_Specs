@@ -119,6 +119,10 @@
 - [x] App: admin | Tarea (CR): Habilitar configuración de Presence en la creación del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
 - [x] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
 - [ ] App: admin | Tarea (Mejora UX/Íconos): Diseñar e integrar silueta transparente (SmallIcon) y logo a color (LargeIcon) para notificaciones en la barra de estado y panel Android [CR-013].
+- [ ] App: db | Tarea (FCM): Crear Script SQL `0043` para agregar columna `FcmToken` a dispositivos y programar Triggers Inteligentes (BEFORE DELETE, AFTER UPDATE) invocando pg_net [CR-008].
+- [ ] App: web | Tarea (FCM): Programar Edge Function `fcm-dispatcher` en TypeScript para comunicarse vía OAuth 2.0 con la API HTTP v1 de Google FCM [CR-008].
+- [ ] App: admin | Tarea (FCM): Instalar SDKs de Firebase en `build.gradle.kts`, ajustar `deploy.yml`, y programar `FCMReceiverService.kt` con parseo de payloads [CR-008].
+- [ ] App: admin | Tarea (FCM): Modificar `AuthRepository.kt` (Subida de Token, Desvinculación) y `RealtimeMonitorManager` para abortar WebSocket si existe token FCM. Ajustar UI [CR-008].
 
 ### Épica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
@@ -179,6 +183,9 @@
 - [ ] App: viewer | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permiso `FOREGROUND_SERVICE_SPECIAL_USE` del CentinelaService.
 - [x] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisión automatizada del equipo de Google Play.
 - [ ] App: viewer | Tarea (Store): Solicitar promoción manual de fase Alpha/Beta en Google Play Console para el receptor.
+
+### Épica: Infraestructura y Operaciones Cloud
+- [x] App: web | Tarea (Infraestructura): Migración de despliegue en EasyPanel hacia nuevo VPS (31.220.50.238) por renovación anticipada y ahorro de costos de hosting, y actualización de registros DNS en Namecheap para notificape.ryctech.dev.
 
 ### Tareas Generales (Por Priorizar)
 - [x] **[TSK-001]** | App: Viewer | UI: RemociÃ³n de la verificaciÃ³n y solicitud obligatoria de optimizaciÃ³n de baterÃ­a (Google Play Policies).
