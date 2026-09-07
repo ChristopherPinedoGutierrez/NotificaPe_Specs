@@ -20,7 +20,7 @@ DECLARE
     payload JSONB;
     edge_function_url TEXT := 'https://ukwzdlrnengpdnnuvofo.supabase.co/functions/v1/fcm-dispatcher';
     -- NOTA: El Bearer token debe ser el ANON_KEY de Supabase para poder enrutar correctamente.
-    auth_header JSONB := '{"Content-Type": "application/json", "Authorization": "Bearer [ANON_KEY_HERE]"}'::jsonb;
+    auth_header JSONB := '{"Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrd3pkbHJuZW5ncGRubnV2b2ZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MDE2NzgsImV4cCI6MjA5MTE3NzY3OH0.FJHI1KMmSMxB6bhALnBN-qspRlQ4_ippNvTusT6xesY"}'::jsonb;
 BEGIN
     -- Lógica BEFORE DELETE (Eliminación de Caja -> Desvincular)
     IF TG_OP = 'DELETE' AND TG_TABLE_NAME = 'DispositivosXContratante' THEN
@@ -36,9 +36,9 @@ BEGIN
         RETURN OLD;
     END IF;
 
-    -- Lógica AFTER UPDATE (Desactivación/Activación o Vencimiento)
+    -- Lógica AFTER UPDATE (Desactivación/Activación)
     IF TG_OP = 'UPDATE' AND TG_TABLE_NAME = 'DispositivosXContratante' THEN
-        IF OLD."Activo" IS DISTINCT FROM NEW."Activo" OR OLD."FechaVencimiento" IS DISTINCT FROM NEW."FechaVencimiento" THEN
+        IF OLD."Activo" IS DISTINCT FROM NEW."Activo" THEN
             target_token := NEW."FcmToken";
             IF target_token IS NOT NULL THEN
                 payload := jsonb_build_object('action', 'SYNC_DEVICE_STATUS', 'target', target_token);
