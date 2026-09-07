@@ -119,7 +119,7 @@
 - [x] App: admin | Tarea (CR): Habilitar configuración de Presence en la creación del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
 - [x] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
 - [ ] App: admin | Tarea (Mejora UX/Íconos): Diseñar e integrar silueta transparente (SmallIcon) y logo a color (LargeIcon) para notificaciones en la barra de estado y panel Android [CR-013].
-- [ ] App: db | Tarea (FCM): Crear Script SQL `0043` para agregar columna `FcmToken` a dispositivos y programar Triggers Inteligentes (BEFORE DELETE, AFTER UPDATE) invocando pg_net [CR-008].
+- [x] App: db | Tarea (FCM): Crear Script SQL `0043` para agregar columna `FcmToken` a dispositivos y programar Triggers Inteligentes (BEFORE DELETE, AFTER UPDATE) invocando pg_net [CR-008].
 - [ ] App: web | Tarea (FCM): Programar Edge Function `fcm-dispatcher` en TypeScript para comunicarse vía OAuth 2.0 con la API HTTP v1 de Google FCM [CR-008].
 - [ ] App: admin | Tarea (FCM): Instalar SDKs de Firebase en `build.gradle.kts`, ajustar `deploy.yml`, y programar `FCMReceiverService.kt` con parseo de payloads [CR-008].
 - [ ] App: admin | Tarea (FCM): Modificar `AuthRepository.kt` (Subida de Token, Desvinculación) y `RealtimeMonitorManager` para abortar WebSocket si existe token FCM. Ajustar UI [CR-008].
