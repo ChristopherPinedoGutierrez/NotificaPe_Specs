@@ -251,10 +251,8 @@
 ### Hito 4: Inducción, Onboarding y Tours en Aplicaciones Móviles
 
 #### Sub-Hito 4.1: App Admin (Emisor - Android / Jetpack Compose)
-- [ ] App: admin | **[TSK-026A]** Onboarding Carousel: Diseñar e integrar carrusel de bienvenida interactivo de 4 pasos explicando el rol del emisor, solicitud justificada del permiso `NotificationListenerService` y configuración de optimización de batería sin restricciones.
-- [ ] App: admin | **[TSK-026B]** Vinculación QR: Integrar pantalla asistida de escaneo de QR de caja con confirmación de enlace exitoso y registro del `HardwareId` en Supabase.
-- [ ] App: admin | **[TSK-026C]** Spotlight Tour Principal: Implementar recorrido guiado paso a paso en la pantalla principal resaltando el interruptor del Foreground Service, el monitor de billeteras activas y el laboratorio de notificaciones mock.
-- [ ] App: admin | **[TSK-026D]** Persistencia y Ayuda: Guardar el estado de finalización del onboarding en DataStore y habilitar el botón "Repetir Recorrido / Guía" en la pantalla de Ajustes.
+- [ ] App: admin | **[TSK-026A]** Spotlight Tour Principal: Implementar recorrido guiado (Tour Interactivo) paso a paso en la pantalla principal (Dashboard). Debe activarse post-vinculación, resaltando el interruptor del Foreground Service y el monitor de billeteras activas (basado exclusivamente en componentes de producción/release, ignorando secciones debug).
+- [ ] App: admin | **[TSK-026B]** Módulo de Ayuda y Persistencia (Help Drawer): Desarrollar un panel de ayuda (Bottom Sheet o Navigation Drawer) similar al proyecto Web, incluyendo respuestas a FAQs y un botón para re-lanzar el "Spotlight Tour". Persistir el estado de completitud del tour en DataStore.
 
 #### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
 - [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: Diseñar carrusel de inducción para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
