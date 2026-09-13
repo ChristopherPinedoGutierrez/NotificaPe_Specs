@@ -157,3 +157,4 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 
 
 
+* **[2026-09-13 12:03]** | App: db | Tipo: DB | Implementación de Triggers FCM y columna FcmToken para el motor Push-to-Pull del Viewer. Ver [changelog_database.md](file:///../NotificaPe_Specs/management/changelogs/changelog_database.md)

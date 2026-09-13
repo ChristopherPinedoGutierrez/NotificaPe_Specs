@@ -851,3 +851,15 @@
   - [x] AC 2: Se registraron exclusiones categorizadas para evitar ruido de Yape.
 ---
 
+
+---
+### 2026-09-13 12:03 | App/Componente: db | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de Triggers FCM y columna FcmToken para el motor Push-to-Pull del Viewer.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [schema.sql](file:///../management/database/schema.sql)
+  - **Base de Datos:** Añadida columna FcmToken en tabla Usuarios. Creado script  044_fcm_tokens_viewer.sql con función n_dispatch_fcm_viewer y triggers para sincronizar autorizaciones, pagos, reclamos y billeteras vía la Edge Function cm-dispatcher.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La columna FcmToken está lista para recibir el token de Google.
+  - [x] AC 2: Los triggers de cruce aseguran enviar notificaciones solo a cajeros aprobados.
+---

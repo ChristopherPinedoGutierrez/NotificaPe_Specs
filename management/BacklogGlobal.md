@@ -1,4 +1,4 @@
-# Backlog Global Unificado
+﻿# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃ³n Completada)
 
@@ -261,4 +261,35 @@
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
 
+
+
+## [E6] Entregable 6: Refactorización Push-to-Pull (FCM) en Viewer
+
+### Épica 1: Configuración Cloud y Gestión de Tokens
+- [ ] App: viewer | Tarea 1.1: Configurar Firebase Console (Añadir app Viewer), descargar google-services.json y actualizar dependencias a nivel de uild.gradle.
+- [x] App: db | Tarea 1.2: Crear script de migración SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
+- [ ] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
+
+### Épica 2: Desarrollo de Triggers Inteligentes (El Francotirador FCM)
+- [x] App: db | Tarea 2.1 (Canal de Autorizaciones): Trigger en AutorizacionesXUsuario (UPDATE). Dispara Push {"action": "SYNC_AUTH"} al usuario afectado.
+- [x] App: db | Tarea 2.2 (Canal de Nuevos Pagos): Trigger en NotificacionesXDispositivo (INSERT/UPDATE). Dispara Push {"action": "SYNC_PAYMENTS"} a todos los usuarios aprobados para ese IdDispositivo.
+- [x] App: db | Tarea 2.3 (Canal de Reclamos y Disputas): Trigger en NotificacionesAUsuarios (INSERT/UPDATE/DELETE). Dispara Push {"action": "SYNC_PAYMENTS"} a la caja respectiva.
+- [x] App: db | Tarea 2.4 (Canal de Configuración de Cajas/QRs): Trigger en BilleterasXDispositivo (INSERT/UPDATE/DELETE). Dispara Push {"action": "SYNC_WALLETS"} a los cajeros para forzar la actualización del QR.
+
+### Épica 3: Extirpación del Core Realtime y Limpieza Profunda (App Viewer)
+- [ ] App: viewer | Tarea 3.1: Eliminar Panel de Diagnóstico (RealtimeAuditDialog.kt). Eliminar botón de Auditoría ("Wifi") en VinculacionHeader.kt.
+- [ ] App: viewer | Tarea 3.2: Eliminar el Foreground Service: Borrar completamente CentinelaService.kt y CentinelaStateObserver.kt. 
+- [ ] App: viewer | Tarea 3.3: Eliminar lógica de Sockets: Borrar RealtimeCoordinator.kt, DiagnosticsManager.kt y todas las clases RealtimeDataSource.
+
+### Épica 4: Implementación Push-to-Pull y Motor de Alertas
+- [ ] App: viewer | Tarea 4.1: Crear FCMReceiverService.kt. Instanciar interceptación en background.
+- [ ] App: viewer | Tarea 4.2: Refactorizar repositorios. Convertir flujos de Supabase a SharedFlow locales y hacer Pull REST al recibir Push de FCMReceiverService.kt.
+- [ ] App: viewer | Tarea 4.3: Enlazar el disparo de alertas de pago (TTS de voz y Pop-ups HeadsUp) al final exitoso de la descarga HTTP.
+- [ ] App: viewer | Tarea 4.4: Refactorizar CentinelaNotificationManager.kt a una Cola circular FIFO (10 notificaciones máx).
+
+### Épica 5: Refactorización UI/UX, Loaders y Resiliencia (App Viewer)
+- [ ] App: viewer | Tarea 5.1: Refactorizar EsperaAprobacionScreen a vista pasiva. Al recibir Push de aprobación, hacer Pull y auto-redireccionar al Dashboard (Navegación Cero-Sockets).
+- [ ] App: viewer | Tarea 5.2: Refactorizar botón "Desvincular". Ejecutar HTTP REST e invalidar sesión inmediatamente.
+- [ ] App: viewer | Tarea 5.3: Eliminar ConnectionPill ("En Línea").
+- [ ] App: viewer | Tarea 5.4: Integrar NetworkMonitor.kt en la capa visual (Loaders de Auto-recuperación).
 

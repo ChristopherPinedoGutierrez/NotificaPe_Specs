@@ -1,4 +1,4 @@
-
+ï»¿
 -- ==============================================================================
 -- SCRIPT DE INICIALIZACIÃ“N SUPABASE - PROYECTO: NOTIFICAPE
 -- Dialecto: PostgreSQL
@@ -65,7 +65,8 @@ CREATE TABLE public."Contratantes" (
     "NombreNegocio" VARCHAR(100),
     "Correo" VARCHAR(100) UNIQUE NOT NULL,
     "TelefonoContratante" VARCHAR(20),
-    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW()
+    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW(),
+    "FcmToken" TEXT
 );
 
 CREATE TABLE public."Usuarios" (
@@ -76,7 +77,8 @@ CREATE TABLE public."Usuarios" (
     "TelefonoUsuario" VARCHAR(20),
     "EquipoMarca" VARCHAR(50),
     "EquipoModelo" VARCHAR(50),
-    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW()
+    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW(),
+    "FcmToken" TEXT
 );
 
 CREATE TABLE public."OrdenesCompra" (
@@ -184,7 +186,8 @@ CREATE INDEX "idx_notif_reporte_gerencial" ON public."NotificacionesXDispositivo
 CREATE TABLE public."Superadministradores" (
     "IdSuperadmin" UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     "Correo" VARCHAR(100) UNIQUE NOT NULL,
-    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW() NOT NULL
+    "FechaCreacion" TIMESTAMPTZ DEFAULT NOW(),
+    "FcmToken" TEXT NOT NULL
 );
 
 CREATE TABLE public."Reclamaciones" (
@@ -528,7 +531,7 @@ COMMIT;
  
  - -   F e c h a :   2 0 2 6 - 0 8 - 0 4 
  
- - -   J u s t i f i c a c i Ã ³ n :   F i x   d e   p r o r r a t e o   p a r a   u p g r a d e s   ( e v i t a n d o   p Ã © r d i d a   d e   v a l o r   d e   a d d o n s ) ,   h a b i l i t a r   c o m p r a s   m i x t a s   P l a n + A d d o n   s i m u l t Ã ¡ n e a s   y   c r e a r   m o t o r   d e   c o l a s . 
+ - -   J u s t i f i c a c i ï¿½ ï¿½ n :   F i x   d e   p r o r r a t e o   p a r a   u p g r a d e s   ( e v i t a n d o   p ï¿½ ï¿½ r d i d a   d e   v a l o r   d e   a d d o n s ) ,   h a b i l i t a r   c o m p r a s   m i x t a s   P l a n + A d d o n   s i m u l t ï¿½ ï¿½ n e a s   y   c r e a r   m o t o r   d e   c o l a s . 
  
  
  
@@ -536,7 +539,7 @@ COMMIT;
  
  
  
- - -   1 .   A Ã ± a d i r   c a m p o s   a   l a   c o l a   d e   l i c e n c i a s 
+ - -   1 .   A ï¿½ ï¿½ a d i r   c a m p o s   a   l a   c o l a   d e   l i c e n c i a s 
  
  A L T E R   T A B L E   p u b l i c . " L i c e n c i a s C o l a "   
  
@@ -672,7 +675,7 @@ COMMIT;
  
  
  
-         - -   G e n e r a r   c r Ã © d i t o   s i   c a m b i a   d e   p l a n   o   c a m b i a n   s u s   e x t r a s 
+         - -   G e n e r a r   c r ï¿½ ï¿½ d i t o   s i   c a m b i a   d e   p l a n   o   c a m b i a n   s u s   e x t r a s 
  
          I F   F O U N D   A N D   ( v _ a c t i v a . " I d L i c e n c i a "   < >   p _ i d _ l i c e n c i a   O R   C O A L E S C E ( v _ a c t i v a . " E x t r a U s u a r i o s " , 0 )   < >   p _ e x t r a _ u s u a r i o s   O R   C O A L E S C E ( v _ a c t i v a . " E x t r a D i s p o s i t i v o s " , 0 )   < >   p _ e x t r a _ d i s p o s i t i v o s )   T H E N 
  
@@ -1580,7 +1583,7 @@ COMMIT;
  
  - -   F e c h a :   2 0 2 6 - 0 8 - 0 4 
  
- - -   J u s t i f i c a c i Ã ³ n :   F i x   d e   p r o r r a t e o   p a r a   u p g r a d e s   ( e v i t a n d o   p Ã © r d i d a   d e   v a l o r   d e   a d d o n s ) ,   h a b i l i t a r   c o m p r a s   m i x t a s   P l a n + A d d o n   s i m u l t Ã ¡ n e a s   y   c r e a r   m o t o r   d e   c o l a s . 
+ - -   J u s t i f i c a c i ï¿½ ï¿½ n :   F i x   d e   p r o r r a t e o   p a r a   u p g r a d e s   ( e v i t a n d o   p ï¿½ ï¿½ r d i d a   d e   v a l o r   d e   a d d o n s ) ,   h a b i l i t a r   c o m p r a s   m i x t a s   P l a n + A d d o n   s i m u l t ï¿½ ï¿½ n e a s   y   c r e a r   m o t o r   d e   c o l a s . 
  
  
  
@@ -1588,7 +1591,7 @@ COMMIT;
  
  
  
- - -   1 .   A Ã ± a d i r   c a m p o s   a   l a   c o l a   d e   l i c e n c i a s 
+ - -   1 .   A ï¿½ ï¿½ a d i r   c a m p o s   a   l a   c o l a   d e   l i c e n c i a s 
  
  A L T E R   T A B L E   p u b l i c . " L i c e n c i a s C o l a "   
  
@@ -1724,7 +1727,7 @@ COMMIT;
  
  
  
-         - -   G e n e r a r   c r Ã © d i t o   s i   c a m b i a   d e   p l a n   o   c a m b i a n   s u s   e x t r a s 
+         - -   G e n e r a r   c r ï¿½ ï¿½ d i t o   s i   c a m b i a   d e   p l a n   o   c a m b i a n   s u s   e x t r a s 
  
          I F   F O U N D   A N D   ( v _ a c t i v a . " I d L i c e n c i a "   < >   p _ i d _ l i c e n c i a   O R   C O A L E S C E ( v _ a c t i v a . " E x t r a U s u a r i o s " , 0 )   < >   p _ e x t r a _ u s u a r i o s   O R   C O A L E S C E ( v _ a c t i v a . " E x t r a D i s p o s i t i v o s " , 0 )   < >   p _ e x t r a _ d i s p o s i t i v o s )   T H E N 
  
@@ -2625,3 +2628,4 @@ COMMIT;
  C O M M I T ; 
  
  
+
