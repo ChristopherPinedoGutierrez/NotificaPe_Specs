@@ -1,4 +1,4 @@
-﻿# Backlog Global Unificado
+# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃ³n Completada)
 
@@ -261,14 +261,208 @@
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
 
+### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
+- [x] App: web | Tarea (Legal): DiseÃ±ar e implementar las pÃ¡ginas estÃ¡ticas `/terminos-condiciones` y `/politica-privacidad` usando variables de entorno para datos dinÃ¡micos.
+- [x] App: web | Tarea (Legal): Agregar enlaces legales e isotipo oficial del Libro de Reclamaciones de INDECOPI en el footer del Landing Page.
+- [x] App: web | Tarea (Legal): Crear el formulario interactivo `/libro-reclamaciones` con validaciones exigidas por ley e integraciÃ³n con Supabase.
+- [x] App: web | Tarea (Legal): Configurar Edge Function para el envÃ­o de correo de confirmaciÃ³n HTML al cliente y soporte utilizando la variable `SUPPORT_EMAIL`.
+
+### Ã‰pica: Dashboard de Superadministrador
+- [x] App: web | Tarea (Admin): DiseÃ±ar panel general protegido en `/superadmin` verificando privilegios en la tabla `Superadministradores`.
+- [/] App: web | Tarea (Admin): Desarrollar Consola de Contratantes en `/superadmin/contratantes` (Falta validar a fondo la nueva Consola 360Â°, la pestaÃ±a de licencias en cola/usuarios vinculados, y la visualizaciÃ³n de notificaciones por dispositivo).
+- [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
+- [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃ¡biles).
+- [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
+
+### Ã‰pica: PolÃ­ticas de Google Play Console (Apps)
+- [ ] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en EspaÃ±ol.
+- [ ] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
+- [ ] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
+- [ ] App: admin | Tarea (Store): Solicitar promociÃ³n manual de Alpha/Beta en la consola de Google Play, adjuntando la documentaciÃ³n justificativa.
+- [ ] App: viewer | Tarea (Store): Generar activos visuales, redactar Ficha de Play Store y completar Data Safety Form sobre inicio de sesiÃ³n.
+- [ ] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisiÃ³n automatizada del equipo de Google Play.
+- [ ] App: viewer | Tarea (Store): Solicitar promociÃ³n manual de fase Alpha/Beta en Google Play Console para el receptor.
+# Backlog Global Unificado
+**Proyecto:** NotificaPe
+**Estatus:** Activo (Fase Inicial de IntegraciÃ³n Completada)
+
+## [E1] Entregable 1: Core de Notificaciones y SincronizaciÃ³n
+
+### Ã‰pica: Base de Datos y APIs
+- [x] App: db | Tarea (CR): ExtensiÃ³n de Billeteras: Agregar campo ColorHex y soporte para Lemon Cash (me.lemon.ar) mediante el script 0018_billeteras_color_lemon.sql.
+- [x] App: web | Tarea: Conectar MCP de Supabase y validar estructura final de disputas (Triggers/Vistas) vs la nube.
+- [ ] App: web | Tarea: Implementar endpoints CRUD y Edge Functions para el manejo de sesiones y empresas.
+- [x] App: web | Tarea (CR): Crear bucket pÃºblico en Supabase Storage (o configurar URL en GitHub Releases) y subir las compilaciones APK iniciales.
+- [x] App: web | Tarea (CR): Modificar Landing Page para actualizar la secciÃ³n de precios (nuevos planes), detallar el flujo de las 3 aplicaciones y aÃ±adir botones de descarga directa para los APKs.
+- [ ] App: web | Tarea (Deploy): Publicar la Pantalla de Consentimiento de OAuth en Google Cloud Console a estado 'En producciÃ³n' para remover el lÃ­mite de 100 usuarios de prueba antes del lanzamiento oficial.
+
+### Ã‰pica: Emisor
+- [x] App: admin | Tarea: Implementar lÃ³gica Room-First y Worker Offline para resiliencia total.
+- [x] App: web | Tarea (CR): Crear bucket público en Supabase Storage (o configurar URL en GitHub Releases) y subir las compilaciones APK iniciales.
+- [x] App: web | Tarea (CR): Modificar Landing Page para actualizar la sección de precios (nuevos planes), detallar el flujo de las 3 aplicaciones y añadir botones de descarga directa para los APKs.
+- [ ] App: web | Tarea (Deploy): Publicar la Pantalla de Consentimiento de OAuth en Google Cloud Console a estado 'En producción' para remover el límite de 100 usuarios de prueba antes del lanzamiento oficial.
+
+### Épica: Emisor
+- [x] App: admin | Tarea: Implementar lógica Room-First y Worker Offline para resiliencia total.
+- [x] App: admin | Tarea: Homogeneizar conectividad Realtime con el motor de Viewer (Watchdogs rápidos, Backoff Exponencial y Scavenger de 5 min) [Hito 1].
+- [x] App: admin | Tarea: Vincular Foreground Service con el estado de activación y billeteras dinámicas [Hito 2].
+- [ ] App: admin | Tarea: Segurizar autenticación de terminales mediante JWT único por dispositivo y eliminación de privilegios al rol anon en RLS [Hito 3].
+- [x] App: admin | Tarea (CR): Implementar receptor de boot (BootReceiver) y permiso de reinicio para autoarrancar el Foreground Service de forma resiliente tras encender el celular [CR-002].
+- [ ] App: admin | Tarea: Implementar suite de pruebas instrumentadas de integración (androidTest) para simular caídas físicas de red (handover) y persistencia transaccional en Room.
+- [x] App: admin | Tarea (CR): Incluir timestamp (sbn.postTime) en el generador de IdSync (ExtractPaymentUseCase y TestLabHandler) para evitar la deduplicación errónea de transferencias idénticas repetidas en el tiempo [CR-007].
+- [x] App: admin | Tarea (CR): Habilitar configuración de Presence en la creación del canal Realtime para permitir el track de estado online en el dashboard [CR-010].
+- [x] App: admin | Tarea (Mejora UX): Implementar "Limpieza Automática Segura" (Opción A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una única notificación persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | Último: S/ 15"), evitando saturar el límite de Android bajo estrés [CR-012].
+- [ ] App: admin | Tarea (Mejora UX/Íconos): Diseñar e integrar silueta transparente (SmallIcon) y logo a color (LargeIcon) para notificaciones en la barra de estado y panel Android [CR-013].
+- [x] App: db | Tarea (FCM): Crear Script SQL `0043` para agregar columna `FcmToken` a dispositivos y programar Triggers Inteligentes (BEFORE DELETE, AFTER UPDATE) invocando pg_net [CR-008].
+- [x] App: web | Tarea (FCM): Programar Edge Function `fcm-dispatcher` en TypeScript para comunicarse vía OAuth 2.0 con la API HTTP v1 de Google FCM [CR-008].
+- [x] App: admin | Tarea (FCM): Instalar SDKs de Firebase en `build.gradle.kts`, ajustar `deploy.yml`, y programar `FCMReceiverService.kt` con parseo de payloads [CR-008].
+- [x] App: admin | Tarea (FCM): Modificar `AuthRepository.kt` (Subida de Token, Desvinculación) y extirpar WebSockets. Ajustar UI (pantalla de bloqueo y estados FCM) [CR-008].
+
+### Épica: Receptor
+- [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseñar UI de resolución de conflictos.
+- [x] App: viewer | Tarea: Integrar invocación de RPC `rpc_resolver_disputas` para mediación final.
+- [x] App: viewer | Tarea (CR): Implementar mapeo detallado de excepciones de Credential Manager en pantalla de Login para diagnóstico no presencial de fallos de firma o servicios [CR-003].
+- [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
+- [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelación de listener al minimizar. Implementar caché local de sesión en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
+- [x] App: viewer | Tarea (CR): Restaurar flujo de events Insert en RealtimeCoordinator
+- [x] App: db | Tarea (Deuda TÃ©cnica): Elaborar y ejecutar un script de migraciÃ³n SQL Ãºnico (`0030_legal_and_superadmin.sql`) para eliminar definitivamente las tablas huÃ©rfanas `ConflictosXNotificacion` y `DisputasNotificaciones` en desarrollo y producciÃ³n.
+
+### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
+- [x] App: web | Tarea (Legal): DiseÃ±ar e implementar las pÃ¡ginas estÃ¡ticas `/terminos-condiciones` y `/politica-privacidad` usando variables de entorno para datos dinÃ¡micos.
+- [x] App: web | Tarea (Legal): Agregar enlaces legales e isotipo oficial del Libro de Reclamaciones de INDECOPI en el footer del Landing Page.
+- [x] App: web | Tarea (Legal): Crear el formulario interactivo `/libro-reclamaciones` con validaciones exigidas por ley e integraciÃ³n con Supabase.
+- [x] App: web | Tarea (Legal): Configurar Edge Function para el envÃ­o de correo de confirmaciÃ³n HTML al cliente y soporte utilizando la variable `SUPPORT_EMAIL`.
+
+### Ã‰pica: Dashboard de Superadministrador
+- [x] App: web | Tarea (Admin): DiseÃ±ar panel general protegido en `/superadmin` verificando privilegios en la tabla `Superadministradores`.
+- [/] App: web | Tarea (Admin): Desarrollar Consola de Contratantes en `/superadmin/contratantes` (Falta validar a fondo la nueva Consola 360Â°, la pestaÃ±a de licencias en cola/usuarios vinculados, y la visualizaciÃ³n de notificaciones por dispositivo).
+- [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
+- [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃ¡biles).
+- [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
+
+### Épica: Políticas de Google Play Console (Apps)
+- [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
+- [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
+- [x] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
+- [x] App: admin | Tarea (Store): Solicitar promoción manual de Alpha/Beta en la consola de Google Play, adjuntando la documentación justificativa.
+- [x] App: viewer | Tarea (CR): Rediseño de cola unificada de notificaciones (TTS/Push/Vibración), ritmo dinámico, catch-up silencioso, escrituras DataStore batch, modo tradicional en cortina Android y auto-limpieza de alertas al abrir el app [CR-010]. (cumpleFiltro) para que las notificaciones en segundo plano disparen alertas TTS y VibraciÃ³n correctamente [CR-008].
+- [x] App: viewer | Tarea (CR): DiseÃ±ar e implementar el flujo alternativo de Registro y Login Manual (sin Google Services/GMS) mediante correo/contraseÃ±a y verificaciÃ³n de billeteras asociadas [CR-005].
+
+## [E2] Entregable 2: Cumplimiento Legal y Operaciones SaaS
+
+### Ã‰pica: Base de Datos y Mantenimiento
+- [x] App: db | Tarea (Legal): Crear la tabla `Superadministradores` en Supabase con polÃ­ticas RLS para control restrictivo de acceso al dashboard.
+- [x] App: db | Tarea (Legal): Crear la tabla `Reclamaciones` en Supabase con RLS habilitado (inserciÃ³n pÃºblica para anÃ³nimos, lectura exclusiva para superadmins).
+- [x] App: db | Tarea (Deuda TÃ©cnica): Elaborar y ejecutar un script de migraciÃ³n SQL Ãºnico (`0030_legal_and_superadmin.sql`) para eliminar definitivamente las tablas huÃ©rfanas `ConflictosXNotificacion` y `DisputasNotificaciones` en desarrollo y producciÃ³n.
+
+### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
+- [x] App: web | Tarea (Legal): DiseÃ±ar e implementar las pÃ¡ginas estÃ¡ticas `/terminos-condiciones` y `/politica-privacidad` usando variables de entorno para datos dinÃ¡micos.
+- [x] App: web | Tarea (Legal): Agregar enlaces legales e isotipo oficial del Libro de Reclamaciones de INDECOPI en el footer del Landing Page.
+- [x] App: web | Tarea (Legal): Crear el formulario interactivo `/libro-reclamaciones` con validaciones exigidas por ley e integraciÃ³n con Supabase.
+- [x] App: web | Tarea (Legal): Configurar Edge Function para el envÃ­o de correo de confirmaciÃ³n HTML al cliente y soporte utilizando la variable `SUPPORT_EMAIL`.
+
+### Ã‰pica: Dashboard de Superadministrador
+- [x] App: web | Tarea (Admin): DiseÃ±ar panel general protegido en `/superadmin` verificando privilegios en la tabla `Superadministradores`.
+- [/] App: web | Tarea (Admin): Desarrollar Consola de Contratantes en `/superadmin/contratantes` (Falta validar a fondo la nueva Consola 360Â°, la pestaÃ±a de licencias en cola/usuarios vinculados, y la visualizaciÃ³n de notificaciones por dispositivo).
+- [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
+- [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃable).
+- [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
+
+### Épica: Políticas de Google Play Console (Apps)
+- [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
+- [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
+- [x] App: admin | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permisos `NotificationListenerService` y `FOREGROUND_SERVICE`.
+- [x] App: admin | Tarea (Store): Solicitar promoción manual de Alpha/Beta en la consola de Google Play, adjuntando la documentación justificativa.
+- [ ] App: viewer | Tarea (Store): Generar activos visuales, redactar Ficha de Play Store y completar Data Safety Form sobre inicio de sesión.
+- [ ] App: viewer | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permiso `FOREGROUND_SERVICE_SPECIAL_USE` del CentinelaService.
+- [x] App: viewer | Tarea (Store): Crear e inyectar en BD una cuenta bypass de prueba para permitir la revisión automatizada del equipo de Google Play.
+- [ ] App: viewer | Tarea (Store): Solicitar promoción manual de fase Alpha/Beta en Google Play Console para el receptor.
+
+### Épica: Infraestructura y Operaciones Cloud
+- [x] App: web | Tarea (Infraestructura): Migración de despliegue en EasyPanel hacia nuevo VPS (31.220.50.238) por renovación anticipada y ahorro de costos de hosting, y actualización de registros DNS en Namecheap para notificape.ryctech.dev.
+
+### Tareas Generales (Por Priorizar)
+- [x] **[TSK-001]** | App: Viewer | UI: RemociÃ³n de la verificaciÃ³n y solicitud obligatoria de optimizaciÃ³n de baterÃ­a (Google Play Policies).
+- [x] **[CR-007]** | App: Admin | LÃ³gica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinÃ¡mico en la generaciÃ³n del `IdSync`, a fin de evitar la deduplicaciÃ³n incorrecta en el receptor (Viewer).
+- [x] **[CR-009]** | App: Web | UI/API: RediseÃ±o del Estado de ConexiÃ³n en detalle de dispositivo fÃ­sico vÃ­a Supabase Realtime Presence (escuchando el canal broadcast del app Admin).
+
+## [E3] Entregable 3: Expansión de Negocio B2B (CR-014)
+
+### Épica: Base de Datos y Facturación Modular (App: db)
+- [x] Crear script `0035_addons_y_custom_plans.sql` añadiendo `IdContratanteExclusivo`, `PermiteAddons`, y precios extra a `Licencias`. Y columnas `ExtraUsuarios`, `ExtraDispositivos` a `LicenciasXContratante`.
+- [x] Actualizar trigger `check_user_limit` y afines para que sumen `Limite + Extra` leyendo de la instancia de `LicenciasXContratante` activa.
+- [x] Crear función RPC `procesar_compra_addon` que asigne el saldo en crédito y actualice los campos Extra de la licencia (con lógica de ticket mínimo).
+- [x] Tarea (CR-014): Modificar motor de compras (previsualizar y ejecutar) para considerar add-ons e implementar motor automático de colas con pg_cron.
+
+### Épica: Panel de Usuario y Superadmin (Frontend)
+- [x] App: web | Tarea (CR-014): Actualizar DTOs en `actions_control.ts` y `dispositivos/actions.ts` para leer y sumar los campos `ExtraUsuarios` y `ExtraDispositivos` de la base de datos al validar límites.
+- [x] App: web | Tarea (CR-014): Implementar UI en el Dashboard de cliente para "Adquirir Usuarios/Dispositivos Extra", conectando a la función RPC de compra.
+- [ ] App: web | Tarea (CR-014): Construir vista en `/superadmin/licencias` para que el Superadmin pueda crear "Planes Custom" aislando a un `IdContratanteExclusivo` y fijar precios manuales.
+- [ ] App: web | Tarea (CR-014): Modificar `PricingCards.tsx` para ocultar planes corporativos al público general y renderizarlos solo si el UUID coincide.
+- [x] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyección automática del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket Mínimo de 5 soles en el checkout de MercadoPago.
+
+## [E4] Entregable 4: Motor Dinámico de Regex y Estandarización (Zero-Downtime)
+
+### Épica: Aplicación Web (Superadmin y Cliente)
+- [x] App: web | Tarea: Crear UI 'Simulador Regex' en el Superadmin que tome el `PayloadBruto` (JSON) de notificaciones en estado 'REVISION', reconstruya el string concatenado en pantalla y evalúe la Regex en vivo.
+- [ ] App: web | Tarea: Implementar UI 'Previsualizador de Mensaje' que aplique el `FormatoMensaje` sobre las variables extraídas (Grupos Nombrados) en el simulador.
+- [ ] App: web | Tarea: Agregar botón y conexión a la Edge Function `reprocesar-notificaciones` para re-evaluar registros 'REVISION' tras guardar una regla.
+- [x] App: web | Tarea: Modificar la UI de "Mis Billeteras" (Cliente) para que en el selector de asignación **solo** se listen billeteras que tengan al menos una regla activa con `VersionMotor = 2`.
+- [ ] App: web | Tarea (Admin): Crear herramienta de limpieza masiva (Hard Delete) en el Superadmin para remover de DB y Storage las billeteras legacy inactivas.
+- [ ] App: web | Tarea (Futuro): Desarrollar CRUD completo para la gestión de Billeteras en el Superadmin. Considera alta complejidad técnica (validaciones de integridad referencial, eliminación en cascada segura considerando asignaciones previas a usuarios y filtros) para no romper registros históricos.
+
+### Épica: Emisor Android (Admin)
+- [x] App: admin | Tarea: Eliminar código duro de Lemon Pay en el servicio de evaluación.
+- [x] App: admin | Tarea: Implementar generación del String de Evaluación concatenado (`[TITLE]...[TEXT]...`) en memoria RAM y ejecución de Regex con Grupos de Captura Nombrados.
+- [x] App: admin | Tarea: Mapear variables extraídas e interpolarlas con el `FormatoMensaje` antes de guardar `ContenidoMsg`.
+- [x] App: admin | Tarea: Actualizar consulta DAO/Repository para descargar únicamente las reglas con `VersionMotor = 2`.
+- [x] App: admin | Tarea: Modificar herramienta local 'Mensaje Mock' y capturar el PayloadBruto.
+
+### Épica: Base de Datos y Backend
+- [ ] App: db | Tarea: Crear script de migración añadiendo `TipoFiltro`, `FormatoMensaje`, `VersionMotor` a `FiltrosXBilletera` y `PayloadBruto` a `NotificacionesXDispositivo`.
+- [ ] App: db | Tarea: Crear script inicial para duplicar las reglas vigentes de Yape y Lemon al formato concatenado bajo `VersionMotor = 2`.
+- [ ] App: db | Tarea: Implementar Edge Function (Deno/TypeScript) `reprocesar-notificaciones` para recorrer y procesar con Regex (JS) las notificaciones en estado 'REVISION' y promoverlas a 'PENDIENTE'.
+
+## [E5] Entregable 5: Sistema Integral de Onboarding y Usabilidad
+
+### Hito 1: Hub de Descargas y Resiliencia de Accesos
+- [x] App: web | **[TSK-016]** UI: Desarrollar `DownloadHubModal.tsx` con selector bitemático (Dark/Light) para App Emisor y App Receptor, códigos QR dinámicos para descarga directa desde celular, temporizador de descarga de APK, link a tiendas oficiales y botón para compartir enlace de instalación a cajeros vía mensajería (sin marcas comerciales en código duro).
+- [x] App: web | **[TSK-017]** Navegación: Integrar disparadores del Hub de Descargas en `SidebarNav.tsx` (versión desktop y sheet mobile) y en el encabezado `DashboardHeader.tsx`.
+- [x] App: web | **[TSK-018]** Seguridad/UX: Refactorizar `AccessGuard.tsx` y `licencias/page.tsx` para incorporar banner superior informativo contextual ante redirección por plan expirado o cuenta sin licencia activa.
+- [x] App: web | **[TSK-019]** UI: Rediseñar Empty States en `/dashboard/dispositivos` y `/dashboard/accesos` con micro-guías visuales y botones CTA directos para crear cajas y gestionar autorizaciones.
+
+### Hito 2: Widget Setup Checklist en Dashboard
+- [x] App: web | **[TSK-020]** Backend/DTO: Extender `fetchControlCenterStats` en `actions_control.ts` para calcular reactivamente los 4 estados de configuración inicial (perfil completado, licencia activa, cajas creadas, terminales/vendedores vinculados).
+- [x] App: web | **[TSK-021]** UI: Construir el componente `SetupChecklist.tsx` en `/dashboard` con barra de progreso porcentual, estados interactivos (Checks/Botones), persistencia de colapso y dismiss en `localStorage`, y soporte Dark/Light.
+- [x] App: web | **[TSK-022]** Integración: Integrar `SetupChecklist.tsx` en `DashboardClient.tsx` arriba de las tarjetas de métricas.
+
+### Hito 3: Panel Lateral de Ayuda (Help Drawer) y Tour Interactivo Spotlight
+- [x] App: web | **[TSK-023]** UI: Construir `HelpDrawer.tsx` (Panel lateral tipo `Sheet`) con detección de ruta activa (`pathname`), acordeones bitemáticos de FAQs contextuales por sección (Dashboard, Dispositivos, Accesos, Notificaciones) y accesos directos al Hub de Descargas y Tour.
+- [x] App: web | **[TSK-024]** UI/Motor: Implementar el motor de tour interactivo `SpotlightTour.tsx` (overlay con backdrop y tooltips inteligentes bitemáticos) para el recorrido general del Dashboard y mini-tours contextuales.
+- [x] App: web | **[TSK-025]** Navegación/Estado: Montar el sistema de ayuda en `dashboard/layout.tsx` con trigger flotante e implementar la lógica de persistencia (`COMPLETED`, `IN_PROGRESS`, `DISMISSED`) y reanudación ante interrupciones.
+- [x] App: web | **[TSK-025B]** UI/UX: Refactorizar SpotlightTour a tarjeta compacta flotante y arrastrable (Draggable) en desktop con modo dock inferior en móvil, tours condicionales multi-vista (actividad en dashboard, anatomía directa en detalle de dispositivo, personalización en gestión de licencias) y desacoplamiento de acordeones en /dashboard/licencias.
+
+### Hito 4: Inducción, Onboarding y Tours en Aplicaciones Móviles
+
+#### Sub-Hito 4.1: App Admin (Emisor - Android / Jetpack Compose)
+- [ ] App: admin | **[TSK-026A]** Spotlight Tour Principal: Implementar recorrido guiado (Tour Interactivo) paso a paso en la pantalla principal (Dashboard). Debe activarse post-vinculación, resaltando el interruptor del Foreground Service y el monitor de billeteras activas (basado exclusivamente en componentes de producción/release, ignorando secciones debug).
+- [ ] App: admin | **[TSK-026B]** Módulo de Ayuda y Persistencia (Help Drawer): Desarrollar un panel de ayuda (Bottom Sheet o Navigation Drawer) similar al proyecto Web, incluyendo respuestas a FAQs y un botón para re-lanzar el "Spotlight Tour". Persistir el estado de completitud del tour en DataStore.
+
+#### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
+- [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: Diseñar carrusel de inducción para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
+- [ ] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
+- [ ] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+- [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
+- [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
+
 
 
 ## [E6] Entregable 6: Refactorización Push-to-Pull (FCM) en Viewer
 
 ### Épica 1: Configuración Cloud y Gestión de Tokens
-- [ ] App: viewer | Tarea 1.1: Configurar Firebase Console (Añadir app Viewer), descargar google-services.json y actualizar dependencias a nivel de uild.gradle.
-- [x] App: db | Tarea 1.2: Crear script de migración SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
-- [ ] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
+- [x] App: viewer | Tarea 1.1: Configurar Firebase Console (Añadir app Viewer), descargar google-services.json y actualizar dependencias a nivel de build.gradle.
+- [x] App: db | Tarea 1.2: Crear script de migración SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
+- [x] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
 
 ### Épica 2: Desarrollo de Triggers Inteligentes (El Francotirador FCM)
 - [x] App: db | Tarea 2.1 (Canal de Autorizaciones): Trigger en AutorizacionesXUsuario (UPDATE). Dispara Push {"action": "SYNC_AUTH"} al usuario afectado.

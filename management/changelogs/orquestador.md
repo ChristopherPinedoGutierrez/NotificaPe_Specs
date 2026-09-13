@@ -1,4 +1,4 @@
-﻿* **[2026-09-07 18:25]** | App: db/web/admin | Tipo: DB/API/UI | Migración de WebSockets a FCM en admin y Supabase, creación de Edge Function y triggers. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md) y [changelog_web.md](file:///../NotificaPe_Specs/management/changelogs/changelog_web.md)
+* **[2026-09-07 18:25]** | App: db/web/admin | Tipo: DB/API/UI | Migración de WebSockets a FCM en admin y Supabase, creación de Edge Function y triggers. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md) y [changelog_web.md](file:///../NotificaPe_Specs/management/changelogs/changelog_web.md)
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estricto de todas las modificaciones en el ecosistema NotificaPe.
 
@@ -158,3 +158,4 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 
 
 * **[2026-09-13 12:03]** | App: db | Tipo: DB | Implementación de Triggers FCM y columna FcmToken para el motor Push-to-Pull del Viewer. Ver [changelog_database.md](file:///../NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-09-13 14:48]** | App: viewer | Tipo: API/Config | Integración de Firebase SDK y sincronización de FCM Token en el login para la arquitectura Push-to-Pull. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)

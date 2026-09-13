@@ -511,3 +511,15 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂƒÃ‚Â³gica y con
   - [x] AC 1: Componentes seleccionados aplican color secundario (Verde) con contraste semÃ¡ntico.
   - [x] AC 2: Se mantiene el color primario morado en la estructura general y switches por defecto.
 ---
+
+---
+### [2026-09-13 14:48] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Integración de Firebase Cloud Messaging (FCM) SDK y sincronización de FCM Token en el login para la arquitectura Push-to-Pull.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [libs.versions.toml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/gradle/libs.versions.toml), [build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/build.gradle.kts), [app/build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/build.gradle.kts), [AuthRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthRepositoryImpl.kt), [AuthRemoteDataSource.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/AuthRemoteDataSource.kt)
+  - **Base de Datos:** Ninguno (Scripts aplicados en DB previamente)
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Configurar Firebase Console, dependencias de Google Services y Firebase Messaging.
+  - [x] AC 2: Forzar actualización del FcmToken en la base de datos Supabase durante el login de Google y Correo.
+---
