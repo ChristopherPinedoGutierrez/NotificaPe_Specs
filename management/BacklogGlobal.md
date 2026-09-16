@@ -325,6 +325,7 @@
 - [x] App: viewer | Tarea (CR): Robustecer resiliencia de conexión Realtime y Delta Sync al retornar de background y ante transiciones de red física [CR-004].
 - [x] App: viewer | Tarea (CR): Solucionar atasco en 'Sincronizando...' y cancelación de listener al minimizar. Implementar caché local de sesión en AuthRepositoryImpl (evitar REST HTTP en background) y eliminar llamada a realtimeManager.detener() en CentinelaService [CR-006].
 - [x] App: viewer | Tarea (CR): Restaurar flujo de events Insert en RealtimeCoordinator
+- [ ] App: viewer | Tarea (FCM): Implementar Camino 2 (Foreground Wake-up) optimizado para evitar peticiones REST de validación de permisos en cada SYNC_PAYMENTS y forzar recálculo solo bajo SYNC_DEVICE_STATUS.
 - [x] App: db | Tarea (Deuda TÃ©cnica): Elaborar y ejecutar un script de migraciÃ³n SQL Ãºnico (`0030_legal_and_superadmin.sql`) para eliminar definitivamente las tablas huÃ©rfanas `ConflictosXNotificacion` y `DisputasNotificaciones` en desarrollo y producciÃ³n.
 
 ### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
