@@ -159,3 +159,6 @@ Este archivo mantiene el 脙茠脗茠脙鈥毭偮璶dice cronol脙茠脗茠脙鈥毭偮砱ico estr
 
 * **[2026-09-13 12:03]** | App: db | Tipo: DB | Implementaci贸n de Triggers FCM y columna FcmToken para el motor Push-to-Pull del Viewer. Ver [changelog_database.md](file:///../NotificaPe_Specs/management/changelogs/changelog_database.md)
 * **[2026-09-13 14:48]** | App: viewer | Tipo: API/Config | Integraci贸n de Firebase SDK y sincronizaci贸n de FCM Token en el login para la arquitectura Push-to-Pull. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-15 11:55]** | App: Viewer | Tipo: APP | Solucionado bloqueo as韓crono en TtsManager que deten韆 las notificaciones sonoras. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-15 12:57]** | App: Viewer | Tipo: APP | Auto-inicializaci髇 de colas TTS y correcci髇 de ID nulo en BackgroundSyncManager. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-16 22:09]** | App: Viewer | Tipo: UI/Servicios | Estabilizaci贸n de Agrupamiento FCM Nativo y L铆mite anti-spam de cola de voz (10). Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)

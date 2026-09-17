@@ -523,3 +523,38 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂƒÃ‚Â³gica y con
   - [x] AC 1: Configurar Firebase Console, dependencias de Google Services y Firebase Messaging.
   - [x] AC 2: Forzar actualización del FcmToken en la base de datos Supabase durante el login de Google y Correo.
 ---
+---
+### [2026-09-15 11:55] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Solucionado error crítico en encolamiento de notificaciones (Deadlock en TtsManager).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [TtsManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/manager/TtsManager.kt)
+  - **Base de Datos:** Ninguno. Se reestructuró la inicialización del TTS para evitar que un fallo en el motor deje bloqueado el coroutine channel de NotificationQueueManager, lo cual evitaba que se reprodujeran las alertas de voz y las vibraciones subsecuentes.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Las notificaciones encoladas se rechazan o prosiguen limpiamente si el TTS no está disponible, en lugar de bloquear el worker.
+---
+---
+### [2026-09-15 12:57] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección crítica en la propagación de notificaciones FCM estando la app cerrada y corrección de logs.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PagosRepositoryImpl.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/PagosRepositoryImpl.kt), [BackgroundSyncManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/BackgroundSyncManager.kt), [NotificationQueueManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: BackgroundSyncManager ya no aborta silenciosamente por recibir 
+ull en el ID del contratante.
+  - [x] AC 2: NotificationQueueManager se auto-inicializa y crea su propio worker y canal si la app despierta desde estado cerrado por medio del Broadcast FCM.
+  - [x] AC 3: Los logs de BackgroundSyncManager incluyen [FCM-FLOW: CATCH-UP] para su fácil rastreo en el Logcat.
+---
+---
+### [2026-09-16 22:09] | App/Componente: Viewer | Autor: AGENT_ROLE
+
+* **DescripciÃ³n:** EstabilizaciÃ³n de Agrupamiento Nativo de FCM y LÃ­mite de Cola de Voz.
+* **Detalles TÃ©cnicos:**
+  - **Archivos Modificados:** [CentinelaNotificationManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaNotificationManager.kt), [NotificationQueueManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt), [MainViewModel.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/MainViewModel.kt)
+  - **Base de Datos:** Ninguno. Se revirtiÃ³ el experimento manual de InboxStyle hacia el agrupamiento nativo de Android corrigiendo el cruce de NotificationChannels (Silence vs HeadsUp). Se limitÃ³ la cola FIFO de alertas a un mÃ¡ximo de 10 posiciones (BufferOverflow.DROP_OLDEST) para prevenir desbordamientos de TTS ante tormentas FCM. Se corrigiÃ³ el prefijo del tÃ­tulo de la notificaciÃ³n persistente.
+* **Criterios de AceptaciÃ³n (AC) Validados:**
+  - [x] AC 1: Android agrupa nativamente las notificaciones en un Dropdown Ãºnico.
+  - [x] AC 2: La cola de TTS no reproduce mÃ¡s de 10 pagos si llegan en cascada masiva.
+  - [x] AC 3: TÃ­tulo persistente fijo a "NotificaPe Viewer: ...".
+---

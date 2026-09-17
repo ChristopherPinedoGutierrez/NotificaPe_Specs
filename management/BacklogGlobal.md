@@ -472,19 +472,23 @@
 - [x] App: db | Tarea 2.4 (Canal de Configuración de Cajas/QRs): Trigger en BilleterasXDispositivo (INSERT/UPDATE/DELETE). Dispara Push {"action": "SYNC_WALLETS"} a los cajeros para forzar la actualización del QR.
 
 ### Épica 3: Extirpación del Core Realtime y Limpieza Profunda (App Viewer)
-- [ ] App: viewer | Tarea 3.1: Eliminar Panel de Diagnóstico (RealtimeAuditDialog.kt). Eliminar botón de Auditoría ("Wifi") en VinculacionHeader.kt.
-- [ ] App: viewer | Tarea 3.2: Eliminar el Foreground Service: Borrar completamente CentinelaService.kt y CentinelaStateObserver.kt. 
-- [ ] App: viewer | Tarea 3.3: Eliminar lógica de Sockets: Borrar RealtimeCoordinator.kt, DiagnosticsManager.kt y todas las clases RealtimeDataSource.
+- [x] App: viewer | Tarea 3.1: Eliminar Panel de Diagnóstico (RealtimeAuditDialog.kt). Eliminar botón de Auditoría ("Wifi") en VinculacionHeader.kt.
+- [x] App: viewer | Tarea 3.2: Eliminar el Foreground Service: Borrar completamente CentinelaService.kt y CentinelaStateObserver.kt. 
+- [x] App: viewer | Tarea 3.3: Eliminar lógica de Sockets: Borrar RealtimeCoordinator.kt, DiagnosticsManager.kt y todas las clases RealtimeDataSource.
 
 ### Épica 4: Implementación Push-to-Pull y Motor de Alertas
-- [ ] App: viewer | Tarea 4.1: Crear FCMReceiverService.kt. Instanciar interceptación en background.
-- [ ] App: viewer | Tarea 4.2: Refactorizar repositorios. Convertir flujos de Supabase a SharedFlow locales y hacer Pull REST al recibir Push de FCMReceiverService.kt.
-- [ ] App: viewer | Tarea 4.3: Enlazar el disparo de alertas de pago (TTS de voz y Pop-ups HeadsUp) al final exitoso de la descarga HTTP.
-- [ ] App: viewer | Tarea 4.4: Refactorizar CentinelaNotificationManager.kt a una Cola circular FIFO (10 notificaciones máx).
+- [x] App: viewer | Tarea 4.1: Crear FCMReceiverService.kt. Instanciar interceptación en background.
+- [x] App: viewer | Tarea 4.2: Refactorizar repositorios. Convertir flujos de Supabase a SharedFlow locales y hacer Pull REST al recibir Push de FCMReceiverService.kt. (Transformado a True Data-Push).
+- [x] App: viewer | Tarea 4.3: Enlazar el disparo de alertas de pago (TTS de voz y Pop-ups HeadsUp) al final exitoso de la descarga HTTP.
+- [x] App: viewer | Tarea 4.4: Refactorizar CentinelaNotificationManager.kt a una Cola circular FIFO (10 notificaciones máx).
 
 ### Épica 5: Refactorización UI/UX, Loaders y Resiliencia (App Viewer)
-- [ ] App: viewer | Tarea 5.1: Refactorizar EsperaAprobacionScreen a vista pasiva. Al recibir Push de aprobación, hacer Pull y auto-redireccionar al Dashboard (Navegación Cero-Sockets).
-- [ ] App: viewer | Tarea 5.2: Refactorizar botón "Desvincular". Ejecutar HTTP REST e invalidar sesión inmediatamente.
-- [ ] App: viewer | Tarea 5.3: Eliminar ConnectionPill ("En Línea").
-- [ ] App: viewer | Tarea 5.4: Integrar NetworkMonitor.kt en la capa visual (Loaders de Auto-recuperación).
+- [x] App: viewer | Tarea 5.1: Refactorizar EsperaAprobacionScreen a vista pasiva. Al recibir Push de aprobación, auto-redireccionar al Dashboard (Navegación Cero-Sockets).
+- [x] App: viewer | Tarea 5.2: Refactorizar botón "Desvincular". Ejecutar HTTP REST e invalidar sesión inmediatamente.
+- [x] App: viewer | Tarea 5.3: Eliminar ConnectionPill ("En Línea").
+- [x] App: viewer | Tarea 5.4: Integrar NetworkMonitor.kt en la capa visual (Loaders de Auto-recuperación).
 
+
+### Épica 6: Deuda Técnica y Limpieza Global (IsConnected)
+- [ ] App: db | Tarea 6.1 (Deuda Técnica): Evaluar la eliminación del campo `IsConnected` en la tabla `AutorizacionesXUsuario` ya que el estado "En Línea" ha sido reemplazado por la entrega pasiva de FCM, ahorrando costos de escritura (UPDATEs).
+- [ ] App: web/admin | Tarea 6.2 (Deuda Técnica): Auditar los proyectos Web y Admin para remover cualquier indicador de "Puntito Verde" o estado de conexión en vivo que dependa del campo `IsConnected`. Priorizar el uso del estado `IdEstadoAuth` para la gestión de usuarios.
