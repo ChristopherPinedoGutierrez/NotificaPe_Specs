@@ -166,3 +166,15 @@
   - [x] AC 2: Se removió la supresión de guiones (isLetterOrDigit) en los manejadores de sincronización.
   - [x] AC 3: Componente gráfico y validadores del ciclo de vida que obligaban al permiso de batería fueron completamente borrados sin fallos de sintaxis en MainActivityContent.kt.
 ---
+
+---
+### [2026-09-18 16:40] | App/Componente: admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Eliminación absoluta del componente interactivo de mitigación OEM (OemConfigOverlay) del Dashboard principal.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardScreen.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt), [DashboardViewModel.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt), [UserPreferences.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/preference/UserPreferences.kt). Eliminado: OemConfigOverlay.kt.
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La UI del Dashboard ya no expone el banner amarillo condicional bajo detección de marcas chinas restrictivas.
+  - [x] AC 2: Se purgó la persistencia local DataStore (is_oem_banner_dismissed) para reducir redundancia de estado.
+---
