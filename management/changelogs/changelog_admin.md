@@ -154,3 +154,15 @@
   - [x] AC 2: Se notifica explícitamente en UI si el borrado de pruebas en Supabase falla por error de red.
   - [x] AC 3: Tarea 6.2 finalizada, removiendo variables residuales dependientes de estados visuales FCM obsoletos.
 ---
+---
+### [2026-09-18 16:30] | App/Componente: admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Solución a error de duplicación fantasma (mismatch en formato UUID) y erradicación visual/lógica del permiso de optimización de batería.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [ExtractPaymentUseCase.kt](file:///../admin/app/src/main/java/com/notificape/admin/domain/usecase/ExtractPaymentUseCase.kt), [SyncRepository.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/repository/SyncRepository.kt), [SyncRealtimeHandler.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/repository/SyncRealtimeHandler.kt), [TestLabHandler.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt), [PermissionComponents.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/components/PermissionComponents.kt), [MainActivityContent.kt](file:///../admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Uso de UUID.nameUUIDFromBytes para generar UUID v3 con formato 8-4-4-4-12, permitiendo a Room resolver los conflictos en descargas FullSync por colisión estricta.
+  - [x] AC 2: Se removió la supresión de guiones (isLetterOrDigit) en los manejadores de sincronización.
+  - [x] AC 3: Componente gráfico y validadores del ciclo de vida que obligaban al permiso de batería fueron completamente borrados sin fallos de sintaxis en MainActivityContent.kt.
+---

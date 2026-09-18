@@ -169,3 +169,4 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 
 * **[2026-09-18 13:48]** | App: Viewer | Tipo: UI/API | Eliminada notificaci�n duplicada y refinados textos. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-18 13:48]** | App: Database | Tipo: DB | Nombres de negocio a�adidos a payload. Ver [changelog_database.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+* **[2026-09-18 16:30]** | App: admin | Tipo: UI/Data | Eliminaci�n visual del permiso de bater�a en App Admin y resoluci�n de inconsistencia UUID (colisi�n SQLite/Postgres). Ver [changelog_admin.md](file:///../admin/changelogs/changelog_admin.md)
