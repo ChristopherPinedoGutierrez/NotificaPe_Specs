@@ -141,3 +141,16 @@
 ---
 
 
+ 
+ ---
+### [2026-09-18 13:20] | App/Componente: admin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Corrección de subida asíncrona (NonCancellable), visibilidad de error en limpieza remota y cierre de deuda técnica (IsConnected).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [BacklogGlobal.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/BacklogGlobal.md), [MainActivityContent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [TestLabHandler.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/viewmodel/handlers/TestLabHandler.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La generación de ráfaga y subida se completan exitosamente (vía NonCancellable) sin bloquearse si se vuelve atrás inmediatamente.
+  - [x] AC 2: Se notifica explícitamente en UI si el borrado de pruebas en Supabase falla por error de red.
+  - [x] AC 3: Tarea 6.2 finalizada, removiendo variables residuales dependientes de estados visuales FCM obsoletos.
+---
