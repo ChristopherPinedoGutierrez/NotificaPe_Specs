@@ -257,3 +257,15 @@
 ---
 
 
+  
+---  
+### [2026-09-18 17:24] | App/Componente: web | Autor: AGENT_ROLE  
+  
+* **Descripci¢n:** Mejora de UX en el indicador de estado Realtime y protecci¢n inteligente de navegaci¢n.  
+* **Detalles T‚cnicos:**  
+  - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx), [page.tsx (dispositivos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx)  
+  - Se elimin¢ el bloqueo global en RealtimeProvider y se implement¢ un candado inteligente en SidebarNav evaluando navigator.onLine para proteger de pantallas 404/dinosaurio sin asfixiar la navegaci¢n SPA cuando el socket entra en backoff.  
+* **Criterios de Aceptaci¢n (AC) Validados:**  
+  - [x] AC 1: Navegaci¢n libre durante desconexiones temporales del socket sin arrojar Toast rojo.  
+  - [x] AC 2: Bloqueo seguro e inmediato si el dispositivo pierde la red f¡sica (isPhysicalOffline = true).  
+--- 

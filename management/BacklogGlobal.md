@@ -273,7 +273,7 @@
 - [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
 - [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃ¡biles).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
-
+- [x] App: web | Tarea (CR): Mejorar UX del estado Realtime en SidebarNav implementando matriz de 4 estados basados en red física (navigator.onLine) y ciclo de vida del socket.
 ### Ã‰pica: PolÃ­ticas de Google Play Console (Apps)
 - [ ] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en EspaÃ±ol.
 - [ ] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
@@ -340,7 +340,7 @@
 - [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
 - [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃ¡biles).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
-
+- [x] App: web | Tarea (CR): Mejorar UX del estado Realtime en SidebarNav implementando matriz de 4 estados basados en red física (navigator.onLine) y ciclo de vida del socket.
 ### Épica: Políticas de Google Play Console (Apps)
 - [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
 - [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
@@ -368,7 +368,7 @@
 - [x] App: web | Tarea (Admin): Construir la Consola de Disputas en `/superadmin/disputas` que invoque la funciÃ³n RPC `resolver_disputa` de Supabase para mediaciones.
 - [x] App: web | Tarea (Admin): Implementar vista de gestiÃ³n `/superadmin/reclamaciones` para auditar Libro de Reclamaciones legal y plazos (15 dÃ­as hÃable).
 - [x] App: web | Tarea (Admin): Desarrollar Simulador y Depurador de Regex en `/superadmin/regex` para evaluar expresiones de billeteras en vivo y publicarlas en `FiltrosXBilletera`.
-
+- [x] App: web | Tarea (CR): Mejorar UX del estado Realtime en SidebarNav implementando matriz de 4 estados basados en red física (navigator.onLine) y ciclo de vida del socket.
 ### Épica: Políticas de Google Play Console (Apps)
 - [x] App: admin | Tarea (Store): Generar activos visuales faltantes (Icono 512x512, Banner 1024x500) y redactar Ficha de Play Store en Español.
 - [x] App: admin | Tarea (Store): Llenar el Data Safety Form detallando captura y cifrado de notificaciones financieras.
