@@ -558,3 +558,27 @@ ull en el ID del contratante.
   - [x] AC 2: La cola de TTS no reproduce mÃ¡s de 10 pagos si llegan en cascada masiva.
   - [x] AC 3: TÃ­tulo persistente fijo a "NotificaPe Viewer: ...".
 ---
+
+---
+### [2026-09-18 13:29] | App/Componente: Viewer | Autor: Orquestador SDD
+
+* **Descripción:** Implementación de payload específico FCM para evitar duplicidad de alertas push y precisión en los cambios de permisos.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt)
+  - **Base de Datos:** Modificado trigger FCM en Supabase para enviar payload enriquecido.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Alertas persistentes y emergentes actualizan el idAutorizacion evadiendo acumulación excesiva (badge count drop).
+---
+
+
+---
+### [2026-09-18 13:48] | App/Componente: Viewer | Autor: Orquestador SDD
+
+* **Descripción:** Refinamiento de notificaciones: Eliminada actualización redundante de persistente y mejora de textos.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt)
+  - **Manejo UI:** Se removió updateStateNotification del FCM; ahora delega 100% a MainViewModel.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Textos específicos refieren a dispositivo y empresa, evadiendo solapamiento con notificación persistente.
+---
+

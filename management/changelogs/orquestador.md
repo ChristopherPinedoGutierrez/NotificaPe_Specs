@@ -163,3 +163,9 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 * **[2026-09-15 12:57]** | App: Viewer | Tipo: APP | Auto-inicializaci�n de colas TTS y correcci�n de ID nulo en BackgroundSyncManager. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-16 22:09]** | App: Viewer | Tipo: UI/Servicios | Estabilización de Agrupamiento FCM Nativo y Límite anti-spam de cola de voz (10). Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-18 13:20]** | App: admin | Tipo: UI / API | Correcci�n de bloqueo de subida as�ncrona, visibilidad de fallo remoto en borrado de pruebas y cierre deuda t�cnica 6.2. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-18 13:29]** | App: Viewer | Tipo: UI/API | Especifidad en FCM SYNC_AUTH y badge logic fixes. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-18 13:29]** | App: Database | Tipo: DB | Mejora data_payload fn_dispatch_fcm_viewer. Ver [changelog_database.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)
+
+* **[2026-09-18 13:48]** | App: Viewer | Tipo: UI/API | Eliminada notificaci�n duplicada y refinados textos. Ver [changelog_viewer.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-18 13:48]** | App: Database | Tipo: DB | Nombres de negocio a�adidos a payload. Ver [changelog_database.md](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_database.md)

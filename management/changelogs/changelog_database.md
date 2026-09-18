@@ -863,3 +863,27 @@
   - [x] AC 1: La columna FcmToken estÃ¡ lista para recibir el token de Google.
   - [x] AC 2: Los triggers de cruce aseguran enviar notificaciones solo a cajeros aprobados.
 ---
+
+---
+### [2026-09-18 13:29] | App/Componente: Supabase BD | Autor: Orquestador SDD
+
+* **Descripción:** Inyección de payload detallado en el trigger de autorizaciones para Viewer.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0044_fcm_tokens_viewer.sql](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
+  - **Base de Datos:** Modificación in-place de la función fn_dispatch_fcm_viewer para incluir jsonb data_payload.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: SYNC_AUTH notifica estado, id de dispositivo y autorización afectados.
+---
+
+
+---
+### [2026-09-18 13:48] | App/Componente: Supabase BD | Autor: Orquestador SDD
+
+* **Descripción:** Enriquecimiento del payload FCM con nombres de negocio y dispositivo.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0044_fcm_tokens_viewer.sql](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
+  - **Base de Datos:** SELECT JOIN añadido para extraer AliasDispositivo y NombreNegocio de la caja afectada.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: SYNC_AUTH envía información contextual completa.
+---
+
