@@ -269,3 +269,15 @@
   - [x] AC 1: Navegaci libre durante desconexiones temporales del socket sin arrojar Toast rojo.  
   - [x] AC 2: Bloqueo seguro e inmediato si el dispositivo pierde la red fica (isPhysicalOffline = true).  
 --- 
+---
+### [2026-09-18 22:46] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripci贸n:** Implementaci贸n completa del flujo de captaci贸n de Beta Testers (Closed Testing).
+* **Detalles T茅cnicos:**
+  - **Archivos Modificados:** LandingTabs.tsx, BetaRegistrationForm.tsx (nuevo), SuperadminSidebar.tsx, rutas /superadmin/beta/* (nuevas).
+  - **Base de Datos:** Se cre贸 tabla BetaTesters y pol铆ticas RLS para registro an贸nimo y lectura protegida en Supabase.
+* **Criterios de Aceptaci贸n (AC) Validados:**
+  - [x] AC 1: La Landing muestra la pesta帽a 脷nete de forma prominente.
+  - [x] AC 2: Validaciones de campos (30 char max, 9 d铆gitos cel Per煤, @gmail.com).
+  - [x] AC 3: El panel superadmin permite ver, copiar y contactar v铆a WhatsApp a los inscritos.
+---

@@ -492,3 +492,5 @@
 ### Épica 6: Deuda Técnica y Limpieza Global (IsConnected)
 - [ ] App: db | Tarea 6.1 (Deuda Técnica): Evaluar la eliminación del campo `IsConnected` en la tabla `AutorizacionesXUsuario` ya que el estado "En Línea" ha sido reemplazado por la entrega pasiva de FCM, ahorrando costos de escritura (UPDATEs).
 - [x] App: web/admin | Tarea 6.2 (Deuda Técnica): Auditar los proyectos Web y Admin para remover cualquier indicador de "Puntito Verde" o estado de conexión en vivo que dependa del campo `IsConnected`. Priorizar el uso del estado `IdEstadoAuth` para la gestión de usuarios.
+-   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i � n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g .  
+ 
