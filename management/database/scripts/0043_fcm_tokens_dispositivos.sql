@@ -34,10 +34,21 @@ BEGIN
         RETURN OLD;
     END IF;
 
-    -- Lógica AFTER UPDATE (Desactivación/Activación)
+    -- Lógica AFTER UPDATE (Desactivación/Activación y Desvinculación)
     IF TG_OP = 'UPDATE' AND TG_TABLE_NAME = 'DispositivosXContratante' THEN
+        -- Lógica para Desvinculación (HardwareId limpiado)
+        IF OLD."HardwareId" IS NOT NULL AND NEW."HardwareId" IS NULL THEN
+            target_token := OLD."FcmToken";
+            IF target_token IS NOT NULL THEN
+                payload := jsonb_build_object('action', 'UNBIND_DEVICE', 'target', target_token);
+                PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
+            END IF;
+        END IF;
+
+        -- Lógica para Activación / Desactivación
         IF OLD."Activo" IS DISTINCT FROM NEW."Activo" THEN
             target_token := NEW."FcmToken";
+            IF target_token IS NULL THEN target_token := OLD."FcmToken"; END IF;
             IF target_token IS NOT NULL THEN
                 payload := jsonb_build_object('action', 'SYNC_DEVICE_STATUS', 'target', target_token);
                 PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);

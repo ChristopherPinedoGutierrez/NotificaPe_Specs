@@ -173,3 +173,21 @@ Este archivo mantiene el ÃƒÆ’Ã‚Æ’Ãƒâ€šÃ‚Â­ndice cronolÃƒÆ’Ã‚Æ’Ãƒâ€šÃ‚Â³gico estr
 * **[2026-09-18 16:40]** | App: admin | Tipo: UI | Eliminación absoluta de componente mitigación OEM (OemConfigOverlay). Ver [changelog_admin.md](file:///../admin/changelogs/changelog_admin.md)
 * **[2026-09-18 17:24]** | App: web | Tipo: UI | Mejora de UX en indicador de estado Realtime y protecci¢n de navegaci¢n offline. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md) 
 * **[2026-09-18 22:46]** | App: web | Tipo: UI/API | ImplementaciÃ³n de flujo de adquisiciÃ³n de Beta Testers (Landing y Superadmin). Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
+* **[2026-09-27 10:17]** | App: admin | Tipo: UI/Auth | Desactivación de Auto-Backup y condicionamiento estricto de capa de permisos al validar sesión. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 10:34]** | App: admin | Tipo: DB/FCM | Inclusión de Trigger de Unlink FCM y corrección de notificación persistente. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 10:42]** | App: admin | Tipo: Auth | Refinamiento de desvinculación manual (prevención de tokens huérfanos y doble ejecución). Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 13:48]** | App: admin | Tipo: UI | Refactorización de Dashboard y adopción de estado deshabilitado en Píldora de Recaudación. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 14:02]** | App: admin | Tipo: UI | Refactorización de componentes a Bloques Gemelos (Fecha y Recaudación). Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 14:14]** | App: admin | Tipo: UI/API | Bugfix Ripple Effect y Adición de Contratante al Dashboard vía Supabase Join. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 15:25]** | App: admin | Tipo: Service/FCM | Notificaciones de Sistema Inteligentes (Diffing Local) [TSK-026C]. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 20:07]** | App: admin | Tipo: Service/UX | División de IDs de notificación y pluralización dinámica. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+
+* **[2026-09-27 20:55]** | App: admin | Tipo: Service/UX | Títulos de notificación dinámicos por pluralidad. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
+

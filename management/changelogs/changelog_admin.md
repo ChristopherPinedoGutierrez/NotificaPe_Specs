@@ -178,3 +178,110 @@
   - [x] AC 1: La UI del Dashboard ya no expone el banner amarillo condicional bajo detección de marcas chinas restrictivas.
   - [x] AC 2: Se purgó la persistencia local DataStore (is_oem_banner_dismissed) para reducir redundancia de estado.
 ---
+
+---
+### [2026-09-27 10:17] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de parpadeo de permisos y Loader erróneo en instalaciones limpias desactivando Auto-Backup de Android.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [AndroidManifest.xml](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/AndroidManifest.xml), [MainActivityContent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/MainActivityContent.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La app en reinstalación limpia no muestra overlay de permisos ni loader de Desvinculando.
+  - [x] AC 2: Se mantiene el comportamiento de auto-expulsión íntegro para sesiones previamente cacheadas o activas.
+---
+
+---
+### [2026-09-27 10:34] | App/Componente: admin/database | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de FCM Unlink Trigger y Notificación Persistente Inmortal.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0043_fcm_tokens_dispositivos.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0043_fcm_tokens_dispositivos.sql), [NotificationReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/service/NotificationReceiverService.kt)
+  - **Base de Datos:** Actualizada la función n_dispatch_fcm en Supabase (Live y Script) para reaccionar al borrado del HardwareId.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desvincular desde Web dispara UNBIND_DEVICE vía FCM.
+  - [x] AC 2: La notificación persistente cambia a estado "Desvinculado" al borrarse el deviceId de memoria.
+---
+
+---
+### [2026-09-27 10:42] | App/Componente: admin/auth | Autor: AGENT_ROLE
+
+* **Descripción:** Refinamiento de la desvinculación manual local para evitar efecto búmeran de FCM y tokens huérfanos.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DeviceLinker.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/auth/DeviceLinker.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Lógica Modificada:** clearRemoteHardware ahora purga también el FcmToken. unbindDevice implementa cortocircuito temprano si el equipo ya no tiene deviceId local, previniendo re-ejecución por triggers.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desvincular localmente no deja tokens huérfanos en Supabase.
+  - [x] AC 2: Desvincular localmente no procesa pushes duplicados de desvinculación de Supabase.
+---
+
+---
+### [2026-09-27 13:47] | App/Componente: admin/ui | Autor: AGENT_ROLE
+
+* **Descripción:** Refactorización arquitectónica del Dashboard para alinear con la App Viewer (Desacoplamiento de TopBar y adopción de títulos de sección locales).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt), [PaymentsSection.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/PaymentsSection.kt), [WalletsSection.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/WalletsSection.kt), [SettingsSection.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/SettingsSection.kt), [SummaryHeader.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/components/SummaryHeader.kt)
+  - **Lógica Modificada:** Limpieza de TopAppBar global, inyección de Textos HeadlineLarge en las secciones individuales que coinciden con el Bottom Navigation. Refactorización visual de SummaryHeader para permitir estado deshabilitado (empty state) sin notificaciones.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El encabezado superior global ya no muestra el nombre de la sección activa.
+  - [x] AC 2: Cada sección interna muestra su título gigante con el mismo nombre que su pestaña.
+  - [x] AC 3: El SummaryHeader está siempre visible y se deshabilita (estilo grisáceo/no clickeable) si no hay recaudación para ese día.
+---
+
+---
+### [2026-09-27 14:02] | App/Componente: admin/ui | Autor: AGENT_ROLE
+
+* **Descripción:** Homologación visual del selector de fecha a un patrón de "Bloques Gemelos".
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PaymentsSection.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/PaymentsSection.kt), [SummaryHeader.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/components/SummaryHeader.kt)
+  - **Lógica Modificada:** Se aplicó esquema Flex (weight(1f)) y rediseño de anatomía al selector de fecha para espejar el estilo del SummaryHeader. Ambos bloques comparten la misma proporción, tamaño de fuente y un subtítulo técnico superior.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Selector de Fecha y Píldora de Recaudación comparten el 50% del ancho (menos el espaciado).
+  - [x] AC 2: Anatomía de doble línea con ícono anclado a la derecha implementada en el Selector de Fecha.
+---
+
+---
+### [2026-09-27 14:14] | App/Componente: admin/ui | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de ripple effect en botones de fecha/recaudación y agregado de Nombre del Contratante al encabezado global.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PaymentsSection.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/PaymentsSection.kt), [SummaryHeader.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/components/SummaryHeader.kt), [DeviceDto.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com\notificape/admin/data/remote/dto/DeviceDto.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt), [DeviceLinker.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/auth/DeviceLinker.kt), [UserPreferences.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/preference/UserPreferences.kt), [DashboardViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardViewModel.kt), [DashboardScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/DashboardScreen.kt)
+  - **Lógica Modificada:** Uso de la propiedad onClick nativa del componente Surface para recortar automáticamente el ripple effect a la forma redondeada. Adición de relación Contratantes en las consultas de PostgREST para obtener el NombreNegocio. Extracción y preservación local de dicho nombre en DataStore para su inyección en la barra superior del Dashboard.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La animación táctil respeta los bordes redondeados (12dp) en los botones del Dashboard.
+  - [x] AC 2: La barra superior muestra "[NombreNegocio] / [AliasCaja]"
+---
+---
+### [2026-09-27 15:25] | App/Componente: admin/service | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de Notificaciones de Sistema (Smart Diffing) para actualizaciones por FCM [TSK-026C].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/SystemNotificationManager.kt), [WalletRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt), [RuleRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/RuleRepository.kt), [AuthRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/AuthRepository.kt)
+  - **Lógica Modificada:** Se creó SystemNotificationManager con el canal Alertas del Sistema. Se inyectó en los repositorios para realizar *diffing* matemático local antes de sobrescribir la base de datos (Room). De esta manera, se previenen avalanchas de notificaciones offline, disparando alertas solo por los cambios netos efectuados remotamente (estado de caja, filtros, billeteras, desvinculación).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La app muestra notificación local cuando el administrador desvincula remotamente el equipo.
+  - [x] AC 2: La app notifica con precisión matemática qué billeteras específicas se añadieron/quitaron.
+---
+---
+### [2026-09-27 20:07] | App/Componente: admin/service | Autor: AGENT_ROLE
+
+* **Descripción:** Refactorización del manejador de notificaciones de billeteras para evitar sobrescrituras de Android.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/SystemNotificationManager.kt), [WalletRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt)
+  - **Lógica Modificada:** Se dividió NOTIFICATION_ID_WALLETS en dos IDs distintos (1001 para activaciones y 1005 para desactivaciones) permitiendo que ambas alertas coexistan simultáneamente en la bandeja del sistema en un sync concurrente. Además, se añadió conteo de listas en el diffing de Room (
+ames.size == 1) para inyectar gramática dinámica sin paréntesis de pluralización.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desactivar y activar billeteras secuencial o simultáneamente no colapsa las notificaciones en una sola por conflicto de Notification ID.
+  - [x] AC 2: Textos gramaticalmente limpios ("Billetera activada" / "Billeteras activadas").
+---
+---
+### [2026-09-27 20:55] | App/Componente: admin/util | Autor: AGENT_ROLE
+
+* **Descripción:** Parametrización de pluralidad para los títulos de notificaciones de billeteras.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/util/SystemNotificationManager.kt), [WalletRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt)
+  - **Lógica Modificada:** Se agregó el parámetro isPlural: Boolean a los métodos de notificación de SystemNotificationManager para evitar que el título permanezca estático en singular. El repositorio ahora envía dinámicamente este flag basado en 
+ames.size > 1.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: El título de la notificación se adapta a "Billeteras activadas/desactivadas" cuando hay más de un elemento procesado.
+---

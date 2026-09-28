@@ -251,6 +251,8 @@
 ### Hito 4: Inducci√≥n, Onboarding y Tours en Aplicaciones M√≥viles
 
 #### Sub-Hito 4.1: App Admin (Emisor - Android / Jetpack Compose)
+- [x] App: admin | **[TSK-026C]** Notificaciones de Sistema (Smart Diffing): Implementar motor de notificaciones locales para eventos administrativos recibidos vÌa FCM (UNBIND, Status, Rules, Wallets), utilizando diffing local en los repositorios para evitar spam offline.
+- [x] App: admin | **[TSK-025C]** RefactorizaciÛn UI Dashboard (Change Request): Homologar interfaz del Dashboard con la App Viewer, implementando "Bloques Gemelos" (Selector de Fecha y PÌldora de RecaudaciÛn al 50%), corrigiendo Ripple Effects nativos y aÒadiendo el nombre del contratante obtenido vÌa JOIN en Supabase.
 - [ ] App: admin | **[TSK-026A]** Spotlight Tour Principal: Implementar recorrido guiado (Tour Interactivo) paso a paso en la pantalla principal (Dashboard). Debe activarse post-vinculaci√≥n, resaltando el interruptor del Foreground Service y el monitor de billeteras activas (basado exclusivamente en componentes de producci√≥n/release, ignorando secciones debug).
 - [ ] App: admin | **[TSK-026B]** M√≥dulo de Ayuda y Persistencia (Help Drawer): Desarrollar un panel de ayuda (Bottom Sheet o Navigation Drawer) similar al proyecto Web, incluyendo respuestas a FAQs y un bot√≥n para re-lanzar el "Spotlight Tour". Persistir el estado de completitud del tour en DataStore.
 
@@ -446,6 +448,8 @@
 ### Hito 4: Inducci√≥n, Onboarding y Tours en Aplicaciones M√≥viles
 
 #### Sub-Hito 4.1: App Admin (Emisor - Android / Jetpack Compose)
+- [x] App: admin | **[TSK-026C]** Notificaciones de Sistema (Smart Diffing): Implementar motor de notificaciones locales para eventos administrativos recibidos vÌa FCM (UNBIND, Status, Rules, Wallets), utilizando diffing local en los repositorios para evitar spam offline.
+- [x] App: admin | **[TSK-025C]** RefactorizaciÛn UI Dashboard (Change Request): Homologar interfaz del Dashboard con la App Viewer, implementando "Bloques Gemelos" (Selector de Fecha y PÌldora de RecaudaciÛn al 50%), corrigiendo Ripple Effects nativos y aÒadiendo el nombre del contratante obtenido vÌa JOIN en Supabase.
 - [ ] App: admin | **[TSK-026A]** Spotlight Tour Principal: Implementar recorrido guiado (Tour Interactivo) paso a paso en la pantalla principal (Dashboard). Debe activarse post-vinculaci√≥n, resaltando el interruptor del Foreground Service y el monitor de billeteras activas (basado exclusivamente en componentes de producci√≥n/release, ignorando secciones debug).
 - [ ] App: admin | **[TSK-026B]** M√≥dulo de Ayuda y Persistencia (Help Drawer): Desarrollar un panel de ayuda (Bottom Sheet o Navigation Drawer) similar al proyecto Web, incluyendo respuestas a FAQs y un bot√≥n para re-lanzar el "Spotlight Tour". Persistir el estado de completitud del tour en DataStore.
 
@@ -492,5 +496,10 @@
 ### √âpica 6: Deuda T√©cnica y Limpieza Global (IsConnected)
 - [ ] App: db | Tarea 6.1 (Deuda T√©cnica): Evaluar la eliminaci√≥n del campo `IsConnected` en la tabla `AutorizacionesXUsuario` ya que el estado "En L√≠nea" ha sido reemplazado por la entrega pasiva de FCM, ahorrando costos de escritura (UPDATEs).
 - [x] App: web/admin | Tarea 6.2 (Deuda T√©cnica): Auditar los proyectos Web y Admin para remover cualquier indicador de "Puntito Verde" o estado de conexi√≥n en vivo que dependa del campo `IsConnected`. Priorizar el uso del estado `IdEstadoAuth` para la gesti√≥n de usuarios.
--   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i Û n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g .  
+-   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i Û n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g . 
  
+ - [x] App: admin | Tarea 6.3 (Bug/UI): Corregir parpadeo de permisos y falsas expulsiones en reinstalaciones, desactivando Auto-Backup y condicionando la capa de permisos al estado validado.
+
+
+
+
