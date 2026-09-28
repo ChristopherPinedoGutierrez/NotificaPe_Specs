@@ -582,3 +582,14 @@ ull en el ID del contratante.
   - [x] AC 1: Textos específicos refieren a dispositivo y empresa, evadiendo solapamiento con notificación persistente.
 ---
 
+---
+### [2026-09-28 15:28] | App/Componente: viewer | Autor: PROGRAMADOR_ESPECIALIZADO
+
+* **Descripción:** Preparación para producción final: depuración de permisos (batería/foreground), limpieza de código muerto y FIX crítico de notificaciones FCM.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** AndroidManifest.xml, PermissionGuard.kt, VinculacionRepositoryImpl.kt, PagosRemoteDataSource.kt, NotificaPeViewerApp.kt
+  - **Fix FCM:** Se restaura la inicialización de canales (NotificationChannel) en App.onCreate() que había quedado huérfana tras borrar CentinelaService.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La app ya no requiere FOREGROUND_SERVICE ni permisos especiales de batería, cumpliendo con Google Play.
+  - [x] AC 2: La notificación persistente y los pop-ups de pago se muestran correctamente en instalaciones limpias.
+---

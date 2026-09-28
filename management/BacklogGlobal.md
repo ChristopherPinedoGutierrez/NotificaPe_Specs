@@ -258,10 +258,11 @@
 
 #### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
 - [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: Diseñar carrusel de inducción para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
-- [ ] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
-- [ ] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+- [x] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
+- [-] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar. (DESCARTADO)
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
+- [ ] App: viewer | **[TSK-027F]** Cierre de Jornada / Cuadres (FUTURO): Disenar flujo y vista para cuadrar caja.
 
 ### Ã‰pica: Portal Web y Cumplimiento (PerÃº)
 - [x] App: web | Tarea (Legal): DiseÃ±ar e implementar las pÃ¡ginas estÃ¡ticas `/terminos-condiciones` y `/politica-privacidad` usando variables de entorno para datos dinÃ¡micos.
@@ -455,10 +456,11 @@
 
 #### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
 - [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: Diseñar carrusel de inducción para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
-- [ ] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
-- [ ] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+- [x] App: viewer | **[TSK-027B]** Vinculación y Espera: Diseñar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animación de espera (*"Esperando aprobación del administrador"*).
+- [-] App: viewer | **[TSK-027C]** Calibración de Audio/TTS: Módulo interactivo de prueba de sonido y síntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar. (DESCARTADO)
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del último pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducción en DataStore y agregar la opción de reinicio de tour en el menú de Configuración.
+- [ ] App: viewer | **[TSK-027F]** Cierre de Jornada / Cuadres (FUTURO): Disenar flujo y vista para cuadrar caja.
 
 
 
@@ -499,6 +501,9 @@
 -   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i � n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g . 
  
  - [x] App: admin | Tarea 6.3 (Bug/UI): Corregir parpadeo de permisos y falsas expulsiones en reinstalaciones, desactivando Auto-Backup y condicionando la capa de permisos al estado validado.
+
+
+
 
 
 
