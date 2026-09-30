@@ -259,7 +259,8 @@
 #### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
 - [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: DiseÃ±ar carrusel de inducciÃ³n para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
 - [x] App: viewer | **[TSK-027B]** VinculaciÃ³n y Espera: DiseÃ±ar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animaciÃ³n de espera (*"Esperando aprobaciÃ³n del administrador"*).
-- [-] App: viewer | **[TSK-027C]** CalibraciÃ³n de Audio/TTS: MÃ³dulo interactivo de prueba de sonido y sÃ­ntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar. (DESCARTADO)
+- [-] App: viewer | **[TSK-027C]** CalibraciÃ³n de Audio/TTS: MÃ³dulo interactivo de prueba de sonido y sÃ­ntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+ (DESCARTADO)
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del Ãºltimo pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducciÃ³n en DataStore y agregar la opciÃ³n de reinicio de tour en el menÃº de ConfiguraciÃ³n.
 - [ ] App: viewer | **[TSK-027F]** Cierre de Jornada / Cuadres (FUTURO): Disenar flujo y vista para cuadrar caja.
@@ -457,7 +458,8 @@
 #### Sub-Hito 4.2: App Viewer (Receptor - Android / Jetpack Compose)
 - [ ] App: viewer | **[TSK-027A]** Onboarding Carousel: DiseÃ±ar carrusel de inducciÃ³n para personal y cajeros explicando las alertas inmediatas en caja ante transferencias Yape/Plin.
 - [x] App: viewer | **[TSK-027B]** VinculaciÃ³n y Espera: DiseÃ±ar flujo de escaneo QR de caja para solicitar acceso y pantalla reactiva con animaciÃ³n de espera (*"Esperando aprobaciÃ³n del administrador"*).
-- [-] App: viewer | **[TSK-027C]** CalibraciÃ³n de Audio/TTS: MÃ³dulo interactivo de prueba de sonido y sÃ­ntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar. (DESCARTADO)
+- [-] App: viewer | **[TSK-027C]** CalibraciÃ³n de Audio/TTS: MÃ³dulo interactivo de prueba de sonido y sÃ­ntesis de voz ("Yape recibido: S/ 20") para verificar volumen y motor TTS antes de operar.
+ (DESCARTADO)
 - [ ] App: viewer | **[TSK-027D]** Spotlight Tour Principal: Implementar tour guiado en la pantalla de historial resaltando la tarjeta del Ãºltimo pago, filtros por dispositivo y ajustes de audio.
 - [ ] App: viewer | **[TSK-027E]** Persistencia y Ayuda: Guardar el estado de inducciÃ³n en DataStore y agregar la opciÃ³n de reinicio de tour en el menÃº de ConfiguraciÃ³n.
 - [ ] App: viewer | **[TSK-027F]** Cierre de Jornada / Cuadres (FUTURO): Disenar flujo y vista para cuadrar caja.
@@ -471,6 +473,11 @@
 - [x] App: db | Tarea 1.2: Crear script de migraciÃ³n SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
 - [x] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
   - [x] App: viewer | **[TSK-028]** Rediseño Adaptativo de Cola FCM (Smart Batching): Implementar Supresión Contextual en primer plano, inyección inmediata a la Bandeja del Sistema (Fase 1), y lógica de agrupación de voz/pop-up en bloque para ráfagas de 3+ notificaciones, superando el límite de Wakelock (15s) de Android.
+- [ ] App: viewer | **[TSK-029]** Flujos de Notificaciones Secundarias y Feedback de Sistema:
+  - **Billeteras y QRs (Bandeja Silenciosa):** Implementar notificaciones regulares (sin TTS/Pop-Up) separando dos conceptos: 1) Agregado/Quitado de billeteras (agrupado singular/plural). 2) Edición de URL/Imagen de código QR (canal crítico para cajeros).
+  - **Control de Acceso (Voz y Pop-Up):** Notificar aprobaciones y revocaciones de acceso a cajas indicando "Tienda X, Caja Y". Debe despertar el dispositivo si está bloqueado.
+  - **Disputas y Reclamos (Voz y Pop-Up):** Notificar cambios de estado en disputas en las que el cajero esté involucrado.
+  - **Condición Estricta (Respeto de UI):** Las alertas de Acceso y Disputas DEBEN obedecer los switches de preferencias del usuario (`isTtsEnabled`, `isHeadsUpEnabled`). Limpiar código muerto de notificación permanente residual.
 
 ### Ã‰pica 2: Desarrollo de Triggers Inteligentes (El Francotirador FCM)
 - [x] App: db | Tarea 2.1 (Canal de Autorizaciones): Trigger en AutorizacionesXUsuario (UPDATE). Dispara Push {"action": "SYNC_AUTH"} al usuario afectado.
