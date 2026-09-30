@@ -192,3 +192,6 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 * **[2026-09-27 20:55]** | App: admin | Tipo: Service/UX | T�tulos de notificaci�n din�micos por pluralidad. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md)
 
 * **[2026-09-28 15:28]** | App: viewer | Tipo: UI/API | Preparaci�n para producci�n y fix cr�tico de canales FCM. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-09-29 18:39]** | App: viewer | Tipo: UI/Service | Refactorización de Cola FCM con Smart Batching y entregas silenciosas. Ver [changelog_viewer.md](file:///../NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+
+* **[2026-09-29 18:46]** | App: web | Tipo: UI | Correcci�n de fallos en suscripciones Supabase Realtime (CamelCase filters) al desvincular cajas. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)

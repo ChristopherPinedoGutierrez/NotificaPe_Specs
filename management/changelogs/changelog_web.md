@@ -281,3 +281,14 @@
   - [x] AC 2: Validaciones de campos (30 char max, 9 dígitos cel Perú, @gmail.com).
   - [x] AC 3: El panel superadmin permite ver, copiar y contactar vía WhatsApp a los inscritos.
 ---
+---
+### [2026-09-29 18:46] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de la reactividad Realtime en Dashboard al desvincular o recibir solicitudes de acceso.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DispositivosViewProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/DispositivosViewProvider.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx)
+  - **Base de Datos:** Ninguno (Corrección de sintaxis en el filtro del socket: envoltura de columnas CamelCase en comillas dobles).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La vista web de dispositivos refleja los cambios de desvinculación ('HardwareId' nulo) en tiempo real sin F5.
+  - [x] AC 2: La campana de accesos pendientes recibe los eventos de 'AutorizacionesXUsuario' en tiempo real correctamente.
+---

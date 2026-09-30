@@ -593,3 +593,15 @@ ull en el ID del contratante.
   - [x] AC 1: La app ya no requiere FOREGROUND_SERVICE ni permisos especiales de bater韆, cumpliendo con Google Play.
   - [x] AC 2: La notificaci髇 persistente y los pop-ups de pago se muestran correctamente en instalaciones limpias.
 ---
+---
+### [2026-09-29 18:39] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripci贸n:** Implementaci贸n de Cola Adaptativa FCM (Smart Batching), Supresi贸n Contextual en primer plano e Inyecci贸n Silenciosa a Bandeja.
+* **Detalles T茅cnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt), [NotificationQueueManager.kt](file:///../viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt), [build.gradle.kts](file:///../viewer/app/build.gradle.kts)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptaci贸n (AC) Validados:**
+  - [x] AC 1: La notificaci贸n visual se entrega a la bandeja instant谩neamente.
+  - [x] AC 2: Si el usuario tiene la app abierta, se suprime voz/pop-up.
+  - [x] AC 3: Agrupaci贸n en bloque a partir de 3+ notificaciones.
+---
