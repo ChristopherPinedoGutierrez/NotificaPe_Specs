@@ -470,7 +470,7 @@
 - [x] App: viewer | Tarea 1.1: Configurar Firebase Console (AÃ±adir app Viewer), descargar google-services.json y actualizar dependencias a nivel de build.gradle.
 - [x] App: db | Tarea 1.2: Crear script de migraciÃ³n SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
 - [x] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
-  - [ ] App: viewer | **[TSK-028]** Rediseño Adaptativo de Cola FCM (Smart Batching): Implementar Supresión Contextual en primer plano, inyección inmediata a la Bandeja del Sistema (Fase 1), y lógica de agrupación de voz/pop-up en bloque para ráfagas de 3+ notificaciones, superando el límite de Wakelock (15s) de Android.
+  - [x] App: viewer | **[TSK-028]** Rediseño Adaptativo de Cola FCM (Smart Batching): Implementar Supresión Contextual en primer plano, inyección inmediata a la Bandeja del Sistema (Fase 1), y lógica de agrupación de voz/pop-up en bloque para ráfagas de 3+ notificaciones, superando el límite de Wakelock (15s) de Android.
 
 ### Ã‰pica 2: Desarrollo de Triggers Inteligentes (El Francotirador FCM)
 - [x] App: db | Tarea 2.1 (Canal de Autorizaciones): Trigger en AutorizacionesXUsuario (UPDATE). Dispara Push {"action": "SYNC_AUTH"} al usuario afectado.
@@ -502,6 +502,7 @@
 -   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i ó n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g . 
  
  - [x] App: admin | Tarea 6.3 (Bug/UI): Corregir parpadeo de permisos y falsas expulsiones en reinstalaciones, desactivando Auto-Backup y condicionando la capa de permisos al estado validado.
+
 
 
 
