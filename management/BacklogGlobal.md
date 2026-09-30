@@ -518,3 +518,10 @@
 
 
 
+
+### Épica 7: Motor Dinámico de Recompensas y Promociones (PLG)
+- [ ] App: db | Tarea 7.1: Crear tabla CampanasPromocionales (IdCampana, TipoEvento, Prioridad, MontoCreditos, Fechas) para centralizar la configuración de promociones sin *hardcoding*.
+- [ ] App: db | Tarea 7.2: Crear tabla CodigosPromocionales y vincularla a la lógica de referidos bilaterales.
+- [ ] App: db/web | Tarea 7.3: Implementar Edge Function / Trigger para evaluación atómica de campañas en el registro (REGISTRO_NUEVO y REGISTRO_REFERIDO) e inyectar el ABONO automático usando la función existente egistrar_tx_credito.
+- [ ] App: web | Tarea 7.4: Desarrollar módulo CRUD en el panel Superadmin para gestionar, habilitar y priorizar las campañas dinámicas.
+- [ ] App: web | Tarea 7.5: Adaptar UI de Registro para aceptar códigos de invitación y crear componente dinámico en el Dashboard para renderizar el mensaje de la campaña activa.
