@@ -195,6 +195,8 @@
 - [x] **[TSK-001]** | App: Viewer | UI: RemociÃƒÆ’Ã‚Â³n de la verificaciÃƒÆ’Ã‚Â³n y solicitud obligatoria de optimizaciÃƒÆ’Ã‚Â³n de baterÃƒÆ’Ã‚Â­a (Google Play Policies).
 - [x] **[CR-007]** | App: Admin | LÃƒÆ’Ã‚Â³gica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinÃƒÆ’Ã‚Â¡mico en la generaciÃƒÆ’Ã‚Â³n del `IdSync`, a fin de evitar la deduplicaciÃƒÆ’Ã‚Â³n incorrecta en el receptor (Viewer).
 - [x] **[CR-009]** | App: Web | UI/API: RediseÃƒÆ’Ã‚Â±o del Estado de ConexiÃƒÆ’Ã‚Â³n en detalle de dispositivo fÃƒÆ’Ã‚Â­sico vÃƒÆ’Ã‚Â­a Supabase Realtime Presence (escuchando el canal broadcast del app Admin).
+- [ ] **[CR-015]** | App: Web/DB | UI/API: Ampliar vista view_notificaciones_disputadas con metadatos de usuarios y ContenidoMsg, y rediseñar DisputaCard en el dashboard de clientes para permitir la desambiguación.
+
 
 ## [E3] Entregable 3: ExpansiÃƒÂ³n de Negocio B2B (CR-014)
 
@@ -397,6 +399,8 @@
 - [x] **[TSK-001]** | App: Viewer | UI: RemociÃƒÆ’Ã‚Â³n de la verificaciÃƒÆ’Ã‚Â³n y solicitud obligatoria de optimizaciÃƒÆ’Ã‚Â³n de baterÃƒÆ’Ã‚Â­a (Google Play Policies).
 - [x] **[CR-007]** | App: Admin | LÃƒÆ’Ã‚Â³gica: Actualizar el generador de notificaciones Mock para incluir `sbn.postTime` o un equivalente dinÃƒÆ’Ã‚Â¡mico en la generaciÃƒÆ’Ã‚Â³n del `IdSync`, a fin de evitar la deduplicaciÃƒÆ’Ã‚Â³n incorrecta en el receptor (Viewer).
 - [x] **[CR-009]** | App: Web | UI/API: RediseÃƒÆ’Ã‚Â±o del Estado de ConexiÃƒÆ’Ã‚Â³n en detalle de dispositivo fÃƒÆ’Ã‚Â­sico vÃƒÆ’Ã‚Â­a Supabase Realtime Presence (escuchando el canal broadcast del app Admin).
+- [ ] **[CR-015]** | App: Web/DB | UI/API: Ampliar vista view_notificaciones_disputadas con metadatos de usuarios y ContenidoMsg, y rediseñar DisputaCard en el dashboard de clientes para permitir la desambiguación.
+
 
 ## [E3] Entregable 3: ExpansiÃƒÂ³n de Negocio B2B (CR-014)
 
