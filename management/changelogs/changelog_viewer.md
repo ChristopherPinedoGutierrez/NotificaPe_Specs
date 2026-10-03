@@ -653,3 +653,16 @@ ull en el ID del contratante.
 * **Criterios de Aceptación (AC) Validados:**
   - [x] AC 1: Al agregar, quitar o editar el QR de una misma billetera, la notificación reemplaza a la anterior en lugar de crear un slot nuevo.
 ---
+
+---
+### [2026-10-02 22:20] | App/Componente: VIEWER / SUPABASE | Autor: AGENT_ROLE
+
+* **Descripcin:** Implementacin de Notificaciones Push Pasivas (Billeteras y Disputas) sin polling.
+* **Detalles Tcnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt), [SystemFeedbackEngine.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/SystemFeedbackEngine.kt), [0044_fcm_tokens_viewer.sql](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
+  - **Base de Datos:** Se actualiz la funcin n_dispatch_fcm_viewer para evaluar deltas (OLD vs NEW) y enviar operation y user_id en el push. Se redespleg el Edge Function cm-dispatcher v4.
+* **Criterios de Aceptacin (AC) Validados:**
+  - [x] AC 1: La app diferencia entre alta, baja y actualizacin de QR.
+  - [x] AC 2: La app silencia los reclamos propios mediante validacin de user_id.
+  - [x] AC 3: La app narra correctamente los fallos y validaciones del administrador.
+---

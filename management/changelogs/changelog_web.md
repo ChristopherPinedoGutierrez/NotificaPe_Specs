@@ -292,3 +292,51 @@
   - [x] AC 1: La vista web de dispositivos refleja los cambios de desvinculación ('HardwareId' nulo) en tiempo real sin F5.
   - [x] AC 2: La campana de accesos pendientes recibe los eventos de 'AutorizacionesXUsuario' en tiempo real correctamente.
 ---
+
+---
+### [2026-10-02 22:00] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Rediseño integral de la vista de Usuarios y Accesos (/dashboard/accesos) con agrupación por dispositivos, bandeja de pendientes y modales de confirmación.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/page.tsx), [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx)
+  - **Base de Datos:** Ninguno (Consumo de DispositivosXContratante, AutorizacionesXUsuario, Usuarios y EstadosAuth).
+  - Se implementó la Opción 1: Bandeja superior de atención inmediata para solicitudes pendientes (IdEstadoAuth = 1), agrupación en tarjetas/acordeones por dispositivo con metadatos (Alias, PIN con copiado, estado de conexión), barra de herramientas con buscador y filtros por estado.
+  - Se corrigió la terminología del sistema sustituyendo referencias de 'Caja' por 'Dispositivo'.
+  - Se aseguraron los botones de acción (Aprobar y Bloquear) con modales de confirmación explícitos para prevenir clics accidentales, respetando los estados existentes (Pendiente, Aprobado, Bloqueado) sin introducir Rechazado.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Los vendedores se visualizan agrupados jerárquicamente bajo su respectivo dispositivo con orden prioritario.
+  - [x] AC 2: La bandeja superior destaca al instante las peticiones pendientes de aprobación.
+  - [x] AC 3: Las acciones de aprobar y bloquear requieren confirmación en modal.
+  - [x] AC 4: Se preserva la reactividad en tiempo real de Supabase y el contador en la barra de navegación.
+---
+
+---
+### [2026-10-02 22:08] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Pulido visual de la vista Usuarios y Accesos: eliminación de subtítulo redundante, alineación del indicador al nivel del título general y distinción visual entre badges de estado y botones de acción.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/page.tsx), [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx)
+  - Se eliminó el subtítulo redundante 'Peticiones y Personal Activo' y el contenedor envolvente, alineando los acordeones al margen del título.
+  - Se subió el indicador de personal activo ('X de Y activos') a la fila superior derecha del PageContainer.
+  - Se cambió la cabecera de la columna a 'USUARIO'.
+  - Se rediseñaron los botones de acción con mayor presencia, tamaño y relieve para distinguirlos de los badges pasivos de estado.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Indicador de cupo alineado a la derecha en la cabecera principal.
+  - [x] AC 2: Eliminación de padding y subtítulos redundantes.
+  - [x] AC 3: Columna rotulada como 'USUARIO'.
+  - [x] AC 4: Botones interactivos con presencia clara frente a los pills pasivos de estado.
+---
+
+---
+### [2026-10-02 22:15] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Aplicación del estilo filled sólido con alto contraste en todos los botones de acción de Usuarios y Accesos, preservando el pill pasivo en la columna de estado.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx)
+  - Se estandarizaron los botones de acción (Aprobar, Reactivar, Bloquear y Reemplazar) a tipo filled sólido con texto e icono en blanco (emerald-600 y rose-600), alineados visualmente a los selectores activos del menú de filtros.
+  - Se preservó la columna ESTADO como pill suave y translúcido (rounded-full), garantizando un contraste evidente e inequívoco frente a los botones de acción en tema claro y oscuro.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Botones de acción tipo filled sólido (verde/rojo con texto blanco) y relieve interactivo.
+  - [x] AC 2: Indicador de estado preservado como pill pasivo.
+  - [x] AC 3: Consistencia y contraste garantizado en modo claro y oscuro.
+---

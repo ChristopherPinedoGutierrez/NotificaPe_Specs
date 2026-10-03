@@ -90,14 +90,54 @@ BEGIN
                 IF TG_OP = 'INSERT' THEN
                     payload := jsonb_build_object('action', 'NEW_PAYMENT', 'target', target_tokens, 'data_payload', row_to_json(NEW));
                 ELSIF TG_OP = 'UPDATE' THEN
-                    payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens);
+                    IF OLD."EstadoProgreso" IS DISTINCT FROM NEW."EstadoProgreso" THEN
+                        IF NEW."EstadoProgreso" = 'REVISION' THEN
+                            payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'DISPUTED');
+                        ELSIF NEW."EstadoProgreso" = 'DESCARTADO' THEN
+                            payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'DISCARDED');
+                        ELSIF NEW."EstadoProgreso" = 'APROBADO' THEN
+                            payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'APPROVED');
+                        ELSE
+                            payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'UPDATE');
+                        END IF;
+                    ELSE
+                        payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'UPDATE');
+                    END IF;
                 ELSE
                     payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME);
                 END IF;
             ELSIF TG_TABLE_NAME = 'NotificacionesAUsuarios' THEN
-                payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME);
+                IF TG_OP = 'UPDATE' THEN
+                    IF OLD."EstadoReclamacion" IS DISTINCT FROM NEW."EstadoReclamacion" THEN
+                        IF NEW."EstadoReclamacion" = 'APROBADO' THEN
+                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'CLAIM_WON', 'user_id', NEW."IdUsuario");
+                        ELSIF NEW."EstadoReclamacion" = 'RECHAZADO' THEN
+                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'CLAIM_LOST', 'user_id', NEW."IdUsuario");
+                        ELSE
+                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'UPDATE', 'user_id', NEW."IdUsuario");
+                        END IF;
+                    ELSE
+                        payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'UPDATE', 'user_id', NEW."IdUsuario");
+                    END IF;
+                ELSIF TG_OP = 'INSERT' THEN
+                     payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'NEW_CLAIM', 'user_id', NEW."IdUsuario");
+                ELSE
+                    payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', TG_OP, 'user_id', OLD."IdUsuario");
+                END IF;
             ELSIF TG_TABLE_NAME = 'BilleterasXDispositivo' THEN
-                payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', TG_OP);
+                IF TG_OP = 'UPDATE' THEN
+                    IF OLD."Activo" IS DISTINCT FROM NEW."Activo" THEN
+                        IF NEW."Activo" = true THEN
+                            payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', 'INSERT');
+                        ELSE
+                            payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', 'DELETE');
+                        END IF;
+                    ELSE
+                        payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', 'UPDATE');
+                    END IF;
+                ELSE
+                    payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', TG_OP);
+                END IF;
             END IF;
             PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
         END IF;
@@ -132,5 +172,7 @@ DROP TRIGGER IF EXISTS trg_fcm_wallets_viewer ON public."BilleterasXDispositivo"
 CREATE TRIGGER trg_fcm_wallets_viewer
     AFTER INSERT OR UPDATE OR DELETE ON public."BilleterasXDispositivo"
     FOR EACH ROW EXECUTE FUNCTION public.fn_dispatch_fcm_viewer();
+
+
 
 
