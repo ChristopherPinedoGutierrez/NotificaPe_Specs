@@ -340,3 +340,35 @@
   - [x] AC 2: Indicador de estado preservado como pill pasivo.
   - [x] AC 3: Consistencia y contraste garantizado en modo claro y oscuro.
 ---
+
+---
+### [2026-10-02 22:25] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación del ordenamiento alfabético estable por nombre de usuario (A-Z) e integración del selector de criterio de ordenamiento en la barra de herramientas.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx)
+  - Se eliminó el ordenamiento jerárquico por estado que desplazaba las filas al bloquear, garantizando una posición vertical estable.
+  - El criterio por defecto es alfabético estricto (A - Z) por NombreCompleto usando 'localeCompare'.
+  - Se retiró el botón de colapso masivo en favor del control individual por dispositivo y se añadió en su lugar un selector de ordenamiento con icono 'ArrowUpDown' que ofrece: Nombre (A - Z), Nombre (Z - A), Fecha (Más reciente) y Fecha (Más antigua).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Posición visual estable sin desplazamientos forzados al aprobar o bloquear.
+  - [x] AC 2: Ordenamiento por defecto A - Z por nombre de usuario.
+  - [x] AC 3: Selector dinámico de ordenamiento (Nombre y Fecha) activo en toolbar.
+  - [x] AC 4: Acordeones de dispositivos operan de forma independiente.
+---
+
+---
+### [2026-10-02 22:30] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Reemplazo del selector de texto por un botón compacto con icono tradicional de filtro/embudo (Filter) y menú flotante de selección de ordenamiento.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [TeamTable.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/accesos/TeamTable.tsx)
+  - Se sustituyó el select con texto visible por un botón compacto con el icono de embudo estándar ('Filter'), optimizando el ancho de la toolbar.
+  - El botón despliega un menú flotante con fondo difuminado (backdrop-blur) y cierre por clic exterior ('useRef' + 'mousedown').
+  - Las opciones de ordenamiento (Nombre A-Z [default], Nombre Z-A, Fecha reciente, Fecha antigua) se muestran exclusivamente dentro de dicho menú con marca de verificación 'Check'.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Botón compacto con icono tradicional de embudo (Filter).
+  - [x] AC 2: Texto descriptivo visible solo dentro del menú desplegable.
+  - [x] AC 3: Menú emergente con cierre al hacer clic fuera.
+  - [x] AC 4: Opción activa señalizada con check azul.
+---

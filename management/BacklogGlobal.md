@@ -1,4 +1,4 @@
-﻿# Backlog Global Unificado
+# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃƒÂ³n Completada)
 
@@ -533,5 +533,5 @@ egistrar_tx_credito.
 - [ ] App: web | Tarea 10.2: Conectar GlobalAnnouncementModal a la tabla de avisos para despliegue dinámico.
 
 ### Épica 11: Mejora UX/UI del Gestor de Accesos y Dispositivos
-- [ ] App: web | Tarea 11.1: Refactorizar la vista de gestión de accesos agrupando los usuarios (vendedores) por dispositivo/caja asignada.
-- [ ] App: web | Tarea 11.2: Implementar modales de confirmación para acciones críticas (Revocar, Eliminar) previniendo clics accidentales.
+- [x] App: web | Tarea 11.1: Refactorizar la vista de gestión de accesos (/dashboard/accesos) agrupando los usuarios por dispositivo asignado con orden alfabético A-Z estable, bandeja de atención inmediata de pendientes y menú desplegable de ordenamiento con icono de filtro.
+- [x] App: web | Tarea 11.2: Implementar modales de confirmación para acciones críticas (Aprobar, Bloquear y sustitución en límite de cupo) con botones filled sólidos de alto contraste previniendo clics accidentales.
