@@ -535,3 +535,7 @@ egistrar_tx_credito.
 ### Épica 11: Mejora UX/UI del Gestor de Accesos y Dispositivos
 - [x] App: web | Tarea 11.1: Refactorizar la vista de gestión de accesos (/dashboard/accesos) agrupando los usuarios por dispositivo asignado con orden alfabético A-Z estable, bandeja de atención inmediata de pendientes y menú desplegable de ordenamiento con icono de filtro.
 - [x] App: web | Tarea 11.2: Implementar modales de confirmación para acciones críticas (Aprobar, Bloquear y sustitución en límite de cupo) con botones filled sólidos de alto contraste previniendo clics accidentales.
+
+### [E7] Bugs y Pulido (Detectados en QA)
+- [ ] **TSK-031:** Arreglar paleta de colores de billeteras en la UI (BCP sin color, Scotiabank con color de BBVA). Revisar Billeteras master o mapeo de UI.
+- [ ] **TSK-032:** Arreglar silencio de notificaciones propias en Impugnaciones. El trigger de NotificacionesXDispositivo (al pasar a 'REVISION') no tiene cmo saber qu usuario hizo la accin, por lo que evade el filtro de silencio en Android. Adems, auditar por qu llega "Actualizacin de Reclamo" en lugar de NEW_CLAIM.
