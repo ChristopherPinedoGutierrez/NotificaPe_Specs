@@ -1,18 +1,18 @@
--- ==============================================================================
--- SCRIPT MIGRACIÓN SUPABASE - PROYECTO: NOTIFICAPE
--- Descripción: Agrega columna FcmToken a Usuarios y Triggers para notificación Push-to-Pull hacia Viewer.
+ï»¿-- ==============================================================================
+-- SCRIPT MIGRACIï¿½N SUPABASE - PROYECTO: NOTIFICAPE
+-- Descripciï¿½n: Agrega columna FcmToken a Usuarios y Triggers para notificaciï¿½n Push-to-Pull hacia Viewer.
 -- Autor: Agent (SDD)
 -- Fecha: 2026-09-13
--- Fase: [E6] Refactorización Push-to-Pull (FCM) en Viewer
+-- Fase: [E6] Refactorizaciï¿½n Push-to-Pull (FCM) en Viewer
 -- ==============================================================================
 
--- 1. EXTENSIÓN NECESARIA PARA WEBHOOKS (Si no existe, ya debería existir por Admin)
+-- 1. EXTENSIï¿½N NECESARIA PARA WEBHOOKS (Si no existe, ya deberï¿½a existir por Admin)
 CREATE EXTENSION IF NOT EXISTS "pg_net";
 
--- 2. MODIFICACIÓN DE ESQUEMA
+-- 2. MODIFICACIï¿½N DE ESQUEMA
 ALTER TABLE public."Usuarios" ADD COLUMN IF NOT EXISTS "FcmToken" TEXT;
 
--- 3. FUNCIÓN DISPARADORA (DISPATCHER PARA VIEWER)
+-- 3. FUNCIï¿½N DISPARADORA (DISPATCHER PARA VIEWER)
 CREATE OR REPLACE FUNCTION public.fn_dispatch_fcm_viewer()
  RETURNS trigger
  LANGUAGE plpgsql
@@ -28,10 +28,10 @@ DECLARE
     v_alias_dispositivo VARCHAR(50);
     v_nombre_negocio VARCHAR(100);
 BEGIN
-    -- Lógica para AutorizacionesXUsuario (SYNC_AUTH)
+    -- Lï¿½gica para AutorizacionesXUsuario (SYNC_AUTH)
     IF TG_TABLE_NAME = 'AutorizacionesXUsuario' THEN
         IF TG_OP = 'UPDATE' THEN
-            -- Solo notificar si cambió el estado de aprobación
+            -- Solo notificar si cambiï¿½ el estado de aprobaciï¿½n
             IF OLD."IdEstadoAuth" IS DISTINCT FROM NEW."IdEstadoAuth" THEN
                 SELECT "FcmToken" INTO target_token FROM public."Usuarios" WHERE "IdUsuario" = NEW."IdUsuario";
                 
@@ -68,7 +68,7 @@ BEGIN
             dispositivo_id := NEW."IdDispositivo"; 
         END IF;
     ELSIF TG_TABLE_NAME = 'NotificacionesAUsuarios' THEN
-        -- Para conflictos, necesitamos subir a la tabla maestra para saber de qué caja es el reclamo
+        -- Para conflictos, necesitamos subir a la tabla maestra para saber de quï¿½ caja es el reclamo
         IF TG_OP = 'DELETE' THEN 
             SELECT "IdDispositivo" INTO dispositivo_id FROM public."NotificacionesXDispositivo" WHERE "IdSync" = OLD."IdSync";
         ELSE 
@@ -76,7 +76,7 @@ BEGIN
         END IF;
     END IF;
 
-    -- Envío masivo Multicast (Sin IsConnected)
+    -- Envï¿½o masivo Multicast (Sin IsConnected)
     IF dispositivo_id IS NOT NULL THEN
         SELECT COALESCE(jsonb_agg(u."FcmToken"), '[]'::jsonb) INTO target_tokens
         FROM public."AutorizacionesXUsuario" a
@@ -92,12 +92,12 @@ BEGIN
                 ELSIF TG_OP = 'UPDATE' THEN
                     payload := jsonb_build_object('action', 'UPDATE_PAYMENT', 'target', target_tokens);
                 ELSE
-                    payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens);
+                    payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME);
                 END IF;
             ELSIF TG_TABLE_NAME = 'NotificacionesAUsuarios' THEN
-                payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens);
+                payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME);
             ELSIF TG_TABLE_NAME = 'BilleterasXDispositivo' THEN
-                payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens);
+                payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', TG_OP);
             END IF;
             PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
         END IF;
@@ -107,7 +107,7 @@ BEGIN
 END;
 $function$;
 
--- 4. CREACIÓN DE TRIGGERS (EL FRANCOTIRADOR FCM VIEWER)
+-- 4. CREACIï¿½N DE TRIGGERS (EL FRANCOTIRADOR FCM VIEWER)
 
 -- 4.1 Trigger en Autorizaciones (Para expulsar o aprobar cajeros)
 DROP TRIGGER IF EXISTS trg_fcm_update_auth_viewer ON public."AutorizacionesXUsuario";
@@ -121,14 +121,16 @@ CREATE TRIGGER trg_fcm_notificaciones_viewer
     AFTER INSERT OR UPDATE OR DELETE ON public."NotificacionesXDispositivo"
     FOR EACH ROW EXECUTE FUNCTION public.fn_dispatch_fcm_viewer();
 
--- 4.3 Trigger en Reclamos (Participación y Disputas de Cajeros)
+-- 4.3 Trigger en Reclamos (Participaciï¿½n y Disputas de Cajeros)
 DROP TRIGGER IF EXISTS trg_fcm_conflictos_viewer ON public."NotificacionesAUsuarios";
 CREATE TRIGGER trg_fcm_conflictos_viewer
     AFTER INSERT OR UPDATE OR DELETE ON public."NotificacionesAUsuarios"
     FOR EACH ROW EXECUTE FUNCTION public.fn_dispatch_fcm_viewer();
 
--- 4.4 Trigger en QRs/Billeteras (Configuración admin cambia QR)
+-- 4.4 Trigger en QRs/Billeteras (Configuraciï¿½n admin cambia QR)
 DROP TRIGGER IF EXISTS trg_fcm_wallets_viewer ON public."BilleterasXDispositivo";
 CREATE TRIGGER trg_fcm_wallets_viewer
     AFTER INSERT OR UPDATE OR DELETE ON public."BilleterasXDispositivo"
     FOR EACH ROW EXECUTE FUNCTION public.fn_dispatch_fcm_viewer();
+
+

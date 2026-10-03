@@ -605,3 +605,51 @@ ull en el ID del contratante.
   - [x] AC 2: Si el usuario tiene la app abierta, se suprime voz/pop-up.
   - [x] AC 3: AgrupaciÃ³n en bloque a partir de 3+ notificaciones.
 ---
+
+---
+### [2026-10-01 13:40] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de flujos de notificaciones secundarias y feedback de sistema (TSK-029).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** CentinelaNotificationManager.kt, FCMReceiverService.kt, SystemFeedbackEngine.kt, SystemFeedbackEvaluator.kt, HomeViewModel.kt, MainViewModel.kt
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Separación de canales de notificación (Sistema vs Pagos).
+  - [x] AC 2: Aislamiento multicaja de notificaciones del sistema para que no choquen.
+  - [x] AC 3: Feedback usando TTS del sistema respetando la configuración y con el nivel de detalle requerido.
+---
+
+---
+### 2026-10-01 14:35 | App/Componente: VIEWER | Autor: AGENT_ROLE
+
+* **Descripción:** Resolución de bugs en sistema de alertas (Foreground, Agrupación de Billeteras, QR Edits, Conflictos).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [HomeViewModel.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt), [SystemFeedbackEngine.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/SystemFeedbackEngine.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Las alertas de sistema (Voz y Pop-up) se suprimen cuando el Viewer está en primer plano.
+  - [x] AC 2: Se agrupan múltiples notificaciones de activación/desactivación de billeteras.
+  - [x] AC 3: Se bloquean las condiciones de carrera (Mutex) permitiendo evaluar y notificar la edición de QRs.
+  - [x] AC 4: Se notifica correctamente la resolución a favor o en contra de un conflicto (Participación Aprobada/Rechazada).
+---
+---
+### 2026-10-01 15:00 | App/Componente: VIEWER | Autor: AGENT_ROLE
+
+* **Descripción:** Desagrupación de alertas de billeteras y fix de detección de URLs (QR).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt), [PagosRemoteDataSource.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/PagosRemoteDataSource.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Las alertas de agregar/eliminar billetera se dictan de manera separada, eliminando el agrupador automático de carrera.
+  - [x] AC 2: Se agregó fallback a case-insensitive urlqrpago en Supabase DataSource permitiendo gatillar exitosamente el mensaje de actualización de QR.
+---
+---
+### 2026-10-01 15:22 | App/Componente: VIEWER | Autor: AGENT_ROLE
+
+* **Descripción:** Unificación del canal de notificación (notificationId) por billetera para evitar spam en la bandeja.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Al agregar, quitar o editar el QR de una misma billetera, la notificación reemplaza a la anterior en lugar de crear un slot nuevo.
+---

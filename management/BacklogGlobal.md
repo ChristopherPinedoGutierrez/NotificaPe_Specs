@@ -522,6 +522,16 @@
 ### Épica 7: Motor Dinámico de Recompensas y Promociones (PLG)
 - [ ] App: db | Tarea 7.1: Crear tabla CampanasPromocionales (IdCampana, TipoEvento, Prioridad, MontoCreditos, Fechas) para centralizar la configuración de promociones sin *hardcoding*.
 - [ ] App: db | Tarea 7.2: Crear tabla CodigosPromocionales y vincularla a la lógica de referidos bilaterales.
-- [ ] App: db/web | Tarea 7.3: Implementar Edge Function / Trigger para evaluación atómica de campañas en el registro (REGISTRO_NUEVO y REGISTRO_REFERIDO) e inyectar el ABONO automático usando la función existente egistrar_tx_credito.
+- [x] App: db/web | Tarea 7.3: Implementar Edge Function / Trigger para evaluación atómica de campañas en el registro e inyectar el ABONO automático.
+egistrar_tx_credito.
 - [ ] App: web | Tarea 7.4: Desarrollar módulo CRUD en el panel Superadmin para gestionar, habilitar y priorizar las campañas dinámicas.
-- [ ] App: web | Tarea 7.5: Adaptar UI de Registro para aceptar códigos de invitación y crear componente dinámico en el Dashboard para renderizar el mensaje de la campaña activa.
+- [x] App: web | Tarea 7.5: Adaptar UI de Registro para aceptar códigos de invitación y crear componente dinámico (GlobalAnnouncementModal) en el Dashboard.
+
+
+### Épica 10: Motor Centralizado de Anuncios y Novedades (SaaS)
+- [ ] App: db/web | Tarea 10.1: Crear tabla CampanasInformativas en Supabase y panel CRUD en Superadmin para redactar y disparar avisos remotos.
+- [ ] App: web | Tarea 10.2: Conectar GlobalAnnouncementModal a la tabla de avisos para despliegue dinámico.
+
+### Épica 11: Mejora UX/UI del Gestor de Accesos y Dispositivos
+- [ ] App: web | Tarea 11.1: Refactorizar la vista de gestión de accesos agrupando los usuarios (vendedores) por dispositivo/caja asignada.
+- [ ] App: web | Tarea 11.2: Implementar modales de confirmación para acciones críticas (Revocar, Eliminar) previniendo clics accidentales.
