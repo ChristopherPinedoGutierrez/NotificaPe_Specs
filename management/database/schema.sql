@@ -1,4 +1,4 @@
-﻿
+
 -- ==============================================================================
 -- SCRIPT DE INICIALIZACIÓN SUPABASE - PROYECTO: NOTIFICAPE
 -- Dialecto: PostgreSQL
@@ -285,7 +285,8 @@ FOR SELECT USING (EXISTS (SELECT 1 FROM public."Superadministradores" WHERE "IdS
 CREATE OR REPLACE FUNCTION public.ajustar_credito_superadmin(
     p_id_contratante UUID,
     p_monto_ajuste BIGINT, -- Positivo (abono) o Negativo (cargo)
-    p_moneda CHAR(3) DEFAULT 'PEN'
+    p_moneda CHAR(3) DEFAULT 'PEN',
+    p_motivo TEXT DEFAULT 'AJUSTE_SUPERADMIN'
 ) RETURNS BOOLEAN AS $$
 DECLARE
     v_es_superadmin BOOLEAN;
@@ -338,7 +339,7 @@ BEGIN
     PERFORM public.registrar_tx_credito(
         p_id_contratante,
         v_tipo_movimiento,
-        'AJUSTE_SUPERADMIN',
+        COALESCE(p_motivo, 'AJUSTE_SUPERADMIN'),
         v_monto_absoluto,
         p_moneda,
         NULL,
@@ -352,7 +353,7 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- Permisos al RPC
-GRANT EXECUTE ON FUNCTION public.ajustar_credito_superadmin(UUID, BIGINT, CHAR) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.ajustar_credito_superadmin(UUID, BIGINT, CHAR, TEXT) TO authenticated;
 
 -- RPC para ingreso público de reclamaciones
 CREATE OR REPLACE FUNCTION public.registrar_reclamacion_publica(

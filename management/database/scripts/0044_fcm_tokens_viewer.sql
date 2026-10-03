@@ -1,4 +1,4 @@
-﻿-- ==============================================================================
+-- ==============================================================================
 -- SCRIPT MIGRACI�N SUPABASE - PROYECTO: NOTIFICAPE
 -- Descripci�n: Agrega columna FcmToken a Usuarios y Triggers para notificaci�n Push-to-Pull hacia Viewer.
 -- Autor: Agent (SDD)
@@ -110,7 +110,18 @@ BEGIN
                 IF TG_OP = 'UPDATE' THEN
                     IF OLD."EstadoReclamacion" IS DISTINCT FROM NEW."EstadoReclamacion" THEN
                         IF NEW."EstadoReclamacion" = 'APROBADO' THEN
-                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'CLAIM_WON', 'user_id', NEW."IdUsuario");
+                            DECLARE
+                                v_contador INT;
+                            BEGIN
+                                SELECT "ContadorReclamaciones" INTO v_contador FROM public."NotificacionesXDispositivo" WHERE "IdSync" = NEW."IdSync";
+                                IF v_contador = 1 THEN
+                                    -- Auto-win (Happy path): Ya se envió el NEW_CLAIM por el INSERT en esta misma transacción.
+                                    -- Omitimos el Push secundario de CLAIM_WON para evitar que la app le hable al autor.
+                                    payload := NULL;
+                                ELSE
+                                    payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'CLAIM_WON', 'user_id', NEW."IdUsuario");
+                                END IF;
+                            END;
                         ELSIF NEW."EstadoReclamacion" = 'RECHAZADO' THEN
                             payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'CLAIM_LOST', 'user_id', NEW."IdUsuario");
                         ELSE
@@ -120,7 +131,24 @@ BEGIN
                         payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'UPDATE', 'user_id', NEW."IdUsuario");
                     END IF;
                 ELSIF TG_OP = 'INSERT' THEN
-                     payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'NEW_CLAIM', 'user_id', NEW."IdUsuario");
+                    DECLARE
+                        v_contador INT;
+                        v_owner UUID;
+                    BEGIN
+                        SELECT "ContadorReclamaciones" INTO v_contador FROM public."NotificacionesXDispositivo" WHERE "IdSync" = NEW."IdSync";
+                        IF v_contador = 1 THEN
+                            -- Happy Path (1er reclamo): Enviamos SYNC_PAYMENTS limpio. Android se encarga de silenciarlo.
+                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME);
+                        ELSE
+                            -- Impugnación: Alguien más está reclamando. Buscamos al dueño original/previo.
+                            -- (El que no es el actual y tiene el estado APROBADO o PROCESANDO)
+                            SELECT "IdUsuario" INTO v_owner FROM public."NotificacionesAUsuarios" 
+                            WHERE "IdSync" = NEW."IdSync" AND "IdUsuario" != NEW."IdUsuario"
+                            ORDER BY "FechaReg" ASC LIMIT 1;
+                            
+                            payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', 'NEW_CLAIM', 'user_id', NEW."IdUsuario", 'owner_id', v_owner);
+                        END IF;
+                    END;
                 ELSE
                     payload := jsonb_build_object('action', 'SYNC_PAYMENTS', 'target', target_tokens, 'table', TG_TABLE_NAME, 'operation', TG_OP, 'user_id', OLD."IdUsuario");
                 END IF;
@@ -139,13 +167,17 @@ BEGIN
                     payload := jsonb_build_object('action', 'SYNC_WALLETS', 'target', target_tokens, 'operation', TG_OP);
                 END IF;
             END IF;
-            PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
+            IF payload IS NOT NULL THEN
+                PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
+            END IF;
         END IF;
     END IF;
 
     IF TG_OP = 'DELETE' THEN RETURN OLD; ELSE RETURN NEW; END IF;
 END;
 $function$;
+
+
 
 -- 4. CREACI�N DE TRIGGERS (EL FRANCOTIRADOR FCM VIEWER)
 
@@ -172,6 +204,9 @@ DROP TRIGGER IF EXISTS trg_fcm_wallets_viewer ON public."BilleterasXDispositivo"
 CREATE TRIGGER trg_fcm_wallets_viewer
     AFTER INSERT OR UPDATE OR DELETE ON public."BilleterasXDispositivo"
     FOR EACH ROW EXECUTE FUNCTION public.fn_dispatch_fcm_viewer();
+
+
+
 
 
 

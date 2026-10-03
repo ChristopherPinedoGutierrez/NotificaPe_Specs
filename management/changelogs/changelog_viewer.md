@@ -666,3 +666,14 @@ ull en el ID del contratante.
   - [x] AC 2: La app silencia los reclamos propios mediante validacin de user_id.
   - [x] AC 3: La app narra correctamente los fallos y validaciones del administrador.
 ---
+---
+### [2026-10-03 12:10] | App/Componente: VIEWER / DB | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de colores de billeteras en UI y silenciamiento de notificaciones propias de reclamo (TSK-031, TSK-032).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CommonHomeComponents.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [0044_fcm_tokens_viewer.sql](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
+  - **Base de Datos:** Se modificó la función n_dispatch_fcm_viewer para emitir únicamente un SYNC_PAYMENTS pasivo cuando el EstadoProgreso cambia a REVISION (en lugar de un UPDATE_PAYMENT con operación DISPUTED), cediendo la responsabilidad de la notificación Push al trigger de NotificacionesAUsuarios el cual incluye correctamente el user_id para silenciar la notificación localmente.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Los colores de Scotiabank (rojo), BCP, Plin Interbank y otras billeteras de producción se asignan correctamente cuando no están en memoria local.
+  - [x] AC 2: El usuario que inicia un reclamo ya no recibe la alerta "Actualización de Reclamo" ni "Reclamo de Usuario", respetando el filtro de silenciamiento local del Viewer.
+---
