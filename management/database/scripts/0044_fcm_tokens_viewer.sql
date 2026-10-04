@@ -78,7 +78,7 @@ BEGIN
 
     -- Env�o masivo Multicast (Sin IsConnected)
     IF dispositivo_id IS NOT NULL THEN
-        SELECT COALESCE(jsonb_agg(u."FcmToken"), '[]'::jsonb) INTO target_tokens
+        SELECT COALESCE(jsonb_agg(DISTINCT u."FcmToken"), '[]'::jsonb) INTO target_tokens
         FROM public."AutorizacionesXUsuario" a
         JOIN public."Usuarios" u ON a."IdUsuario" = u."IdUsuario"
         WHERE a."IdDispositivo" = dispositivo_id 
