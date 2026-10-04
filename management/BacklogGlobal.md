@@ -1,4 +1,4 @@
-﻿# Backlog Global Unificado
+# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃƒÆ’Ã‚Â³n Completada)
 
@@ -484,7 +484,7 @@
 - [x] App: db | Tarea 1.2: Crear script de migraciÃƒÂ³n SQL ( 044_fcm_tokens_viewer.sql) para agregar columna FcmToken a la tabla Usuarios. 
 - [x] App: viewer | Tarea 1.3: En el Login de Google en el app Viewer, forzar siempre un UPDATE a la tabla Usuarios con el token FCM generado.
   - [x] App: viewer | **[TSK-028]** RediseÃ±o Adaptativo de Cola FCM (Smart Batching): Implementar SupresiÃ³n Contextual en primer plano, inyecciÃ³n inmediata a la Bandeja del Sistema (Fase 1), y lÃ³gica de agrupaciÃ³n de voz/pop-up en bloque para rÃ¡fagas de 3+ notificaciones, superando el lÃ­mite de Wakelock (15s) de Android.
-- [ ] App: viewer | **[TSK-029]** Flujos de Notificaciones Secundarias y Feedback de Sistema:
+- [x] App: viewer | **[TSK-029]** Flujos de Notificaciones Secundarias y Feedback de Sistema:
   - **Billeteras y QRs (Bandeja Silenciosa):** Implementar notificaciones regulares (sin TTS/Pop-Up) separando dos conceptos: 1) Agregado/Quitado de billeteras (agrupado singular/plural). 2) EdiciÃ³n de URL/Imagen de cÃ³digo QR (canal crÃ­tico para cajeros).
   - **Control de Acceso (Voz y Pop-Up):** Notificar aprobaciones y revocaciones de acceso a cajas indicando "Tienda X, Caja Y". Debe despertar el dispositivo si estÃ¡ bloqueado.
   - **Disputas y Reclamos (Voz y Pop-Up):** Notificar cambios de estado en disputas en las que el cajero estÃ© involucrado.

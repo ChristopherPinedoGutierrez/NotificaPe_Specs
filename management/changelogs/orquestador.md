@@ -208,3 +208,4 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 * **[2026-10-03 12:10]** | App: VIEWER | Tipo: UI / DB | Fix TSK-031 y TSK-032: Paleta de colores de billeteras y silenciamiento correcto de notificaciones propias de impugnaciones. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 
 * **[2026-10-03 20:00]** | App: web | Tipo: UI / DB | Rediseño de DisputaCard y extensión de view_notificaciones_disputadas para desambiguación de usuarios. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
+* **[2026-10-03 20:30]** | App: VIEWER | Tipo: FCM / DB / LOGIC | Pulido integral de notificaciones, silenciamiento Happy Path/UPDATE y desduplicacin de tokens FCM. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)

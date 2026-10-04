@@ -677,3 +677,25 @@ ull en el ID del contratante.
   - [x] AC 1: Los colores de Scotiabank (rojo), BCP, Plin Interbank y otras billeteras de producci髇 se asignan correctamente cuando no est醤 en memoria local.
   - [x] AC 2: El usuario que inicia un reclamo ya no recibe la alerta "Actualizaci髇 de Reclamo" ni "Reclamo de Usuario", respetando el filtro de silenciamiento local del Viewer.
 ---
+
+---
+### [2026-10-03 20:30] | App/Componente: VIEWER / SUPABASE / DB | Autor: AGENT_ROLE
+
+* **Descripci贸n:** Pulido integral del flujo de notificaciones y silenciamiento en Happy Path, impugnaciones direccionales con owner_id, desduplicaci贸n de tokens FCM y silenciamiento de actualizaciones intra-estado (TSK-029 / TSK-032).
+* **Detalles T茅cnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt), [0044_fcm_tokens_viewer.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
+  - **Base de Datos:** En `fn_dispatch_fcm_viewer`:
+    - Incorporaci贸n de `owner_id` en `NEW_CLAIM` ordenando por `FechaReg` para identificar al due帽o previo.
+    - Desduplicaci贸n de tokens de env铆o mediante `jsonb_agg(DISTINCT u."FcmToken")` en `target_tokens` para prevenir que un usuario con m煤ltiples autorizaciones o sesiones hu茅rfanas reciba la notificaci贸n duplicada (eco doble).
+    - En Happy Path (`ContadorReclamaciones = 1`), emisi贸n de `SYNC_PAYMENTS` sin operaci贸n ni voz para mantener el silencio absoluto en la tienda.
+  - **Cliente Android (Viewer):**
+    - En `FCMReceiverService.kt`, se a帽adieron filtros tempranos de retorno (`return@launch`):
+      - Si `operation.isNullOrEmpty()`, se silencia completamente (solo refresco de UI).
+      - Si `operation == "NEW_CLAIM"`, se valida `owner_id`. Si es nulo (primer reclamo) o distinto a `currentUserId`, se silencia para terceros y autor. Solo suena ("Reclamo de Usuario") para el due帽o afectado.
+      - Si `operation == "UPDATE"` (ej. edici贸n de observaci贸n propia), se silencia de forma absoluta para no disparar la alerta comod铆n de resoluci贸n.
+* **Criterios de Aceptaci贸n (AC) Validados:**
+  - [x] AC 1: Reclamar una notificaci贸n regular (Happy Path) ocurre en silencio total tanto para el usuario que la toma como para el resto del equipo.
+  - [x] AC 2: La impugnaci贸n no genera error de columna en Postgres (`FechaReg` corregido) y notifica 煤nicamente al due帽o previo afectado.
+  - [x] AC 3: La edici贸n de observaciones propias en historial o registros actualiza la BD y la UI silenciosamente sin sonar "Actualizaci贸n de Reclamo".
+  - [x] AC 4: Las resoluciones administrativas (Aprobaci贸n/Rechazo) no se reproducen en duplicado ("eco doble") tras la desduplicaci贸n de tokens en backend.
+---
