@@ -1,7 +1,22 @@
-# Changelog de AplicaciÃƒÂƒÃ‚Â³n Viewer
+ï»¿# Changelog de AplicaciÃƒÂƒÃ‚Â³n Viewer
 
 Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂƒÃ‚Â³gica y configuraciÃƒÂƒÃ‚Â³n de la aplicaciÃƒÂƒÃ‚Â³n mÃƒÂƒÃ‚Â³vil **NotificaPe Viewer**.
 
+---
+### [2026-10-03 21:40] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **DescripciÃ³n:** RefactorizaciÃ³n visual de cabecera unificada (HomeTopBar), selector de fecha estilo Admin (ConsultDateCard) y redistribuciÃ³n de componentes en tabs Notificaciones, Mi Registro y ConfiguraciÃ³n.
+* **Detalles TÃ©cnicos:**
+  - **Archivos Modificados:** [HomeCommonComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/HomeCommonComponents.kt), [BreakdownComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/BreakdownComponents.kt), [HomeNavigationComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/HomeNavigationComponents.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [ControlComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/ControlComponents.kt), [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt), [HomeScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeScreen.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de AceptaciÃ³n (AC) Validados:**
+  - [x] AC 1: HomeTopBar reducida a una sola fila global con formato [Icono Cartera] [Contratante] / [Dispositivo] y botÃ³n QR a la derecha.
+  - [x] AC 2: CreaciÃ³n del componente ConsultDateCard con diseÃ±o equivalente a Admin (FECHA DE CONSULTA, dd/MM/yyyy, icono y altura de 56dp).
+  - [x] AC 3: Fila combinada de fecha y SummaryPill con misma altura y alineaciÃ³n en Notificaciones y Mi Registro.
+  - [x] AC 4: Inputs principales (bÃºsqueda en Notificaciones y tarjeta de recaudaciÃ³n en Mi Registro) expandidos a ancho completo (fillMaxWidth).
+  - [x] AC 5: TÃ­tulo de ConfiguraciÃ³n homologado con peso tipogrÃ¡fico y creaciÃ³n de subtÃ­tulo de secciÃ³n InformaciÃ³n Personal.
+  - [x] AC 6: ExtensiÃ³n de AlertsInfoModal detallando la funciÃ³n del switch de Alertas Administrativas.
+  - [x] AC 7: CompilaciÃ³n exitosa verificada mediante assembleDebug.
 ---
 ### [2026-09-04 15:05] | App/Componente: viewer | Autor: AGENT_ROLE
 
@@ -515,36 +530,36 @@ Este archivo contiene el historial de cambios a nivel de UI, lÃƒÂƒÃ‚Â³gica y con
 ---
 ### [2026-09-13 14:48] | App/Componente: Viewer | Autor: AGENT_ROLE
 
-* **Descripción:** Integración de Firebase Cloud Messaging (FCM) SDK y sincronización de FCM Token en el login para la arquitectura Push-to-Pull.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Integraciï¿½n de Firebase Cloud Messaging (FCM) SDK y sincronizaciï¿½n de FCM Token en el login para la arquitectura Push-to-Pull.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [libs.versions.toml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/gradle/libs.versions.toml), [build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/build.gradle.kts), [app/build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/build.gradle.kts), [AuthRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthRepositoryImpl.kt), [AuthRemoteDataSource.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/AuthRemoteDataSource.kt)
   - **Base de Datos:** Ninguno (Scripts aplicados en DB previamente)
-* **Criterios de Aceptación (AC) Validados:**
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
   - [x] AC 1: Configurar Firebase Console, dependencias de Google Services y Firebase Messaging.
-  - [x] AC 2: Forzar actualización del FcmToken en la base de datos Supabase durante el login de Google y Correo.
+  - [x] AC 2: Forzar actualizaciï¿½n del FcmToken en la base de datos Supabase durante el login de Google y Correo.
 ---
 ---
 ### [2026-09-15 11:55] | App/Componente: Viewer | Autor: AGENT_ROLE
 
-* **Descripción:** Solucionado error crítico en encolamiento de notificaciones (Deadlock en TtsManager).
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Solucionado error crï¿½tico en encolamiento de notificaciones (Deadlock en TtsManager).
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [TtsManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/manager/TtsManager.kt)
-  - **Base de Datos:** Ninguno. Se reestructuró la inicialización del TTS para evitar que un fallo en el motor deje bloqueado el coroutine channel de NotificationQueueManager, lo cual evitaba que se reprodujeran las alertas de voz y las vibraciones subsecuentes.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Las notificaciones encoladas se rechazan o prosiguen limpiamente si el TTS no está disponible, en lugar de bloquear el worker.
+  - **Base de Datos:** Ninguno. Se reestructurï¿½ la inicializaciï¿½n del TTS para evitar que un fallo en el motor deje bloqueado el coroutine channel de NotificationQueueManager, lo cual evitaba que se reprodujeran las alertas de voz y las vibraciones subsecuentes.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Las notificaciones encoladas se rechazan o prosiguen limpiamente si el TTS no estï¿½ disponible, en lugar de bloquear el worker.
 ---
 ---
 ### [2026-09-15 12:57] | App/Componente: Viewer | Autor: AGENT_ROLE
 
-* **Descripción:** Corrección crítica en la propagación de notificaciones FCM estando la app cerrada y corrección de logs.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Correcciï¿½n crï¿½tica en la propagaciï¿½n de notificaciones FCM estando la app cerrada y correcciï¿½n de logs.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [PagosRepositoryImpl.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/PagosRepositoryImpl.kt), [BackgroundSyncManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/BackgroundSyncManager.kt), [NotificationQueueManager.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt)
   - **Base de Datos:** Ninguno.
-* **Criterios de Aceptación (AC) Validados:**
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
   - [x] AC 1: BackgroundSyncManager ya no aborta silenciosamente por recibir 
 ull en el ID del contratante.
   - [x] AC 2: NotificationQueueManager se auto-inicializa y crea su propio worker y canal si la app despierta desde estado cerrado por medio del Broadcast FCM.
-  - [x] AC 3: Los logs de BackgroundSyncManager incluyen [FCM-FLOW: CATCH-UP] para su fácil rastreo en el Logcat.
+  - [x] AC 3: Los logs de BackgroundSyncManager incluyen [FCM-FLOW: CATCH-UP] para su fï¿½cil rastreo en el Logcat.
 ---
 ---
 ### [2026-09-16 22:09] | App/Componente: Viewer | Autor: AGENT_ROLE
@@ -562,36 +577,36 @@ ull en el ID del contratante.
 ---
 ### [2026-09-18 13:29] | App/Componente: Viewer | Autor: Orquestador SDD
 
-* **Descripción:** Implementación de payload específico FCM para evitar duplicidad de alertas push y precisión en los cambios de permisos.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Implementaciï¿½n de payload especï¿½fico FCM para evitar duplicidad de alertas push y precisiï¿½n en los cambios de permisos.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [FCMReceiverService.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt)
   - **Base de Datos:** Modificado trigger FCM en Supabase para enviar payload enriquecido.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Alertas persistentes y emergentes actualizan el idAutorizacion evadiendo acumulación excesiva (badge count drop).
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Alertas persistentes y emergentes actualizan el idAutorizacion evadiendo acumulaciï¿½n excesiva (badge count drop).
 ---
 
 
 ---
 ### [2026-09-18 13:48] | App/Componente: Viewer | Autor: Orquestador SDD
 
-* **Descripción:** Refinamiento de notificaciones: Eliminada actualización redundante de persistente y mejora de textos.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Refinamiento de notificaciones: Eliminada actualizaciï¿½n redundante de persistente y mejora de textos.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [FCMReceiverService.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt)
-  - **Manejo UI:** Se removió updateStateNotification del FCM; ahora delega 100% a MainViewModel.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Textos específicos refieren a dispositivo y empresa, evadiendo solapamiento con notificación persistente.
+  - **Manejo UI:** Se removiï¿½ updateStateNotification del FCM; ahora delega 100% a MainViewModel.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Textos especï¿½ficos refieren a dispositivo y empresa, evadiendo solapamiento con notificaciï¿½n persistente.
 ---
 
 ---
 ### [2026-09-28 15:28] | App/Componente: viewer | Autor: PROGRAMADOR_ESPECIALIZADO
 
-* **Descripción:** Preparación para producción final: depuración de permisos (batería/foreground), limpieza de código muerto y FIX crítico de notificaciones FCM.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Preparaciï¿½n para producciï¿½n final: depuraciï¿½n de permisos (baterï¿½a/foreground), limpieza de cï¿½digo muerto y FIX crï¿½tico de notificaciones FCM.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** AndroidManifest.xml, PermissionGuard.kt, VinculacionRepositoryImpl.kt, PagosRemoteDataSource.kt, NotificaPeViewerApp.kt
-  - **Fix FCM:** Se restaura la inicialización de canales (NotificationChannel) en App.onCreate() que había quedado huérfana tras borrar CentinelaService.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: La app ya no requiere FOREGROUND_SERVICE ni permisos especiales de batería, cumpliendo con Google Play.
-  - [x] AC 2: La notificación persistente y los pop-ups de pago se muestran correctamente en instalaciones limpias.
+  - **Fix FCM:** Se restaura la inicializaciï¿½n de canales (NotificationChannel) en App.onCreate() que habï¿½a quedado huï¿½rfana tras borrar CentinelaService.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: La app ya no requiere FOREGROUND_SERVICE ni permisos especiales de baterï¿½a, cumpliendo con Google Play.
+  - [x] AC 2: La notificaciï¿½n persistente y los pop-ups de pago se muestran correctamente en instalaciones limpias.
 ---
 ---
 ### [2026-09-29 18:39] | App/Componente: viewer | Autor: AGENT_ROLE
@@ -609,49 +624,49 @@ ull en el ID del contratante.
 ---
 ### [2026-10-01 13:40] | App/Componente: viewer | Autor: AGENT_ROLE
 
-* **Descripción:** Implementación de flujos de notificaciones secundarias y feedback de sistema (TSK-029).
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Implementaciï¿½n de flujos de notificaciones secundarias y feedback de sistema (TSK-029).
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** CentinelaNotificationManager.kt, FCMReceiverService.kt, SystemFeedbackEngine.kt, SystemFeedbackEvaluator.kt, HomeViewModel.kt, MainViewModel.kt
   - **Base de Datos:** Ninguno
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Separación de canales de notificación (Sistema vs Pagos).
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Separaciï¿½n de canales de notificaciï¿½n (Sistema vs Pagos).
   - [x] AC 2: Aislamiento multicaja de notificaciones del sistema para que no choquen.
-  - [x] AC 3: Feedback usando TTS del sistema respetando la configuración y con el nivel de detalle requerido.
+  - [x] AC 3: Feedback usando TTS del sistema respetando la configuraciï¿½n y con el nivel de detalle requerido.
 ---
 
 ---
 ### 2026-10-01 14:35 | App/Componente: VIEWER | Autor: AGENT_ROLE
 
-* **Descripción:** Resolución de bugs en sistema de alertas (Foreground, Agrupación de Billeteras, QR Edits, Conflictos).
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Resoluciï¿½n de bugs en sistema de alertas (Foreground, Agrupaciï¿½n de Billeteras, QR Edits, Conflictos).
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [HomeViewModel.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt), [SystemFeedbackEngine.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/SystemFeedbackEngine.kt)
   - **Base de Datos:** Ninguno.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Las alertas de sistema (Voz y Pop-up) se suprimen cuando el Viewer está en primer plano.
-  - [x] AC 2: Se agrupan múltiples notificaciones de activación/desactivación de billeteras.
-  - [x] AC 3: Se bloquean las condiciones de carrera (Mutex) permitiendo evaluar y notificar la edición de QRs.
-  - [x] AC 4: Se notifica correctamente la resolución a favor o en contra de un conflicto (Participación Aprobada/Rechazada).
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Las alertas de sistema (Voz y Pop-up) se suprimen cuando el Viewer estï¿½ en primer plano.
+  - [x] AC 2: Se agrupan mï¿½ltiples notificaciones de activaciï¿½n/desactivaciï¿½n de billeteras.
+  - [x] AC 3: Se bloquean las condiciones de carrera (Mutex) permitiendo evaluar y notificar la ediciï¿½n de QRs.
+  - [x] AC 4: Se notifica correctamente la resoluciï¿½n a favor o en contra de un conflicto (Participaciï¿½n Aprobada/Rechazada).
 ---
 ---
 ### 2026-10-01 15:00 | App/Componente: VIEWER | Autor: AGENT_ROLE
 
-* **Descripción:** Desagrupación de alertas de billeteras y fix de detección de URLs (QR).
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Desagrupaciï¿½n de alertas de billeteras y fix de detecciï¿½n de URLs (QR).
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt), [PagosRemoteDataSource.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/PagosRemoteDataSource.kt)
   - **Base de Datos:** Ninguno.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Las alertas de agregar/eliminar billetera se dictan de manera separada, eliminando el agrupador automático de carrera.
-  - [x] AC 2: Se agregó fallback a case-insensitive urlqrpago en Supabase DataSource permitiendo gatillar exitosamente el mensaje de actualización de QR.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Las alertas de agregar/eliminar billetera se dictan de manera separada, eliminando el agrupador automï¿½tico de carrera.
+  - [x] AC 2: Se agregï¿½ fallback a case-insensitive urlqrpago en Supabase DataSource permitiendo gatillar exitosamente el mensaje de actualizaciï¿½n de QR.
 ---
 ---
 ### 2026-10-01 15:22 | App/Componente: VIEWER | Autor: AGENT_ROLE
 
-* **Descripción:** Unificación del canal de notificación (notificationId) por billetera para evitar spam en la bandeja.
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Unificaciï¿½n del canal de notificaciï¿½n (notificationId) por billetera para evitar spam en la bandeja.
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [SystemFeedbackEvaluator.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SystemFeedbackEvaluator.kt)
   - **Base de Datos:** Ninguno.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Al agregar, quitar o editar el QR de una misma billetera, la notificación reemplaza a la anterior en lugar de crear un slot nuevo.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Al agregar, quitar o editar el QR de una misma billetera, la notificaciï¿½n reemplaza a la anterior en lugar de crear un slot nuevo.
 ---
 
 ---
@@ -669,13 +684,13 @@ ull en el ID del contratante.
 ---
 ### [2026-10-03 12:10] | App/Componente: VIEWER / DB | Autor: AGENT_ROLE
 
-* **Descripción:** Corrección de colores de billeteras en UI y silenciamiento de notificaciones propias de reclamo (TSK-031, TSK-032).
-* **Detalles Técnicos:**
+* **Descripciï¿½n:** Correcciï¿½n de colores de billeteras en UI y silenciamiento de notificaciones propias de reclamo (TSK-031, TSK-032).
+* **Detalles Tï¿½cnicos:**
   - **Archivos Modificados:** [CommonHomeComponents.kt](file:///C:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/CommonHomeComponents.kt), [0044_fcm_tokens_viewer.sql](file:///C:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0044_fcm_tokens_viewer.sql)
-  - **Base de Datos:** Se modificó la función n_dispatch_fcm_viewer para emitir únicamente un SYNC_PAYMENTS pasivo cuando el EstadoProgreso cambia a REVISION (en lugar de un UPDATE_PAYMENT con operación DISPUTED), cediendo la responsabilidad de la notificación Push al trigger de NotificacionesAUsuarios el cual incluye correctamente el user_id para silenciar la notificación localmente.
-* **Criterios de Aceptación (AC) Validados:**
-  - [x] AC 1: Los colores de Scotiabank (rojo), BCP, Plin Interbank y otras billeteras de producción se asignan correctamente cuando no están en memoria local.
-  - [x] AC 2: El usuario que inicia un reclamo ya no recibe la alerta "Actualización de Reclamo" ni "Reclamo de Usuario", respetando el filtro de silenciamiento local del Viewer.
+  - **Base de Datos:** Se modificï¿½ la funciï¿½n n_dispatch_fcm_viewer para emitir ï¿½nicamente un SYNC_PAYMENTS pasivo cuando el EstadoProgreso cambia a REVISION (en lugar de un UPDATE_PAYMENT con operaciï¿½n DISPUTED), cediendo la responsabilidad de la notificaciï¿½n Push al trigger de NotificacionesAUsuarios el cual incluye correctamente el user_id para silenciar la notificaciï¿½n localmente.
+* **Criterios de Aceptaciï¿½n (AC) Validados:**
+  - [x] AC 1: Los colores de Scotiabank (rojo), BCP, Plin Interbank y otras billeteras de producciï¿½n se asignan correctamente cuando no estï¿½n en memoria local.
+  - [x] AC 2: El usuario que inicia un reclamo ya no recibe la alerta "Actualizaciï¿½n de Reclamo" ni "Reclamo de Usuario", respetando el filtro de silenciamiento local del Viewer.
 ---
 
 ---
