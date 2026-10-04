@@ -1,7 +1,19 @@
-﻿# Changelog de AplicaciÃÂ³n Viewer
+# Changelog de AplicaciÃÂ³n Viewer
 
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
+---
+### [2026-10-04 18:15] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de compuertas de seguridad defensivas en FCMReceiverService y NotificationQueueManager para silenciar notificaciones técnicas, en revisión o con monto <= 0 [TSK-033].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [FCMReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt), [NotificationQueueManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/NotificationQueueManager.kt)
+  - **Base de Datos:** Actualizada función `public.fn_dispatch_fcm_viewer()` mediante script [0046_fix_fcm_viewer_filters.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0046_fix_fcm_viewer_filters.sql).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: `FCMReceiverService` descarta silenciosamente eventos `NEW_PAYMENT` con `Privada = true`, `MontoCentimos <= 0` o `EstadoProgreso != "PENDIENTE"`.
+  - [x] AC 2: `NotificationQueueManager` implementa salvaguarda fail-safe en bucle de ráfagas para suprimir locución TTS y pop-ups si `montoDecimal <= 0.0` o `Privada = true`.
+  - [x] AC 3: Notificaciones de prueba legítimas (`Prueba = true`) con monto continúan operando con normalidad.
+  - [x] AC 4: Compilación verificada exitosamente.
 ---
 ### [2026-10-03 21:40] | App/Componente: viewer | Autor: AGENT_ROLE
 

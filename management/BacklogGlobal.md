@@ -1,4 +1,4 @@
-﻿# Backlog Global Unificado
+# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃƒÆ’Ã‚Â³n Completada)
 
@@ -551,3 +551,4 @@ egistrar_tx_credito.
 ### [E7] Bugs y Pulido (Detectados en QA)
 - [x] **TSK-031:** Arreglar paleta de colores de billeteras en la UI (BCP sin color, Scotiabank con color de BBVA). Revisar Billeteras master o mapeo de UI.
 - [x] **TSK-032:** Arreglar silencio de notificaciones propias en Impugnaciones. El trigger de NotificacionesXDispositivo (al pasar a 'REVISION') no tiene cmo saber qu usuario hizo la accin, por lo que evade el filtro de silencio en Android. Adems, auditar por qu llega "Actualizacin de Reclamo" en lugar de NEW_CLAIM.
+- [x] **TSK-033:** Filtrado y blindaje de notificaciones sin monto / REVISION en Viewer y Supabase (Eliminación de falsos pagos S/ 0.00).
