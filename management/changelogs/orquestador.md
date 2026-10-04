@@ -1,4 +1,5 @@
-﻿* **[2026-10-03 21:40]** | App: viewer | Tipo: UI | Refactorización de cabecera unificada, selector de fecha estilo Admin y redistribución de ancho completo en tabs. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-10-04 16:15]** | App: admin | Tipo: UI | Contención de vista de recorte QR (CropActivity) y adaptación dinámica de WindowInsets ante Edge-to-Edge. Ver [changelog_admin.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_admin.md)
+* **[2026-10-03 21:40]** | App: viewer | Tipo: UI | Refactorización de cabecera unificada, selector de fecha estilo Admin y redistribución de ancho completo en tabs. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
 * **[2026-09-07 18:25]** | App: db/web/admin | Tipo: DB/API/UI | Migración de WebSockets a FCM en admin y Supabase, creación de Edge Function y triggers. Ver [changelog_admin.md](file:///../NotificaPe_Specs/management/changelogs/changelog_admin.md) y [changelog_web.md](file:///../NotificaPe_Specs/management/changelogs/changelog_web.md)
 # Registro Global de Cambios (Orquestador)
 Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estricto de todas las modificaciones en el ecosistema NotificaPe.

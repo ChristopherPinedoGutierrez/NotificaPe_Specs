@@ -1,4 +1,17 @@
-﻿---
+---
+### [2026-10-04 16:15] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de CropActivity con gestión dinámica de WindowInsets para resolver solapamiento Edge-to-Edge con la barra de estado y barra de navegación en recorte de QR de billeteras.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CropActivity.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/crop/CropActivity.kt), [AndroidManifest.xml](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/AndroidManifest.xml), [WalletsComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/java/com/notificape/admin/ui/dashboard/sections/WalletsComponents.kt), [values-v35/themes.xml](file:///c:/Trabajo/Proyectos/NotificaPe/admin/app/src/main/res/values-v35/themes.xml)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Creación de CropActivity heredando de UCropActivity y aplicación dinámica de systemBars + displayCutout insets en Toolbar y contenedor inferior.
+  - [x] AC 2: Redirección transparente de uCropIntent hacia CropActivity en WalletsComponents manteniendo todas las opciones previas y handlers intactos.
+  - [x] AC 3: Eliminación de bandera obsoleta de opt-out Edge-to-Edge en values-v35/themes.xml para compatibilidad con targetSdk 36.
+  - [x] AC 4: Compilación exitosa de debug (assembleDebug) generando app-debug.apk sin errores.
+---
+---
 ### [2026-09-07 18:25] | App/Componente: admin | Autor: AGENT_ROLE
 
 * **Descripción:** Migración completa de WebSockets (Realtime) a FCM (Push-to-Pull) en Android, eliminando Supabase Realtime para mayor resiliencia.
