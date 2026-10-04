@@ -372,3 +372,16 @@
   - [x] AC 3: Menú emergente con cierre al hacer clic fuera.
   - [x] AC 4: Opción activa señalizada con check azul.
 ---
+
+---
+### [2026-10-03 20:00] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Rediseño de la tarjeta de disputas y actualización de vista de base de datos para desambiguar perfiles homónimos y mostrar contexto bancario.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DisputaCard.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/disputadas/DisputaCard.tsx)
+  - **Base de Datos:** Actualización in-place mediante CREATE OR REPLACE VIEW en view_notificaciones_disputadas añadiendo ContenidoMsg, Correo, FotoUrl, EquipoMarca, EquipoModelo, y JustificacionConflicto.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Visualización del texto original de la notificación bancaria (ContenidoMsg).
+  - [x] AC 2: Desambiguación de usuarios mediante correo electrónico, foto de perfil e identificación de dispositivo móvil.
+  - [x] AC 3: Renderizado diferenciado de observación inicial de captura y justificación de conflicto.
+---
