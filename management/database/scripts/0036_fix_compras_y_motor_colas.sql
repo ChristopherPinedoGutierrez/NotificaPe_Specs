@@ -502,9 +502,9 @@ BEGIN
         COALESCE(v_lic_cola."ExtraDispositivos", 0)
       );
 
-      -- Marcar como completada en la cola
+      -- Marcar como aplicada en la cola
       UPDATE public."LicenciasCola"
-         SET "Estado" = 'COMPLETADA',
+         SET "Estado" = 'APLICADA',
              "UpdatedAt" = NOW()
        WHERE "IdLicenciaCola" = v_lic_cola."IdLicenciaCola";
        

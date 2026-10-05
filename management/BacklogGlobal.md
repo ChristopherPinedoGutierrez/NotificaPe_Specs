@@ -1,4 +1,4 @@
-﻿# Backlog Global Unificado
+# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃƒÆ’Ã‚Â³n Completada)
 
@@ -418,6 +418,7 @@
 - [ ] App: web | Tarea (CR-014): Construir vista en `/superadmin/licencias` para que el Superadmin pueda crear "Planes Custom" aislando a un `IdContratanteExclusivo` y fijar precios manuales.
 - [ ] App: web | Tarea (CR-014): Modificar `PricingCards.tsx` para ocultar planes corporativos al pÃƒÂºblico general y renderizarlos solo si el UUID coincide.
 - [x] App: web/db | Tarea (Pendiente): Reforzar a nivel de servidor (`actions.ts`) y base de datos la inyecciÃƒÂ³n automÃƒÂ¡tica del diferencial (Vuelto) como saldo a favor cuando se aplica el Ticket MÃƒÂ­nimo de 5 soles en el checkout de MercadoPago.
+- [x] App: db/web | Tarea (CR-015 / Fix): RegularizaciÃ³n del Motor de Colas de Licencias (CorrecciÃ³n de Check Constraint de estado 'APLICADA', aislamiento transaccional de excepciones en pg_cron diario, activaciÃ³n reactiva Just-In-Time en DashboardLayout/licencias y temporizador global de auto-refresh en AccessGuard).
 
 ## [E4] Entregable 4: Motor DinÃƒÂ¡mico de Regex y EstandarizaciÃƒÂ³n (Zero-Downtime)
 

@@ -897,3 +897,16 @@
   - [x] AC 1: SYNC_AUTH envía información contextual completa.
 ---
 
+
+---
+### [2026-10-05 14:25] | App/Componente: Supabase BD | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Corrección de constraint de estado en LicenciasCola, motor de colas con aislamiento transaccional seguro y activación Just-In-Time (JIT).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0047_motor_colas_jit_y_continuidad.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0047_motor_colas_jit_y_continuidad.sql), [0036_fix_compras_y_motor_colas.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0036_fix_compras_y_motor_colas.sql)
+  - **Base de Datos:** Creación de función RPC `activar_licencia_cola_si_aplica`, corrección de `'COMPLETADA'` por `'APLICADA'` para cumplir con `LicenciasCola_Estado_check`, reprogramación de `pg_cron` cada 15 minutos e implementación de bloque `BEGIN ... EXCEPTION` por contratante.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: `procesar_licencias_cola()` ejecuta sin violaciones de constraint y regulariza colas trabadas.
+  - [x] AC 2: La cola de pluscardimprenta@gmail.com se activó exitosamente como APLICADA en la base de datos viva.
+  - [x] AC 3: Aislamiento transaccional previene Head-of-Line blocking.
+---

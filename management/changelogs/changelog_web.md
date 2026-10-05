@@ -407,3 +407,16 @@
   - [x] AC 5: Validaciones reactivas en inputs de registro con alertas contextuales inmediatas.
   - [x] AC 6: Carga en modo oscuro instantánea sin parpadeo blanco (FOUC).
 ---
+
+---
+### [2026-10-05 14:26] | App/Componente: Web Dashboard | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Integración de fallback Just-In-Time (JIT) en DashboardLayout para auto-promoción reactiva de licencias en cola sin corte de servicio.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/layout.tsx)
+  - **Base de Datos:** Consumo de la RPC `activar_licencia_cola_si_aplica` en SSR ante ausencia de licencia activa vigente.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Typecheck de TypeScript aprobado con 0 errores (`tsc --noEmit`).
+  - [x] AC 2: Servidor de desarrollo Next.js levantado exitosamente en `http://localhost:3000`.
+  - [x] AC 3: Acceso al Dashboard promueve la cola al vuelo sin redirección forzada a catálogo cuando el cliente tiene licencias programadas.
+---
