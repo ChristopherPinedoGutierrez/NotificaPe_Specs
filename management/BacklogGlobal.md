@@ -1,4 +1,4 @@
-# Backlog Global Unificado
+﻿# Backlog Global Unificado
 **Proyecto:** NotificaPe
 **Estatus:** Activo (Fase Inicial de IntegraciÃƒÆ’Ã‚Â³n Completada)
 
@@ -30,6 +30,7 @@
 - [x] App: admin | Tarea (Mejora UX): Implementar "Limpieza AutomÃƒÂ¡tica Segura" (OpciÃƒÂ³n A). Borrar notificaciones bancarias entrantes al instante (0 delay) y reemplazarlas con una ÃƒÂºnica notificaciÃƒÂ³n persistente propia (InboxStyle) de NotificaPe que agrupe un resumen (ej. "50 pagos | ÃƒÅ¡ltimo: S/ 15"), evitando saturar el lÃƒÂ­mite de Android bajo estrÃƒÂ©s [CR-012].
 - [ ] App: admin | Tarea (Mejora UX/ÃƒÂconos): DiseÃƒÂ±ar e integrar silueta transparente (SmallIcon) y logo a color (LargeIcon) para notificaciones en la barra de estado y panel Android [CR-013].
 - [x] App: admin | Tarea (Fix UI): ContenciÃ³n de actividad de recorte de QR (CropActivity) e integraciÃ³n dinÃ¡mica de WindowInsets ante Edge-to-Edge obligatorio en Android 15/16 [CR-014].
+- [x] App: admin | Tarea (Mejora Notificaciones): Notificaciones atÃ³micas por billetera (ID 2000 + IdBilletera) con reemplazo de estado en caliente y sincronizaciÃ³n silenciosa inicial [CR-015].
 
 ### Ãƒâ€°pica: Receptor
 - [x] App: viewer | Tarea: Consumir vista `view_notificaciones_disputadas` y diseÃƒÂ±ar UI de resoluciÃƒÂ³n de conflictos.

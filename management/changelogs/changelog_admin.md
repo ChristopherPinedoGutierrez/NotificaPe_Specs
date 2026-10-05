@@ -1,4 +1,17 @@
 ---
+### [2026-10-04 18:05] | App/Componente: admin | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de notificaciones atómicas por billetera (ID 2000 + IdBilletera) con reemplazo de estado en caliente y sincronización silenciosa inicial [CR-015].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SystemNotificationManager.kt](file:///../admin/app/src/main/java/com/notificape/admin/util/SystemNotificationManager.kt), [WalletRepository.kt](file:///../admin/app/src/main/java/com/notificape/admin/data/repository/WalletRepository.kt)
+  - **Base de Datos:** Ninguno
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desacoplamiento de lotes agrupados y asignación de identificadores atómicos dedicados por billetera (2000 + idBilletera).
+  - [x] AC 2: Conmutación en caliente de estado (Activada/Desactivada) sobreescribiendo la misma tarjeta en la barra de Android.
+  - [x] AC 3: Validación if (oldWallets.isNotEmpty()) para evitar ráfagas de notificaciones al iniciar sesión o en instalación limpia.
+  - [x] AC 4: Compilación y validación exitosa en dispositivo físico.
+---
+---
 ### [2026-10-04 16:15] | App/Componente: admin | Autor: AGENT_ROLE
 
 * **Descripción:** Implementación de CropActivity con gestión dinámica de WindowInsets para resolver solapamiento Edge-to-Edge con la barra de estado y barra de navegación en recorte de QR de billeteras.
