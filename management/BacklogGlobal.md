@@ -518,9 +518,10 @@
 ### Ãƒâ€°pica 6: Deuda TÃƒÂ©cnica y Limpieza Global (IsConnected)
 - [ ] App: db | Tarea 6.1 (Deuda TÃƒÂ©cnica): Evaluar la eliminaciÃƒÂ³n del campo `IsConnected` en la tabla `AutorizacionesXUsuario` ya que el estado "En LÃƒÂ­nea" ha sido reemplazado por la entrega pasiva de FCM, ahorrando costos de escritura (UPDATEs).
 - [x] App: web/admin | Tarea 6.2 (Deuda TÃƒÂ©cnica): Auditar los proyectos Web y Admin para remover cualquier indicador de "Puntito Verde" o estado de conexiÃƒÂ³n en vivo que dependa del campo `IsConnected`. Priorizar el uso del estado `IdEstadoAuth` para la gestiÃƒÂ³n de usuarios.
--   [ x ]   A p p :   w e b   |   T a r e a :   I m p l e m e n t a r   U I   y   B a s e   d e   D a t o s   p a r a   c a p t a c i Ã³ n   d e   B e t a   T e s t e r s   ( L a n d i n g   y   P a n e l   S u p e r a d m i n )   p a r a   G o o g l e   P l a y   C l o s e d   T e s t i n g . 
- 
- - [x] App: admin | Tarea 6.3 (Bug/UI): Corregir parpadeo de permisos y falsas expulsiones en reinstalaciones, desactivando Auto-Backup y condicionando la capa de permisos al estado validado.
+- [x] App: web | Tarea: Implementar UI y Base de Datos para captaciÃ³n de Beta Testers (Landing y Panel Superadmin) para Google Play Closed Testing.
+- [x] App: web | Tarea: Reestructuración comercial de la Landing Page (eliminación de tecnicismos Beta), modal de beneficios/promociones con centrado simétrico para 720p/1080p, layout de 2 columnas simétricas con validaciones reactivas en formulario y resolución de FOUC en modo oscuro.
+
+- [x] App: admin | Tarea 6.3 (Bug/UI): Corregir parpadeo de permisos y falsas expulsiones en reinstalaciones, desactivando Auto-Backup y condicionando la capa de permisos al estado validado.
 
 
 

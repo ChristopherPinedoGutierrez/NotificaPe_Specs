@@ -212,3 +212,4 @@ Este archivo mantiene el ÃƒÂƒÃ‚Â­ndice cronolÃƒÂƒÃ‚Â³gico estr
 
 * **[2026-10-03 20:00]** | App: web | Tipo: UI / DB | Rediseño de DisputaCard y extensión de view_notificaciones_disputadas para desambiguación de usuarios. Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)
 * **[2026-10-03 20:30]** | App: VIEWER | Tipo: FCM / DB / LOGIC | Pulido integral de notificaciones, silenciamiento Happy Path/UPDATE y desduplicacin de tokens FCM. Ver [changelog_viewer.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_viewer.md)
+* **[2026-10-04 19:30]** | App: web | Tipo: UI / UX | Reestructuración comercial de la Landing, modal de promociones sin scroll (720p/1080p), validaciones reactivas y fix de flash blanco (FOUC). Ver [changelog_web.md](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/changelogs/changelog_web.md)

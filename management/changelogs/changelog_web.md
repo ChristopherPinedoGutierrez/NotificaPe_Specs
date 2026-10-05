@@ -1,4 +1,4 @@
-﻿---
+---
 ### [2026-09-07 18:25] | App/Componente: web | Autor: AGENT_ROLE
 
 * **Descripción:** Creación y despliegue de Edge Function cm-dispatcher para emitir notificaciones push.
@@ -261,13 +261,13 @@
 ---  
 ### [2026-09-18 17:24] | App/Componente: web | Autor: AGENT_ROLE  
   
-* **Descripci�n:** Mejora de UX en el indicador de estado Realtime y protecci�n inteligente de navegaci�n.  
-* **Detalles T�cnicos:**  
+* **Descripci�n:** Mejora de UX en el indicador de estado Realtime y protecci�n inteligente de navegaci�n.  
+* **Detalles T�cnicos:**  
   - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx), [RealtimeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/RealtimeProvider.tsx), [page.tsx (dispositivos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx)  
-  - Se elimin� el bloqueo global en RealtimeProvider y se implement� un candado inteligente en SidebarNav evaluando navigator.onLine para proteger de pantallas 404/dinosaurio sin asfixiar la navegaci�n SPA cuando el socket entra en backoff.  
-* **Criterios de Aceptaci�n (AC) Validados:**  
-  - [x] AC 1: Navegaci�n libre durante desconexiones temporales del socket sin arrojar Toast rojo.  
-  - [x] AC 2: Bloqueo seguro e inmediato si el dispositivo pierde la red f�sica (isPhysicalOffline = true).  
+  - Se elimin� el bloqueo global en RealtimeProvider y se implement� un candado inteligente en SidebarNav evaluando navigator.onLine para proteger de pantallas 404/dinosaurio sin asfixiar la navegaci�n SPA cuando el socket entra en backoff.  
+* **Criterios de Aceptaci�n (AC) Validados:**  
+  - [x] AC 1: Navegaci�n libre durante desconexiones temporales del socket sin arrojar Toast rojo.  
+  - [x] AC 2: Bloqueo seguro e inmediato si el dispositivo pierde la red f�sica (isPhysicalOffline = true).  
 --- 
 ---
 ### [2026-09-18 22:46] | App/Componente: web | Autor: AGENT_ROLE
@@ -384,4 +384,26 @@
   - [x] AC 1: Visualización del texto original de la notificación bancaria (ContenidoMsg).
   - [x] AC 2: Desambiguación de usuarios mediante correo electrónico, foto de perfil e identificación de dispositivo móvil.
   - [x] AC 3: Renderizado diferenciado de observación inicial de captura y justificación de conflicto.
+---
+
+
+---
+### [2026-10-04 19:30] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Reestructuración comercial de la Landing Page, modal de promociones y beneficios activos, layout de 2 columnas en pestaña de prueba, validaciones reactivas y erradicación del parpadeo blanco (FOUC).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [BetaRegistrationForm.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BetaRegistrationForm.tsx), [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [LandingPromoModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingPromoModal.tsx), [ThemeProvider.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/ThemeProvider.tsx), [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/layout.tsx), [globals.css](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/globals.css)
+  - **Base de Datos:** Ninguno.
+  - **Comunicación Comercial:** Se eliminaron términos técnicos ("Beta", "Beta Testers", etc.) reemplazándolos por conceptos comerciales directos ("Prueba gratuita", "Acceso anticipado", "Bono de bienvenida", "Gana por recomendar").
+  - **Modal Promocional (`LandingPromoModal`):** Implementación de modal centrado con persistencia selectiva (`localStorage` únicamente al presionar "No volver a mostrar"), diseño calibrado a ~408px sin glows desbordantes que asegura despliegue simétrico y sin scrollbar tanto en monitores de 720p como 1080p.
+  - **Layout de Pestaña Únete:** Distribución en 2 columnas niveladas (`items-stretch`, `h-full flex flex-col justify-between`) entre los pasos ilustrados y el formulario, con padding inferior adaptado hacia el footer.
+  - **Validaciones en Formulario:** Validación reactiva en `onChange` y `onBlur` para nombres (sin números), cuentas Gmail (terminación estricta `@gmail.com`) y celular (9 dígitos empezando en 9), con resaltado en rojo y mensajes instantáneos.
+  - **Prevención de FOUC:** Eliminación del bloqueo `if (!mounted)` en `ThemeProvider` para permitir que `next-themes` inyecte su script síncrono en SSR, adición de `dark` por defecto en la etiqueta `<html>`, y remoción de transiciones de color en la carga inicial.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Lenguaje comercial claro y comprensible para comerciantes peruanos en toda la Landing.
+  - [x] AC 2: Modal de promociones con 3 tarjetas informativas, centrado perfecto y sin barra de scroll en resoluciones de 720p y 1080p.
+  - [x] AC 3: Botón 'No volver a mostrar' con persistencia en localStorage; botón (X) y botón principal sin bloqueo permanente.
+  - [x] AC 4: Layout de 2 columnas simétrico a igual altura en la pestaña 'Únete a la prueba' con separación natural hacia el footer.
+  - [x] AC 5: Validaciones reactivas en inputs de registro con alertas contextuales inmediatas.
+  - [x] AC 6: Carga en modo oscuro instantánea sin parpadeo blanco (FOUC).
 ---
