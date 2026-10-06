@@ -1,4 +1,14 @@
 ---
+### [2026-10-05 21:05] | App/Componente: database | Autor: AGENT_ROLE
+
+* **Descripción:** Depuración de sobrecargas huérfanas en RPCs de compra de licencias y restauración de valores por defecto para resolución PostgREST.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0048_webhooks_b2b_schema.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0048_webhooks_b2b_schema.sql)
+  - **Base de Datos:** Eliminadas sobrecargas obsoletas de `previsualizar_compra_licencia`, `ejecutar_compra_licencia` y `ejecutar_compra_licencia_multiple`. Recreadas funciones canónicas con soporte unificado de `p_extra_webhooks` e incorporando `DEFAULT` en parámetros opcionales (`p_factor_unidad_entera = 100`, etc.). Ejecutado `NOTIFY pgrst, 'reload schema'`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: PostgREST resuelve la llamada RPC de compra múltiple y unitaria sin colisiones de firma de caché.
+  - [x] AC 2: Comprobada ejecución de previsualización y compra simulada con rollback exitoso para contratante con extras.
+---
 ### [2026-10-04 18:15] | App/Componente: database | Autor: AGENT_ROLE
 
 * **Descripción:** Implementación de compuertas de seguridad en trigger fn_dispatch_fcm_viewer para suprimir falsos pagos por S/ 0.00 o en REVISION [TSK-033].

@@ -1,4 +1,46 @@
 ---
+### [2026-10-05 21:30] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de desbordamiento horizontal en el botón de canje de código promocional (`PromoCodeForm`).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PromoCodeForm.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/PromoCodeForm.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Se añade `min-w-0` y ajuste de padding responsivo al input y botón de canje de código evitando que sobrepase el contenedor en pantallas de escritorio y móviles.
+  - [x] AC 2: Se armoniza el estilo del contenedor a `p-5 rounded-2xl` alineado con la tarjeta de saldo disponible.
+---
+### [2026-10-05 21:22] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Optimización compacta en dos columnas de la tarjeta de Plan Activo con botones de gestión contextuales e integración de capacidad de Webhooks en asistente de licencias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/page.tsx), [page.tsx (gestionar)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/page.tsx), [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La tarjeta de Plan Activo elimina el divider vertical, reorganizándose en dos columnas esbeltas (info a la izquierda y 3 cards horizontales a la derecha).
+  - [x] AC 2: Botones de acceso directo ("Gestionar") añadidos en los tres recursos (Dispositivos, Usuarios y Webhooks) con tooltips persistentes de base y extras.
+  - [x] AC 3: La capacidad del plan actual en `/dashboard/licencias/gestionar` refleja la cuota de Webhooks junto a Dispositivos y Usuarios.
+---
+### [2026-10-05 21:15] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Reestructuración de la vista de Licencias: tarjeta de Plan Activo de ancho completo superior, adición de métrica de Webhooks B2B y redistribución desacoplada inferior.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/page.tsx)
+  - **Base de Datos:** Invocación a RPC `get_cuota_webhooks` y lectura de `ExtraWebhooks` y `LimiteWebhooks` en licencias activas e historial.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La tarjeta de Plan Activo ocupa el ancho completo en la parte superior con los 3 indicadores de recursos (Dispositivos, Usuarios, Webhooks B2B).
+  - [x] AC 2: La distribución inferior mantiene el Saldo Disponible y Canje de Códigos a la izquierda (1/3) y las Colas/Historial a la derecha (2/3).
+  - [x] AC 3: Licencias en cola muestran badges de webhooks adicionales cuando aplican.
+---
+### [2026-10-05 21:05] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Explicitación de parámetros RPC en compra de licencias y soporte de extra_webhooks en webhook de Mercado Pago.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [actions.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts), [index.ts](file:///c:/Trabajo/Proyectos/NotificaPe/web/supabase/functions/mercadopago_webhook/index.ts)
+  - **Base de Datos:** Inclusión explícita de `p_factor_unidad_entera: 100` y `p_extra_webhooks` en las invocaciones a `ejecutar_compra_licencia_multiple`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desbloqueada la compra y personalización de licencias con add-ons de webhooks usando saldo disponible.
+  - [x] AC 2: Webhook de pasarela procesa y transfiere compras con webhooks adicionales a la cola y activación de licencias.
+---
 ### [2026-09-07 18:25] | App/Componente: web | Autor: AGENT_ROLE
 
 * **Descripción:** Creación y despliegue de Edge Function cm-dispatcher para emitir notificaciones push.
@@ -419,4 +461,27 @@
   - [x] AC 1: Typecheck de TypeScript aprobado con 0 errores (`tsc --noEmit`).
   - [x] AC 2: Servidor de desarrollo Next.js levantado exitosamente en `http://localhost:3000`.
   - [x] AC 3: Acceso al Dashboard promueve la cola al vuelo sin redirección forzada a catálogo cuando el cliente tiene licencias programadas.
+---
+
+---
+### [2026-10-05 19:30] | App/Componente: Web Dashboard & B2B Integrations | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Implementación completa del módulo de Integraciones B2B y Webhooks Unidireccionales [CR-016], visualizador de claves HMAC, panel de auditoría de entregas, documentación interactiva y add-on comercial en gestión de licencias.
+* **Detalles Técnicos:**
+  - **Archivos Modificados / Creados:**
+    - [actions.ts (Integraciones)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/actions.ts): Server Actions para CRUD de webhooks, consulta de cuotas (`get_cuota_webhooks`), regeneración de secretos HMAC y despacho de prueba.
+    - [page.tsx (Integraciones)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/page.tsx): Server component con metadata y carga paralela SSR.
+    - [IntegracionesClientView.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/IntegracionesClientView.tsx): Vista cliente integral con tarjetas de cuota, listado reactivo de endpoints, estados de salud, inspector de payload y switches de activación.
+    - [WebhookFormModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/WebhookFormModal.tsx): Modal de alta/edición de webhook con soporte para autenticación abierta, Bearer Token y cabecera personalizada, además de selector de cajas/dispositivos emisores.
+    - [WebhookTestModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/WebhookTestModal.tsx): Modal de prueba interactiva en tiempo real con simulación de payload, cálculo de latencia en milisegundos y captura de cuerpo de respuesta del servidor destino.
+    - [WebhookDocsAccordion.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/WebhookDocsAccordion.tsx): Guía técnica para desarrolladores con especificación de cabeceras, formato JSON y código de verificación criptográfica (Node.js, PHP y Python).
+    - [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx): Incorporación de la pestaña "Integraciones B2B" con icono Network en el menú de navegación del dashboard.
+    - [WizardGestionarLicencias.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/gestionar/WizardGestionarLicencias.tsx) y [actions.ts (Licencias)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/actions.ts): Integración de add-on `extraWebhooks` (S/ 30.00/mes c/u, máx 10) en stepper de compra, renovación y personalización de planes activos.
+  - **Base de Datos & Edge Functions:** Integrado con tablas `WebhooksXContratante` y `EntregasWebhooks`, función RPC `get_cuota_webhooks` y Edge Function desplegada `dispatch-webhook` en Supabase.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Typecheck de TypeScript aprobado con 0 errores (`tsc --noEmit`).
+  - [x] AC 2: Build de producción exitoso en Next.js 16 (`next build`) con Turbopack.
+  - [x] AC 3: Soporte para 3 modalidades de autenticación del cliente (Ninguna / Bearer / Cabecera custom) con firma HMAC-SHA256 obligatoria (`X-NotificaPe-Signature`).
+  - [x] AC 4: Control comercial de límites por plan y add-ons integrado en la cotización y pago de licencias.
+  - [x] AC 5: Servidor local de desarrollo levantado y respondiendo en `http://localhost:3000`.
 ---

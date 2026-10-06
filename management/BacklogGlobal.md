@@ -555,3 +555,13 @@ egistrar_tx_credito.
 - [x] **TSK-031:** Arreglar paleta de colores de billeteras en la UI (BCP sin color, Scotiabank con color de BBVA). Revisar Billeteras master o mapeo de UI.
 - [x] **TSK-032:** Arreglar silencio de notificaciones propias en Impugnaciones. El trigger de NotificacionesXDispositivo (al pasar a 'REVISION') no tiene cmo saber qu usuario hizo la accin, por lo que evade el filtro de silencio en Android. Adems, auditar por qu llega "Actualizacin de Reclamo" en lugar de NEW_CLAIM.
 - [x] **TSK-033:** Filtrado y blindaje de notificaciones sin monto / REVISION en Viewer y Supabase (Eliminación de falsos pagos S/ 0.00).
+
+### �pica 12: Integraciones B2B y Webhooks Unidireccionales [CR-016]
+- [x] App: db | Tarea 12.1 (CR): Crear tablas WebhooksXContratante y EntregasWebhooks con RLS estricto y retenci�n de 15 d�as [Fase 1].
+- [x] App: db | Tarea 12.2 (CR): A�adir columnas de control de cuotas LimiteWebhooks y ExtraWebhooks en Licencias, LicenciasXContratante y LicenciasCola mediante migraci�n aditiva aislada [Fase 1].
+- [x] App: db | Tarea 12.3 (CR): Actualizar RPCs previsualizar_compra_licencia y ejecutar_compra_licencia para soportar p_extra_webhooks y c�lculo a S/ 30.00 [Fase 1].
+- [x] App: db | Tarea 12.4 (Edge): Desarrollar Edge Function dispatch-webhook con soporte para Bearer Token, Custom Headers, firma HMAC-SHA256 y prevenci�n SSRF [Fase 2].
+- [x] App: web | Tarea 12.5 (UI): Implementar vista /dashboard/integraciones con configuraci�n de endpoints, selector de autenticaci�n, simulador de prueba y visor de payload [Fase 3].
+- [x] App: web | Tarea 12.6 (Licencias): Incorporar tarjeta de Webhooks Extras (MAX 10, S/ 30.00/mes) en WizardGestionarLicencias y Server Actions [Fase 4].
+- [x] App: web | Tarea 12.7 (UI/Dashboard): Reestructuración compacta de Plan Activo en 2 columnas con accesos directos de gestión, desglose de cuotas en asistente de licencias y pulido responsivo de PromoCodeForm [Fase 5].
+- [x] App: db/web | Tarea 12.8 (DB/RPC): Parche y backward compatibility en sobrecargas de funciones de compra de licencias, RPC get_cuota_webhooks y webhook handler de Mercado Pago con soporte para extra_webhooks [Fase 5].
