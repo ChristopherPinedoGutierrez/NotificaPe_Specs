@@ -21,6 +21,8 @@
 - [ ] App: viewer | Tarea [TSK-027D]: Spotlight Tour Principal. Tour guiado en la pantalla de historial resaltando filtros y ajustes de audio.
 - [ ] App: viewer | Tarea [TSK-027E]: Persistencia y Ayuda. Guardar el estado de inducción en DataStore y reiniciar tour.
 - [ ] App: viewer | Tarea [TSK-027F]: Cierre de Jornada / Cuadres (FUTURO). Flujo y vista para cuadrar caja.
+- [ ] App: admin | Tarea (UX/Store): Reutilizar componente "Copiar URL del Panel Web" en la sección de Configuración para permitir a los clientes gestionar sus licencias sin usar enlaces interactivos (Cumplimiento de Google Play Payments).
+- [ ] App: viewer | Tarea (UX/Store): Agregar componente "Copiar URL del Panel Web" en la vista de Ajustes para mantener consistencia con el ecosistema y evitar rechazos por evasión de pagos.
 
 ## 📌 Tareas de Mantenimiento y Backoffice
 
