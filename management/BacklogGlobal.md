@@ -11,6 +11,7 @@
 - [ ] App: viewer | Tarea (Store): Grabar y alojar el Policy Video demostrativo requerido para justificar permiso `FOREGROUND_SERVICE_SPECIAL_USE` del CentinelaService.
 - [ ] App: viewer | Tarea (Store): Completar el Data Safety Form sobre inicio de sesión y datos recopilados.
 - [ ] App: admin/viewer | Tarea (Store): Solicitar promoción manual de la versión de Pruebas Internas a Pruebas Cerradas (Alpha) en la consola de Google Play, adjuntando la documentación justificativa.
+- [ ] App: admin/viewer | Tarea (Store - Post 14 días): Solicitar pase a Producción. Al llenar el cuestionario final sobre cómo se probó, incluir el texto: *"La app Admin es un servicio de fondo (set-and-forget). Los testers la mantuvieron corriendo en segundo plano durante 14 días procesando notificaciones. El feedback principal fue sobre su estabilidad de conexión y bajo consumo de batería."*
 
 ## 📌 Tareas Programadas para Siguiente Iteración (Onboarding y UX)
 
