@@ -44,3 +44,8 @@
 - **[E3]** Expansi√≥n de Negocio B2B, Pasarela MercadoPago y M√≥dulos de Expansi√≥n (Add-ons).
 - **[E4]** Motor Din√°mico de Regex y Estandarizaci√≥n (Zero-Downtime) V2.
 - **[E5]** Arquitectura de Sincronizaci√≥n FCM Push-to-Pull, Eliminaci√≥n de Doze Mode Limits, Webhooks y Resiliencia Offline.
+
+### …pica: Arquitectura CI/CD, Versionamiento y DevOps
+- [ ] App: admin/viewer/web | Tarea (DevOps): Configurar 'release-please' para automatizar el versionamiento sem·ntico. (Debe leer los commits [fix, feat] de CHANGELOG.md para decidir si sube la versiÛn a Patch o Minor, e inyectar el versionName resultante directamente en build.gradle.kts usando un script en el Action).
+- [ ] App: admin/viewer | Tarea (DevOps): Automatizar el llenado de 'Notas de la VersiÛn' en Google Play. (Modificar el Action de Google Play Upload para que envÌe el extracto del CHANGELOG.md a la consola usando Fastlane o las capacidades nativas del action).
+- [ ] App: specs | Tarea (Knowledge): Crear la skill 'skill_versioning_and_releases' para los agentes de desarrollo. Definir· las reglas estrictas de Conventional Commits, la jerarquÌa de SemVer (1.X.X para features, 1.0.X para parches), y el flujo de cu·ndo generar un release en lugar de solo acumular commits.
