@@ -3,6 +3,21 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-10-11 12:10] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de persistencia de FCM Token en flujo de Onboarding e implementación de Centinela de arranque con verificación en caché [CR-017].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [UserDto.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/model/UserDto.kt), [UserPreferencesRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/UserPreferencesRepository.kt), [AuthRemoteDataSource.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/datasource/AuthRemoteDataSource.kt), [AuthRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthRepositoryImpl.kt), [MainViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/MainViewModel.kt)
+  - **Base de Datos / Backend:** Despliegue de versión 5 de la Edge Function `fcm-dispatcher` con configuración de prioridad alta `android: { priority: "high" }` para asegurar entrega inmediata en segundo plano.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: `UserDto` incluye la propiedad `FcmToken: String? = null` para transmisión hacia PostgREST.
+  - [x] AC 2: `AuthRemoteDataSource.completeOnboarding()` recupera asíncronamente el token de Firebase e inicializa al usuario con `FcmToken` poblado desde el `upsert`.
+  - [x] AC 3: `AuthRepositoryImpl.updateFcmToken()` compara el token local contra `lastSyncedFcmToken` en DataStore, omitiendo peticiones de red (0 llamadas HTTP) si ya está sincronizado.
+  - [x] AC 4: `AuthRepositoryImpl.completeOnboarding()` invoca `updateFcmToken()` tras completarse exitosamente.
+  - [x] AC 5: `MainViewModel.checkAuth()` ejecuta la sincronización centinela en segundo plano para usuarios autenticados.
+  - [x] AC 6: Edge Function `fcm-dispatcher` desplegada con éxito en Supabase con `priority: "high"`.
+  - [x] AC 7: Compilación verificada exitosamente mediante `assembleDebug`.
+---
 ### [2026-10-04 18:15] | App/Componente: viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Implementación de compuertas de seguridad defensivas en FCMReceiverService y NotificationQueueManager para silenciar notificaciones técnicas, en revisión o con monto <= 0 [TSK-033].
