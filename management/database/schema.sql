@@ -78,7 +78,8 @@ CREATE TABLE public."Usuarios" (
     "EquipoMarca" VARCHAR(50),
     "EquipoModelo" VARCHAR(50),
     "FechaCreacion" TIMESTAMPTZ DEFAULT NOW(),
-    "FcmToken" TEXT
+    "FcmToken" TEXT,
+    "InstallationId" VARCHAR(64)
 );
 
 CREATE TABLE public."OrdenesCompra" (
@@ -2630,3 +2631,39 @@ COMMIT;
  
  
 
+
+
+-- ------------------------------------------------------------------------------
+-- TRIGGER: Kickout de sesión por relevo de dispositivo (InstallationId)
+-- ------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION public.fn_trg_kickout_sesion_dispositivo()
+RETURNS TRIGGER AS $$
+DECLARE
+    edge_function_url TEXT := 'https://ukwzdlrnengpdnnuvofo.supabase.co/functions/v1/fcm-dispatcher';
+    auth_header JSONB := '{"Content-Type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrd3pkbHJuZW5ncGRubnV2b2ZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU2MDE2NzgsImV4cCI6MjA5MTE3NzY3OH0.FJHI1KMmSMxB6bhALnBN-qspRlQ4_ippNvTusT6xesY"}'::jsonb;
+    payload JSONB;
+BEGIN
+    IF OLD."InstallationId" IS NOT NULL 
+       AND NEW."InstallationId" IS DISTINCT FROM OLD."InstallationId" 
+       AND OLD."FcmToken" IS NOT NULL THEN
+        
+        payload := jsonb_build_object(
+            'action', 'FORCE_LOGOUT',
+            'target', OLD."FcmToken",
+            'data_payload', jsonb_build_object(
+                'reason', 'SESSION_REPLACED_BY_NEW_DEVICE',
+                'newInstallationId', NEW."InstallationId"
+            )::text
+        );
+        
+        PERFORM net.http_post(url := edge_function_url, headers := auth_header, body := payload);
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS trg_kickout_sesion_dispositivo ON public."Usuarios";
+CREATE TRIGGER trg_kickout_sesion_dispositivo
+AFTER UPDATE OF "InstallationId" ON public."Usuarios"
+FOR EACH ROW
+EXECUTE FUNCTION public.fn_trg_kickout_sesion_dispositivo();
