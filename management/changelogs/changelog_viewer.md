@@ -3,6 +3,23 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-10-12 13:10] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Refinamiento de resiliencia ante ciclo de vida en modo offline, mutaciones optimistas dobles en RAM (pagos y participaciones), remoción de botones placebo y expulsión tajante con Toast por relevo de sesión (ForceLogout) [CR-018].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [HomeScreen.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeScreen.kt), [HomeViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt), [HomePaymentsManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomePaymentsManager.kt), [PagosRepository.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/domain/repository/PagosRepository.kt), [PagosRepositoryImpl.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/PagosRepositoryImpl.kt), [NotificacionComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/NotificacionComponents.kt), [MainActivity.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/MainActivity.kt), [SyncEvent.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/sync/SyncEvent.kt), [FCMReceiverService.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/FCMReceiverService.kt), [MainViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/MainViewModel.kt), [AuthIdentityManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/data/repository/AuthIdentityManager.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desacoplamiento de resetTotal() de los eventos de recomposición / pausa del ciclo de vida (DisposableEffect eliminado en HomeScreen.kt). La memoria RAM retiene las notificaciones intactas al minimizar la app en modo avión.
+  - [x] AC 2: Prevención de reseteo al reanudar iniciarConSesion: sólo reinicia si cambian los identificadores de autorización o dispositivo.
+  - [x] AC 3: Estrategia Stale-While-Revalidate estricta: cargarDatosIniciales y sincronizarPagosInterno nunca degradan a estado de error destructivo si ya existen pagos en memoria, preservando HomeUiState.Success.
+  - [x] AC 4: Mutación optimista inmediata doble: al pulsar "RECLAMAR" (con o sin red), HomePaymentsManager.actualizarReclamoOptimista asigna IdUsuarioGanador en el pago en memoria y PagosRepository.registrarParticipacionOptimista agrega el registro a participaciones locales. El pago desaparece inmediatamente de "Disponibles", entra a "Mis Ventas" y suma a la recaudación sin pantallas en gris ni latencia.
+  - [x] AC 5: Remoción del botón placebo "Reintentar conexión" de HomeUiState.Error. Reemplazado por un aviso informativo sobrio.
+  - [x] AC 6: Elevación de SnackbarHost con padding dinámico (navigationBarsPadding().padding(bottom = 76.dp)), evitando solapamiento con la barra de navegación del sistema y el HomeBottomBar.
+  - [x] AC 7: Corte tajante e inmediato a AuthState.Unauthenticated (Login directo) ante push FORCE_LOGOUT mediante SyncEvent.ForceLogout en MainViewModel y AuthIdentityManager, suprimiendo saltos al selector de vinculaciones y mostrando Toast nativo de advertencia en pantalla.
+  - [x] AC 8: Compilación verificada exitosamente mediante assembleDebug.
+
+---
 ### [2026-10-12 00:00] | App/Componente: viewer / db | Autor: AGENT_ROLE
 
 * **Descripción:** Implementación de arquitectura de resiliencia ante pérdida de red, reclamos offline con cola DataStore (TTL 24h) y cierre forzado de sesión por relevo de dispositivo (Single Device Active Kickout con InstallationId) [CR-018].
