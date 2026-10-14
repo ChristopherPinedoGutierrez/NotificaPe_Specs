@@ -3,6 +3,19 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-10-13 21:12] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Encapsulación defensiva del botón "Desvincular Caja" bajo compuerta `if (BuildConfig.DEBUG)` en la vista de Configuración.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Ocultamiento automático del botón "Desvincular Caja" en compilaciones de Release (`assembleRelease` / `compileReleaseKotlin`), impidiendo que el usuario final elimine registros de autorización en Supabase.
+  - [x] AC 2: Aislamiento del botón en compilaciones de Debug etiquetado como "DEBUG: Desvincular Caja" para pruebas internas de ciclo de vida.
+  - [x] AC 3: Preservación funcional del botón "Gestionar Vinculaciones" para Soft Reset y alternancia de cajas activas.
+  - [x] AC 4: Compilación limpia verificada mediante Gradle (`compileDebugKotlin` y `compileReleaseKotlin` exitosos).
+
+---
 ### [2026-10-13 20:35] | App/Componente: viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Fixes de resiliencia y validación E2E completa: propagación de motivo de kickout en arranque en frío (Cold Start), compuertas offline en acciones de detalle y verificación final en vivo [CR-018].
