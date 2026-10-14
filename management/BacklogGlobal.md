@@ -12,7 +12,8 @@
 - [ ] App: viewer | Tarea (Store): Completar el Data Safety Form sobre inicio de sesiÃ³n y datos recopilados.
 - [ ] App: admin/viewer | Tarea (Store): Solicitar promociÃ³n manual de la versiÃ³n de Pruebas Internas a Pruebas Cerradas (Alpha) en la consola de Google Play, adjuntando la documentaciÃ³n justificativa.
 - [ ] App: admin/viewer | Tarea (Store - Post 14 dÃ­as): Solicitar pase a ProducciÃ³n. Al llenar el cuestionario final sobre cÃ³mo se probÃ³, incluir el texto: *"La app Admin es un servicio de fondo (set-and-forget). Los testers la mantuvieron corriendo en segundo plano durante 14 dÃ­as procesando notificaciones. El feedback principal fue sobre su estabilidad de conexiÃ³n y bajo consumo de baterÃ­a."*
-- [ ] App: viewer | Tarea [TSK-CR017]: Resiliencia de Registro de Token FCM (Onboarding y Centinela de Arranque con Caché) y Alta Prioridad en Dispatcher.
+- [x] App: viewer | Tarea [TSK-CR017]: Resiliencia de Registro de Token FCM (Onboarding y Centinela de Arranque con Caché) y Alta Prioridad en Dispatcher.
+- [x] App: viewer | Tarea [TSK-CR018]: Resiliencia Offline Completa, Reclamos en DataStore (TTL 24h), Single Device Kickout con InstallationId, Toast Persistente y Validación E2E.
 
 ## ðŸ“Œ Tareas Programadas para Siguiente IteraciÃ³n (Onboarding y UX)
 

@@ -3,6 +3,19 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-10-13 20:35] | App/Componente: viewer | Autor: AGENT_ROLE
+
+* **Descripción:** Fixes de resiliencia y validación E2E completa: propagación de motivo de kickout en arranque en frío (Cold Start), compuertas offline en acciones de detalle y verificación final en vivo [CR-018].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [CentinelaNotificationManager.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/service/CentinelaNotificationManager.kt), [MainActivity.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/MainActivity.kt), [HomeViewModel.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/HomeViewModel.kt)
+  - **Base de Datos / Backend:** Verificación en PostgreSQL/Supabase de consolidación atómica de pagos offline (`NotificacionesAUsuarios` y `NotificacionesXDispositivo`) tras reconexión, y emisión de evento de kickout `FORCE_LOGOUT` ante relevo de `InstallationId`.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Propagación de `kickout_reason` a través de Intent extras en `CentinelaNotificationManager.kt` y manejo en `MainActivity.kt` (`onNewIntent` y arranque en frío), garantizando despliegue del toast ámbar persistente al abrir desde la notificación de seguridad.
+  - [x] AC 2: Compuertas de red defensivas `!networkObserver.isConnected()` en `HomeViewModel.kt` para `actualizarObservacion`, `actualizarJustificacion` y `deshacerReclamo`, evitando excepciones de red (`Unable to resolve host`) en modo offline.
+  - [x] AC 3: Validación Escenario 1 (App en primer plano): Corte de red, reclamo offline optimista, recuperación de red y kickout inmediato con toast ámbar y consolidación en Supabase.
+  - [x] AC 4: Validación Escenario 2 (App en segundo plano): Corte de red, reclamo offline, swipe a segundo plano, kickout con notificación en cortina del sistema y sesión cerrada.
+  - [x] AC 5: Validación Escenario 3 (Cold Start / Swipe Kill): Corte de red, reclamos offline encolados en DataStore, cierre forzado de app por swipe kill, cambio de `InstallationId` en Supabase, reconexión externa a internet: `FCMReceiverService` despacha los pagos pendientes en segundo plano a Supabase, purga credenciales locales, emite alerta de seguridad del sistema y al pulsar la notificación abre en frío en `LoginScreen` con toast explicativo persistente.
+---
 ### [2026-10-12 14:00] | App/Componente: viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Canal de seguridad exclusivo (`notificape_security_v1`), despacho síncrono inmediato de notificación del sistema y toast ámbar persistente (fijo con botón de cierre manual) en LoginScreen [CR-018].
