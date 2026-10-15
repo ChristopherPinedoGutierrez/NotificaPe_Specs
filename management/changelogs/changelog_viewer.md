@@ -3,6 +3,21 @@
 Este archivo contiene el historial de cambios a nivel de UI, lÃÂ³gica y configuraciÃÂ³n de la aplicaciÃÂ³n mÃÂ³vil **NotificaPe Viewer**.
 
 ---
+### [2026-10-14 21:29] | App/Componente: viewer / devops | Autor: AGENT_ROLE
+
+* **Descripción:** Regularización de versionamiento base a 1.0.1, visualización dinámica en Configuración y automatización CI/CD con release-please y deploy a Google Play.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SistemaComponents.kt](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/src/main/java/com/notificape/viewer/ui/home/components/SistemaComponents.kt), [app/build.gradle.kts](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/app/build.gradle.kts), [.release-please-manifest.json](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/.release-please-manifest.json), [release-please-config.json](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/release-please-config.json), [release-please.yml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/.github/workflows/release-please.yml), [deploy.yml](file:///c:/Trabajo/Proyectos/NotificaPe/viewer/.github/workflows/deploy.yml)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Reemplazo de cadena estática en UI por `BuildConfig.VERSION_NAME` y `BuildConfig.VERSION_CODE`, reflejando exactamente la compilación en ejecución (`1.0.1 (Build X)`).
+  - [x] AC 2: Fijación formal de `versionName = "1.0.1"` en Gradle.
+  - [x] AC 3: Creación de `.release-please-manifest.json` y `release-please-config.json` para sincronización automática de versión en Gradle y anclaje inicial en `1.0.1`.
+  - [x] AC 4: Cierre y purga remota de Pull Request #5 obsoleto (`1.3.0`).
+  - [x] AC 5: Inyección de `releaseName: "v${versionName} (${versionCode})"` en `deploy.yml` para identificación visual explícita en Google Play Console.
+  - [x] AC 6: Verificación de compilación dual exitosa con Gradle (`compileDebugKotlin` y `compileReleaseKotlin`).
+
+---
 ### [2026-10-13 21:12] | App/Componente: viewer | Autor: AGENT_ROLE
 
 * **Descripción:** Encapsulación defensiva del botón "Desvincular Caja" bajo compuerta `if (BuildConfig.DEBUG)` en la vista de Configuración.
