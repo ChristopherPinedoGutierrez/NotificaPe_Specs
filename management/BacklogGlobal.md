@@ -48,11 +48,12 @@
 - **[E5]** Arquitectura de SincronizaciÃ³n FCM Push-to-Pull, EliminaciÃ³n de Doze Mode Limits, Webhooks y Resiliencia Offline.
 
 ### Épica: Arquitectura CI/CD, Versionamiento y DevOps
-- [ ] App: admin/viewer/web | Tarea (DevOps): Configurar 'release-please' para automatizar el versionamiento semántico. (Debe leer los commits [fix, feat] de CHANGELOG.md para decidir si sube la versión a Patch o Minor, e inyectar el versionName resultante directamente en build.gradle.kts usando un script en el Action).
+- [x] App: viewer | Tarea (DevOps): Configuración de 'release-please' con manifiesto 1.0.1, sincronización con Gradle, UI dinámica de versión y auto-deploy con PAT a Google Play.
+- [ ] App: admin | Tarea (DevOps): Replicar configuración de 'release-please' (manifiesto 1.0.1, sincronización con Gradle, PAT y auto-deploy a Google Play).
 - [ ] App: admin/viewer | Tarea (DevOps): Automatizar el llenado de 'Notas de la Versión' en Google Play. (Modificar el Action de Google Play Upload para que envíe el extracto del CHANGELOG.md a la consola usando Fastlane o las capacidades nativas del action).
 - [ ] App: specs | Tarea (Knowledge): Crear la skill 'skill_versioning_and_releases' para los agentes de desarrollo. Definirá las reglas estrictas de Conventional Commits, la jerarquía de SemVer (1.X.X para features, 1.0.X para parches), y el flujo de cuándo generar un release en lugar de solo acumular commits.
 - [ ] App: viewer | Tarea (DevOps): Desacoplar modo 'Pre-producción (Solo Fixes/Patches)' y reactivar SemVer completo (feat/fix) tras el lanzamiento oficial a Producción.
-- [ ] App: admin | Tarea (DevOps): Configurar 'release-please' y modo 'Pre-producción (Solo Fixes/Patches)' con despliegue unificado hacia Google Play.
+- [ ] App: admin | Tarea (DevOps): Desacoplar modo 'Pre-producción (Solo Fixes/Patches)' y reactivar SemVer completo (feat/fix) tras el lanzamiento oficial a Producción.
 
 
 
