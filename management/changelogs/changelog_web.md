@@ -1,4 +1,16 @@
 ---
+### [2026-10-18 21:40] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Auditoría Mobile-First integral, Sello Dinámico `<HeroTrialBadge />`, Sello de Evaluador `<TesterPromoBadge />` con tooltip reactivo, barra de navegación superior de 5 elementos y rediseño horizontal de `/onboarding` con validación pre-insert de código de invitación [CR-016: GTM-1.1, GTM-1.2, GTM-1.4, GTM-4.1].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/page.tsx), [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/layout.tsx), [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [HeroTrialBadge.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/HeroTrialBadge.tsx), [TesterPromoBadge.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/TesterPromoBadge.tsx), [BetaRegistrationForm.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BetaRegistrationForm.tsx), [SpotlightTour.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/onboarding/SpotlightTour.tsx), [page.tsx (onboarding)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/onboarding/page.tsx), [actions.ts (onboarding)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/onboarding/actions.ts)
+  - **Base de Datos:** Consulta SSR de `DuracionDias` en tabla `Licencias` (`TRIAL-7D`) y validación pre-insert de existencia de `CodigoReferido` en tabla `Contratantes` antes de registrar el perfil.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Corrección mobile-first en Landing, modales de autenticación, Dashboard y auto-evasión + arrastre táctil en `SpotlightTour.tsx`.
+  - [x] AC 2: Componente `<HeroTrialBadge />` renderizado en instancia única con `useId()` leyendo días de prueba desde base de datos.
+  - [x] AC 3: Componente `<TesterPromoBadge />` en pestaña "Prueba" con posicionamiento reactivo del popover de cobertura real (Plan Comerciante: 1 dispositivo o caja y 3 vendedores) y bloque de beneficios con borde `dotted` naranja.
+  - [x] AC 4: Vista `/onboarding` distribuida horizontalmente en Tablet/Desktop (guía a la izquierda, formulario a la derecha), modal de confirmación al cerrar sesión y validación de código alfanumérico de 6 caracteres tanto en `onChange` como en servidor previo a crear el contratante.
+---
 ### [2026-10-05 21:30] | App/Componente: web | Autor: AGENT_ROLE
 
 * **Descripción:** Corrección de desbordamiento horizontal en el botón de canje de código promocional (`PromoCodeForm`).

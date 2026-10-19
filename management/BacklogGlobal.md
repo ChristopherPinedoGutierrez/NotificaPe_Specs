@@ -18,10 +18,10 @@
 ### Épica [CR-016]: Paquete Go-To-Market, Promociones y Adquisición de Testers (Web & DB)
 
 #### Grupo 1: Responsive y Embudo de Adquisición (Prioridad Crítica — Listo para Ejecución)
-- [ ] App: web | Tarea [GTM-1.1] (Mobile-First Audit): Auditoría y corrección granular vista por vista del frontend en modo móvil (Landing, Navbar, vista "Únete", Modales de bienvenida/login y Dashboard inicial) para eliminar desbordamientos y asegurar usabilidad en pantallas de 360px-414px.
-- [ ] App: web | Tarea [GTM-1.2] (Hero Trial Badge): Crear componente visual `<HeroTrialBadge />` (SVG llamativo en el Hero) que consulte dinámicamente `DuracionDias` del plan gratuito (`PrecioCentimos = 0` / `TRIAL-7D`) en la tabla `Licencias`. Permanente e independiente de campañas.
+- [x] App: web | Tarea [GTM-1.1] (Mobile-First Audit): Auditoría y corrección granular vista por vista del frontend en modo móvil (Landing, Navbar, vista "Únete", Modales de bienvenida/login y Dashboard inicial) para eliminar desbordamientos y asegurar usabilidad en pantallas de 360px-414px.
+- [x] App: web | Tarea [GTM-1.2] (Hero Trial Badge): Crear componente visual `<HeroTrialBadge />` (SVG llamativo en el Hero) que consulte dinámicamente `DuracionDias` del plan gratuito (`PrecioCentimos = 0` / `TRIAL-7D`) en la tabla `Licencias`. Permanente e independiente de campañas.
 - [ ] App: web | Tarea [GTM-1.3] (Modal Multipágina): Verificar y asegurar que `LandingPromoModal` opere de forma autónoma leyendo las campañas activas (`CampanasPromocionales`: Bono de Bienvenida y Referidos) sin depender del cierre de la fase Beta.
-- [ ] App: web | Tarea [GTM-1.4] (Gancho Tester en "Únete"): Diseñar e integrar bloque destacado en la vista "Únete" explicando el beneficio de 1 mes adicional gratis para los primeros 50 testers mediante doble validación (Código de Referido en registro + Código Promocional Tester en licencias).
+- [x] App: web | Tarea [GTM-1.4] (Gancho Tester en "Únete"): Diseñar e integrar bloque destacado en la vista "Únete" explicando el beneficio de 1 mes adicional gratis para los primeros 50 testers mediante doble validación (Código de Referido en registro + Código Promocional Tester en licencias).
 - [ ] App: web/db | Tarea [GTM-1.5] (Beta Kill Switch & Contingencia): Implementar control de cierre en 2 niveles: (1) Automático/DB verificando disponibilidad y estado `'ACTIVA'` de la campaña de testers (`UsosActuales < UsosMaximos`), más copy de contingencia derivando a WhatsApp si se agotan los cupos para ajuste manual de crédito; y (2) Variable de entorno maestra `NEXT_PUBLIC_IS_BETA_PHASE` para ocultar globalmente cintillos y bloques de fase de pruebas en EasyPanel.
 - [ ] App: web | Tarea [GTM-1.6] (Superadmin WhatsApp Link): Agregar botón "Aprobar y Enviar WhatsApp" en la gestión de testers de `/superadmin` que genere un enlace `wa.me` con mensaje pre-armado inyectando enlace de Play Store, código de referido y código promocional de tester.
 
@@ -37,7 +37,7 @@
 - [ ] App: web | Tarea [GTM-3.3] (Manual de Uso): Elaborar guía rápida / manual de usuario accesible desde la web para el flujo de pruebas y operación regular. *(Definir formato web/PDF al iniciar iteración)*.
 
 #### Grupo 4: Ajustes de Interfaz Web / UI Tweaks (Prioridad Media-Baja — Requiere Profundización Previa al Iniciar)
-- [ ] App: web | Tarea [GTM-4.1] (Refinamiento Navbar): Centrar barra de navegación superior, implementar *scroll-to-top* al pulsar la vista activa y agrupar el botón *Theme Toggle* a la derecha de la barra central.
+- [x] App: web | Tarea [GTM-4.1] (Refinamiento Navbar): Centrar barra de navegación superior, implementar *scroll-to-top* al pulsar la vista activa y agrupar el botón *Theme Toggle* a la derecha de la barra central.
 - [ ] App: web | Tarea [GTM-4.2] (Componentes Promocionales Modulares): Diseñar variantes reutilizables de banners/tarjetas promocionales para el Landing Page. *(Definir diseños al iniciar iteración)*.
 - [ ] App: web | Tarea [GTM-4.3] (Hero Media en Uso Real & Variante Minimizada de HeroTrialBadge - Producción): Incorporar composición visual de las aplicaciones en uso real (fotografías editadas / mockups de operación o fondos SVG a medida ocupando el bloque principal del Hero) y adaptar `<HeroTrialBadge />` a una versión minimizada/compacta ubicada en una esquina sobre o junto al nuevo arte final. *(Ejecutar en fase de Producción una vez elaboradas las piezas gráficas)*.
 
