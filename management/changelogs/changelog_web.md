@@ -1,4 +1,16 @@
 ---
+### [2026-10-22 21:45] | App/Componente: web / db | Autor: AGENT_ROLE
+
+* **Descripción:** Finalización integral del Grupo 1 de la Épica [CR-016]: Modal promocional dinámico LandingPromoModal, Kill Switch Beta en 2 niveles (cupos BD + NEXT_PUBLIC_IS_BETA_PHASE) con contingencia WhatsApp, y generador estructurado de enlaces WhatsApp en /superadmin/beta [GTM-1.3, GTM-1.5, GTM-1.6].
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [page.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/page.tsx), [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx), [LandingPromoModal.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingPromoModal.tsx), [TesterPromoBadge.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/TesterPromoBadge.tsx), [BetaRegistrationForm.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BetaRegistrationForm.tsx), [page.tsx (superadmin/beta)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/beta/page.tsx), [ClientBetaList.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/beta/ClientBetaList.tsx), [.env.local](file:///c:/Trabajo/Proyectos/NotificaPe/web/.env.local)
+  - **Base de Datos:** DML en public."CampanasPromocionales" fijando UsosMaximos = 50 para la campaña evaluadores (MANUAL / PROMO2026). Consultas de CodigoReferido de contratante superadmin y lectura SSR de campañas activas.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1 (GTM-1.3): LandingPromoModal adaptado a datos dinámicos de BD (CampanasPromocionales y Licencias), grid responsivo auto-ajustable de 1 a 3 tarjetas promocionales y desacoplamiento para operar sin depender de la fase Beta.
+  - [x] AC 2 (GTM-1.5 Nivel 1): Detección en tiempo real de cupos restantes de evaluadores (UsosMaximos - UsosActuales). Despliegue de estado de contingencia con mensaje y enlace directo a WhatsApp de soporte (51978544045) en TesterPromoBadge y BetaRegistrationForm cuando se agotan los 50 cupos.
+  - [x] AC 3 (GTM-1.5 Nivel 2): Interruptor maestro NEXT_PUBLIC_IS_BETA_PHASE. Al ser falso, oculta pestaña "Prueba" en navbar desktop (4 elementos), conmuta navbar inferior móvil a 3 columnas (grid-cols-3), y convierte el CTA inferior en botón directo a registro/login ("Comenzar prueba gratuita").
+  - [x] AC 4 (GTM-1.6): Vista /superadmin/beta optimizada con barra de control dinámico para Código de Invitación (Paso 1) y Código Promocional opcional (Paso 2), buscador en tiempo real, filtros y botón "Aprobar y Enviar WhatsApp" que actualiza estado a Notificado y genera mensaje estructurado con dominio de producción (https://notificape.ryctech.dev/login), links a Google Play y activación directa del mes gratuito si no se especifica código promocional.
+---
 ### [2026-10-18 21:40] | App/Componente: web | Autor: AGENT_ROLE
 
 * **Descripción:** Auditoría Mobile-First integral, Sello Dinámico `<HeroTrialBadge />`, Sello de Evaluador `<TesterPromoBadge />` con tooltip reactivo, barra de navegación superior de 5 elementos y rediseño horizontal de `/onboarding` con validación pre-insert de código de invitación [CR-016: GTM-1.1, GTM-1.2, GTM-1.4, GTM-4.1].
