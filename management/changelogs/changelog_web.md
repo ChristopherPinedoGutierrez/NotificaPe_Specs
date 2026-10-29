@@ -509,3 +509,22 @@
   - [x] AC 4: Control comercial de límites por plan y add-ons integrado en la cotización y pago de licencias.
   - [x] AC 5: Servidor local de desarrollo levantado y respondiendo en `http://localhost:3000`.
 ---
+
+
+---
+### [2026-10-28 20:45] | App/Componente: web / superadmin | Autor: AGENT_ROLE (Orquestador SDD)
+
+* **Descripción:** Creación y vinculación de la campaña exclusiva para evaluadores `PRUEBA2026`, soporte de canje flexible con/sin espacios, e integración de plantilla pedagógica de WhatsApp en Superadmin para validación del embudo completo de saldo virtual (S/ 50.00).
+* **Detalles Técnicos:**
+  - **Archivos Modificados / Creados:**
+    - [0050_campana_testers_prueba2026.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0050_campana_testers_prueba2026.sql): Script SQL para creación idempotente de la campaña `PRUEBA2026` con `MontoInvitado = 20`, `UsosMaximos = 50` y tipo `MANUAL`.
+    - [LandingTabs.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/LandingTabs.tsx): Vinculación exclusiva del contador de cupos y kill-switch a la campaña `PRUEBA2026`, desacoplándola de promociones previas como `PROMO2026`.
+    - [PromoCodeForm.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/licencias/PromoCodeForm.tsx): Normalización de código con y sin espacios (`PRUEBA 2026` / `PRUEBA2026`) para consulta flexible y ejecución de RPC con el código canónico.
+    - [page.tsx (Superadmin Beta)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/beta/page.tsx): Carga en SSR de la campaña `PRUEBA2026` desde `CampanasPromocionales` con fallback seguro.
+    - [ClientBetaList.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/beta/ClientBetaList.tsx): Rediseño de la plantilla de WhatsApp estructurada en 3 pasos pedagógicos que ejercitan todos los flujos de acreditación (Bono Bienvenida S/ 20 + Bono Invitado S/ 10 + Bono Evaluador S/ 20 = S/ 50.00 totales para adquirir 1 mes de Plan Comerciante a costo S/ 0.00).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desacoplamiento de campañas: `PRUEBA2026` opera independiente de `PROMO2026` con 50 cupos y S/ 20.00.
+  - [x] AC 2: Formulario de canje tolera espacios accidentales al ingresar o copiar el código.
+  - [x] AC 3: Mensaje de WhatsApp detalla los 3 métodos de bonificación y guía la activación completa del mes gratis.
+  - [x] AC 4: Typecheck de TypeScript aprobado con 0 errores (`tsc --noEmit`).
+---
