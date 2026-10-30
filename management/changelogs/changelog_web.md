@@ -1,4 +1,73 @@
 ---
+### [2026-10-29 21:30] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Adaptación de Notificaciones en móvil a botón desplegable completo con 3 vistas (Históricas, Observadas, Disputas) idéntico a Configuración, y desactivación de navegación accidental en logo de marca dentro de la cabecera del cajón móvil (`asLink={false}`).
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [BrandLogo.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BrandLogo.tsx), [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/layout.tsx), [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: En móvil (`isMobile`), pulsar en cualquier parte del botón "Notificaciones" despliega el menú flotante con las 3 opciones (Históricas, Observadas, Disputas) y rota el chevron, facilitando la ergonomía táctil sin obligar a acertar un icono diminuto.
+  - [x] AC 2: En escritorio (`!isMobile`), se preserva el modelo dual: clic en el cuerpo navega a Históricas y clic en el chevron derecho abre Observadas y Disputas (o flyout de 3 vistas en modo colapsado).
+  - [x] AC 3: Desactivación de enlace de navegación (`asLink={false}`) en `BrandLogo` dentro de `SheetContent`, evitando que clics o dobles toques accidentales sobre el área del botón de hamburguesa naveguen hacia la landing page `/`.
+---
+### [2026-10-29 21:26] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Perfeccionamiento ergonómico de navegación dual en Notificaciones (Mobile y Desktop): botón chevron dedicado en esquina derecha con separador visual, área táctil de toque independiente (z-20) y popover flotante alineado simétricamente con el ancho de la fila (left/width match exacto a Configuración) y navegación segura mediante `router.push`.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Separador visual sutil y botón chevron dedicado (z-20, `inset-y-1.5`, `w-8 h-8`) en la esquina derecha del ítem de Notificaciones en móvil y desktop expandido, evitando cualquier colisión o solape táctil con el enlace principal.
+  - [x] AC 2: Toque en "Notificaciones" navega por defecto a Históricas cerrando el drawer móvil con `router.push`.
+  - [x] AC 3: Toque en el botón chevron derecho despliega el popover flotante alineado al ancho completo de la fila (`left: rowRect.left`, `width: rowRect.width`), ofreciendo acceso limpio y compacto a "Observadas" y "Disputas" bajo demanda con anti-colisión inferior.
+---
+### [2026-10-29 21:20] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Unificación de comportamiento móvil para el menú de Notificaciones: eliminación del desplegable vertical estático en el cajón móvil (`Sheet`), navegación primaria directa a Históricas y botón chevron a la derecha que abre el popover flotante con "Observadas" y "Disputas" bajo demanda sin ocupar espacio vertical.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La fila de Notificaciones en móvil se comporta de forma idéntica a escritorio: el toque en el enlace navega directamente a Históricas y cierra el cajón lateral.
+  - [x] AC 2: Botón chevron a la derecha en móvil para activar el popover flotante bajo demanda, cerrando el drawer al seleccionar Observadas o Disputas y evitando que el menú móvil crezca verticalmente.
+---
+### [2026-10-29 21:15] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Refinamiento de layout y ergonomía: ampliación de contenedor de vistas a `max-w-[1650px]` para monitores 1080p, alineación simétrica y animación 300ms de herramientas inferiores (Realtime, Saldo, Puesta en marcha, APKs, Configuración) y prevención de colisión de menús/popovers con el borde inferior de la pantalla.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [PageContainer.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/PageContainer.tsx), [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx), [page.tsx (historicas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/page.tsx), [page.tsx (observadas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/observadas/page.tsx), [page.tsx (disputadas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/disputadas/page.tsx), [IntegracionesClientView.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/IntegracionesClientView.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Detección reactiva de colisión con el límite inferior del viewport (`window.innerHeight`) en Popover de Notificaciones, Flyout colapsado y menú de Configuración, reposicionándolos automáticamente hacia arriba si exceden la pantalla.
+  - [x] AC 2: Unificación geométrica del pie de navegación en `SidebarNav.tsx`: los iconos inferiores mantienen exactamente el mismo eje vertical y la misma animación fluida de 300ms que los enlaces superiores, eliminando el desplazamiento desde la derecha.
+  - [x] AC 3: Ampliación de ancho máximo a `max-w-[1650px]`, eliminando las bandas vacías laterales en pantallas 1080p (reduciendo el margen muerto de 260px a ~75px en modo colapsado) y preservando contención para pantallas ultrawide.
+---
+### [2026-10-29 21:10] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección arquitectónica de layout: portales globales (`createPortal`) para tooltips y menús flotantes (resolviendo z-index y scroll horizontal parásito), animación sincronizada de textos (300ms con `max-w-0 opacity-0`), y eliminación de contención de locks en GoTrue (`supabase.auth.getUser()`) en `SidebarNav`.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [BrandLogo.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BrandLogo.tsx), [DashboardShell.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/DashboardShell.tsx), [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Desacoplamiento de tooltips, flyout de Notificaciones y menú de Configuración del árbol del sidebar mediante `createPortal` hacia `document.body` (`position: fixed`, `z-[99999]`), eliminando cortes por `overflow` y eliminando el scrollbar horizontal parásito.
+  - [x] AC 2: Animación fluida de repliegue de textos sincronizada en 300ms (`overflow-hidden max-w-0 opacity-0`) tanto en `BrandLogo` como en los enlaces de navegación de `SidebarNav`, eliminando la desaparición abrupta del texto.
+  - [x] AC 3: Eliminación de llamadas redundantes a `supabase.auth.getUser()` en `fetchCredito` y `checkSuperadmin` reutilizando el `userId` inyectado por el Server Component, erradicando los errores de colisión de locks en GoTrue (`AbortError: Lock broken by another request`).
+---
+### [2026-10-29 21:00] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Implementación de barra lateral minimizable (`DashboardShell`), navegación directa a Históricas en Notificaciones con popover flotante (sin expansión vertical en modo extendido) y flyout de 3 opciones (modo minimizado), tooltips flotantes z-50, ampliación de `PageContainer` a `max-w-7xl`, eliminación de doble padding perimetral en 4 vistas desalineadas y densificación compacta de paneles clave.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [DashboardShell.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/DashboardShell.tsx), [layout.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/layout.tsx), [BrandLogo.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/BrandLogo.tsx), [SidebarNav.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/SidebarNav.tsx), [PageContainer.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/components/PageContainer.tsx), [page.tsx (historicas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/historicas/page.tsx), [page.tsx (observadas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/observadas/page.tsx), [page.tsx (disputadas)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/notificaciones/disputadas/page.tsx), [IntegracionesClientView.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/integraciones/IntegracionesClientView.tsx), [DashboardClient.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/DashboardClient.tsx), [layout.tsx (dispositivos)](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/layout.tsx), [page.tsx (dispositivos/[id])](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/dashboard/dispositivos/[id]/page.tsx)
+  - **Base de Datos:** Ninguno.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Barra lateral colapsable con botón chevron superior flotante, transición suave `transition-all duration-300` entre `w-64` y `w-20` (y margen de `main` entre `lg:ml-64` y `lg:ml-20`), y persistencia en `localStorage`.
+  - [x] AC 2: Clic directo en "Notificaciones" navega a `/dashboard/notificaciones/historicas`. En modo expandido, botón derecho abre un popover flotante con "Observadas" y "Disputadas" sin alterar la altura vertical ni empujar enlaces inferiores.
+  - [x] AC 3: En modo minimizado (`w-20`), el icono Bell despliega al posar el cursor o interactuar un Flyout Popover lateral con las 3 opciones completas (Históricas, Observadas, Disputas).
+  - [x] AC 4: Tooltips flotantes `z-50` en todos los ítems de navegación y herramientas inferiores (Realtime, Saldo, Puesta en marcha, APKs, Configuración) en modo minimizado.
+  - [x] AC 5: Contenedor `PageContainer` ampliado a `max-w-7xl` con cabecera compacta `mb-4 pb-3.5`.
+  - [x] AC 6: Eliminación de doble padding en `historicas`, `observadas`, `disputadas` e `integraciones`.
+  - [x] AC 7: Compilación verificada con éxito mediante `next build` (0 errores en TypeScript y 28 rutas validadas).
+---
 ### [2026-10-22 21:45] | App/Componente: web / db | Autor: AGENT_ROLE
 
 * **Descripción:** Finalización integral del Grupo 1 de la Épica [CR-016]: Modal promocional dinámico LandingPromoModal, Kill Switch Beta en 2 niveles (cupos BD + NEXT_PUBLIC_IS_BETA_PHASE) con contingencia WhatsApp, y generador estructurado de enlaces WhatsApp en /superadmin/beta [GTM-1.3, GTM-1.5, GTM-1.6].
