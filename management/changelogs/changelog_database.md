@@ -1,4 +1,15 @@
 ---
+### [2026-10-31 18:45] | App/Componente: database | Autor: AGENT_ROLE
+
+* **Descripción:** Homologación de regla V3 para transferencias P2P de Lemon, inyección de 5 filtros de exclusión (cashback, 2FA, tarjeta, fallos y promociones), regularización de pagos legítimos y purga de 213 registros residuales.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [0051_lemon_v3_y_exclusiones.sql](file:///c:/Trabajo/Proyectos/NotificaPe/NotificaPe_Specs/management/database/scripts/0051_lemon_v3_y_exclusiones.sql)
+  - **Base de Datos:** Actualizada regla 31 (`Lemon Estándar V3`) con mock y formato `{title} - {text}`. Insertadas 5 reglas `EXCLUSION` en `FiltrosXBilletera` para Lemon (`IdBilletera: 5`). Regularizados 11 pagos en `NotificacionesXDispositivo` (`PENDIENTE`, `Privada: false`) y purgados 213 registros en `REVISION` de ruido.
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: Catálogo de Lemon cuenta con 8 reglas en `FiltrosXBilletera` (3 inclusión, 5 exclusión).
+  - [x] AC 2: 0 registros en `REVISION` para Lemon; los 11 pagos legítimos tienen monto y remitente asignados.
+  - [x] AC 3: Script de migración 0051 generado con paridad 100% sobre base de datos.
+---
 ### [2026-10-05 21:05] | App/Componente: database | Autor: AGENT_ROLE
 
 * **Descripción:** Depuración de sobrecargas huérfanas en RPCs de compra de licencias y restauración de valores por defecto para resolución PostgREST.

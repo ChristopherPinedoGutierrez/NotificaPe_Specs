@@ -1,4 +1,14 @@
 ---
+### [2026-10-31 18:45] | App/Componente: web | Autor: AGENT_ROLE
+
+* **Descripción:** Corrección de error de esquema en validación retroactiva de ReglaWizard (`IdFiltroBil` inexistente en `NotificacionesXDispositivo`) y activación de visibilidad pública (`Privada: false`) al regularizar pagos.
+* **Detalles Técnicos:**
+  - **Archivos Modificados:** [ReglaWizard.tsx](file:///c:/Trabajo/Proyectos/NotificaPe/web/src/app/superadmin/regex/components/ReglaWizard.tsx)
+  - **Base de Datos:** Ninguno (cambio de cliente PostgREST).
+* **Criterios de Aceptación (AC) Validados:**
+  - [x] AC 1: La actualización retroactiva en `ReglaWizard.tsx` no incluye campos no existentes en el esquema PostgREST.
+  - [x] AC 2: Las notificaciones retroactivamente actualizadas a `PENDIENTE` se desmarcan de `Privada = true`, haciéndolas visibles para operadores de caja y dashboard.
+---
 ### [2026-10-29 21:30] | App/Componente: web | Autor: AGENT_ROLE
 
 * **Descripción:** Adaptación de Notificaciones en móvil a botón desplegable completo con 3 vistas (Históricas, Observadas, Disputas) idéntico a Configuración, y desactivación de navegación accidental en logo de marca dentro de la cabecera del cajón móvil (`asLink={false}`).
